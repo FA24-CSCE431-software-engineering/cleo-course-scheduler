@@ -5,7 +5,7 @@ env:
   DATABASE_USER: postgres
   DATABASE_PASSWORD: password
 
-name: Rails tests
+name: CI [Rubocop, Rspec, Brakeman]
 on: [push, pull_request]
 jobs:
   rspec-test:
