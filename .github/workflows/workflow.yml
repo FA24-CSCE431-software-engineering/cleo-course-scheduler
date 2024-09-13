@@ -9,7 +9,7 @@ name: Rails tests
 on: [push, pull_request]
 jobs:
   rspec-test:
-    name: RSpec
+    name: CI [Rubocop, Rspec, Brakeman]
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -43,6 +43,8 @@ jobs:
         run: brakeman -o brakeman.txt
       - name: Run rubocop
         run: bundler exec rubocop --force-exclusion vendor/*/** --out rubocop.txt
+      - name: Override .gitignore for coverage folder
+        run: echo "\n!/coverage" >> .gitignore
       - name: Upload coverage results
         uses: actions/upload-artifact@master
         if: always()
