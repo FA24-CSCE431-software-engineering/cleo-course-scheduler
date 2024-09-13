@@ -18,6 +18,8 @@ gem "stimulus-rails"
 gem "jbuilder"
 # Ruby static code analyzer and code formatter [https://github.com/rubocop/rubocop]
 gem 'rubocop', require: false
+# XML toolkit for Ruby
+gem 'rexml'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
