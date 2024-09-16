@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_16_204428) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_16_214648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_16_204428) do
     t.integer "lab_hours", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "majors", force: :cascade do |t|
+    t.string "mname", limit: 255
+    t.string "cname", limit: 255
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mname", "cname"], name: "index_majors_on_mname_and_cname", unique: true
   end
 
   create_table "students", id: false, force: :cascade do |t|
