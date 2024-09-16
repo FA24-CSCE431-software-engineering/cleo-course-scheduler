@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_16_221811) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_16_231041) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "courses", id: false, force: :cascade do |t|
-    t.integer "crn"
+  create_table "courses", primary_key: "crn", id: :serial, force: :cascade do |t|
     t.string "cname", limit: 255
     t.text "description"
     t.integer "credit_hours", default: 0
@@ -49,8 +48,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_16_221811) do
     t.index ["prereq_crn"], name: "index_prerequisites_on_prereq_crn"
   end
 
-  create_table "students", id: false, force: :cascade do |t|
-    t.integer "uin"
+  create_table "student_courses", id: false, force: :cascade do |t|
+    t.integer "uin", null: false
+    t.integer "crn", null: false
+    t.index ["uin", "crn"], name: "index_student_courses_on_uin_and_crn", unique: true
+  end
+
+  create_table "students", primary_key: "uin", id: :serial, force: :cascade do |t|
     t.string "first_name", limit: 255
     t.string "last_name", limit: 255
     t.string "email", limit: 255
@@ -69,4 +73,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_16_221811) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "student_courses", "courses", column: "crn", primary_key: "crn"
+  add_foreign_key "student_courses", "students", column: "uin", primary_key: "uin"
 end
