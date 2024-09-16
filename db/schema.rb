@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_16_195727) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_16_204428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "courses", id: false, force: :cascade do |t|
+    t.integer "crn"
+    t.string "cname", limit: 255
+    t.text "description"
+    t.integer "credit_hours", default: 0
+    t.integer "lecture_hours", default: 0
+    t.integer "lab_hours", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "students", id: false, force: :cascade do |t|
     t.integer "uin"
