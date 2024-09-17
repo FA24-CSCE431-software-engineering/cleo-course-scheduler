@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Prerequisite < ApplicationRecord
-    primary_key = :course_crn
+  # Validations
+  validates :course_crn, :prereq_crn, presence: true
 
-    belongs_to :course, foreign_key: :course_crn, class_name: "Course"
-    belongs_to :prereq, foreign_key: :prereq_crn, class_name: "Course"
-
-    validates :course_crn, :prereq_crn, presence: true
+  # Prerequisites associations
+  belongs_to :course, foreign_key: :course_crn, class_name: 'Course'
+  belongs_to :prereq, foreign_key: :prereq_crn, class_name: 'Course'
 end

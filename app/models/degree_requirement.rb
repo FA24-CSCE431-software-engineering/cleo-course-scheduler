@@ -1,3 +1,4 @@
+# frozen_string_literal: true
+
 class DegreeRequirement < ApplicationRecord
-    # validates :id, :crn, presence: true
 end

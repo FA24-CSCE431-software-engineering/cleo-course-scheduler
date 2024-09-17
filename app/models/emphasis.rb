@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
 class Emphasis < ApplicationRecord
-    validates :crn, :ename, presence: true
-    validates :crn, uniqueness: { scope: :ename }
-    has_many :course, foreign_key: :crn
+  # Validations
+  validates :crn, :ename, presence: true
+  validates :crn, uniqueness: { scope: :ename }
+
+  # Course association
+  has_many :course, foreign_key: :crn
 end

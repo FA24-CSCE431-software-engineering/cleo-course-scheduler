@@ -1,7 +1,9 @@
-class Major < ApplicationRecord
-    validates :mname, :cname, presence: true
+# frozen_string_literal: true
 
-    # Degree requirement associations
-    has_and_belongs_to_many :courses
-    
+class Major < ApplicationRecord
+  # Validations
+  validates :mname, :cname, presence: true
+
+  # Degree requirement associations
+  has_and_belongs_to_many :courses
 end

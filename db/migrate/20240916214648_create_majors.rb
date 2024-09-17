@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateMajors < ActiveRecord::Migration[7.2]
   def change
     create_table :majors do |t|
@@ -8,6 +10,6 @@ class CreateMajors < ActiveRecord::Migration[7.2]
     end
 
     # enforces uniqueness of composite (mname, cname)
-    add_index :majors, [:mname, :cname], unique: true
+    add_index :majors, %i[mname cname], unique: true
   end
 end

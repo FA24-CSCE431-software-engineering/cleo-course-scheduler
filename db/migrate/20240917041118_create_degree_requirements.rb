@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDegreeRequirements < ActiveRecord::Migration[7.2]
   def change
     create_table :degree_requirements, id: false do |t|
@@ -6,7 +8,7 @@ class CreateDegreeRequirements < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
-  
-    add_index :degree_requirements, [:major_id, :course_id], unique: true
+
+    add_index :degree_requirements, %i[major_id course_id], unique: true
   end
 end
