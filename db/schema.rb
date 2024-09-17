@@ -69,9 +69,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_041118) do
   end
 
   create_table "student_courses", id: false, force: :cascade do |t|
-    t.integer "uin", null: false
-    t.integer "crn", null: false
-    t.index ["uin", "crn"], name: "index_student_courses_on_uin_and_crn", unique: true
+    t.bigint "student_id", null: false
+    t.bigint "course_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_student_courses_on_course_id"
+    t.index ["student_id", "course_id"], name: "index_student_courses_on_student_id_and_course_id", unique: true
+    t.index ["student_id"], name: "index_student_courses_on_student_id"
   end
 
   create_table "students", primary_key: "uin", id: :serial, force: :cascade do |t|
@@ -100,7 +104,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_041118) do
   add_foreign_key "degree_requirements", "courses", primary_key: "crn"
   add_foreign_key "degree_requirements", "majors"
   add_foreign_key "emphases", "courses", column: "crn", primary_key: "crn"
-  add_foreign_key "student_courses", "courses", column: "crn", primary_key: "crn"
-  add_foreign_key "student_courses", "students", column: "uin", primary_key: "uin"
+  add_foreign_key "student_courses", "courses", primary_key: "crn"
+  add_foreign_key "student_courses", "students", primary_key: "uin"
   add_foreign_key "tracks", "courses", column: "crn", primary_key: "crn"
 end

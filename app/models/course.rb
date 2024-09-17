@@ -13,7 +13,7 @@ class Course < ApplicationRecord
     has_many :prerequisite_courses, through: :inverse_prerequisites, source: :course
 
     # Student courses associations
-    has_and_belongs_to_many :students, join_table: :students_courses, foreign_key: "crn", association_foreign_key: "uin"
+    has_and_belongs_to_many :students
 
     # Degree requirements associations
     has_and_belongs_to_many :majors

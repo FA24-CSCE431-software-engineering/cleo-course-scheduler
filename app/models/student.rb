@@ -4,8 +4,8 @@ class Student < ApplicationRecord
     enum :enrol_semester, [ :fall, :spring], prefix: :enrol
     enum :grad_semester, [ :fall, :spring], prefix: :grad
 
-    # association
-    has_and_belongs_to_many :courses, join_table: :students_courses, foreign_key: "uin", association_foreign_key: "crn"
+    # student courses association
+    has_and_belongs_to_many :courses
 
     # validates :uin, presence: true, uniqueness: true
     # validates :first_name, :last_name, :email, presence: true, length: { maximum: 255 }
