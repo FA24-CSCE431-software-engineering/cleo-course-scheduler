@@ -12,11 +12,11 @@ class Course < ApplicationRecord
     has_many :inverse_prerequisites, class_name: "Prerequisite", foreign_key: :prereq_crn
     has_many :prerequisite_courses, through: :inverse_prerequisites, source: :course
 
-    # Degree plan associations
+    # Student courses associations
     has_and_belongs_to_many :students, join_table: :students_courses, foreign_key: "crn", association_foreign_key: "uin"
 
-    # Tracks associations
-    # belongs_to :track, foreign_key: :crn
+    # Degree requirements associations
+    has_and_belongs_to_many :majors
 
     # To add validation for length of crn and hours
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_17_034314) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_17_041118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_034314) do
     t.integer "lab_hours", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "degree_requirements", id: false, force: :cascade do |t|
+    t.bigint "major_id", null: false
+    t.bigint "course_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_degree_requirements_on_course_id"
+    t.index ["major_id", "course_id"], name: "index_degree_requirements_on_major_id_and_course_id", unique: true
+    t.index ["major_id"], name: "index_degree_requirements_on_major_id"
   end
 
   create_table "emphases", force: :cascade do |t|
@@ -87,6 +97,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_034314) do
   end
 
   add_foreign_key "core_categories", "courses", column: "crn", primary_key: "crn"
+  add_foreign_key "degree_requirements", "courses", primary_key: "crn"
+  add_foreign_key "degree_requirements", "majors"
   add_foreign_key "emphases", "courses", column: "crn", primary_key: "crn"
   add_foreign_key "student_courses", "courses", column: "crn", primary_key: "crn"
   add_foreign_key "student_courses", "students", column: "uin", primary_key: "uin"
