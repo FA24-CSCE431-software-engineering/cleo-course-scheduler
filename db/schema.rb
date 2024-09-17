@@ -33,9 +33,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_034314) do
   end
 
   create_table "emphases", force: :cascade do |t|
-    t.string "ename", limit: 255
+    t.integer "crn", null: false
+    t.string "ename", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["crn", "ename"], name: "index_emphases_on_crn_and_ename", unique: true
   end
 
   create_table "majors", force: :cascade do |t|
@@ -85,6 +87,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_034314) do
   end
 
   add_foreign_key "core_categories", "courses", column: "crn", primary_key: "crn"
+  add_foreign_key "emphases", "courses", column: "crn", primary_key: "crn"
   add_foreign_key "student_courses", "courses", column: "crn", primary_key: "crn"
   add_foreign_key "student_courses", "students", column: "uin", primary_key: "uin"
   add_foreign_key "tracks", "courses", column: "crn", primary_key: "crn"
