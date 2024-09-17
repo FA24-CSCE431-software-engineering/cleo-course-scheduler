@@ -15,6 +15,9 @@ class Course < ApplicationRecord
     # Degree plan associations
     has_and_belongs_to_many :students, join_table: :students_courses, foreign_key: "crn", association_foreign_key: "uin"
 
+    # Tracks associations
+    # belongs_to :track, foreign_key: :crn
+
     # To add validation for length of crn and hours
 
 end

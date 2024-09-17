@@ -68,12 +68,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_16_231041) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tracks", force: :cascade do |t|
-    t.string "tname", limit: 255
+  create_table "tracks", id: false, force: :cascade do |t|
+    t.integer "crn", null: false
+    t.string "tname", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["crn", "tname"], name: "index_tracks_on_crn_and_tname", unique: true
   end
 
   add_foreign_key "student_courses", "courses", column: "crn", primary_key: "crn"
   add_foreign_key "student_courses", "students", column: "uin", primary_key: "uin"
+  add_foreign_key "tracks", "courses", column: "crn", primary_key: "crn"
 end
