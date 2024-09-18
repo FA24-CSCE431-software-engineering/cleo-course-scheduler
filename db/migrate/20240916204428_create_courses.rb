@@ -2,8 +2,9 @@
 
 class CreateCourses < ActiveRecord::Migration[7.2]
   def change
-    create_table :courses, id: false, primary_key: :crn do |t|
-      t.integer :crn, null: false, primary_key: true
+    create_table :courses do |t|
+      t.string :ccode, limit: 4
+      t.integer :cnumber
       t.string :cname, limit: 255
       t.text :description
       t.integer :credit_hours, default: 0
@@ -12,5 +13,7 @@ class CreateCourses < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
+
+    add_index :courses, %i[ccode cnumber], unique: true
   end
 end
