@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Emphasis, type: :emphases do
   before(:each) do
-    @default_course = Course.create(ccode: 'CSCE', cnumber: 411, cname: 'Software Engineering', credit_hours: 3)
+    @default_course = Course.create(ccode: "CSCE", cnumber: 411, cname: 'Software Engineering', credit_hours: 3)
   end
 
   context 'When creating a valid emphasis' do
@@ -22,7 +22,7 @@ RSpec.describe Emphasis, type: :emphases do
   end
 
   context 'When creating a duplicate emphasis' do
-    it 'is invalid with duplicate crn, ename' do
+    it 'is invalid with duplicate course_id, ename' do
       Emphasis.create(course_id: @default_course.id, ename: 'Economics')
       e2 = Emphasis.new(course_id: @default_course.id, ename: 'Economics')
       expect(e2).to be_invalid
@@ -30,7 +30,7 @@ RSpec.describe Emphasis, type: :emphases do
   end
 
   context 'When creating two emphasis' do
-    it 'is valid with unique crn, ename' do
+    it 'is valid with unique course_id, ename' do
       Emphasis.create(course_id: @default_course.id, ename: 'Economics')
       e2 = Emphasis.create(course_id: @default_course.id, ename: 'Math')
       expect(e2).to be_valid
