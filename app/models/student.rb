@@ -15,4 +15,6 @@ class Student < ApplicationRecord
 
   # Student courses association
   has_and_belongs_to_many :courses
+  belongs_to :major
+  
 end
