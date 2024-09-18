@@ -10,6 +10,6 @@ class CreateMajors < ActiveRecord::Migration[7.2]
     end
 
     # enforces uniqueness of composite (mname, cname)
-    add_index :majors, [:mname, :cname], unique: true
+    add_index :majors, %i[mname cname], unique: true
   end
 end
