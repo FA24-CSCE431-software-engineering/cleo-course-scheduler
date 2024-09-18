@@ -11,8 +11,7 @@ class CreateStudents < ActiveRecord::Migration[7.2]
       t.integer :enrol_semester
       t.integer :grad_year
       t.integer :grad_semester
-      t.integer :major_id
-      t.integer :degree_plan_id
+      t.references :major, null: false, foreign_key: true
 
       t.timestamps
     end

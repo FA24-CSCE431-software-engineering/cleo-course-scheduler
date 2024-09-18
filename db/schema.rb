@@ -86,10 +86,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_041118) do
     t.integer "enrol_semester"
     t.integer "grad_year"
     t.integer "grad_semester"
-    t.integer "major_id"
-    t.integer "degree_plan_id"
+    t.bigint "major_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["major_id"], name: "index_students_on_major_id"
   end
 
   create_table "tracks", id: false, force: :cascade do |t|
@@ -106,5 +106,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_041118) do
   add_foreign_key "emphases", "courses", column: "crn", primary_key: "crn"
   add_foreign_key "student_courses", "courses", primary_key: "crn"
   add_foreign_key "student_courses", "students", primary_key: "uin"
+  add_foreign_key "students", "majors"
   add_foreign_key "tracks", "courses", column: "crn", primary_key: "crn"
 end
