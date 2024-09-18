@@ -10,12 +10,14 @@ RSpec.describe Emphasis, type: :emphases do
   context 'When creating a valid emphasis' do
     it 'is valid with valid attributes' do
       emphasis = Emphasis.create(course_id: @default_course.id, ename: 'Economics')
+      emphasis = Emphasis.create(course_id: @default_course.id, ename: 'Economics')
       expect(emphasis).to be_valid
     end
   end
 
   context 'When creating an invalid emphasis' do
     it 'is invalid with invalid attributes' do
+      emphasis = Emphasis.create(course_id: @default_course.id, ename: '')
       emphasis = Emphasis.create(course_id: @default_course.id, ename: '')
       expect(emphasis).to be_invalid
     end
