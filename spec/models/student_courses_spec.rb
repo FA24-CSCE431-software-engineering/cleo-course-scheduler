@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe StudentCourse, type: :student_courses do
   before(:each) do
     @default_course = Course.create(crn: 1, cname: 'Software Engineering', credit_hours: 3)
+    @default_major = Major.create(mname: "Computer Science", cname: "School of Engineering")
     @default_student = Student.create(
       uin: 123_456_789,
       first_name: 'John',
@@ -13,7 +14,8 @@ RSpec.describe StudentCourse, type: :student_courses do
       enrol_year: 2020,
       grad_year: 2024,
       enrol_semester: 0,
-      grad_semester: 1
+      grad_semester: 1,
+      major_id: @default_major.id
     )
   end
 

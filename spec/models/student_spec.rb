@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Student, type: :model do
   before(:each) do
+    @default_major = Major.create(mname: "Computer Science", cname: "School of Engineering")
     @default_student = Student.create(uin: 123_456_789,
                                       first_name: 'John',
                                       last_name: 'Adams',
@@ -11,7 +12,9 @@ RSpec.describe Student, type: :model do
                                       enrol_year: 2020,
                                       grad_year: 2024,
                                       enrol_semester: 0,
-                                      grad_semester: 1)
+                                      grad_semester: 1,
+                                      major_id: @default_major.id
+                                      )
   end
 
   context 'When creating a valid student' do
