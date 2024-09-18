@@ -2,9 +2,9 @@
 
 class Track < ApplicationRecord
   # Validations
-  validates :crn, :tname, presence: true
-  validates :crn, uniqueness: { scope: :tname }
+  validates :course_id, :tname, presence: true
+  validates :course_id, uniqueness: { scope: :tname }
 
   # Track association
-  has_many :course, foreign_key: :crn
+  has_many :course, foreign_key: :course_id
 end

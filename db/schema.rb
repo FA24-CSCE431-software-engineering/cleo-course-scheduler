@@ -15,14 +15,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_041118) do
   enable_extension "plpgsql"
 
   create_table "core_categories", id: false, force: :cascade do |t|
-    t.integer "crn", null: false
+    t.integer "course_id", null: false
     t.string "cname", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["crn", "cname"], name: "index_core_categories_on_crn_and_cname", unique: true
+    t.index ["course_id", "cname"], name: "index_core_categories_on_course_id_and_cname", unique: true
   end
 
-  create_table "courses", primary_key: "crn", id: :serial, force: :cascade do |t|
+  create_table "courses", force: :cascade do |t|
+    t.string "ccode", limit: 4
+    t.integer "cnumber"
     t.string "cname", limit: 255
     t.text "description"
     t.integer "credit_hours", default: 0
@@ -30,6 +32,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_041118) do
     t.integer "lab_hours", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ccode", "cnumber"], name: "index_courses_on_ccode_and_cnumber", unique: true
   end
 
   create_table "degree_requirements", id: false, force: :cascade do |t|
@@ -43,11 +46,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_041118) do
   end
 
   create_table "emphases", force: :cascade do |t|
-    t.integer "crn", null: false
+    t.integer "course_id", null: false
     t.string "ename", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["crn", "ename"], name: "index_emphases_on_crn_and_ename", unique: true
+    t.index ["course_id", "ename"], name: "index_emphases_on_course_id_and_ename", unique: true
   end
 
   create_table "majors", force: :cascade do |t|
@@ -59,13 +62,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_041118) do
   end
 
   create_table "prerequisites", id: false, force: :cascade do |t|
-    t.integer "course_crn"
-    t.integer "prereq_crn"
+    t.integer "course_id"
+    t.integer "prereq_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_crn", "prereq_crn"], name: "index_prerequisites_on_course_crn_and_prereq_crn", unique: true
-    t.index ["course_crn"], name: "index_prerequisites_on_course_crn"
-    t.index ["prereq_crn"], name: "index_prerequisites_on_prereq_crn"
+    t.index ["course_id", "prereq_id"], name: "index_prerequisites_on_course_id_and_prereq_id", unique: true
+    t.index ["course_id"], name: "index_prerequisites_on_course_id"
+    t.index ["prereq_id"], name: "index_prerequisites_on_prereq_id"
   end
 
   create_table "student_courses", id: false, force: :cascade do |t|
@@ -93,19 +96,19 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_17_041118) do
   end
 
   create_table "tracks", id: false, force: :cascade do |t|
-    t.integer "crn", null: false
+    t.integer "course_id", null: false
     t.string "tname", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["crn", "tname"], name: "index_tracks_on_crn_and_tname", unique: true
+    t.index ["course_id", "tname"], name: "index_tracks_on_course_id_and_tname", unique: true
   end
 
-  add_foreign_key "core_categories", "courses", column: "crn", primary_key: "crn"
-  add_foreign_key "degree_requirements", "courses", primary_key: "crn"
+  add_foreign_key "core_categories", "courses"
+  add_foreign_key "degree_requirements", "courses"
   add_foreign_key "degree_requirements", "majors"
-  add_foreign_key "emphases", "courses", column: "crn", primary_key: "crn"
-  add_foreign_key "student_courses", "courses", primary_key: "crn"
+  add_foreign_key "emphases", "courses"
+  add_foreign_key "student_courses", "courses"
   add_foreign_key "student_courses", "students", primary_key: "uin"
   add_foreign_key "students", "majors"
-  add_foreign_key "tracks", "courses", column: "crn", primary_key: "crn"
+  add_foreign_key "tracks", "courses"
 end

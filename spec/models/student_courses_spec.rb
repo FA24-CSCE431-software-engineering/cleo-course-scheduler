@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe StudentCourse, type: :student_courses do
   before(:each) do
-    @default_course = Course.create(crn: 1, cname: 'Software Engineering', credit_hours: 3)
+    @default_course = Course.create(ccode: 'CSCE', cnumber: 411, cname: 'Software Engineering', credit_hours: 3)
     @default_major = Major.create(mname: 'Computer Science', cname: 'School of Engineering')
     @default_student = Student.create(
       uin: 123_456_789,
@@ -21,7 +21,7 @@ RSpec.describe StudentCourse, type: :student_courses do
 
   context 'When creating a valid student course' do
     it 'is valid with valid attributes' do
-      sc = StudentCourse.create(student_id: @default_student.uin, course_id: @default_course.crn)
+      sc = StudentCourse.create(student_id: @default_student.uin, course_id: @default_course.id)
       expect(sc).to be_valid
     end
   end
@@ -35,17 +35,17 @@ RSpec.describe StudentCourse, type: :student_courses do
 
   context 'When creating a duplicate student course' do
     it 'is invalid with duplicate course_id, student_id' do
-      StudentCourse.create(student_id: @default_student.uin, course_id: @default_course.crn)
-      sc2 = StudentCourse.new(student_id: @default_student.uin, course_id: @default_course.crn)
+      StudentCourse.create(student_id: @default_student.uin, course_id: @default_course.id)
+      sc2 = StudentCourse.new(student_id: @default_student.uin, course_id: @default_course.id)
       expect(sc2).to be_invalid
     end
   end
 
   context 'When creating a two student course' do
     it 'is valid with unique course_id, student_id' do
-      course = Course.create(crn: 2, cname: 'Parallel Computing', credit_hours: 3)
-      StudentCourse.create(student_id: @default_student.uin, course_id: @default_course.crn)
-      sc2 = StudentCourse.create(student_id: @default_student.uin, course_id: course.crn)
+      course = Course.create(ccode: 'CSCE', cnumber: 435, cname: 'Parallel Computing', credit_hours: 3)
+      StudentCourse.create(student_id: @default_student.uin, course_id: @default_course.id)
+      sc2 = StudentCourse.create(student_id: @default_student.uin, course_id: course.id)
       expect(sc2).to be_valid
     end
   end

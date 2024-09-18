@@ -2,9 +2,9 @@
 
 class Emphasis < ApplicationRecord
   # Validations
-  validates :crn, :ename, presence: true
-  validates :crn, uniqueness: { scope: :ename }
+  validates :course_id, :ename, presence: true
+  validates :course_id, uniqueness: { scope: :ename }
 
   # Course association
-  has_many :course, foreign_key: :crn
+  has_many :course, foreign_key: :course_id
 end
