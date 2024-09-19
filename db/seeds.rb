@@ -11,6 +11,9 @@
 #   end
 
 # Course [No dependencies]
+
+# rubocop:disable Layout/LineLength
+# This is here since it would be annoying to refactor and hard to read if we did
 @c110 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 110, cname: 'Programming I',
                                  description: 'Basic concepts in using computation to enhance problem solving abilities; understanding how people communicate with computers, and how computing affects society; computational thinking; representation of data; analysis of program behavior; methods for identifying and fixing errors in programs; understanding abilities and limitation of programs; development and execution of programs.', credit_hours: 4, lab_hours: 2)
 @c111 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 111,
@@ -93,3 +96,4 @@ DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c222.id)
 DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c312.id)
 DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c314.id)
 DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c313.id)
+
