@@ -11,6 +11,5 @@ class DeviseCreateStudentLogins < ActiveRecord::Migration[7.2]
     end
 
     add_index :student_logins, :email, unique: true
-
   end
 end
