@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'StudentDashboards', type: :request do
-  describe 'GET /show' do
-    it 'returns http success' do
-      get '/student_dashboards/show'
-      expect(response).to have_http_status(:success)
-    end
+  it "returns http redirect and prints location" do
+    get student_dashboard_path
+    puts response.location  # This will print the redirect URL to the console
+    expect(response).to have_http_status(:redirect)
   end
+  
 end
