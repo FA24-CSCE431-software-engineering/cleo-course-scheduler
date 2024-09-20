@@ -6,7 +6,15 @@ env:
   DATABASE_PASSWORD: password
 
 name: CI [Rubocop, Rspec, Brakeman]
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - main
+      - test
+  pull_request:
+    branches:
+      - main
+      - test
 jobs:
   rspec-test:
     name: CI [Rubocop, Rspec, Brakeman]
