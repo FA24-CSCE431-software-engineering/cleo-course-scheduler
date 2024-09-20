@@ -3,6 +3,13 @@ class HomeController < ApplicationController
     Rails.application.eager_load!  # because rails wont load unless they have been referenced at least once this forces them to be loaded
         # we could find a way to exclude these in a less hard-coded way
     excluded_models = [ 
+          "Track",
+          "Prerequisite",
+          "Major",
+          "Emphasis",
+          "DegreeRequirement",
+          "Course",
+          "CoreCategories",
           "ActionText::Record",
           "ActiveStorage::Record",
           "ActionMailbox::Record",
