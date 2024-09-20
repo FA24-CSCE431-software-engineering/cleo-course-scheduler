@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get "student_course/index"
+  get "student_course/show"
+  get "student_course/new"
+  get "student_course/create"
+  get "student_course/edit"
+  get "student_course/update"
+  get "student_course/destroy"
   get "student/index"
   get "student/show"
   get "student/new"
