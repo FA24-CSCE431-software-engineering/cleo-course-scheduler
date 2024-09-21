@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cleo Course Scheduler</title>
+</head>
+
+<h1>You're logged in!</h1>
+<%= link_to "Sign Out", destroy_student_login_session_path %>
+
+<h1> Dashboard </h1>
+<table>
+  <thead>
+    <tr>
+      <th>Entity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @models.each do |model| %>
+      <tr>
+        <td><%= model  %></td>
+        <td>
+            <a href="/">Create</a>
+            <a href="/">Read</a>
+            <a href="/">Update</a>
+            <a href="/">Delete</a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</html>
