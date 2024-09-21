@@ -1,20 +1,24 @@
 class StudentCoursesController < ApplicationController
+  before_action :set_student_course, only: [:edit, :update, :destroy]
+
   def index
     @student_courses = StudentCourse.where(uin: params[:uin])
   end
 
   def show
+    @student_course = StudentCourse.find(params[:id])
   end
 
   def new
+    @student_course = StudentCourse.new
   end
 
   def create
     @student_course = StudentCourse.new(student_course_params)
     if @student_course.save
-      # handle successful save
+      redirect_to student_courses_path, notice: 'Course added successfully.'
     else
-      # handle errors
+      render :new
     end
   end
 
@@ -22,12 +26,16 @@ class StudentCoursesController < ApplicationController
   end
 
   def update
+    if @student_course.update(student_course_params)
+      redirect_to student_courses_path, notice: 'Course updated successfully.'
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @student_course = StudentCourse.find(params[:id])
     @student_course.destroy
-    # handle after delete, redirection etc.
+    redirect_to student_courses_path, notice: 'Course removed successfully.'
   end
 
   def confirm_destroy
@@ -35,8 +43,12 @@ class StudentCoursesController < ApplicationController
 
   private
 
+  def set_student_course
+    @student_course = StudentCourse.find(params[:id])
+  end
+
   def student_course_params
-    params.require(:student_course).permit(:uin, :course_id)
+    params.require(:student_course).permit(:student_id, :course_id)
   end
 
 end

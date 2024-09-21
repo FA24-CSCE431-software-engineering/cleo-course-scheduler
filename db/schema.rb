@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_21_035934) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_21_050145) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_21_035934) do
     t.index ["prereq_id"], name: "index_prerequisites_on_prereq_id"
   end
 
-  create_table "student_courses", id: false, force: :cascade do |t|
+  create_table "student_courses", force: :cascade do |t|
     t.bigint "student_id", null: false
     t.bigint "course_id", null: false
     t.datetime "created_at", null: false
