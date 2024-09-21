@@ -9,8 +9,8 @@
 <table>
   <thead>
     <tr>
-      <th>Entity</th>
-      <th>Actions</th>
+      <th>Table</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -18,10 +18,7 @@
       <tr>
         <td><%= model  %></td>
         <td>
-            <a href="/">Create</a>
-            <a href="/">Read</a>
-            <a href="/">Update</a>
-            <a href="/">Delete</a>
+          <a href="<%= send("#{model.to_s.underscore}s_path") %>">READ</a>
         </td>
       </tr>
     <% end %>

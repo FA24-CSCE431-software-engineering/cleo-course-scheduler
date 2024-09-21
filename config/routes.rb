@@ -1,20 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "student_course/index"
-  get "student_course/show"
-  get "student_course/new"
-  get "student_course/create"
-  get "student_course/edit"
-  get "student_course/update"
-  get "student_course/destroy"
-  get "student/index"
-  get "student/show"
-  get "student/new"
-  get "student/create"
-  get "student/edit"
-  get "student/update"
-  get "student/destroy"
+  resources :student_courses
+  resources :students
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'home#index'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
