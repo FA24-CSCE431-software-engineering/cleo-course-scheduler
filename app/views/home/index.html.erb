@@ -5,9 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cleo Course Scheduler</title>
 </head>
+<body>
 
 <h1>You're logged in!</h1>
-<%= link_to "Sign Out", destroy_student_login_session_path %>
+
+<nav>
+  <ul>
+    <li><%= link_to "Home", root_path %></li>
+    <% if current_student %> 
+      <li><%= link_to "Profile", profile_student_path(current_student_login) %></li>
+      <li><%= link_to "Sign Out", destroy_student_login_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign In", new_student_login_session_path %></li>
+    <% end %>
+  </ul>
+</nav>
+
 
 <h1> Dashboard </h1>
 <table>
@@ -20,7 +33,7 @@
   <tbody>
     <% @models.each do |model| %>
       <tr>
-        <td><%= model  %></td>
+        <td><%= model %></td>
         <td>
           <% # Check if the path helper exists; if not, default to root_path %>
           <% path_method = "#{model.to_s.underscore}s_path" %>
@@ -34,4 +47,6 @@
     <% end %>
   </tbody>
 </table>
+
+</body>
 </html>

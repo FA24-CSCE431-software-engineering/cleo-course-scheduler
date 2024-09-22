@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :students do 
     member do
+      get 'profile'
+      get 'edit'
       get 'confirm_destroy'
     end
   end

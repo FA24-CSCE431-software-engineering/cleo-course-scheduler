@@ -22,11 +22,12 @@ class StudentsController < ApplicationController
   end
 
   def edit
+    @student = current_student_login
   end
 
   def update
     if @student.update(student_params)
-      redirect_to students_path
+      redirect_to profile_student_path(@student), notice: 'Profile updated successfully.'
     else
       render :edit
     end
@@ -41,6 +42,11 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end  
 
+  def profile
+    @student = current_student_login
+    @uid = @student.uid
+  end
+
   private
 
   def set_student
@@ -48,6 +54,9 @@ class StudentsController < ApplicationController
   end
 
   def student_params
-    params.require(:student).permit(:uin, :first_name, :last_name, :email, :enrol_year, :grad_year, :enrol_semester, :grad_semester, :major_id)
+    params.require(:student).permit(:uin, :full_name, :email, :other_attributes...)
   end
+
+  
+
 end
