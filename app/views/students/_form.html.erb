@@ -1,0 +1,63 @@
+<h1><%= @student.new_record? ? 'New Student' : 'Edit Student' %></h1>
+
+<%= form_with(model: @student, local: true) do |form| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+      <ul>
+        <% @student.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :uin %>
+    <%= form.text_field :uin %>
+  </div>
+
+  <div>
+    <%= form.label :major_id, "Major" %>
+    <%= form.collection_select :major_id, Major.all, :id, :mname, prompt: "Select a Major" %>
+  </div>
+
+  <div>
+    <%= form.label :enrol_year %>
+    <%= form.number_field :enrol_year %>
+  </div>
+
+  <div>
+    <%= form.label :grad_year %>
+    <%= form.number_field :grad_year %>
+  </div>
+
+  <div>
+    <%= form.label :enrol_semester %>
+    <%= form.select :enrol_semester, Student.enrol_semesters.keys.map { |k| [k.humanize, k] } %>
+  </div>
+
+  <div>
+    <%= form.label :grad_semester %>
+    <%= form.select :grad_semester, Student.grad_semesters.keys.map { |k| [k.humanize, k] } %>
+  </div>
+
+  <div>
+    <%= form.submit @student.new_record? ? 'Create Student' : 'Update Student' %>
+  </div>
+<% end %>
