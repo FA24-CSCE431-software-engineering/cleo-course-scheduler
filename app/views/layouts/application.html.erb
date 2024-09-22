@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= content_for(:title) || "Cleo Course Scheduler" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+<title>GoogleOauthDevise</title>
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
 
-    <%= yield :head %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-
+track': 'reload' %>
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+<%= javascript_include_tag 'application', 'data-turbolinks-track':
+'reload' %>
+<style>
+.flash__alert { color: red; }
+.flash__notice { color: blue; }
+.flash__success { color: green; }
+</style>
+</head>
+<body>
+<% if flash.any? %>
+<% flash.each do |key, value| -%>
+<section class="flash flash__<%= key %>"><%= value.html_safe
+%></section>
+<% end -%>
+<% end %>
+<%= yield %>
+</body>
 </html>
