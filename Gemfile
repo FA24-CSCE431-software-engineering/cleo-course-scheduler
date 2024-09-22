@@ -73,3 +73,4 @@ group :test do
 end
 
 gem 'net-protocol'
+gem 'jquery-rails'
