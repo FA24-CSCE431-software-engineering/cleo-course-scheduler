@@ -1,3 +1,6 @@
+<div>
+  <%= link_to 'Back to Home', root_path %>
+</div>
 <h1>Students</h1>
 
 <table>
@@ -28,8 +31,8 @@
         <td><%= student.grad_semester %></td>
         <td><%= student.major.present? ? student.major.mname : 'N/A' %></td> 
         <td>
-          <%= link_to 'UPDATE', edit_student_path(student) %> 
-          <%= link_to 'DELETE', confirm_destroy_student_path(student), method: :get %>
+          <%= link_to 'Edit', edit_student_path(student) %> 
+          <%= link_to 'Delete', confirm_destroy_student_path(student), method: :get %>
         </td>
       </tr>
     <% end %>
@@ -37,8 +40,5 @@
 </table>
 
 <div>
-  <%= link_to 'CREATE', new_student_path %>
-</div>
-<div>
-  <%= link_to 'Back to Dashboard', root_path %>
+  <%= link_to 'Add student', new_student_path %>
 </div>
