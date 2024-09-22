@@ -17,7 +17,7 @@
         <td><%= student_course.course.credit_hours %></td>
         <td>
           <%= link_to 'Edit', edit_student_course_path(student_course) %>
-          <%= link_to 'Remove', student_course_path(student_course), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Remove', student_course, data: { turbo_method: :delete } %>
         </td>
       </tr>
     <% end %>
