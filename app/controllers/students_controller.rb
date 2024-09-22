@@ -16,6 +16,8 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
     if @student.save
       redirect_to students_path
+    else
+      render :new
     end
   end
 
@@ -25,6 +27,8 @@ class StudentsController < ApplicationController
   def update
     if @student.update(student_params)
       redirect_to students_path
+    else
+      render :edit
     end
   end
 
