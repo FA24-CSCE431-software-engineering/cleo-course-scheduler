@@ -1,0 +1,27 @@
+<h1>Degree Plan</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Course Name</th>
+      <th>Course Code</th>
+      <th>Credit Hours</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @student_courses.each do |student_course| %>
+      <tr>
+        <td><%= student_course.course.cname %></td>
+        <td><%= student_course.course.ccode %></td>
+        <td><%= student_course.course.credit_hours %></td>
+        <td>
+          <%= link_to 'Edit', edit_student_course_path(student_course) %>
+          <%= link_to 'Remove', student_course, data: { turbo_method: :delete } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Add New Course', new_student_course_path %>

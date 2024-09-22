@@ -13,8 +13,8 @@
 <table>
   <thead>
     <tr>
-      <th>Entity</th>
-      <th>Actions</th>
+      <th>Table</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -22,10 +22,13 @@
       <tr>
         <td><%= model  %></td>
         <td>
-            <a href="/">Create</a>
-            <a href="/">Read</a>
-            <a href="/">Update</a>
-            <a href="/">Delete</a>
+          <% # Check if the path helper exists; if not, default to root_path %>
+          <% path_method = "#{model.to_s.underscore}s_path" %>
+          <% if Rails.application.routes.url_helpers.respond_to?(path_method) %>
+            <a href="<%= send(path_method) %>">READ</a>
+          <% else %>
+            <a href="<%= root_path %>">READ</a> <!-- Default to home#index -->
+          <% end %>
         </td>
       </tr>
     <% end %>
