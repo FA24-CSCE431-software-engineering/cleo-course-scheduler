@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Emphasis, type: :emphases do
   before(:each) do
-    @default_course = Course.create(ccode: "CSCE", cnumber: 411, cname: 'Software Engineering', credit_hours: 3)
+    @default_course = Course.create(ccode: 'CSCE', cnumber: 411, cname: 'Software Engineering', credit_hours: 3)
   end
 
   context 'When creating a valid emphasis' do

@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cleo Course Scheduler</title>
 </head>
+
+<h1>You're logged in!</h1>
+<%= link_to "Sign Out", destroy_student_login_session_path %>
+
 <h1> Dashboard </h1>
 <table>
   <thead>
@@ -18,7 +22,13 @@
       <tr>
         <td><%= model  %></td>
         <td>
-          <a href="<%= send("#{model.to_s.underscore}s_path") %>">View Table</a>
+          <% # Check if the path helper exists; if not, default to root_path %>
+          <% path_method = "#{model.to_s.underscore}s_path" %>
+          <% if Rails.application.routes.url_helpers.respond_to?(path_method) %>
+            <a href="<%= send(path_method) %>">View Table</a>
+          <% else %>
+            <a href="<%= root_path %>">View Table</a> <!-- Default to home#index -->
+          <% end %>
         </td>
       </tr>
     <% end %>

@@ -19,4 +19,5 @@ class Student < ApplicationRecord
   has_many :courses, through: :student_courses
 
   belongs_to :major
+  has_many :student_courses
 end
