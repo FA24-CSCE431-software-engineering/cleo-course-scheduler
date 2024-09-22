@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     get 'student_logins/sign_out', to: 'student_logins/sessions#destroy', as: :destroy_student_login_session
   end
 
+  get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'
+  post 'save_degree_plan', to: 'def_degree#save', as: 'save_degree_plan'
+  get 'download_degree_plan', to: 'def_degree#download', as: 'download_degree_plan'
+  
   # for student courses
   resources :student_courses
 
@@ -21,6 +25,9 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :def_degree, only: [:show]
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'home#index'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

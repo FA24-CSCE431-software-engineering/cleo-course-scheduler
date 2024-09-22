@@ -47,6 +47,7 @@ class StudentsController < ApplicationController
     @uid = @student.uid
   end
 
+
   private
 
   def set_student
