@@ -4,8 +4,6 @@
   <%= @student.first_name %><br>
   <strong>Last Name:</strong>
   <%= @student.last_name %><br>
-  <strong>Email:</strong>
-  <%= @student.email %><br>
 </p>
 
 <%= form_with(url: student_path(@student), method: :delete) do |form| %>
