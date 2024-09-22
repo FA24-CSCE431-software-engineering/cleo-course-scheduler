@@ -1,4 +1,3 @@
-<!-- app/views/student_courses/new.html.erb -->
 <h1>Add a New Course to Degree Plan</h1>
 
 <%= form_with model: @student_course, local: true do |form| %>
@@ -8,7 +7,7 @@
   </div>
 
   <div>
-    <%= form.label :course_id, "Course" %>
+    <%= form.label :course_id, "Select Course" %>
     <%= form.collection_select :course_id, Course.all, :id, :cname, prompt: "Select Course" %>
   </div>
 
