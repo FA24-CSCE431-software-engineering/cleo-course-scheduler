@@ -22,7 +22,7 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    @student = current_student_login
+    
   end
 
   def update
@@ -55,7 +55,7 @@ class StudentsController < ApplicationController
   end
 
   def student_params
-    params.require(:student).permit(:uin, :full_name, :email, :other_attributes...)
+    params.require(:student).permit(:first_name, :last_name, :uin, :email, :major_id, :enrol_year, :grad_year, :enrol_semester, :grad_semester)
   end
 
   
