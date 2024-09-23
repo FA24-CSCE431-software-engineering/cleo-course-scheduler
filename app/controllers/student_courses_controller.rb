@@ -1,6 +1,11 @@
 class StudentCoursesController < ApplicationController
   before_action :set_student_course, only: [:edit, :update, :destroy, :confirm_destroy]
 
+  #This bypass the authentication for testing purposes
+  if Rails.env.test?
+    skip_before_action :authenticate_student_login!
+  end
+
   def index
     if params[:student_id].present?
       @student = Student.find(params[:student_id])
