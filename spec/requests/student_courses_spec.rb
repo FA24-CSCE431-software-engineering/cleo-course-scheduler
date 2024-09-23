@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'StudentCourses', type: :request do
   let(:major) { Major.find_or_create_by(mname: 'Computer Science', cname: 'College of Engineering') }
+  
   let(:student) do
     Student.create!(
       first_name: 'John',
@@ -12,17 +13,16 @@ RSpec.describe 'StudentCourses', type: :request do
       grad_year: 2024,
       enrol_semester: 1,
       grad_semester: 1,
-      major:
+      major: major
     )
   end
+  
   let(:course) do
     Course.create!(
       ccode: 'CSCE',
       cnumber: 431,
       cname: 'Software Engineering',
-      description: 'Application of engineering approach to computer software design and development; life cycle models,
-    software requirements and specification; conceptual model design; detailed design; validation and verification;
-    design quality assurance; software design/development environments and project management.',
+      description: 'Application of engineering approach to software design and development.',
       credit_hours: 3,
       lecture_hours: 2,
       lab_hours: 2
@@ -31,8 +31,8 @@ RSpec.describe 'StudentCourses', type: :request do
 
   let(:valid_attributes) do
     {
-      student_id: student.uin,
-      course_id: course.crn
+      student_id: student.id,  
+      course_id: course.id      
     }
   end
 
@@ -76,7 +76,7 @@ RSpec.describe 'StudentCourses', type: :request do
   describe 'PATCH /update' do
     it 'updates the StudentCourse and redirects' do
       student_course = StudentCourse.create!(valid_attributes)
-      patch student_course_path(student_course), params: { student_course: { course_id: course.crn } }
+      patch student_course_path(student_course), params: { student_course: { course_id: course.id } }
       expect(response).to have_http_status(:redirect)
     end
   end
