@@ -20,7 +20,9 @@ class StudentsController < ApplicationController
     end
   end
 
+
   def edit; end
+
 
   def update
     if @student.update(student_params)
@@ -38,6 +40,12 @@ class StudentsController < ApplicationController
   def confirm_destroy
     @student = Student.find(params[:id])
   end
+
+  def profile
+    @student = current_student_login
+    @uid = @student.uid
+  end
+
 
   private
 
