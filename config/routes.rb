@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  #root "student_dashboards#show"
+  # root "student_dashboards#show"
   resources :student_dashboards, only: [:show]
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
 
@@ -17,13 +17,14 @@ Rails.application.routes.draw do
   # for student courses
   resources :student_courses
 
-  resources :students do 
+  resources :students do
     member do
       get 'profile'
       get 'edit'
       get 'confirm_destroy'
     end
   end
+
   
   resources :def_degree, only: [:show]
 
@@ -39,5 +40,4 @@ Rails.application.routes.draw do
   get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
 
   # Defines the root path route ("/")
-
 end
