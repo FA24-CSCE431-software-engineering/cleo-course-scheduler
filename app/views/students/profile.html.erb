@@ -1,0 +1,23 @@
+<h1>Profile</h1>
+
+<nav>
+  <ul>
+    <li><%= link_to "Back to Dashboard", root_path %></li> <!-- Adjust to your dashboard path -->
+    <li><%= link_to "Sign Out", destroy_student_login_session_path, method: :delete %></li>
+    <li>
+      <% if @student.avatar_url.present? %>
+        <img src="<%= @student.avatar_url %>" alt="User Avatar" style="width: 50px; height: 50px; border-radius: 50%;">
+      <% else %>
+        <img src="default_avatar_url.jpg" alt="Default Avatar" style="width: 50px; height: 50px; border-radius: 50%;">
+      <% end %>
+    </li>
+  </ul>
+</nav>
+
+<p><strong>Name:</strong> <%= @student.full_name %></p>
+<p><strong>Email:</strong> <%= @student.email %></p>
+<p><strong>UID:</strong> <%= @uid %></p> <!-- Display UID here -->
+
+
+
+

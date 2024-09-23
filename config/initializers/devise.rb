@@ -312,6 +312,11 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   # OAuth Stuff
-  config.omniauth :google_oauth2, ENV.fetch('GOOGLE_OAUTH_CLIENT_ID', nil),
-                  ENV.fetch('GOOGLE_OAUTH_CLIENT_SECRET', nil)
+  config.omniauth :google_oauth2, ENV.fetch('GOOGLE_CLIENT_ID', nil), ENV.fetch('GOOGLE_CLIENT_SECRET', nil), {
+    scope: 'userinfo.email, userinfo.profile',
+    prompt: 'select_account',
+    image_aspect_ratio: 'square',
+    image_size: 50,
+    access_type: 'offline'
+  }
 end

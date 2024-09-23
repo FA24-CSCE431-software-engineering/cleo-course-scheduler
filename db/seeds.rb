@@ -96,4 +96,3 @@ DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c222.id)
 DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c312.id)
 DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c314.id)
 DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c313.id)
-
