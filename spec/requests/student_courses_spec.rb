@@ -31,8 +31,8 @@ RSpec.describe 'StudentCourses', type: :request do
 
   let(:valid_attributes) do
     {
-      student_id: student.uin,
-      course_id: course.crn
+      student_id: student.id,
+      course_id: course.id
     }
   end
 
