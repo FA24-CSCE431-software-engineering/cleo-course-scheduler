@@ -76,7 +76,7 @@ RSpec.describe 'StudentCourses', type: :request do
   describe 'PATCH /update' do
     it 'updates the StudentCourse and redirects' do
       student_course = StudentCourse.create!(valid_attributes)
-      patch student_course_path(student_course), params: { student_course: { course_id: course.crn } }
+      patch student_course_path(student_course), params: { student_course: { course_id: course.id } }
       expect(response).to have_http_status(:redirect)
     end
   end
