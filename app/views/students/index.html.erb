@@ -1,0 +1,44 @@
+<div>
+  <%= link_to 'Back to Home', root_path %>
+</div>
+<h1>Students</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>UIN</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Enrollment Year</th>
+      <th>Graduation Year</th>
+      <th>Enrollment Semester</th>
+      <th>Graduation Semester</th>
+      <th>Major</th> <!-- New column for Major -->
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.uin %></td>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= student.email %></td>
+        <td><%= student.enrol_year %></td>
+        <td><%= student.grad_year %></td>
+        <td><%= student.enrol_semester %></td>
+        <td><%= student.grad_semester %></td>
+        <td><%= student.major.present? ? student.major.mname : 'N/A' %></td> 
+        <td>
+          <%= link_to 'Edit', edit_student_path(student) %> 
+          <%= link_to 'Delete', confirm_destroy_student_path(student), method: :get %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div>
+  <%= link_to 'Add student', new_student_path %>
+</div>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  #root "student_dashboards#show"
+  # root "student_dashboards#show"
   resources :student_dashboards, only: [:show]
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
 
@@ -9,6 +9,26 @@ Rails.application.routes.draw do
     get 'student_logins/sign_in', to: 'student_logins/sessions#new', as: :new_student_login_session
     get 'student_logins/sign_out', to: 'student_logins/sessions#destroy', as: :destroy_student_login_session
   end
+
+  get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'
+  post 'save_degree_plan', to: 'def_degree#save', as: 'save_degree_plan'
+  get 'download_degree_plan', to: 'def_degree#download', as: 'download_degree_plan'
+  
+  # for student courses
+  resources :student_courses
+
+  resources :students do
+    member do
+      get 'profile'
+      get 'edit'
+      get 'confirm_destroy'
+    end
+  end
+
+  
+  resources :def_degree, only: [:show]
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'home#index'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -20,5 +40,4 @@ Rails.application.routes.draw do
   get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
 
   # Defines the root path route ("/")
-
 end

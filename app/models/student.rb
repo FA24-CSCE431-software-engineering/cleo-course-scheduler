@@ -14,6 +14,9 @@ class Student < ApplicationRecord
   validates :enrol_semester, :grad_semester, presence: true
 
   # Student courses association
-  has_and_belongs_to_many :courses
+  # has_and_belongs_to_many :courses
+  has_many :student_courses, dependent: :destroy
+  has_many :courses, through: :student_courses
+
   belongs_to :major
 end
