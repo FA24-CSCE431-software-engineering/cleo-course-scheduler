@@ -16,4 +16,12 @@ RSpec.describe Track, type: :track do
       expect(track).to be_invalid
     end
   end
+
+  context 'When creating a duplicate track' do
+    it 'is invalid with duplicate tname' do
+      Track.create(tname: 'Software')
+      t1 = Track.new(tname: 'Software')
+      expect(t1).to be_invalid
+    end
+  end
 end
