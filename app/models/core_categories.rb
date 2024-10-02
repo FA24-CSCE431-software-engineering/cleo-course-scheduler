@@ -2,9 +2,5 @@
 
 class CoreCategories < ApplicationRecord
   # Validations
-  validates :course_id, :cname, presence: true
-  validates :course_id, uniqueness: { scope: :cname }
-
-  # Course association
-  has_many :course, foreign_key: :course_id
+  validates :cname, presence: true, uniqueness: true
 end

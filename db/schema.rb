@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_02_182144) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_02_184438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "core_categories", id: false, force: :cascade do |t|
-    t.integer "course_id", null: false
+  create_table "core_categories", force: :cascade do |t|
     t.string "cname", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id", "cname"], name: "index_core_categories_on_course_id_and_cname", unique: true
   end
 
   create_table "courses", force: :cascade do |t|
@@ -110,7 +108,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_182144) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "core_categories", "courses"
   add_foreign_key "degree_requirements", "courses"
   add_foreign_key "degree_requirements", "majors"
   add_foreign_key "student_courses", "courses"
