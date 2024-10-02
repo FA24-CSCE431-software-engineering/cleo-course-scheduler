@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_02_155951) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_02_182144) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,11 +46,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_155951) do
   end
 
   create_table "emphases", force: :cascade do |t|
-    t.integer "course_id", null: false
     t.string "ename", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id", "ename"], name: "index_emphases_on_course_id_and_ename", unique: true
   end
 
   create_table "majors", force: :cascade do |t|
@@ -115,7 +113,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_155951) do
   add_foreign_key "core_categories", "courses"
   add_foreign_key "degree_requirements", "courses"
   add_foreign_key "degree_requirements", "majors"
-  add_foreign_key "emphases", "courses"
   add_foreign_key "student_courses", "courses"
   add_foreign_key "student_courses", "students", primary_key: "uin"
   add_foreign_key "students", "majors"
