@@ -21,4 +21,8 @@ class Course < ApplicationRecord
 
   # Degree requirements associations
   has_and_belongs_to_many :majors
+
+  # Tracks association
+  has_many :course_tracks
+  has_many :tracks, through: :course_tracks
 end

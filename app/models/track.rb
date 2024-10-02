@@ -4,6 +4,7 @@ class Track < ApplicationRecord
   # Validations
   validates :tname, presence: true, uniqueness: true
 
-  # Track association
-  # has_many :course, foreign_key: :course_id
+  # Course association
+  has_many :course_tracks
+  has_many :courses, through: :course_tracks
 end

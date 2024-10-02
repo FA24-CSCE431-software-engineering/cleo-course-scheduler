@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_02_184438) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_02_193403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_184438) do
     t.string "cname", limit: 255, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "course_tracks", id: false, force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "track_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id", "track_id"], name: "index_course_tracks_on_course_id_and_track_id", unique: true
+    t.index ["course_id"], name: "index_course_tracks_on_course_id"
+    t.index ["track_id"], name: "index_course_tracks_on_track_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -108,6 +118,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_184438) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "course_tracks", "courses"
+  add_foreign_key "course_tracks", "tracks"
   add_foreign_key "degree_requirements", "courses"
   add_foreign_key "degree_requirements", "majors"
   add_foreign_key "student_courses", "courses"
