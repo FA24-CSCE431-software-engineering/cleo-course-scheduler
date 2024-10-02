@@ -23,19 +23,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_220944) do
   create_table "course_core_categories", id: false, force: :cascade do |t|
     t.bigint "course_id", null: false
     t.bigint "core_category_id", null: false
+    t.integer "year", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["core_category_id"], name: "index_course_core_categories_on_core_category_id"
-    t.index ["course_id", "core_category_id"], name: "index_course_core_categories_on_course_id_and_core_category_id", unique: true
+    t.index ["course_id", "core_category_id", "year"], name: "idx_on_course_id_core_category_id_year_3c9f98d245", unique: true
     t.index ["course_id"], name: "index_course_core_categories_on_course_id"
   end
 
   create_table "course_emphases", id: false, force: :cascade do |t|
     t.bigint "course_id", null: false
     t.bigint "emphasis_id", null: false
+    t.integer "year", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id", "emphasis_id"], name: "index_course_emphases_on_course_id_and_emphasis_id", unique: true
+    t.index ["course_id", "emphasis_id", "year"], name: "index_course_emphases_on_course_id_and_emphasis_id_and_year", unique: true
     t.index ["course_id"], name: "index_course_emphases_on_course_id"
     t.index ["emphasis_id"], name: "index_course_emphases_on_emphasis_id"
   end
@@ -43,9 +45,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_220944) do
   create_table "course_tracks", id: false, force: :cascade do |t|
     t.bigint "course_id", null: false
     t.bigint "track_id", null: false
+    t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id", "track_id"], name: "index_course_tracks_on_course_id_and_track_id", unique: true
+    t.index ["course_id", "track_id", "year"], name: "index_course_tracks_on_course_id_and_track_id_and_year", unique: true
     t.index ["course_id"], name: "index_course_tracks_on_course_id"
     t.index ["track_id"], name: "index_course_tracks_on_track_id"
   end
