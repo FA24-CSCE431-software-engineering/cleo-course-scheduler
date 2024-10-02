@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_02_213025) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_02_220944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_213025) do
     t.index ["core_category_id"], name: "index_course_core_categories_on_core_category_id"
     t.index ["course_id", "core_category_id"], name: "index_course_core_categories_on_course_id_and_core_category_id", unique: true
     t.index ["course_id"], name: "index_course_core_categories_on_course_id"
+  end
+
+  create_table "course_emphases", id: false, force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "emphasis_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id", "emphasis_id"], name: "index_course_emphases_on_course_id_and_emphasis_id", unique: true
+    t.index ["course_id"], name: "index_course_emphases_on_course_id"
+    t.index ["emphasis_id"], name: "index_course_emphases_on_emphasis_id"
   end
 
   create_table "course_tracks", id: false, force: :cascade do |t|
@@ -130,6 +140,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_213025) do
 
   add_foreign_key "course_core_categories", "core_categories"
   add_foreign_key "course_core_categories", "courses"
+  add_foreign_key "course_emphases", "courses"
+  add_foreign_key "course_emphases", "emphases", column: "emphasis_id"
   add_foreign_key "course_tracks", "courses"
   add_foreign_key "course_tracks", "tracks"
   add_foreign_key "degree_requirements", "courses"

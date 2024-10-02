@@ -29,4 +29,8 @@ class Course < ApplicationRecord
   # Core category association
   has_many :course_core_categories
   has_many :core_categories, through: :course_core_categories
+
+  # Emphasis association
+  has_many :course_emphases
+  has_many :emphases, through: :course_emphases
 end
