@@ -25,4 +25,8 @@ class Course < ApplicationRecord
   # Tracks association
   has_many :course_tracks
   has_many :tracks, through: :course_tracks
+
+  # Core category association
+  has_many :course_core_categories
+  has_many :core_categories, through: :course_core_categories
 end
