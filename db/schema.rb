@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_02_220944) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_03_043732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,12 +67,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_02_220944) do
   end
 
   create_table "degree_requirements", id: false, force: :cascade do |t|
-    t.bigint "major_id", null: false
     t.bigint "course_id", null: false
+    t.bigint "major_id", null: false
+    t.integer "year", null: false
+    t.integer "sem", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id", "major_id", "year"], name: "index_degree_requirements_on_course_id_and_major_id_and_year", unique: true
     t.index ["course_id"], name: "index_degree_requirements_on_course_id"
-    t.index ["major_id", "course_id"], name: "index_degree_requirements_on_major_id_and_course_id", unique: true
     t.index ["major_id"], name: "index_degree_requirements_on_major_id"
   end
 
