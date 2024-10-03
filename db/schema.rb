@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_03_135610) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_03_180455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -103,13 +103,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_03_135610) do
     t.index ["prereq_id"], name: "index_prerequisites_on_prereq_id"
   end
 
-  create_table "student_courses", force: :cascade do |t|
+  create_table "student_courses", id: false, force: :cascade do |t|
     t.bigint "student_id", null: false
     t.bigint "course_id", null: false
+    t.integer "sem", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "uin"
-    t.integer "sem"
     t.index ["course_id"], name: "index_student_courses_on_course_id"
     t.index ["student_id", "course_id"], name: "index_student_courses_on_student_id_and_course_id", unique: true
     t.index ["student_id"], name: "index_student_courses_on_student_id"
@@ -125,7 +124,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_03_135610) do
     t.index ["email"], name: "index_student_logins_on_email", unique: true
   end
 
-  create_table "students", primary_key: "uin", id: :serial, force: :cascade do |t|
+  create_table "students", primary_key: "google_id", id: :serial, force: :cascade do |t|
     t.string "first_name", limit: 255
     t.string "last_name", limit: 255
     t.string "email", limit: 255
@@ -136,6 +135,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_03_135610) do
     t.bigint "major_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_admin", default: false, null: false
     t.index ["major_id"], name: "index_students_on_major_id"
   end
 
@@ -156,6 +156,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_03_135610) do
   add_foreign_key "prerequisites", "courses"
   add_foreign_key "prerequisites", "courses", column: "prereq_id"
   add_foreign_key "student_courses", "courses"
-  add_foreign_key "student_courses", "students", primary_key: "uin"
+  add_foreign_key "student_courses", "students", primary_key: "google_id"
   add_foreign_key "students", "majors"
 end
