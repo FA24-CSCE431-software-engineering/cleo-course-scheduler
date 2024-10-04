@@ -14,7 +14,9 @@ class MajorSpider(scrapy.Spider):
     def __init__(self, *args, **kwargs):
         super(MajorSpider, self).__init__(*args, **kwargs)
         self.custom_logger = logging.getLogger(self.__class__.__name__)
-        self.file = open('../data/majors.csv', 'w', newline='', encoding='utf-8')
+        curr_dir = os.path.dirname(__file__)
+        data_dir = os.path.join(curr_dir, "..", "data", "majors.csv")
+        self.file = open(data_dir, 'w', newline='', encoding='utf-8')
         self.writer = csv.writer(self.file)
         self.writer.writerow(['cname, mname'])
 
