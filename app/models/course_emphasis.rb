@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-class DegreeRequirement < ApplicationRecord
+class CourseEmphasis < ApplicationRecord
   validates :year, presence: true
-  validates :sem, presence: true, numericality: { only_integer: true }
 
   belongs_to :course
-  belongs_to :major
+  belongs_to :emphasis
 
-  validates :course_id, uniqueness: { scope: %i[major_id year] }
+  validates :course_id, uniqueness: { scope: %i[emphasis_id year] }
 
   before_validation :set_default_year, if: -> { year.nil? }
 
