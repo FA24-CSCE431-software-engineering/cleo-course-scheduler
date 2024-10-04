@@ -118,3 +118,42 @@ CSV.foreach(core_courses_csv, headers: true) do |row|
         core_category: CoreCategory.find_by(cname: row['category'])
     )
 end
+
+# Seed prerequisite table
+CSV.foreach(courses_csv, headers: true) do |row|
+    prereq_col = [row['prereq_1'], row['prereq_2'], row['prereq_3']]
+  
+    # If prereq_1 is blank, skip to the next iteration
+    next if prereq_col[0].blank?
+  
+    # Create course record
+    course = Course.find_or_create_by(
+      ccode: row['ccode'],
+      cnumber: row['cnumber']
+    )
+  
+    def process_prerequisites(prereqs, course, equi_id)
+      return if prereqs.blank?
+  
+      prereqs.split(';').each do |prereq|
+        # Split by whitespace to separate ccode and cnumber
+        ccode, cnumber = prereq.strip.split(' ', 2) # Split into ccode and cnumber
+  
+        # Find or create the prerequisite course
+        prereq_course = Course.find_or_create_by(ccode: ccode, cnumber: cnumber)
+  
+        # Create prerequisite record
+        Prerequisite.find_or_create_by(
+          course: course,
+          prereq: prereq_course,
+          equi_id: equi_id
+        )
+      end
+    end
+  
+    # Process each prerequisite
+    prereq_col.each_with_index do |prereqs, index|
+      process_prerequisites(prereqs, course, index + 1)
+    end
+  end
+  
