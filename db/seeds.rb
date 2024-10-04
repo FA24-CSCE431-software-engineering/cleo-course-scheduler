@@ -157,3 +157,8 @@ CSV.foreach(courses_csv, headers: true) do |row|
     end
   end
   
+
+  # Seed with emphasis @TODO
+
+  # Seed with emphasis requirements @TODO
+  
