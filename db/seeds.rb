@@ -86,3 +86,18 @@ CSV.foreach(major_courses_csv, headers: true) do |row|
         sem: row['rec_sem']
     )
 end
+
+# Seed with track fulfilling courses
+CSV.foreach(track_courses_csv, headers: true) do |row|
+    track = Track.find_by(
+        tname: row['track_name']
+    )
+    course = Course.find_by(
+        ccode: row['course_code'],
+        cnumber: row['course_number']
+    )
+    CourseTrack.find_or_create_by(
+        track: track,
+        course: course
+    )
+end
