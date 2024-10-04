@@ -101,3 +101,20 @@ CSV.foreach(track_courses_csv, headers: true) do |row|
         course: course
     )
 end
+
+# Seed with core fulfilling courses
+CSV.foreach(core_courses_csv, headers: true) do |row|
+    Course.find_or_create_by(
+        ccode: row['course_code'],
+        cnumber: row['course_number'],
+        cname: row['course_title'],
+        credit_hours: row['credit_hours']
+    )
+end
+
+CSV.foreach(core_courses_csv, headers: true) do |row|
+    CourseCoreCategory.find_or_create_by(
+        course: Course.find_by(ccode: row['course_code'], cnumber: row['course_number']),
+        core_category: CoreCategory.find_by(cname: row['category'])
+    )
+end
