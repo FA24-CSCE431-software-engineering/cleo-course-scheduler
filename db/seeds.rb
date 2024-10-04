@@ -48,3 +48,10 @@ CSV.foreach(majors_csv, headers: true) do |row|
         cname: row['cname'],
     )
 end
+
+# Seed with core categories
+CSV.foreach(core_categories_csv, headers: true) do |row|
+    CoreCategory.find_or_create_by(
+        cname: row['core_categories']
+    )
+end
