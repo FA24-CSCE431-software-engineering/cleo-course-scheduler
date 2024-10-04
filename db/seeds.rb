@@ -40,3 +40,11 @@ CSV.foreach(courses_csv, headers: true) do |row|
         lab_hours: row['lab_hours'],
     )
 end
+
+# Seed with majors
+CSV.foreach(majors_csv, headers: true) do |row|
+    Major.find_or_create_by(
+        mname: row['mname'],
+        cname: row['cname'],
+    )
+end
