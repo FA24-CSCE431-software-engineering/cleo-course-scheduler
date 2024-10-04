@@ -1,6 +1,7 @@
 # https://catalog.tamu.edu/undergraduate/
 
 import scrapy
+import os
 import csv
 import logging
 import unidecode
@@ -18,7 +19,7 @@ class MajorSpider(scrapy.Spider):
         data_dir = os.path.join(curr_dir, "..", "data", "majors.csv")
         self.file = open(data_dir, 'w', newline='', encoding='utf-8')
         self.writer = csv.writer(self.file)
-        self.writer.writerow(['cname, mname'])
+        self.writer.writerow(['cname', 'mname'])
 
     def closed(self, reason):
         self.file.close()
