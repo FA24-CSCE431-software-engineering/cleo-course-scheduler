@@ -55,3 +55,10 @@ CSV.foreach(core_categories_csv, headers: true) do |row|
         cname: row['core_categories']
     )
 end
+
+# Seed with tracks
+CSV.foreach(tracks_csv, headers: true) do |row|
+    Track.find_or_create_by(
+        tname: row['track_name']
+    )
+end
