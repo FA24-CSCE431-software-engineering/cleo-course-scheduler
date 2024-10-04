@@ -15,8 +15,6 @@
 # rubocop:disable Layout/LineLength
 # This is here since it would be annoying to refactor and hard to read if we did
 
-require 'csv'
-
 # Data scraped using Scrapy
 courses_csv = Rails.root.join('lib', 'data', 'courses.csv')
 majors_csv = Rails.root.join('lib', 'data', 'majors.csv')
@@ -161,4 +159,3 @@ CSV.foreach(courses_csv, headers: true) do |row|
   # Seed with emphasis @TODO
 
   # Seed with emphasis requirements @TODO
-  
