@@ -46,7 +46,7 @@ class CoreCourseSpider(scrapy.Spider):
                     course = row.xpath('.//td[@class="codecol"]/a/text()').get()
                     course = unidecode.unidecode(course).split()
                     course_code = course[0]
-                    course_number = course[1]
+                    course_number = course[1].split('/')[0]
 
                     # Extract course title from the second <td>
                     course_title = row.xpath('.//td[2]/text()').get()
