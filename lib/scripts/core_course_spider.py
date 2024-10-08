@@ -18,7 +18,7 @@ class CoreCourseSpider(scrapy.Spider):
         data_dir = os.path.join(curr_dir, "..", "data", "core_courses.csv")
         self.file = open(data_dir, 'w', newline='', encoding='utf-8')
         self.writer = csv.writer(self.file)
-        self.writer.writerow(['category', 'course_code', 'course_title', 'credit_hours'])
+        self.writer.writerow(['category', 'course_code', 'course_number', 'course_title', 'credit_hours'])
 
     def closed(self, reason):
         self.file.close()
@@ -43,7 +43,10 @@ class CoreCourseSpider(scrapy.Spider):
                 # Iterate through each row in the tbody of the found table
                 for row in table.xpath('.//tbody/tr'):
                     # Extract course code from the <a> tag inside the first <td>
-                    course_code = row.xpath('.//td[@class="codecol"]/a/text()').get()
+                    course = row.xpath('.//td[@class="codecol"]/a/text()').get()
+                    course = unidecode.unidecode(course).split()
+                    course_code = course[0]
+                    course_number = course[1].split('/')[0]
 
                     # Extract course title from the second <td>
                     course_title = row.xpath('.//td[2]/text()').get()
@@ -51,7 +54,7 @@ class CoreCourseSpider(scrapy.Spider):
                     # Extract course hours from the third <td>
                     course_hours = row.xpath('.//td[@class="hourscol"]/text()').get()
 
-                    self.writer.writerow([course_category, unidecode.unidecode(course_code), course_title, course_hours])
+                    self.writer.writerow([course_category, course_code, course_number, course_title, course_hours])
 
                     # Yield a dictionary containing the course data and the category it belongs to
                     # yield {

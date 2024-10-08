@@ -26,7 +26,7 @@ module StudentLogins
       if resource_or_scope.is_admin?
         admin_dashboard_path # Admin dashboard path
       else
-        student_dashboard_path # Regular user dashboard path
+        root_path # Regular user dashboard path
       end
     end
 

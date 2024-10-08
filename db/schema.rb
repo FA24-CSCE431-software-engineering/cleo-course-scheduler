@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_03_180455) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_08_181507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,7 +54,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_03_180455) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "ccode", limit: 4
     t.integer "cnumber"
     t.string "cname", limit: 255
     t.text "description"
@@ -63,7 +62,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_03_180455) do
     t.integer "lab_hours", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ccode", "cnumber"], name: "index_courses_on_ccode_and_cnumber", unique: true
+    t.string "ccode", limit: 30
   end
 
   create_table "degree_requirements", id: false, force: :cascade do |t|
@@ -121,6 +120,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_03_180455) do
     t.string "avatar_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_admin", default: false, null: false
     t.index ["email"], name: "index_student_logins_on_email", unique: true
   end
 
