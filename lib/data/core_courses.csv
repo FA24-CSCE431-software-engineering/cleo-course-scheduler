@@ -1,0 +1,290 @@
+category,course_code,course_number,course_title,credit_hours
+Communication,COMM,203,Public Speaking,3
+Communication,COMM,205,Communication for Technical Professions,3
+Communication,COMM,243,Argumentation and Debate,3
+Communication,ENGL,103,Introduction to Rhetoric and Composition,3
+Communication,ENGL,104,Composition and Rhetoric,3
+Communication,ENGL,203,Writing about Literature,3
+Communication,ENGL,210,Technical and Professional Writing,3
+Mathematics,MATH,135,Mathematics for Teachers I,3
+Mathematics,MATH,136,Mathematics for Teachers II,3
+Mathematics,MATH,140,Mathematics for Business and Social Sciences,3
+Mathematics,MATH,142,Business Calculus,3
+Mathematics,MATH,147,Calculus I for Biological Sciences,4
+Mathematics,MATH,148,Calculus II for Biological Sciences,4
+Mathematics,MATH,150,"Functions, Trigonometry and Linear Systems",4
+Mathematics,MATH,151,Engineering Mathematics I,4
+Mathematics,MATH,152,Engineering Mathematics II,4
+Mathematics,MATH,167,Explorations in Mathematics,3
+Mathematics,MATH,168,Finite Mathematics,3
+Mathematics,MATH,171,Calculus I,4
+Mathematics,MATH,172,Calculus II,4
+Mathematics,PHIL,240,Introduction to Logic,3
+Mathematics,STAT,201,Elementary Statistical Inference,3
+Life and Physical Sciences,AGSM,105,The World Has a Drinking Problem - Global Water Scarcity,3
+Life and Physical Sciences,ANSC,107,General Animal Science,3
+Life and Physical Sciences,ANTH,225,Introduction to Biological Anthropology,3
+Life and Physical Sciences,ANTH,226,Introduction to Biological Anthropology Laboratory,1
+Life and Physical Sciences,ARSC,104,"Contemporary Issues in Science - Cosmos, Earth and Humanity",3
+Life and Physical Sciences,ARSC,105,Contemporary Issues in Science - The Environment,3
+Life and Physical Sciences,ASTR,101,Basic Astronomy,3
+Life and Physical Sciences,ASTR,102,Observational Astronomy,1
+Life and Physical Sciences,ASTR,103,Introduction to Stars and Exoplanets,3
+Life and Physical Sciences,ASTR,104,Introduction to Galaxies and Cosmology,3
+Life and Physical Sciences,ASTR,109,Big Bang and Black Holes,3
+Life and Physical Sciences,ASTR,111,Overview of Modern Astronomy,4
+Life and Physical Sciences,ATMO,110,Disasters and Society,3
+Life and Physical Sciences,ATMO,201,Weather and Climate,3
+Life and Physical Sciences,ATMO,202,Weather and Climate Laboratory,1
+Life and Physical Sciences,ATMO,210,Climate Change,3
+Life and Physical Sciences,BESC,201,Introduction to Bioenvironmental Sciences,3
+Life and Physical Sciences,BESC,204,Molds and Mushrooms: The Impact of Fungi on Society and the Environment,3
+Life and Physical Sciences,BIOL,104,"Contemporary Issues in Science - Cosmos, Earth and Humanity",3
+Life and Physical Sciences,BIOL,107,Zoology,4
+Life and Physical Sciences,BIOL,111,Introductory Biology I,4
+Life and Physical Sciences,BIOL,112,Introductory Biology II,4
+Life and Physical Sciences,BIOL,113,Essentials in Biology,3
+Life and Physical Sciences,CHEM,105,Contemporary Issues in Science - The Environment,3
+Life and Physical Sciences,CHEM,106,Molecular Science for Citizens,3
+Life and Physical Sciences,CHEM,107,General Chemistry for Engineering Students,3
+Life and Physical Sciences,CHEM,116,Molecular Science for Citizens Laboratory,1
+Life and Physical Sciences,CHEM,117,General Chemistry for Engineering Students Laboratory,1
+Life and Physical Sciences,CHEM,119,Fundamentals of Chemistry I,4
+Life and Physical Sciences,CHEM,120,Fundamentals of Chemistry II,4
+Life and Physical Sciences,ECCB,205,Fundamentals of Ecology,3
+Life and Physical Sciences,ECCB,215,Fundamentals of Ecology--Laboratory,1
+Life and Physical Sciences,ECCB,309,Forest Ecology,3
+Life and Physical Sciences,ENTO,322,Insects and Human Society,3
+Life and Physical Sciences,FIVS,205,Introduction to Forensic and Investigative Sciences,3
+Life and Physical Sciences,GEOG,203,Planet Earth,3
+Life and Physical Sciences,GEOG,205,Environmental Change,3
+Life and Physical Sciences,GEOG,213,Planet Earth Lab,1
+Life and Physical Sciences,GEOL,101,Principles of Geology,3
+Life and Physical Sciences,GEOL,102,Principles of Geology Laboratory,1
+Life and Physical Sciences,GEOL,106,Historical Geology,4
+Life and Physical Sciences,GEOL,110,Disasters and Society,3
+Life and Physical Sciences,GEOL,207,Dinosaur World,3
+Life and Physical Sciences,GEOL,208,Life on a Dynamic Planet,3
+Life and Physical Sciences,HORT,201,Horticultural Science and Practices,3
+Life and Physical Sciences,HORT,202,Horticultural Science and Practices Laboratory,1
+Life and Physical Sciences,KINE,120,The Science of Basic Health and Fitness,1
+Life and Physical Sciences,KINE,223,Introduction to the Science of Health and Fitness,3
+Life and Physical Sciences,MARS,102,Earth and Ocean Science,4
+Life and Physical Sciences,NUTR,222,Nutrition for Health and Health Care,3
+Life and Physical Sciences,OCNG,251,The Blue Planet - Our Oceans,3
+Life and Physical Sciences,OCNG,252,The Blue Planet - Our Oceans Laboratory,1
+Life and Physical Sciences,PHYS,104,"Contemporary Issues in Science - Cosmos, Earth and Humanity",3
+Life and Physical Sciences,PHYS,109,Big Bang and Black Holes,3
+Life and Physical Sciences,PHYS,123,Physics for Future Presidents,3
+Life and Physical Sciences,PHYS,201,College Physics,4
+Life and Physical Sciences,PHYS,202,College Physics,4
+Life and Physical Sciences,PHYS,206,Newtonian Mechanics for Engineering and Science,3
+Life and Physical Sciences,PHYS,207,Electricity and Magnetism for Engineering and Science,3
+Life and Physical Sciences,PHYS,226,Physics of Motion Laboratory for the Sciences,1
+Life and Physical Sciences,PHYS,227,Electricity and Magnetism Laboratory for the Sciences,1
+Life and Physical Sciences,POSC,201,General Avian Science,3
+Life and Physical Sciences,SCSC,105,World Food and Fiber Crops,3
+Life and Physical Sciences,SCSC,301,Soil Science,4
+"Language, Philosophy and Culture",AFST,201,Introduction to Africana Studies,3
+"Language, Philosophy and Culture",AFST,204,Introduction to African-American Literature,3
+"Language, Philosophy and Culture",ANTH,204,The Prehistoric World,3
+"Language, Philosophy and Culture",ANTH,205,Peoples and Cultures of the World,3
+"Language, Philosophy and Culture",ANTH,210,Social and Cultural Anthropology,3
+"Language, Philosophy and Culture",ANTH,316,Nautical Archaeology,3
+"Language, Philosophy and Culture",ARAB,201,Intermediate Arabic I,3
+"Language, Philosophy and Culture",ARAB,202,Intermediate Arabic II,3
+"Language, Philosophy and Culture",ARAB,258,Global Middle Eastern Cultures,3
+"Language, Philosophy and Culture",ARCH,213,Sustainable Architecture,3
+"Language, Philosophy and Culture",CHIN,201,Intermediate Chinese I,3
+"Language, Philosophy and Culture",CHIN,202,Intermediate Chinese II,3
+"Language, Philosophy and Culture",CLAS,220,History of Christianity: Origins to the Reformation,3
+"Language, Philosophy and Culture",CLAS,221,Intermediate Latin I,3
+"Language, Philosophy and Culture",CLAS,250,Greek and Roman Civilization,3
+"Language, Philosophy and Culture",CLAS,251,Classical Mythology,3
+"Language, Philosophy and Culture",CLAS,261,Great Books of the Classical Tradition,3
+"Language, Philosophy and Culture",CLAS,262,Great Books of Christian Antiquity and the Latin Middle Ages,3
+"Language, Philosophy and Culture",COSC,222,Social Issues in the History of the Construction Environment,3
+"Language, Philosophy and Culture",DCED,201,Dance History,3
+"Language, Philosophy and Culture",ENGL,202,Environmental Literature,3
+"Language, Philosophy and Culture",ENGL,204,Introduction to African-American Literature,3
+"Language, Philosophy and Culture",ENGL,206,Twenty-first Century Literature and Culture,3
+"Language, Philosophy and Culture",ENGL,207,Human Thinking and Digital Culture,3
+"Language, Philosophy and Culture",ENGL,211,Foundations in Cultural Studies,3
+"Language, Philosophy and Culture",ENGL,221,World Literature,3
+"Language, Philosophy and Culture",ENGL,222,World Literature,3
+"Language, Philosophy and Culture",ENGL,227,American Literature: The Beginnings to Civil War,3
+"Language, Philosophy and Culture",ENGL,228,American Literature: Civil War to Present,3
+"Language, Philosophy and Culture",ENGL,231,Survey of English Literature I,3
+"Language, Philosophy and Culture",ENGL,232,Survey of English Literature II,3
+"Language, Philosophy and Culture",ENGL,253,Introduction to Cultural Studies and Popular Culture,3
+"Language, Philosophy and Culture",ENGL,262,Introduction to Latinx Literary Studies,3
+"Language, Philosophy and Culture",ENGL,292,Introduction To Literature And Medicine,3
+"Language, Philosophy and Culture",ENGL,306,Transnational Literature and Culture,3
+"Language, Philosophy and Culture",ENGL,330,Arthurian Literature,3
+"Language, Philosophy and Culture",ENGL,333,"Lesbian, Gay, Bisexual, Transgender and Queer Literatures",3
+"Language, Philosophy and Culture",ENGL,334,Science Fiction Present and Past,3
+"Language, Philosophy and Culture",ENGL,335,Literature of the Sea,3
+"Language, Philosophy and Culture",ENGL,338,American Ethnic Literature,3
+"Language, Philosophy and Culture",ENGL,352,"Literature, World War II to Present.",3
+"Language, Philosophy and Culture",ENGL,360,Literature for Children,3
+"Language, Philosophy and Culture",ENGL,362,Latino/a Literature,3
+"Language, Philosophy and Culture",ENGL,365,The Bible as Literature,3
+"Language, Philosophy and Culture",ENGL,374,Women Writers,3
+"Language, Philosophy and Culture",ENGL,376,The American Novel Since 1900,3
+"Language, Philosophy and Culture",FREN,201,Intermediate French I,3
+"Language, Philosophy and Culture",FREN,202,Intermediate French II,3
+"Language, Philosophy and Culture",FSTC,300,Religious and Ethnic Foods,3
+"Language, Philosophy and Culture",GEOG,202,Geography of the Global Village,3
+"Language, Philosophy and Culture",GEOG,301,Geography of the United States,3
+"Language, Philosophy and Culture",GEOG,305,Geography of Texas,3
+"Language, Philosophy and Culture",GERM,201,Intermediate German I,3
+"Language, Philosophy and Culture",GERM,202,Intermediate German II,3
+"Language, Philosophy and Culture",GLST,201,Introduction to Global Studies,3
+"Language, Philosophy and Culture",GLST,211,Foundations in Cultural Studies,3
+"Language, Philosophy and Culture",HISP,262,Introduction to Latinx Literary Studies,3
+"Language, Philosophy and Culture",HISP,362,Latino/a Literature,3
+"Language, Philosophy and Culture",HIST,101,Western Civilization to 1660,3
+"Language, Philosophy and Culture",HIST,102,Western Civilization Since 1660,3
+"Language, Philosophy and Culture",HIST,103,World History to 1500,3
+"Language, Philosophy and Culture",HIST,104,World History Since 1500,3
+"Language, Philosophy and Culture",HIST,210,Introduction to Russian History,3
+"Language, Philosophy and Culture",HIST,213,History of England,3
+"Language, Philosophy and Culture",HIST,214,History of England,3
+"Language, Philosophy and Culture",HIST,220,History of Christianity: Origins to the Reformation,3
+"Language, Philosophy and Culture",HIST,222,"History of Christianity, Reformation to Present",3
+"Language, Philosophy and Culture",HIST,234,European Military History,3
+"Language, Philosophy and Culture",HIST,240,Empires of Food,3
+"Language, Philosophy and Culture",HIST,242,United States Maritime History,3
+"Language, Philosophy and Culture",INTA,251,Contemporary Issues in the Middle East,3
+"Language, Philosophy and Culture",ITAL,201,Intermediate Italian I,3
+"Language, Philosophy and Culture",ITAL,202,Intermediate Italian II,3
+"Language, Philosophy and Culture",ITAL,251,Global Italy,3
+"Language, Philosophy and Culture",JAPN,201,Intermediate Japanese I,4
+"Language, Philosophy and Culture",JAPN,202,Intermediate Japanese II,4
+"Language, Philosophy and Culture",JWST,201,Introduction to Jewish Studies,3
+"Language, Philosophy and Culture",LAND,240,History of Landscape Architecture,3
+"Language, Philosophy and Culture",MAST,270,Historic Seafaring and Maritime Heritage,3
+"Language, Philosophy and Culture",MODL,221,World Literature,3
+"Language, Philosophy and Culture",MODL,222,World Literature,3
+"Language, Philosophy and Culture",NUTR,300,Religious and Ethnic Foods,3
+"Language, Philosophy and Culture",PERF,156,Dress in World Cultures,3
+"Language, Philosophy and Culture",PERF,325,Dance in World Cultures,3
+"Language, Philosophy and Culture",PHIL,111,Contemporary Moral Issues,3
+"Language, Philosophy and Culture",PHIL,251,Introduction to Philosophy,3
+"Language, Philosophy and Culture",PHIL,282,Ethics in a Digital Age,3
+"Language, Philosophy and Culture",PHIL,482,Ethics and Engineering,3
+"Language, Philosophy and Culture",RELS,200,Religions of the World,3
+"Language, Philosophy and Culture",RELS,201,Introduction to Jewish Studies,3
+"Language, Philosophy and Culture",RELS,202,Religion in America,3
+"Language, Philosophy and Culture",RELS,209,Religions of the Ancient World,3
+"Language, Philosophy and Culture",RELS,220,History of Christianity: Origins to the Reformation,3
+"Language, Philosophy and Culture",RELS,222,"History of Christianity, Reformation to Present",3
+"Language, Philosophy and Culture",RELS,251,Classical Mythology,3
+"Language, Philosophy and Culture",RELS,360,The Bible as Literature,3
+"Language, Philosophy and Culture",RUSS,201,Intermediate Russian I,3
+"Language, Philosophy and Culture",RUSS,202,Intermediate Russian II,3
+"Language, Philosophy and Culture",SPAN,201,Intermediate Spanish I,3
+"Language, Philosophy and Culture",SPAN,202,Intermediate Spanish II,3
+"Language, Philosophy and Culture",SPMT,220,Olympic Studies,3
+"Language, Philosophy and Culture",WGST,200,Introduction to Women's and Gender Studies,3
+"Language, Philosophy and Culture",WGST,333,"Lesbian, Gay, Bisexual, Transgender and Queer Literatures",3
+"Language, Philosophy and Culture",WGST,374,Women Writers,3
+Creative Arts,AFST,327,Popular Musics in the African Diaspora,3
+Creative Arts,ANTH,324,Music in World Cultures,3
+Creative Arts,ARCH,249,Survey of World Architecture History I,3
+Creative Arts,ARCH,250,Survey of World Architecture History II,3
+Creative Arts,ARCH,350,History and Theory of Modern and Contemporary Architecture,3
+Creative Arts,ARTS,149,Art History Survey I,3
+Creative Arts,ARTS,150,Art History Survey II,3
+Creative Arts,COMM,257,"Communication, Religion and the Arts",3
+Creative Arts,COMM,340,Communication and Popular Culture,3
+Creative Arts,DCED,202,Dance Appreciation,3
+Creative Arts,ENDS,101,Design Process,3
+Creative Arts,ENGL,212,Shakespeare,3
+Creative Arts,ENGL,219,Literature and the Other Arts,3
+Creative Arts,ENGL,251,Introduction to Film Analysis,3
+Creative Arts,FILM,215,Global Cinema,3
+Creative Arts,FILM,251,Introduction to Film Analysis,3
+Creative Arts,FILM,299,History of Film,3
+Creative Arts,FILM,425,French Film,3
+Creative Arts,FREN,425,French Film,3
+Creative Arts,GLST,215,Global Cinema,3
+Creative Arts,HISP,204,Spanish and Spanish American Literature in Translation,3
+Creative Arts,HORT,203,Floral Design,3
+Creative Arts,KINE,210,The Art of Movement,3
+Creative Arts,MSTC,150,History of Electronic Music,3
+Creative Arts,MUSC,201,Music and the Human Experience,3
+Creative Arts,MUSC,221,Guitar Heroes,3
+Creative Arts,MUSC,222,Music of the Americas,3
+Creative Arts,MUSC,224,History of Country and Western Music,3
+Creative Arts,MUSC,225,History of Jazz,3
+Creative Arts,MUSC,226,History of Rock,3
+Creative Arts,MUSC,324,Music in World Cultures,3
+Creative Arts,MUSC,327,Popular Musics in the African Diaspora,3
+Creative Arts,MUSC,386,Evolution of the American Musical,3
+Creative Arts,PERF,223,Aesthetics of Activism,3
+Creative Arts,PERF,301,Performance in World Cultures,3
+Creative Arts,PERF,328,Japanese Traditional Performing Arts,3
+Creative Arts,PHIL,330,Philosophy of Art,3
+Creative Arts,RELS,257,"Communication, Religion and the Arts",3
+Creative Arts,THEA,103,Introduction to Devised Theatre,3
+Creative Arts,THEA,200,Introduction to World Theatre,3
+Creative Arts,THEA,281,History of the Theatre II,3
+Creative Arts,THEA,386,Evolution of the American Musical,3
+American History,AFST,300,"Blacks in the United States, 1607-1877",3
+American History,AFST,301,Blacks in the United States Since 1877,3
+American History,HIST,105,History of the United States,3
+American History,HIST,106,History of the United States,3
+American History,HIST,225,Revolutionary America,3
+American History,HIST,226,History of Texas,3
+American History,HIST,230,"American Military History, 1609 to Present",3
+American History,HIST,232,History of American Sea Power,3
+American History,HIST,258,American Indian History,3
+American History,HIST,300,"Blacks in the United States, 1607-1877",3
+American History,HIST,301,Blacks in the United States Since 1877,3
+American History,HIST,304,Southwest Borderlands,3
+Government/Political Science,POLS,206,American National Government,3
+Government/Political Science,POLS,207,State and Local Government,3
+Social and Behavioral Sciences,AGEC,105,Introduction to Agricultural Economics,3
+Social and Behavioral Sciences,ANTH,201,Introduction to Anthropology,3
+Social and Behavioral Sciences,ANTH,202,Introduction to Archaeology,3
+Social and Behavioral Sciences,ARCH,212,Social and Behavioral Factors in Design,3
+Social and Behavioral Sciences,COMM,335,Intercultural Communication,3
+Social and Behavioral Sciences,COMM,365,International Communication,3
+Social and Behavioral Sciences,ECON,202,Principles of Economics,3
+Social and Behavioral Sciences,ECON,203,Principles of Economics,3
+Social and Behavioral Sciences,EPSY,320,Child Development,3
+Social and Behavioral Sciences,EPSY,321,Adolescent Development,3
+Social and Behavioral Sciences,FINP,235,Foundations of Money Education,3
+Social and Behavioral Sciences,GEOG,201,Introduction to Human Geography,3
+Social and Behavioral Sciences,HLTH,236,Introduction to Health Disparities and Diversity,3
+Social and Behavioral Sciences,HORT,335,Sociohorticulture,3
+Social and Behavioral Sciences,INST,210,Understanding Special Populations,3
+Social and Behavioral Sciences,INST,222,Foundations of Education in a Multicultural Society,3
+Social and Behavioral Sciences,INST,301,Educational Psychology,3
+Social and Behavioral Sciences,JOUR,102,American Mass Media,3
+Social and Behavioral Sciences,JOUR,365,International Communication,3
+Social and Behavioral Sciences,KINE,282,Culture of Wellness,3
+Social and Behavioral Sciences,MARS,210,Marine Geography,3
+Social and Behavioral Sciences,PBSI,107,Introduction to Psychology,3
+Social and Behavioral Sciences,SOCI,205,Introduction to Sociology,3
+Social and Behavioral Sciences,SOCI,206,Global Social Trends,3
+Social and Behavioral Sciences,SOCI,207,Introduction to Gender and Society,3
+Social and Behavioral Sciences,SOCI,211,Sociology of Deviance,3
+Social and Behavioral Sciences,SOCI,213,Gender and Health,3
+Social and Behavioral Sciences,SOCI,214,Social Problems,3
+Social and Behavioral Sciences,SOCI,217,Introduction to Race and Ethnicity,3
+Social and Behavioral Sciences,SOCI,304,Criminology,3
+Social and Behavioral Sciences,SOCI,312,Population and Society,3
+Social and Behavioral Sciences,SOCI,319,Sociology of Sport,3
+Social and Behavioral Sciences,SPMT,304,Sport Psychology Management and Practice,3
+Social and Behavioral Sciences,SPMT,319,Sociology of Sport,3
+Social and Behavioral Sciences,SPMT,336,Diversity in Sport Organizations,3
+Social and Behavioral Sciences,SPMT,337,International Sport Business,3
+Social and Behavioral Sciences,URPN,201,The Evolving City,3
+Social and Behavioral Sciences,URPN,202,Building Better Cities,3
+Social and Behavioral Sciences,URPN,203,"Smart Cities - Bit, Bots and Beyond",3
+Social and Behavioral Sciences,URPN,361,Urban Issues,3
+Social and Behavioral Sciences,URPN,370,Health Systems Planning,3
+Social and Behavioral Sciences,WGST,207,Introduction to Gender and Society,3
+Social and Behavioral Sciences,WGST,213,Gender and Health,3
