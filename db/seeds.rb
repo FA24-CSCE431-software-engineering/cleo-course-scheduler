@@ -81,6 +81,12 @@
 # # Emphasis [Dependency on Course]
 # Emphasis.find_or_create_by(course_id: @m251.id, ename: 'Math')
 # Emphasis.find_or_create_by(course_id: @b209.id, ename: 'Business')
+# Emphasis.find_or_create_by(course_id: @a149.id, ename: 'Art')
+# Emphasis.find_or_create_by(course_id: @e104.id, ename: 'Foreign Language')
+# Emphasis.find_or_create_by(course_id: @c110.id, ename: 'Cyber Security')
+# Emphasis.find_or_create_by(course_id: @c120.id, ename: 'Game Development')
+# Emphasis.find_or_create_by(course_id: @c221.id, ename: 'Neuroscience')
+
 
 # # Prereq [Dependency on Course]
 # Prerequisite.find_or_create_by(course_id: @c120.id, prereq_id: @c110.id)

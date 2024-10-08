@@ -10,6 +10,14 @@ Rails.application.routes.draw do
     get 'student_logins/sign_out', to: 'student_logins/sessions#destroy', as: :destroy_student_login_session
   end
 
+  # Student dashboard (regular users)
+  resources :student_dashboards, only: [:show], path: 'student_dashboard'
+
+  # Admin dashboard
+  namespace :admin do
+    get 'dashboard', to: 'dashboard#show', as: :dashboard
+  end
+
   get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'
   post 'save_degree_plan', to: 'def_degree#save', as: 'save_degree_plan'
   get 'download_degree_plan', to: 'def_degree#download', as: 'download_degree_plan'
