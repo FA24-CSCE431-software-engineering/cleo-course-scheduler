@@ -1,6 +1,22 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get "emphases/confirm_destroy"
+  get "emphases/destroy"
+  get "emphases/edit"
+  get "emphases/index"
+  get "emphases/new"
+  get "emphases/show"
+  get "emphases/update"
+  get "emphases/create"
+  get "tracks/confirm_destroy"
+  get "tracks/destroy"
+  get "tracks/edit"
+  get "tracks/index"
+  get "tracks/new"
+  get "tracks/show"
+  get "tracks/update"
+  get "tracks/create"
   # root "student_dashboards#show"
   resources :student_dashboards, only: [:show]
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
