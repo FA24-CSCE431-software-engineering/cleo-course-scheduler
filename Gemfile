@@ -78,3 +78,4 @@ end
 
 gem 'net-protocol'
 gem 'jquery-rails'
+gem 'csv'
