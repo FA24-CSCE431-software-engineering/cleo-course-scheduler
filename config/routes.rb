@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :majors
+  resources :core_categories
   # root "student_dashboards#show"
   resources :student_dashboards, only: [:show]
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
