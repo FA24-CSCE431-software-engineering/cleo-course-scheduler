@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get "support/index"
+  get "support/student"
+  get "support/admin"
+  get "support/deployment"
+  get "support/other"
   # root "student_dashboards#show"
   resources :student_dashboards, only: [:show]
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
@@ -8,6 +13,14 @@ Rails.application.routes.draw do
   devise_scope :student_login do
     get 'student_logins/sign_in', to: 'student_logins/sessions#new', as: :new_student_login_session
     get 'student_logins/sign_out', to: 'student_logins/sessions#destroy', as: :destroy_student_login_session
+  end
+
+  # Student dashboard (regular users)
+  resources :student_dashboards, only: [:show], path: 'student_dashboard'
+
+  # Admin dashboard
+  namespace :admin do
+    get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
 
   get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'

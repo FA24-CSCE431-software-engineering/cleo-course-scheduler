@@ -8,4 +8,7 @@ class StudentLogin < ApplicationRecord
   def self.from_google(email:, full_name:, uid:, avatar_url:)
     create_with(uid:, full_name:, avatar_url:).find_or_create_by!(email:)
   end
+  def is_admin?
+    self.is_admin
+  end
 end

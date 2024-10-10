@@ -1,0 +1,20 @@
+<h1>Admin Dashboard</h1>
+
+<p>Welcome, <%= current_student_login.full_name %>!</p>
+
+<div class="admin-actions">
+  <h2>Manage Users</h2>
+  <ul>
+    <li><%= link_to 'View All Users', students_path %></li>
+    <li><%= link_to 'Add New User', new_student_path %></li>
+  </ul>
+
+  <h2>Degree Plans</h2>
+  <ul>
+    <li><%= link_to 'View All Degree Plans', degree_plan_path %></li>
+  </ul>
+
+  
+</div>
+
+

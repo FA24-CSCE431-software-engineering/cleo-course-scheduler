@@ -2,10 +2,9 @@
 
 class Course < ApplicationRecord
   # Validations
-  validates :cname, :ccode, :cnumber, presence: true
-  validates :credit_hours, presence: true
+  validates :ccode, :cnumber, presence: true
   validates :credit_hours, :lecture_hours, :lab_hours, :cnumber, numericality: { only_integer: true }
-  validates :ccode, length: { is: 4 }
+  validates :ccode, length: { minimum: 4, maximimum: 30 }
   validates :ccode, uniqueness: { scope: :cnumber }
 
   # Prerequisites associations
@@ -21,4 +20,16 @@ class Course < ApplicationRecord
 
   # Degree requirements associations
   has_and_belongs_to_many :majors
+
+  # Tracks association
+  has_many :course_tracks
+  has_many :tracks, through: :course_tracks
+
+  # Core category association
+  has_many :course_core_categories
+  has_many :core_categories, through: :course_core_categories
+
+  # Emphasis association
+  has_many :course_emphases
+  has_many :emphases, through: :course_emphases
 end

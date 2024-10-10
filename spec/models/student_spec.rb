@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Student, type: :model do
   before(:each) do
     @default_major = Major.create(mname: 'Computer Science', cname: 'School of Engineering')
-    @default_student = Student.create(uin: 123_456_789,
+    @default_student = Student.create(google_id: 123_456_789,
                                       first_name: 'John',
                                       last_name: 'Adams',
                                       email: 'JAdams@gmail.com',
@@ -13,7 +13,7 @@ RSpec.describe Student, type: :model do
                                       grad_year: 2024,
                                       enrol_semester: 0,
                                       grad_semester: 1,
-                                      major_id: @default_major.id)
+                                      major: @default_major)
   end
 
   context 'When creating a valid student' do
@@ -24,7 +24,7 @@ RSpec.describe Student, type: :model do
 
   context 'When creating an invalid student' do
     it 'is not valid with duplicate uin' do
-      student = Student.create(uin: 123_456_789,
+      student = Student.create(google_id: 123_456_789,
                                first_name: 'Jack',
                                last_name: 'Adams',
                                email: 'JAdams@gmail.com',

@@ -1,0 +1,44 @@
+major,course_code,course_number,rec_sem,year
+Computer Science,ENGR,102,1,2019
+Computer Science,MATH,151,1,2019
+Computer Science,CHEM,107,1,2019
+Computer Science,ENGL,104,1,2019
+Computer Science,UCC Elective,,1,2019
+Computer Science,ENGR,216,2,2019
+Computer Science,PHYS,206,2,2019
+Computer Science,MATH,152,2,2019
+Computer Science,ENGL,210,2,2019
+Computer Science,UCC Elective,,2,2019
+Computer Science,CSCE,121,3,2019
+Computer Science,CSCE,222,3,2019
+Computer Science,CSCE,181,3,2019
+Computer Science,MATH,304,3,2019
+Computer Science,Science Elective,,3,2019
+Computer Science,General Elective,,3,2019
+Computer Science,CSCE,221,4,2019
+Computer Science,CSCE,312,4,2019
+Computer Science,CSCE,314,4,2019
+Computer Science,Emphasis Area Elective,,4,2019
+Computer Science,UCC Elective,,4,2019
+Computer Science,CSCE,313,5,2019
+Computer Science,CSCE,315,5,2019
+Computer Science,CSCE,481,5,2019
+Computer Science,STAT,211,5,2019
+Computer Science,Emphasis Area Elective,,5,2019
+Computer Science,UCC Elective,,5,2019
+Computer Science,CSCE,411,6,2019
+Computer Science,Computer Science Elective,,6,2019
+Computer Science,Computer Science Elective,,6,2019
+Computer Science,MATH,251,6,2019
+Computer Science,Science Elective,,6,2019
+Computer Science,CSCE,399,6,2019
+Computer Science,Computer Science Elective,,7,2019
+Computer Science,Computer Science Elective,,7,2019
+Computer Science,Computer Science Elective,,7,2019
+Computer Science,UCC Elective,,7,2019
+Computer Science,Emphasis Area Elective,,7,2019
+Computer Science,CSCE,482,8,2019
+Computer Science,Computer Science Elective,,8,2019
+Computer Science,UCC Elective,,8,2019
+Computer Science,UCC Elective,,8,2019
+Computer Science,Emphasis Area Elective,,8,2019

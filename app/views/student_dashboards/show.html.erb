@@ -1,2 +1,26 @@
 <h1>You're logged in! Welcome to the Dashboard!</h1>
 <%= link_to "Sign Out", destroy_student_login_session_path %>
+
+<h1>Student Dashboard</h1>
+
+<p>Welcome, <%= current_student_login.full_name %>!</p>
+
+<div class="student-actions">
+  <h2>Your Profile</h2>
+  <ul>
+    <li><%= link_to 'View Profile', profile_student_path(current_student_login) %></li>
+    <li><%= link_to 'Edit Profile', edit_student_path(current_student_login) %></li>
+  </ul>
+
+  <h2>Your Courses</h2>
+  <ul>
+    <li><%= link_to 'View Enrolled Courses', student_courses_path %></li>
+    <li><%= link_to 'Enroll in New Course', new_student_course_path %></li>
+  </ul>
+
+  <h2>Degree Plan</h2>
+  <ul>
+    <li><%= link_to 'View Degree Plan', degree_plan_path %></li>
+    <li><%= link_to 'Download Degree Plan', download_degree_plan_path %></li>
+  </ul>
+</div>
