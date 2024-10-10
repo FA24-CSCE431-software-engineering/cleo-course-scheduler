@@ -1,33 +1,23 @@
-<h1>Admin Dashboard</h1>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Greeting in the top left -->
+      <h3 class="float-start">Hey, <%= current_student_login.full_name %>!</h3>
+    </div>
+  </div>
 
-<p>Welcome, <%= current_student_login.full_name %>!</p>
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+      <h1>Admin Dashboard</h1>
+      <p>Welcome, <%= current_student_login.full_name %>! What would you like to do?</p>
 
-<%= link_to "Sign Out", destroy_student_login_session_path %>
-
-<div class="admin-actions">
-  <h2>Manage Users</h2>
-  <ul>
-    <li><%= link_to 'View All Users', students_path %></li>
-    <li><%= link_to 'Add New User', new_student_path %></li>
-  </ul>
-
-  <h2>Degree Plans</h2>
-  <ul>
-    <li><%= link_to 'View Default Degree Plan', degree_plan_path %></li>
-  </ul>
-
-  <h2>Your Courses</h2>
-  <ul>
-    <li><%= link_to 'View Enrolled Courses for a Student', student_courses_path %></li>
-    <li><%= link_to 'Enroll a Student in New Course', new_student_course_path %></li>
-  </ul>
-
-  <h2>Manage Tracks and Emphases</h2>
-  <ul>
-    <li><%= link_to 'Track Management', admin_tracks_path %></li>
-    <li><%= link_to 'Emphasis Management', admin_emphases_path %></li>
-  </ul>
-  
+      <div class="d-grid gap-3">
+        <%= link_to 'Manage Users', students_path, class: 'btn btn-primary btn-lg' %>
+        <%= link_to 'View Default Degree Plan', degree_plan_path, class: 'btn btn-secondary btn-lg' %>
+        <%= link_to 'View Enrolled Courses', student_courses_path, class: 'btn btn-success btn-lg' %>
+        <%= link_to 'Track Management', admin_tracks_path, class: 'btn btn-warning btn-lg' %>
+        <%= link_to 'Emphasis Management', admin_emphases_path, class: 'btn btn-info btn-lg' %>
+      </div>
+    </div>
+  </div>
 </div>
-
-
