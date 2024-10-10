@@ -1,2 +1,9 @@
-<h1>Tracks#show</h1>
-<p>Find me in app/views/tracks/show.html.erb</p>
+<h1><%= @track.tname %></h1>
+
+<p>
+  <strong>Name:</strong> <%= @track.tname %>
+</p>
+
+<%= link_to 'Edit', edit_track_path(@track), class: 'btn btn-warning' %>
+<%= link_to 'Delete', track_path(@track), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+<%= link_to 'Back to Tracks', tracks_path, class: 'btn btn-secondary' %>
