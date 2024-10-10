@@ -10,6 +10,14 @@ Rails.application.routes.draw do
     get 'student_logins/sign_out', to: 'student_logins/sessions#destroy', as: :destroy_student_login_session
   end
 
+  # Student dashboard (regular users)
+  resources :student_dashboards, only: [:show], path: 'student_dashboard'
+
+  # Admin dashboard
+  namespace :admin do
+    get 'dashboard', to: 'dashboard#show', as: :dashboard
+  end
+
   get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'
   post 'save_degree_plan', to: 'def_degree#save', as: 'save_degree_plan'
   get 'download_degree_plan', to: 'def_degree#download', as: 'download_degree_plan'
@@ -38,6 +46,12 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/*
   get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
   get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
+
+
+  #import and interest form routing
+  # routes.rb
+  get 'import_degree_plan', to: 'def_degree#import', as: 'import_degree_plan'
+  get 'interest_form', to: 'interest_forms#new', as: 'interest_form'
 
   # Defines the root path route ("/")
 end

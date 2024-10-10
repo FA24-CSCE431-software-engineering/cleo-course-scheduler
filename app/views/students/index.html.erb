@@ -1,5 +1,5 @@
 <div>
-  <%= link_to 'Back to Home', root_path %>
+  <%= link_to 'Back to Home', admin_dashboard_path %>
 </div>
 <h1>Students</h1>
 
@@ -21,7 +21,7 @@
   <tbody>
     <% @students.each do |student| %>
       <tr>
-        <td><%= student.uin %></td>
+        <td><%= student.id %></td>
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
         <td><%= student.email %></td>

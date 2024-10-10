@@ -1,0 +1,28 @@
+<h1>Admin Dashboard</h1>
+
+<p>Welcome, <%= current_student_login.full_name %>!</p>
+
+<%= link_to "Sign Out", destroy_student_login_session_path %>
+
+<div class="admin-actions">
+  <h2>Manage Users</h2>
+  <ul>
+    <li><%= link_to 'View All Users', students_path %></li>
+    <li><%= link_to 'Add New User', new_student_path %></li>
+  </ul>
+
+  <h2>Degree Plans</h2>
+  <ul>
+    <li><%= link_to 'View Default Degree Plan', degree_plan_path %></li>
+  </ul>
+
+  <h2>Your Courses</h2>
+  <ul>
+    <li><%= link_to 'View Enrolled Courses for a Student', student_courses_path %></li>
+    <li><%= link_to 'Enroll a Student in New Course', new_student_course_path %></li>
+  </ul>
+
+  
+</div>
+
+
