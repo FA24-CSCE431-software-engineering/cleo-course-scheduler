@@ -1,46 +1,55 @@
-<h1>Track Management</h1>
+<h1>Manage Tracks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tracks.each do |track| %>
+<h2>Existing Tracks</h2>
+<% if @tracks.any? %>
+  <table>
+    <thead>
       <tr>
-        <td>
-          <!-- if track being edited, show the edit form -->
-          <% if track == @track %>
-            <%= form_with(model: track, local: true, url: track_path(track), method: :patch) do |form| %>
-              <%= form.text_field :tname %>
-              <%= form.submit 'Update', class: 'btn btn-primary' %>
-            <% end %>
-          <% else %>
-            <%= track.tname %>
-          <% end %>
-        </td>
-        <td>
-          <% unless track == @track %>
-            <%= link_to 'Edit', edit_track_path(track), class: 'btn btn-warning' %>
-            <%= link_to 'Delete', track_path(track), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-          <% end %>
-        </td>
+        <th>Name</th>
+        <th colspan="2">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<!-- form create new track -->
-<h2>Create New Track</h2>
-<%= form_with(model: @track, local: true, url: tracks_path) do |form| %>
-  <div class="form-group">
-    <%= form.label :tname, "Track Name" %>
-    <%= form.text_field :tname, class: 'form-control' %>
-  </div>
-
-  <%= form.submit 'Create Track', class: 'btn btn-primary' %>
+    </thead>
+    <tbody>
+      <% @tracks.each do |track| %>
+        <% if @track && @track.id == track.id %> <!-- Inline Edit Mode -->
+          <tr>
+            <td colspan="3">
+              <%= form_with(model: @track, url: admin_track_path(@track), method: :patch, local: true) do |form| %>
+                <div class="form-group">
+                  <%= form.label :tname, "Track Name" %>
+                  <%= form.text_field :tname, class: 'form-control' %>
+                </div>
+                <%= form.submit 'Update Track', class: 'btn btn-primary' %>
+                <%= link_to 'Cancel', admin_tracks_path, class: 'btn btn-secondary' %>
+              <% end %>
+            </td>
+          </tr>
+        <% else %> <!-- Regular Display Mode -->
+          <tr>
+            <td><%= track.tname %></td>
+            <td>
+              <%= link_to 'Edit', admin_tracks_path(id: track.id), class: 'btn btn-warning' %> <!-- Redirect to index with this track in edit mode -->
+            </td>
+            <td>
+              <%= button_to 'Delete', admin_track_path(track), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', turbo: false %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No tracks found.</p>
 <% end %>
 
-<%= link_to 'Back to Track List', tracks_path, class: 'btn btn-secondary' if @track.persisted? %>
+<!-- Create Form -->
+<% unless @track.persisted? %>
+  <h2>Create New Track</h2>
+  <%= form_with(model: @track, url: admin_tracks_path, method: :post, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :tname, "Track Name" %>
+      <%= form.text_field :tname, class: 'form-control' %>
+    </div>
+    <%= form.submit 'Create Track', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

@@ -1,2 +1,40 @@
-<h1>Emphases#index</h1>
-<p>Find me in app/views/emphases/index.html.erb</p>
+<h1>Manage Emphases</h1>
+
+<h2>Existing Emphases</h2>
+<% if @emphases.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @emphases.each do |emphasis| %>
+        <tr>
+          <td><%= emphasis.ename %></td>
+          <td>
+            <!-- Edit link -->
+            <%= link_to 'Edit', edit_admin_emphasis_path(emphasis), class: 'btn btn-warning' %>
+
+            <!-- Delete link -->
+            <%= link_to 'Delete', admin_emphasis_path(emphasis), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No emphases found.</p>
+<% end %>
+
+<!-- Form to Create a New Emphasis -->
+<h2>Create New Emphasis</h2>
+<%= form_with(model: @emphasis, url: admin_emphases_path, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :ename, "Emphasis Name" %>
+    <%= form.text_field :ename, class: 'form-control' %>
+  </div>
+  
+  <%= form.submit 'Create Emphasis', class: 'btn btn-primary' %>
+<% end %>

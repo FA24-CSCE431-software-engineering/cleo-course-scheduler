@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   # Admin dashboard
   namespace :admin do
+    resources :tracks
+    resources :emphases
     get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
 

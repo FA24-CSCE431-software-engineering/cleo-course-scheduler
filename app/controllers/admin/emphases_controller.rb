@@ -1,25 +1,56 @@
-class EmphasesController < ApplicationController
-  def confirm_destroy
-  end
+module Admin  
+  class EmphasesController < ApplicationController
+    before_action :set_emphasis, only: [:edit, :update, :destroy]
 
-  def destroy
-  end
+    def confirm_destroy
+    end
 
-  def edit
-  end
+    def destroy
+      @emphasis.destroy
+      redirect_to admin_emphases_path, notice: "Emphasis successfully deleted."
+    end
 
-  def index
-  end
+    def edit
+    end
 
-  def new
-  end
+    def index
+      @emphases = Emphasis.all
+      @emphasis = Emphasis.new
+    end
 
-  def show
-  end
+    def new
+    end
 
-  def update
-  end
+    def show
+    end
 
-  def create
+    def update
+      if @emphasis.update(emphasis_params)
+        redirect_to admin_emphases_path, notice: "Emphasis successfully updated."
+      else
+        @emphases = Emphasis.all
+        render :index
+      end
+    end
+
+    def create
+      @emphasis = Emphasis.new(emphasis_params)
+      if @emphasis.save
+        redirect_to admin_emphases_path, notice: "Emphasis successfully created."
+      else
+        @emphases = Emphasis.all
+        render :index
+      end
+    end
+
+    private
+
+    def set_emphasis
+      @emphasis = Emphasis.find(params[:id])
+    end
+
+    def emphasis_params
+      params.require(:emphasis).permit(:ename)
+    end
   end
 end
