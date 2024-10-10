@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-md-12">
       <!-- Greeting in the top left -->
-      <h3 class="float-start">Hey, <%= current_student_login.full_name %>!</h3>
+      <h3 class="float-start">Hey, <%= current_student_login.first_name %>!</h3>
     </div>
   </div>
 
   <div class="row justify-content-center mt-5">
     <div class="col-md-8 text-center">
       <h1>Admin Dashboard</h1>
-      <p>Welcome, <%= current_student_login.full_name %>! What would you like to do?</p>
+      <p>Welcome, <%= current_student_login.first_name %>! What would you like to do?</p>
 
       <div class="d-grid gap-3">
         <%= link_to 'Manage Users', students_path, class: 'btn btn-primary btn-lg' %>
