@@ -25,6 +25,7 @@ core_courses_csv = Rails.root.join('lib', 'data', 'core_courses.csv')
 major_courses_csv = Rails.root.join('lib', 'data', 'manual', 'major_courses.csv')
 track_courses_csv = Rails.root.join('lib', 'data', 'manual', 'track_courses.csv')
 tracks_csv = Rails.root.join('lib', 'data', 'manual', 'tracks.csv')
+emphasis_csv = Rails.root.join('lib', 'data', 'manual', 'emphasis.csv')
 
 # Seed with courses
 CSV.foreach(courses_csv, headers: true) do |row|
@@ -156,6 +157,11 @@ CSV.foreach(courses_csv, headers: true) do |row|
   end
   
 
-  # Seed with emphasis @TODO
+# Seed with emphasis
+CSV.foreach(emphasis_csv, headers: true) do |row|
+    Emphasis.find_or_create_by(
+        ename: row['emphasis_name']
+    )
+end
 
-  # Seed with emphasis requirements @TODO
+# Seed with emphasis requirements @TODO
