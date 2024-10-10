@@ -16,7 +16,7 @@ class StudentCoursesController < ApplicationController
   end
 
   def show
-    @student_course = StudentCourse.find(params[:id])
+    @student_course = StudentCourse.find_by!(student_id: params[:student_id], course_id: params[:course_id])
   end
 
   def new
@@ -35,6 +35,7 @@ class StudentCoursesController < ApplicationController
 
   def edit
     # @student_course = StudentCourse.find(params[:id])
+    @student_course = StudentCourse.find_by!(student_id: params[:student_id], course_id: params[:course_id])
   end
 
   def update

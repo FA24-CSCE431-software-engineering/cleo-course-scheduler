@@ -7,7 +7,7 @@ RSpec.describe StudentCourse, type: :student_courses do
     @default_course = Course.create(ccode: 'CSCE', cnumber: 411, cname: 'Software Engineering', credit_hours: 3)
     @default_major = Major.create(mname: 'Computer Science', cname: 'School of Engineering')
     @default_student = Student.create(
-      uin: 123_456_789,
+      google_id: 123_456_789,
       first_name: 'John',
       last_name: 'Adams',
       email: 'JAdams@gmail.com',
