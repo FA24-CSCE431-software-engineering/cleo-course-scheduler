@@ -6,21 +6,35 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Actions</th>
+        <th colspan="2">Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @emphases.each do |emphasis| %>
-        <tr>
-          <td><%= emphasis.ename %></td>
-          <td>
-            <!-- Edit link -->
-            <%= link_to 'Edit', edit_admin_emphasis_path(emphasis), class: 'btn btn-warning' %>
-
-            <!-- Delete link -->
-            <%= link_to 'Delete', admin_emphasis_path(emphasis), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-          </td>
-        </tr>
+        <% if @emphasis && @emphasis.id == emphasis.id %> <!-- Inline Edit Mode -->
+          <tr>
+            <td colspan="3">
+              <%= form_with(model: @emphasis, url: admin_emphasis_path(@emphasis), method: :patch, local: true) do |form| %>
+                <div class="form-group">
+                  <%= form.label :ename, "Emphasis Name" %>
+                  <%= form.text_field :ename, class: 'form-control' %>
+                </div>
+                <%= form.submit 'Update Emphasis', class: 'btn btn-primary' %>
+                <%= link_to 'Cancel', admin_emphases_path, class: 'btn btn-secondary' %>
+              <% end %>
+            </td>
+          </tr>
+        <% else %> <!-- Regular Display Mode -->
+          <tr>
+            <td><%= emphasis.ename %></td>
+            <td>
+              <%= link_to 'Edit', admin_emphases_path(id: emphasis.id), class: 'btn btn-warning' %> <!-- Redirect to index with this emphasis in edit mode -->
+            </td>
+            <td>
+              <%= button_to 'Delete', admin_emphasis_path(emphasis), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', turbo: false %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
@@ -28,13 +42,13 @@
   <p>No emphases found.</p>
 <% end %>
 
-<!-- Form to Create a New Emphasis -->
-<h2>Create New Emphasis</h2>
-<%= form_with(model: @emphasis, url: admin_emphases_path, local: true) do |form| %>
-  <div class="form-group">
-    <%= form.label :ename, "Emphasis Name" %>
-    <%= form.text_field :ename, class: 'form-control' %>
-  </div>
-  
-  <%= form.submit 'Create Emphasis', class: 'btn btn-primary' %>
+<% unless @emphasis.persisted? %>
+  <h2>Create New Emphasis</h2>
+  <%= form_with(model: @emphasis, url: admin_emphases_path, method: :post, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :ename, "Emphasis Name" %>
+      <%= form.text_field :ename, class: 'form-control' %>
+    </div>
+    <%= form.submit 'Create Emphasis', class: 'btn btn-primary' %>
+  <% end %>
 <% end %>

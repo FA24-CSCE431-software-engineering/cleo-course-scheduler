@@ -1,6 +1,6 @@
 module Admin  
   class EmphasesController < ApplicationController
-    before_action :set_emphasis, only: [:edit, :update, :destroy]
+    before_action :set_emphasis, only: [:show, :edit, :update, :destroy]
 
     def confirm_destroy
     end
@@ -15,7 +15,7 @@ module Admin
 
     def index
       @emphases = Emphasis.all
-      @emphasis = Emphasis.new
+      @emphasis = params[:id] ? Emphasis.find(params[:id]) : Emphasis.new
     end
 
     def new
