@@ -6,7 +6,12 @@ Rails.application.routes.draw do
       get :confirm_destroy
     end
   end
-  resources :core_categories
+  
+  resources :core_categories do
+    member do
+      get :confirm_destroy
+    end
+  end
   # root "student_dashboards#show"
   resources :student_dashboards, only: [:show]
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }

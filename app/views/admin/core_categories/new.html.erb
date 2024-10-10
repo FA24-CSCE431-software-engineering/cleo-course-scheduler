@@ -1,2 +1,5 @@
-<h1>CoreCategories#new</h1>
-<p>Find me in app/views/core_categories/new.html.erb</p>
+<h1>New Core Category</h1>
+
+<%= render 'admin/core_categories/form', core_category: @core_category %>
+
+<%= link_to 'Back', core_categories_path, class: 'btn btn-secondary' %>
