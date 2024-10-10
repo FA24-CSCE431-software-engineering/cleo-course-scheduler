@@ -9,8 +9,8 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema[7.2].define(version: 2024_10_08_181507) do
 
+ActiveRecord::Schema[7.2].define(version: 2024_10_10_213020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,7 +136,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_08_181507) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_admin", default: false, null: false
+    t.bigint "track_id"
+    t.bigint "emphases_id"
+    t.index ["emphases_id"], name: "index_students_on_emphases_id"
     t.index ["major_id"], name: "index_students_on_major_id"
+    t.index ["track_id"], name: "index_students_on_track_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -157,5 +161,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_08_181507) do
   add_foreign_key "prerequisites", "courses", column: "prereq_id"
   add_foreign_key "student_courses", "courses"
   add_foreign_key "student_courses", "students", primary_key: "google_id"
+  add_foreign_key "students", "emphases", column: "emphases_id"
   add_foreign_key "students", "majors"
+  add_foreign_key "students", "tracks"
 end
