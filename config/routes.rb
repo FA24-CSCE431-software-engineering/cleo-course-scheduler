@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :majors
+  resources :majors do
+    member do
+      get :confirm_destroy
+    end
+  end
   resources :core_categories
   # root "student_dashboards#show"
   resources :student_dashboards, only: [:show]

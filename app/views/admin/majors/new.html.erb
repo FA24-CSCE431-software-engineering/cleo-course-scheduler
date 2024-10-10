@@ -1,2 +1,6 @@
-<h1>Majors#new</h1>
-<p>Find me in app/views/majors/new.html.erb</p>
+<!-- app/views/admin/majors/new.html.erb -->
+<h1>New Major</h1>
+
+<%= render 'admin/majors/form', major: @major %>
+
+<%= link_to 'Back', majors_path %>

@@ -1,30 +1,47 @@
 class MajorsController < ApplicationController
-  
+  before_action :set_major, only: %i[show edit update destroy confirm_destroy]
+
   def index
     @majors = Major.all
     render 'admin/majors/index'
-  end
-
-  def _form
-  end
-
-  def confirm_destroy
-  end
-
-  def edit
   end
 
   def show; end
 
   def new
     @major = Major.new
-    render 'admin/majors/index'
-  end
-
-  def destroy
+    render 'admin/majors/new'
   end
 
   def create
+    @major = Major.new(major_params)
+    if @major.save
+      redirect_to majors_path, notice: 'Major added successfully.'
+    else
+      render :new
+    end
+  end
+
+  def edit
+    render 'admin/majors/edit'
+  end
+
+  def update
+    if @major.update(major_params)
+      redirect_to majors_path, notice: 'Major updated successfully.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @major.destroy
+    redirect_to majors_path, notice: 'Major deleted successfully.'
+  end
+
+  def confirm_destroy
+    @major = Major.find(params[:id])
+    render 'admin/majors/confirm_destroy'
   end
 
   private
@@ -34,10 +51,6 @@ class MajorsController < ApplicationController
   end
 
   def major_params
-    params.require(:major).permit(:name, :description)  # Add other relevant attributes as needed
+    params.require(:major).permit(:mname, :cname)  # Adjust attributes as necessary
   end
-
 end
-
-
-

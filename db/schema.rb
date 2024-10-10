@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_08_181507) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_10_201846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_08_181507) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ccode", limit: 30
+  end
+
+  create_table "courses_majors", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "major_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_courses_majors_on_course_id"
+    t.index ["major_id"], name: "index_courses_majors_on_major_id"
   end
 
   create_table "degree_requirements", id: false, force: :cascade do |t|
@@ -151,6 +160,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_08_181507) do
   add_foreign_key "course_emphases", "emphases", column: "emphasis_id"
   add_foreign_key "course_tracks", "courses"
   add_foreign_key "course_tracks", "tracks"
+  add_foreign_key "courses_majors", "courses"
+  add_foreign_key "courses_majors", "majors"
   add_foreign_key "degree_requirements", "courses"
   add_foreign_key "degree_requirements", "majors"
   add_foreign_key "prerequisites", "courses"
