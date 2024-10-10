@@ -7,4 +7,5 @@ class Track < ApplicationRecord
   # Course association
   has_many :course_tracks
   has_many :courses, through: :course_tracks
+  has_many :students
 end

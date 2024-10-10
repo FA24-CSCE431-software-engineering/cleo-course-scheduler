@@ -19,4 +19,8 @@ class Student < ApplicationRecord
   has_many :courses, through: :student_courses
 
   belongs_to :major
+
+  belongs_to :track, optional: true
+
+  belongs_to :emphases, optional: true
 end
