@@ -16,7 +16,9 @@
 
 <p><strong>Name:</strong> <%= @student.full_name %></p>
 <p><strong>Email:</strong> <%= @student.email %></p>
-<p><strong>UID:</strong> <%= @uid %></p> <!-- Display UID here -->
+<p><strong>Google ID:</strong> <%= @uid %></p> <!-- Display UID here -->
+
+<%= link_to 'Edit Profile', edit_profile_student_path(google_id: @uid) %>
 
 
 

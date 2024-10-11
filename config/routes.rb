@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       get 'profile'
       get 'edit'
       get 'confirm_destroy'
+      get 'edit_profile'
     end
   end
 

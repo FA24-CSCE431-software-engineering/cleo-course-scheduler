@@ -15,6 +15,8 @@
       <th>Enrollment Semester</th>
       <th>Graduation Semester</th>
       <th>Major</th> <!-- New column for Major -->
+      <th>Emphasis</th>
+      <th>Track</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -30,6 +32,8 @@
         <td><%= student.enrol_semester %></td>
         <td><%= student.grad_semester %></td>
         <td><%= student.major.present? ? student.major.mname : 'N/A' %></td> 
+        <td><%= student.emphasis.present? ? student.emphasis.ename : 'N/A' %></td> 
+        <td><%= student.track.present? ? student.track.tname : 'N/A' %></td> 
         <td>
           <%= link_to 'Edit', edit_student_path(student) %> 
           <%= link_to 'Delete', confirm_destroy_student_path(student), method: :get %>
