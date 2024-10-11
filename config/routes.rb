@@ -34,8 +34,14 @@ Rails.application.routes.draw do
 
   # Admin dashboard
   namespace :admin do
+    resources :tracks
+    resources :emphases
     get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
+
+  # CRUD routes for track & emphasis
+  resources :tracks
+  resources :emphases
 
   get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'
   post 'save_degree_plan', to: 'def_degree#save', as: 'save_degree_plan'
