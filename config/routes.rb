@@ -2,6 +2,24 @@
 
 Rails.application.routes.draw do
 
+  resources :courses do
+    member do
+      get :confirm_destroy
+    end
+  end
+
+  resources :majors do
+    member do
+      get :confirm_destroy
+    end
+  end
+  
+  resources :core_categories do
+    member do
+      get :confirm_destroy
+    end
+  end
+
   # root "student_dashboards#show"
   resources :student_dashboards, only: [:show]
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
@@ -63,6 +81,12 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/*
   get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
   get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
+
+
+  #import and interest form routing
+  # routes.rb
+  get 'import_degree_plan', to: 'def_degree#import', as: 'import_degree_plan'
+  get 'interest_form', to: 'interest_forms#new', as: 'interest_form'
 
   # Defines the root path route ("/")
 end

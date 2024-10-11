@@ -2,7 +2,7 @@
 
 <nav>
   <ul>
-    <li><%= link_to "Back to Dashboard", root_path %></li> <!-- Adjust to your dashboard path -->
+    <li><%= link_to "Back to Student Dashboard", student_dashboard_path %></li> 
     <li><%= link_to "Sign Out", destroy_student_login_session_path, method: :delete %></li>
     <li>
       <% if @student.avatar_url.present? %>
@@ -17,6 +17,8 @@
 <p><strong>Name:</strong> <%= @student.full_name %></p>
 <p><strong>Email:</strong> <%= @student.email %></p>
 <p><strong>UID:</strong> <%= @uid %></p> <!-- Display UID here -->
+
+<%= link_to 'Edit Profile', edit_student_path(current_student_login) %>
 
 
 

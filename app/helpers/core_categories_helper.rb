@@ -1,0 +1,2 @@
+module CoreCategoriesHelper
+end
