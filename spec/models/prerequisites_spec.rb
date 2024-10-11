@@ -10,22 +10,29 @@ RSpec.describe Prerequisite, type: :prerequisites do
 
   context 'When creating a valid prerequisite' do
     it 'is valid with valid attributes' do
-      pq = Prerequisite.create(course_id: @c1.id, prereq_id: @c2.id)
+      pq = Prerequisite.create(course: @c1, prereq: @c2, equi_id: 1)
       expect(pq).to be_valid
     end
   end
 
   context 'When creating a invalid prerequisite' do
-    it 'is invalid with invalid attributes' do
-      pq = Prerequisite.create(course_id: nil, prereq_id: @c2.id)
+    it 'is invalid with missing course' do
+      pq = Prerequisite.create(prereq: @c2, equi_id: 1)
+      expect(pq).to be_invalid
+    end
+  end
+
+  context 'When creating a invalid prerequisite' do
+    it 'is invalid with missing eid' do
+      pq = Prerequisite.create(course: @c1, prereq: @c2)
       expect(pq).to be_invalid
     end
   end
 
   context 'When creating a duplicate prerequisite' do
     it 'is invalid with duplicate course_id, prereq_id' do
-      Prerequisite.create(course_id: @c1.id, prereq_id: @c2.id)
-      pq2 = Prerequisite.new(course_id: @c1.id, prereq_id: @c2.id)
+      Prerequisite.create(course: @c1, prereq: @c2, equi_id: 1)
+      pq2 = Prerequisite.new(course: @c1, prereq: @c2, equi_id: 1)
       expect(pq2).to be_invalid
     end
   end
@@ -33,8 +40,8 @@ RSpec.describe Prerequisite, type: :prerequisites do
   context 'When creating two prerequisite' do
     it 'is valid with unique course_id, prereq_id' do
       c3 = Course.create(ccode: 'MATH', cnumber: 147, cname: 'Calculus I for Biological Sciences', credit_hours: 3)
-      Prerequisite.create(course_id: @c1.id, prereq_id: @c2.id)
-      pq2 = Prerequisite.new(course_id: @c1.id, prereq_id: c3.id)
+      Prerequisite.create(course: @c1, prereq: @c2, equi_id: 1)
+      pq2 = Prerequisite.new(course: @c1, prereq: c3, equi_id: 1)
       expect(pq2).to be_valid
     end
   end

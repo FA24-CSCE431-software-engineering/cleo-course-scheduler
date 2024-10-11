@@ -10,22 +10,29 @@ RSpec.describe DegreeRequirement, type: :degree_requirements do
 
   context 'When creating a valid degree requirement' do
     it 'is valid with valid attributes' do
-      req = DegreeRequirement.create(course_id: @default_course.id, major_id: @default_major.id)
+      req = DegreeRequirement.create(course: @default_course, major: @default_major, sem: 1)
       expect(req).to be_valid
     end
   end
 
   context 'When creating an invalid degree requirement' do
-    it 'is invalid with invalid attributes' do
-      req = DegreeRequirement.new(course_id: nil, major_id: @default_major.id)
+    it 'is invalid with missing course' do
+      req = DegreeRequirement.new(major: @default_major)
+      expect(req).to be_invalid
+    end
+  end
+
+  context 'When creating an invalid degree requirement' do
+    it 'is invalid with missing sem' do
+      req = DegreeRequirement.new(course: @default_course, major: @default_major)
       expect(req).to be_invalid
     end
   end
 
   context 'When creating a duplicate degree requirement' do
-    it 'is invalid with duplicate course_id, major_id' do
-      DegreeRequirement.create(course_id: @default_course.id, major_id: @default_major.id)
-      r2 = DegreeRequirement.new(course_id: @default_course.id, major_id: @default_major.id)
+    it 'is invalid with duplicate course, major' do
+      DegreeRequirement.create(course: @default_course, major: @default_major, sem: 1)
+      r2 = DegreeRequirement.new(course: @default_course, major: @default_major, sem: 1)
       expect(r2).to be_invalid
     end
   end
@@ -33,8 +40,8 @@ RSpec.describe DegreeRequirement, type: :degree_requirements do
   context 'When creating a two degree requirement' do
     it 'is valid with unique course_id, major_id' do
       major = Major.create(mname: 'Computing', cname: 'College of Engineering')
-      DegreeRequirement.create(course_id: @default_course.id, major_id: @default_major.id)
-      r2 = DegreeRequirement.create(course_id: @default_course.id, major_id: major.id)
+      DegreeRequirement.create(course: @default_course, major: @default_major, sem: 1)
+      r2 = DegreeRequirement.create(course: @default_course, major:, sem: 1)
       expect(r2).to be_valid
     end
   end

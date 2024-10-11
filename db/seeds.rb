@@ -14,85 +14,170 @@
 
 # rubocop:disable Layout/LineLength
 # This is here since it would be annoying to refactor and hard to read if we did
-@c110 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 110, cname: 'Programming I',
-                                 description: 'Basic concepts in using computation to enhance problem solving abilities; understanding how people communicate with computers, and how computing affects society; computational thinking; representation of data; analysis of program behavior; methods for identifying and fixing errors in programs; understanding abilities and limitation of programs; development and execution of programs.', credit_hours: 4, lab_hours: 2)
-@c111 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 111,
-                                 cname: 'Introduction to Computer Science Concepts and Programming', description: 'Computation to enhance problem solving abilities; understanding how people communicate with computers, and how computing affects society; computational thinking; software design principles, including algorithm design, data representation, abstraction, modularity, structured and object oriented programming, documentation, testing, portability, and maintenance; understanding programs’ abilities and limitations; development and execution programs.', credit_hours: 4, lecture_hours: 3, lab_hours: 2)
-@c120 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 120, cname: 'Program Design and Concepts',
-                                 description: 'Extension of prior programming knowledge and creation of computer programs that solve problems; use of the C++ language; application of computational thinking to enhance problem solving; analysis of, design of and implementation of computer programs; use of basic and aggregate data types to develop functional and object oriented solutions; development of classes that use dynamic memory and avoid memory leaks; study of error handling strategies to develop more secure and robust programs.', credit_hours: 3, lecture_hours: 3, lab_hours: 1)
-@c121 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 121, cname: 'Introduction to Program Design and Concepts',
-                                 description: 'Computation to enhance problem solving abilities; computational thinking; understanding how people communicate with computers, how computing affects society; design and implementation of algorithms; data types, program control, iteration, functions, classes, and exceptions; understanding abstraction, modularity, code reuse, debugging, maintenance, and other aspects of software development; development and execution of programs.', credit_hours: 4, lecture_hours: 3, lab_hours: 2)
-@c181 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 181, cname: 'Introduction to Computing',
-                                 description: 'Introduction to the broad field of computing; presentations from industry and academia about how computer science concepts are used in research and end products; includes a major writing component.', credit_hours: 1, lecture_hours: 1)
-@c221 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 221, cname: 'Data Structures and Algorithms',
-                                 description: 'Specification and implementation of basic abstract data types and their associated algorithms including stacks, queues, lists, sorting and selection, searching, graphs, and hashing; performance tradeoffs of different implementations and asymptotic analysis of running time and memory usage; includes the execution of student programs written in C++.', credit_hours: 4, lecture_hours: 3, lab_hours: 2)
-@c222 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 222, cname: 'Discrete Structures for Computing',
-                                 description: 'Mathematical foundations from discrete mathematics for analyzing computer algorithms, for both correctness and performance; introduction to models of computation, including finite state machines and Turing machines.', credit_hours: 3, lecture_hours: 3)
-@c312 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 312, cname: 'Computer Organization',
-                                 description: "Computer systems from programmer's perspective including simple logic design, data representation and processor architecture, programming of processors, memory, control flow, input/output, and performance measurements; hands-on lab assignments.", credit_hours: 4, lecture_hours: 3, lab_hours: 2)
-@c314 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 314, cname: 'Programming Languages',
-                                 description: 'Exploration of the design space of programming languages via an in-depth study of two programming languages, one functional and one object-oriented; focuses on idiomatic uses of each language and on features characteristic for each language.', credit_hours: 3, lecture_hours: 3)
-@c313 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 313, cname: 'Introduction to Computer Systems',
-                                 description: 'Introduction to system support for application programs, both on single node and over network including OS application interface, inter-process communication, introduction to system and network programming, and simple computer security concepts; hands-on lab assignments.', credit_hours: 4, lecture_hours: 3, lab_hours: 2)
-@c410 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 410, cname: 'Operating Systems',
-                                 description: 'Hardware/software evolution leading to contemporary operating systems; basic operating systems concepts; methods of operating systems design and construction including algorithms for CPU scheduling, memory and general resource allocation, process coordination and management; case studies of several operating systems', credit_hours: 3, lecture_hours: 3)
-@c431 = Course.find_or_create_by(ccode: 'CSCE', cnumber: 431, cname: 'Software Engineering',
-                                 description: 'Application of engineering approach to computer software design and development; life cycle models, software requirements and specification; conceptual model design; detailed design; validation and verification; design quality assurance; software design/development environments and project management.', credit_hours: 3, lecture_hours: 2, lab_hours: 2)
 
-@b209 = Course.find_or_create_by(ccode: 'ACCT', cnumber: 209, cname: 'Survey of Accounting Principles',
-                                 description: 'Accounting survey for non-business majors; non-technical accounting procedures, preparation and interpretation of financial statements and internal control. May not be used to satisfy degree requirements for majors in business. Business majors who choose to take this course must do so on a satisfactory/unsatisfactory basis.', credit_hours: 3, lecture_hours: 3)
+# Data scraped using Scrapy
+courses_csv = Rails.root.join('lib', 'data', 'courses.csv')
+majors_csv = Rails.root.join('lib', 'data', 'majors.csv')
+core_categories_csv = Rails.root.join('lib', 'data', 'core_categories.csv')
+core_courses_csv = Rails.root.join('lib', 'data', 'core_courses.csv')
 
-@m251 = Course.find_or_create_by(ccode: 'MATH', cnumber: 251, cname: 'Engineering Mathematics III',
-                                 description: "Engineering Mathematics III. Vector algebra, calculus of functions of several variables, partial derivatives, directional derivatives, gradient, multiple integration, line and surface integrals, Green's and Stokes' theorems.", credit_hours: 3, lecture_hours: 3)
+# Data manually scraped
+major_courses_csv = Rails.root.join('lib', 'data', 'manual', 'major_courses.csv')
+track_courses_csv = Rails.root.join('lib', 'data', 'manual', 'track_courses.csv')
+tracks_csv = Rails.root.join('lib', 'data', 'manual', 'tracks.csv')
+emphasis_csv = Rails.root.join('lib', 'data', 'manual', 'emphasis.csv')
+emphasis_courses_csv = Rails.root.join('lib', 'data', 'manual', 'emphasis_courses.csv')
 
-@e104 = Course.find_or_create_by(ccode: 'ENGL', cnumber: 104, cname: 'Composition and Rhetoric',
-                                 description: 'Composition and Rhetoric. Focus on referential and persuasive researched essays through the development of analytical reading ability, critical thinking and library research skills.', credit_hours: 3, lecture_hours: 3)
+# Seed with courses
+CSV.foreach(courses_csv, headers: true) do |row|
+    Course.find_or_create_by(
+        ccode: row['ccode'],
+        cnumber: row['cnumber'],
+        cname: row['cname'],
+        description: row['description'],
+        credit_hours: row['credit_hours'],
+        lecture_hours: row['lecture_hours'],
+        lab_hours: row['lab_hours'],
+    )
+end
 
-@a149 = Course.find_or_create_by(ccode: 'ARTS', cnumber: 149, cname: 'Art History Survey I',
-                                 description: 'Survey of architecture, painting, sculpture and the minor arts from prehistoric times to 14th century.', credit_hours: 3, lecture_hours: 3)
+# Seed with majors
+CSV.foreach(majors_csv, headers: true) do |row|
+    Major.find_or_create_by(
+        mname: row['mname'],
+        cname: row['cname'],
+    )
+end
 
-# Major [No dependencies]
-@cs = Major.find_or_create_by(mname: 'Computer Science', cname: 'College of Engineering')
-@ce = Major.find_or_create_by(mname: 'Chemical Engineering', cname: 'College of Engineering')
-@be = Major.find_or_create_by(mname: 'Biomedical Engineering', cname: 'College of Engineering')
+# Seed with core categories
+CSV.foreach(core_categories_csv, headers: true) do |row|
+    CoreCategory.find_or_create_by(
+        cname: row['core_categories']
+    )
+end
 
-# Student [Dependency on major]
-@s1 = Student.find_or_create_by(uin: 123_456_789, first_name: 'Alpha', last_name: 'Brook', email: 'JA@tamu.edu',
-                                enrol_year: 2000, enrol_semester: 0, grad_year: 2004, grad_semester: 1, major_id: @cs.id)
-@s2 = Student.find_or_create_by(uin: 987_654_321, first_name: 'Beta', last_name: 'Charlie', email: 'JA@tamu.edu',
-                                enrol_year: 2000, enrol_semester: 0, grad_year: 2004, grad_semester: 1, major_id: @cs.id)
+# Seed with tracks
+CSV.foreach(tracks_csv, headers: true) do |row|
+    Track.find_or_create_by(
+        tname: row['track_name']
+    )
+end
 
-# Student Course [Dependencies on Student and Course]
-StudentCourse.find_or_create_by(student_id: @s1.id, course_id: @c110.id)
-StudentCourse.find_or_create_by(student_id: @s1.id, course_id: @c120.id)
-StudentCourse.find_or_create_by(student_id: @s2.id, course_id: @c221.id)
-StudentCourse.find_or_create_by(student_id: @s2.id, course_id: @c181.id)
-StudentCourse.find_or_create_by(student_id: @s2.id, course_id: @e104.id)
+# Seed with degree requirements for CSCE
+CSV.foreach(major_courses_csv, headers: true) do |row|
+    major = Major.find_by(mname: "Computer Science")
+    
+    course_code = row['course_code']
 
-StudentCourse.find_or_create_by(student_id: @s2.id, course_id: @c121.id)
-StudentCourse.find_or_create_by(student_id: @s2.id, course_id: @c181.id)
-StudentCourse.find_or_create_by(student_id: @s2.id, course_id: @b209.id)
+    if row['course_number'].blank?
+        last_dummy = Course.where(ccode: course_code).order(cnumber: :desc).first
+        next_cnumber = last_dummy ? last_dummy.cnumber.to_i + 1 : 1
+    else
+        next_cnumber = 000
+    end
 
-# Track [Dependency on Course]
-Track.find_or_create_by(course_id: @c410.id, tname: 'Systems')
-Track.find_or_create_by(course_id: @c431.id, tname: 'Software')
+    requirement = Course.find_or_create_by(
+        ccode: course_code,
+        cnumber: row['course_number'] || next_cnumber
+    )
+    DegreeRequirement.find_or_create_by(
+        course: requirement,
+        major: major,
+        sem: row['rec_sem']
+    )
+end
 
-# Emphasis [Dependency on Course]
-Emphasis.find_or_create_by(course_id: @m251.id, ename: 'Math')
-Emphasis.find_or_create_by(course_id: @b209.id, ename: 'Business')
+# Seed with track fulfilling courses
+CSV.foreach(track_courses_csv, headers: true) do |row|
+    track = Track.find_by(
+        tname: row['track_name']
+    )
+    course = Course.find_by(
+        ccode: row['course_code'],
+        cnumber: row['course_number']
+    )
+    CourseTrack.find_or_create_by(
+        track: track,
+        course: course
+    )
+end
 
-# Prereq [Dependency on Course]
-Prerequisite.find_or_create_by(course_id: @c120.id, prereq_id: @c110.id)
-Prerequisite.find_or_create_by(course_id: @c120.id, prereq_id: @c111.id)
+# Seed with core fulfilling courses
+CSV.foreach(core_courses_csv, headers: true) do |row|
+    Course.find_or_create_by(
+        ccode: row['course_code'],
+        cnumber: row['course_number'],
+        cname: row['course_title'],
+        credit_hours: row['credit_hours']
+    )
+end
 
-# Core Categories [Dependency on Course]
-CoreCategories.find_or_create_by(course_id: @e104.id, cname: 'Communication')
-CoreCategories.find_or_create_by(course_id: @a149.id, cname: 'Creative Arts')
+CSV.foreach(core_courses_csv, headers: true) do |row|
+    CourseCoreCategory.find_or_create_by(
+        course: Course.find_by(ccode: row['course_code'], cnumber: row['course_number']),
+        core_category: CoreCategory.find_by(cname: row['category'])
+    )
+end
 
-# Degree Requirement [Dependencides on Major and Course]
-DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c181.id)
-DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c221.id)
-DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c222.id)
-DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c312.id)
-DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c314.id)
-DegreeRequirement.find_or_create_by(major_id: @cs.id, course_id: @c313.id)
+# Seed prerequisite table
+CSV.foreach(courses_csv, headers: true) do |row|
+    prereq_col = [row['prereq_1'], row['prereq_2'], row['prereq_3']]
+  
+    # If prereq_1 is blank, skip to the next iteration
+    next if prereq_col[0].blank?
+  
+    # Create course record
+    course = Course.find_or_create_by(
+      ccode: row['ccode'],
+      cnumber: row['cnumber']
+    )
+  
+    def process_prerequisites(prereqs, course, equi_id)
+      return if prereqs.blank?
+  
+      prereqs.split(';').each do |prereq|
+        # Split by whitespace to separate ccode and cnumber
+        ccode, cnumber = prereq.strip.split(' ', 2) # Split into ccode and cnumber
+  
+        # Find or create the prerequisite course
+        prereq_course = Course.find_or_create_by(ccode: ccode, cnumber: cnumber)
+  
+        # Create prerequisite record
+        Prerequisite.find_or_create_by(
+          course: course,
+          prereq: prereq_course,
+          equi_id: equi_id
+        )
+      end
+    end
+  
+    # Process each prerequisite
+    prereq_col.each_with_index do |prereqs, index|
+      process_prerequisites(prereqs, course, index + 1)
+    end
+  end
+  
+
+# Seed with emphasis
+CSV.foreach(emphasis_csv, headers: true) do |row|
+    Emphasis.find_or_create_by(
+        ename: row['emphasis_name']
+    )
+end
+
+# Seed with emphasis fulfilling courses
+CSV.foreach(emphasis_courses_csv, headers: true) do |row|
+    Course.find_or_create_by(
+        ccode: row['ccode'],
+        cnumber: row['cnumber'],
+        cname: row['cname'],
+        credit_hours: row['credit_hours']
+    )
+end
+
+CSV.foreach(emphasis_courses_csv, headers: true) do |row|
+    CourseEmphasis.find_or_create_by(
+        course: Course.find_by(ccode: row['ccode'], cnumber: row['cnumber']),
+        emphasis: Emphasis.find_by(ename: row['ename'])
+    )
+end

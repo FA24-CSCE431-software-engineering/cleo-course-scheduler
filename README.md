@@ -1,24 +1,153 @@
-# README
+# README 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction to our Project
 
-Things you may want to cover:
+Our team is creating a degree planner application for Texas A&M University students called Cleo. Students can create a user profile based on their interests and will be recommended courses to take in their upcoming semesters. 
 
-* Ruby version
+## Requirements
 
-* System dependencies
+What is needed to run and code our test:
 
-* Configuration
+- Ruby ~ 3.3.3
+- Rails ~ 7.2.1
+- PostgreSQL ~ 14.13
+- Ruby Gems ~ Listed in ‘Gemfile’
 
-* Database creation
+## External dependencies
 
-* Database initialization
+- Docker - Download latest version at https://www.docker.com/products/docker-desktop
+- Heroku CLI - Download latest version at https://devcenter.heroku.com/articles/heroku-cli
+- Git - Download latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
-* How to run the test suite
+## Documentation
+Our [product and sprint backlog](https://asp500.atlassian.net/jira/software/projects/A5/boards/2) can be found in Jira, with project name asp-500
 
-* Services (job queues, cache servers, search engines, etc.)
+## Installation
 
-* Deployment instructions
+### Setting up the repository
 
-* ...
+```
+git clone https://github.com/FA24-CSCE431-software-engineering/cleo-course-scheduler.git
+```
+
+If you have already cloned and would like to update locally
+
+```
+git stash (if you have any changes)
+git pull origin main
+```
+
+### Running Docker
+
+Navigate to the app directory and create a docker container.
+```
+docker run -it --volume "${PWD}:/directory" -e DATABASE_USER=cleo_app -e DATABASE_PASSWORD=cleo_password -p 3000:3000 paulinewade/csce431:latest
+```
+
+*Note: replace directory with where the app code is located
+
+If you want to re-enter an existing container 
+
+```
+docker start -ai determined_dubinsky
+```
+
+*Note: replace determined_dubinsky with the name of the docker container
+
+### Installing Dependencies
+```
+bundle install && rails webpacker:install
+```
+
+### Configuring PostgreSQL
+If no has been created database yet, run the following
+```
+rails db:create && rails db:migrate
+```
+
+Navigate to the ```lib``` folder, and run the following to scrape the course catalog
+```
+./run_spiders.sh
+```
+
+With the generated csv files, run the following to seed the database
+```
+rails db:seed
+```
+
+## Testing
+
+We used RSpec and the RSpec test suite can be ran using:
+```rspec spec/```
+
+You can run all the tests by using the following command. This runs all tests, including integration and unit tests:
+```rspec .```
+
+## Code Execution
+
+Run the following code in Powershell or regular terminal if using Windows or Linux/Mac OS respectively:
+
+Navigate to project directory
+```
+cd cleo-course-scheduler
+```
+
+Run the app
+```
+rails s --binding:0.0.0.0
+```
+
+This application can be viewed by writing the following in your browser
+```http://localhost:3000/```
+
+## Environmental Variables/Files
+
+Follow this Google Oauth [configuration guide](​​https://medium.com/@tony.infisical/guide-to-using-oauth-2-0-to-access-google-apis-dead94d6866d) to generate a ```GOOGLE_OAUTH_CLIENT_ID``` and ```GOOGLE_OAUTH_CLIENT_SECRET```, which will be used for authentication.
+
+To enable it locally, create a ```.env``` file in the root project directory. The file should look like the following:
+```
+GOOGLE_CLIENT_ID="..."
+GOOGLE_CLIENT_SECRET="..."
+```
+Replace the ellipses with your own secrets/
+
+The instructions for setting the environment variables on Heroku can be found below.
+
+
+## Deployment
+
+The following steps will result in the deployment of a Heroku Pipeline.
+1. Setup a [Heroku](https://signup.heroku.com/) account
+2. From the Heroku dashboard select `New` -> `Create New Pipeline`
+3. Name the pipeline, and link the respective git repository to the pipeline
+4. Select `Enable Review Apps`
+5. Click `New app` under review apps, and link the test branch from your repo
+6. Under staging app, select `Create new app` and link the main branch from your repo
+
+### Deployment Environment Variables
+To enable Google Oauth2, head over to the settings tab on the pipeline dashboard. 
+
+1. Scroll down until `Reveal config vars`
+2. Add your client id and secret id
+```
+GOOGLE_OAUTH_CLIENT_ID=...
+GOOGLE_OAUTH_CLIENT_SECRET=...
+```
+
+Now once your pipeline has built the apps, select `Open app` to open the app.
+
+## CI/CD
+
+Continuous integration was employed through the use of Github actions. Our workflow includes:
+- RSpec integration and feature tests
+- Rubocop linting
+- Brakeman tests
+
+Continuous Development was setup through Heroku which has been linked to our Github repositories. The pipeline includes:
+- Review application through ```test``` branch
+- Production application through ```main``` branch
+
+## References
+- [Stack Overflow](https://stackoverflow.com)
+- [OpenAI](https://chat.openai.com)
+- [Ruby on Rails](https://guides.rubyonrails.org/index.html)
