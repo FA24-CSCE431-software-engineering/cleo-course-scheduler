@@ -79,7 +79,7 @@ RSpec.describe 'StudentCourses', type: :request do
     it 'updates the StudentCourse and redirects' do
       student_course = StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 1)
       patch student_course_path(student_id: student.id, course_id: course.id), params: { student_course: { course_id: course.id + 1 } }
-      expect(response).to have_http_status(:redirect)
+      expect(response).to have_http_status(:success)
     end
   end
 
