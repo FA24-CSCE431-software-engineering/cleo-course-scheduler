@@ -1,0 +1,75 @@
+<h1>Deployment</h1>
+
+<p>
+This app is offically runs on Heroku therefore these steps of deployment reflect that.
+If you haven't already make sure you have a Heroku account and the Heroku CLI before proceeding. 
+</p>
+
+<h2>Setting Up the App in Heroku</h2>
+<p> Once on the Heroku dashboard do the following steps: </p>
+<ol>
+    <li> 
+    Click on <strong>New</strong> then <strong> Create new app </strong>. 
+    </li>
+    <li> 
+    Once you filled out the App name, App owner, and region, click on 
+    <strong> Create app </strong>.
+    </li>
+    <li> 
+    Now you should see the app dashboard, now we need to implement addons so click 
+    on the <strong> Resource </strong> tab.
+    </li>
+    <li>
+    Now search for the Heroku Postgres and PaperTrail addons. 
+    The Heroku Postgres will allow the app to function properly
+    while PaperTrail addons will help with tracking data logging. 
+    </li>
+</ol>
+<p> This should be most of setup on the Heroku website, now we need to setup the Google Authication </p>
+
+<h2> Setting up the Google Authication </h2>
+<ol>
+    <li> 
+        Go to <a href="https://cloud.google.com/">Google Cloud</a> and login or signup.
+    </li>
+    <li> 
+    Once on the google cloud welcome page click on the drop down box with the three circles and click on 
+    <strong> NEW PROJECT </strong>
+    </li>
+    <li>
+    After filling out your information the new project click on the <strong> Dashboard </strong>, go to the sidebar 
+    and find <strong> APIs & Services </strong> &#8594; <strong> Credentials </strong> &#8594;
+    <strong> Configure Consent Screen </strong>. Alternatively click on the <strong> OAuth consent screen </strong>
+    </li>
+    <li>
+    Set the User Type to External. Next set the <strong> Application Name, User Support email and Developer contact
+    information. </strong>. Save and Continue.
+    </li>
+    <li>
+    Go back to the <strong> Credentials </strong> click on <strong>Create Credentials </strong> and select 
+    <strong> OAuth Client ID </strong>
+    </li>
+    <li>
+    Select <strong> Web Application </strong> fill out <strong> Name </strong> and under 
+    <strong> Authorized redirect URIs </strong> fill this out in that section 
+    "https://&lt;herokuAppName&gt;.herokuapp.com/student_logins/auth/google_oauth2/callback".
+    after that click on <strong>Create</strong>.
+    </li>
+    <li>
+    Here you will see the Client and Secret if not you can click on the app name in Credentials to see them agains.
+    We will need these to link Google Authication to the Heroku App.
+    </li>
+</ol>
+
+<h2>Linking Google Authication to the Heroku App<h2>
+<ol>
+    <li> 
+        In your terminal, where you downloaded Heroku CLI, type this command: <i>Heroku login </i> 
+        it will prompt you to press any buttion then send to a screen to login.
+    </li>
+    <li>
+        After that type in the following command: 
+        <i> heroku config:set GOOGLE_CLIENT_ID=&lt;your-client-id&gt; </i>
+        <i> heroku config:set GOOGLE_CLIENT_SECRET=&lt;your-client-secret&gt; </i>
+    </li>
+</ol>

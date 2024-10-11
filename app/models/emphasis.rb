@@ -7,4 +7,5 @@ class Emphasis < ApplicationRecord
   # Course association
   has_many :course_emphases
   has_many :courses, through: :course_emphases
+  has_many :students
 end
