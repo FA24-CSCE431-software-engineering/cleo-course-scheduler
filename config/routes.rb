@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
 
   devise_scope :student_login do
+    root to: 'student_logins/sessions#check_login'
     get 'student_logins/sign_in', to: 'student_logins/sessions#new', as: :new_student_login_session
+    post 'student_logins/sign_in', to: 'student_logins/sessions#create', as: :student_login_session
     get 'student_logins/sign_out', to: 'student_logins/sessions#destroy', as: :destroy_student_login_session
   end
 
@@ -38,7 +40,9 @@ Rails.application.routes.draw do
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root 'home#index'
+  # root 'home#index'
+  # root to: redirect('/student_logins/sign_in')
+  
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get 'up' => 'rails/health#show', as: :rails_health_check
