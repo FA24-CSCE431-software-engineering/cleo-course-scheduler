@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
+  resources :courses do
+    member do
+      get :confirm_destroy
+    end
+  end
+
   resources :majors do
     member do
       get :confirm_destroy

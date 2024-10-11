@@ -49,6 +49,6 @@ class CoreCategoriesController < ApplicationController
   end
 
   def core_category_params
-    params.require(:core_category).permit(:cname)  # Adjust attributes as necessary
+    params.require(:core_category).permit(:cname) 
   end
 end

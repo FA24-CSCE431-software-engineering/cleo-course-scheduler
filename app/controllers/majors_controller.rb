@@ -51,6 +51,6 @@ class MajorsController < ApplicationController
   end
 
   def major_params
-    params.require(:major).permit(:mname, :cname)  # Adjust attributes as necessary
+    params.require(:major).permit(:mname, :cname)  
   end
 end
