@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class StudentCourse < ApplicationRecord
-  self.primary_key = nil # No primary key
+  
+  #self.primary_keys = :student_id, :course_id
+
   belongs_to :student
   belongs_to :course
 

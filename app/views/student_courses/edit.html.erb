@@ -1,6 +1,6 @@
 <h1>Edit Courses in Degree Plan</h1>
 
-<%= form_with model: @student_course, local: true do |form| %>
+<%= form_with model: @student_course, url: student_course_path(student_id: @student_course.student_id, course_id: @student_course.course_id), local: true do |form| %>
   <div>
     <%= form.label :course_id, "Change Course" %>
     <%= form.collection_select :course_id, Course.all, :id, :cname, prompt: "Select a New Course" %>

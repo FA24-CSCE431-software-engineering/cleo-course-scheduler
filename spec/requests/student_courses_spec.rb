@@ -69,7 +69,7 @@ RSpec.describe 'StudentCourses', type: :request do
 
   describe 'GET /edit' do
     it 'returns http success' do
-      student_course = StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 1)
+      student_course = StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 0)
       get edit_student_course_path(student_id: student.id, course_id: course.id)
       expect(response).to have_http_status(:success)
     end
@@ -77,14 +77,16 @@ RSpec.describe 'StudentCourses', type: :request do
 
   describe 'PATCH /update' do
     it 'updates the StudentCourse and redirects' do
-      patch student_course_path(student_course), params: { student_course: { course_id: course.id } }
+      student_course = StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 1)
+      patch student_course_path(student_id: student.id, course_id: course.id), params: { student_course: { course_id: course.id + 1 } }
       expect(response).to have_http_status(:redirect)
     end
   end
 
   describe 'DELETE /destroy' do
     it 'deletes the StudentCourse and redirects' do
-      delete student_course_path(student_course)
+      student_course = StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 1)
+      delete student_course_path(student_id: student.id, course_id: course.id)
       expect(response).to have_http_status(:redirect)
     end
   end

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # for student courses
   resources :student_courses, param: :student_id do
     get ':course_id', action: :show, on: :member
-    get ':course_id/edit', action: :edit, on: :member
+    get ':course_id/edit', action: :edit, on: :member, as: 'edit'
     patch ':course_id', action: :update, on: :member
     delete ':course_id', action: :destroy, on: :member
   end
