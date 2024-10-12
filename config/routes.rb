@@ -1,25 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
-  resources :courses do
-    member do
-      get :confirm_destroy
-    end
-  end
-
-  resources :majors do
-    member do
-      get :confirm_destroy
-    end
-  end
-  
-  resources :core_categories do
-    member do
-      get :confirm_destroy
-    end
-  end
-
   # root "student_dashboards#show"
   resources :student_dashboards, only: [:show]
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
@@ -34,14 +15,31 @@ Rails.application.routes.draw do
 
   # Admin dashboard
   namespace :admin do
+    # CRUD routes for track & emphasis
     resources :tracks
     resources :emphases
+
+    # CRUD routes for courses, majors, & core categories
+    resources :courses do
+      member do
+        get :confirm_destroy
+      end
+    end
+  
+    resources :majors do
+      member do
+        get :confirm_destroy
+      end
+    end
+    
+    resources :core_categories do
+      member do
+        get :confirm_destroy
+      end
+    end
+
     get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
-
-  # CRUD routes for track & emphasis
-  resources :tracks
-  resources :emphases
 
   get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'
   post 'save_degree_plan', to: 'def_degree#save', as: 'save_degree_plan'
