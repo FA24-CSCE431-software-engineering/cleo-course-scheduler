@@ -4,9 +4,9 @@
   <%= @core_category.cname %><br>
 </p>
 
-<%= form_with(url: core_category_path(@core_category), method: :delete) do |form| %>
+<%= form_with(url: admin_core_category_path(@core_category), method: :delete) do |form| %>
   <div class="actions">
     <%= form.submit 'Delete Core Category', class: 'btn btn-danger' %>
-    <%= link_to 'Cancel', core_category_path, class: 'btn btn-secondary' %>
+    <%= link_to 'Cancel', admin_core_category_path, class: 'btn btn-secondary' %>
   </div>
 <% end %>

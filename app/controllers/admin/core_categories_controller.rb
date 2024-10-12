@@ -15,7 +15,7 @@ module Admin
     def create
       @core_category = CoreCategory.new(core_category_params)
       if @core_category.save
-        redirect_to core_categories_path, notice: 'Core category added successfully.'
+        redirect_to admin_core_categories_path, notice: 'Core category added successfully.'
       else
         render 'admin/core_categories/new'
       end
@@ -27,7 +27,7 @@ module Admin
 
     def update
       if @core_category.update(core_category_params)
-        redirect_to core_categories_path, notice: 'Core category updated successfully.'
+        redirect_to admin_core_categories_path, notice: 'Core category updated successfully.'
       else
         render :edit
       end
@@ -35,7 +35,7 @@ module Admin
 
     def destroy
       @core_category.destroy
-      redirect_to core_categories_path, notice: 'Core category deleted successfully.'
+      redirect_to admin_core_categories_path, notice: 'Core category deleted successfully.'
     end
 
     def confirm_destroy
