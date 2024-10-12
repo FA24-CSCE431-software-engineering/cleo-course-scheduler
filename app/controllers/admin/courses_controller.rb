@@ -23,13 +23,13 @@ module Admin
 
     def destroy
       @course.destroy
-      redirect_to courses_path, notice: 'Course deleted succesfully.'
+      redirect_to admin_courses_path, notice: 'Course deleted succesfully.'
     end
 
     def create
       @course = Course.new(course_params)
       if @course.save
-        redirect_to courses_path, notice: 'Course added succesfully.'
+        redirect_to admin_courses_path, notice: 'Course added succesfully.'
       else
         render 'admin/courses/new'
       end
@@ -42,7 +42,7 @@ module Admin
 
     def update
       if @course.update(course_params)
-        redirect_to courses_path, notice: 'Course updated successfully.'
+        redirect_to admin_courses_path, notice: 'Course updated successfully.'
       else
         render :edit
       end
