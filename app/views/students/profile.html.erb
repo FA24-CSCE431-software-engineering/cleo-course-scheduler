@@ -17,6 +17,13 @@
 <p><strong>Name:</strong> <%= "#{@student.first_name} #{@student.last_name}" %></p>
 <p><strong>Email:</strong> <%= @student.email %></p>
 <p><strong>UID:</strong> <%= @student.google_id %></p> 
+<p><strong>Enrollment Year:</strong> <%= @student.enrol_year %></p>
+<p><strong>Graduation Year:</strong> <%= @student.grad_year %></p>
+<p><strong>Enrollment Semester:</strong> <%= @student.enrol_semester.humanize %></p>
+<p><strong>Graduation Semester:</strong> <%= @student.grad_semester.humanize %></p>
+<p><strong>Major:</strong> <%= @student.major.id if @student.major %></p>
+<p><strong>Track:</strong> <%= @student.track.name if @student.track %></p>
+<p><strong>Emphasis:</strong> <%= @student.emphases.name if @student.emphases_id %></p>
 
 <%= link_to 'Edit Profile', edit_student_path(@student.google_id) %>
 
