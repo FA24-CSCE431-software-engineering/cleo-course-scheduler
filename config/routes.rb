@@ -11,8 +11,9 @@ Rails.application.routes.draw do
     get 'student_logins/sign_out', to: 'student_logins/sessions#destroy', as: :destroy_student_login_session
   end
 
+  
   # Student dashboard (regular users)
-  resources :student_dashboards, only: [:show], path: 'student_dashboard'
+  resources :student_dashboards, only: [:show], param: :google_id, path: 'student_dashboard'
 
   # Admin dashboard
   namespace :admin do
@@ -32,7 +33,7 @@ Rails.application.routes.draw do
   end
   
 
-  resources :students do
+  resources :students, param: :google_id do
     member do
       get 'profile'
       get 'edit'

@@ -2,6 +2,7 @@
 
 class StudentLogin < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:google_oauth2]
+  has_one :student, foreign_key: :google_id, primary_key: :uid
 
   validates :uid, presence: true
 
@@ -11,4 +12,5 @@ class StudentLogin < ApplicationRecord
   def is_admin?
     self.is_admin
   end
+
 end

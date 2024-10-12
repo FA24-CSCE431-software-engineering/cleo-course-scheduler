@@ -1,17 +1,68 @@
-<h1>You're logged in! Welcome to the Student Dashboard!</h1>
-<%= link_to "Sign Out", destroy_student_login_session_path %> <br>
-<%= link_to 'View Profile', profile_student_path(current_student_login) %>
-<p>Welcome, <%= current_student_login.full_name %>!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <%= stylesheet_link_tag 'student_dashboard', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="student-dashboard">
+  <div class="header">
+    <div class="hamburger-icon" id="hamburger-icon">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
 
-<h1> Start Planning Your Degree </h1>
-<div class="student-actions">
+    <div class="logo-container">
+      <%= image_tag 'logo1.png', alt: 'Cleo Logo', class: 'logo' %>
+    </div>
 
-  <h2>Student Actions</h2>
-  <ul>
-    <li><%= link_to 'Edit Profile', edit_student_path(current_student_login) %></li>
-    <li><%= link_to 'View Degree Plan', degree_plan_path %></li>
-    <li><%= link_to 'Download Degree Plan', download_degree_plan_path %></li>
-    <li><%= link_to 'Import Existing Degree Planner', import_degree_plan_path %></li> <!-- Replace # with correct path -->
-    <li><%= link_to 'Interest Form', interest_form_path %></li> <!-- Replace # with correct path -->
-  </ul>
-</div>
+    <div class="user-info">
+      <%= link_to image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'avatar'), profile_student_path(current_student_login) %>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <span class="close-button" id="close-button">&times;</span> <!-- Close button -->
+    <%= link_to 'Home', student_dashboard_path, class: 'sidebar-link' %> <br>
+    <%= link_to 'Profile', profile_student_path(current_student_login), class: 'sidebar-link' %> <br>
+    <%= link_to 'Degree Planner', degree_plan_path, class: 'sidebar-link' %> <br>
+    <%= link_to 'Sign Out', destroy_student_login_session_path, class: 'sidebar-link logout-button' %>
+  </div>
+
+  <p class="welcome">Welcome, <%= current_student_login.full_name %>!</p>
+
+  <div class="image-container">
+    <%= image_tag 'dashboard.png', alt: 'Dashboard', class: 'dashboard-image' %>
+  </div>
+
+  <h1 class="planning-title">Start Planning Your Degree</h1>
+
+  <div class="student-actions">
+    <ul class="actions-list">
+      <li><%= link_to 'Edit Profile', edit_student_path(current_student_login.uid), class: 'action-button' %></li>
+      <li><%= link_to 'View Degree Plan', degree_plan_path, class: 'action-button' %></li>
+      <li><%= link_to 'Download Degree Plan', download_degree_plan_path, class: 'action-button' %></li>
+      <li><%= link_to 'Import Existing Degree Planner', import_degree_plan_path, class: 'action-button' %></li>
+      <li><%= link_to 'Interest Form', interest_form_path, class: 'action-button' %></li>
+    </ul>
+  </div>
+
+  <!-- Add the JavaScript for toggling the sidebar -->
+  <script>
+    document.getElementById('hamburger-icon').addEventListener('click', function() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active'); // Toggle the active class
+    });
+
+    // Close button functionality
+    document.getElementById('close-button').addEventListener('click', function() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.remove('active'); // Remove the active class
+    });
+  </script>
+</body>
+</html>
