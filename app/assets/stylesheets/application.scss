@@ -80,4 +80,19 @@
   .delete-course:hover {
     text-decoration: underline;
   }
-  
+
+// CSS for buttons
+.btn-purple {
+  background-color: #6f42c1; /* Primary Purple */
+  color: white;
+  border: none;
+}
+
+.btn-purple:hover {
+  background-color: #5a31a3; /* Darker Purple */
+  color: white;
+}
+
+.btn-purple:focus {
+  box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5); /* Focus shadow */
+}
