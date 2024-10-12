@@ -17,7 +17,7 @@ module Admin
     def create
       @major = Major.new(major_params)
       if @major.save
-        redirect_to majors_path, notice: 'Major added successfully.'
+        redirect_to admin_majors_path, notice: 'Major added successfully.'
       else
         render :new
       end
@@ -29,7 +29,7 @@ module Admin
 
     def update
       if @major.update(major_params)
-        redirect_to majors_path, notice: 'Major updated successfully.'
+        redirect_to admin_majors_path, notice: 'Major updated successfully.'
       else
         render :edit
       end
@@ -37,7 +37,7 @@ module Admin
 
     def destroy
       @major.destroy
-      redirect_to majors_path, notice: 'Major deleted successfully.'
+      redirect_to admin_majors_path, notice: 'Major deleted successfully.'
     end
 
     def confirm_destroy
