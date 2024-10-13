@@ -21,9 +21,13 @@ class DefDegreeController < ApplicationController
         # Logic to generate and send the degree plan for download
     end
 
-    def savedplanner
-      render partial: 'def_degree/savedplanner'
+    private
+
+    def generate_degree_plan(student)
+      # Fetch the default degree requirements based on the student's major
+      DegreeRequirement.where(major_id: student.major_id).includes(:course).order(:year, :sem)
     end
+
 
   end
   

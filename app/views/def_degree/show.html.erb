@@ -52,276 +52,97 @@
     <%= f.select :core_curriculum, options_for_select(['Curriculum 1', 'Curriculum 2', 'Curriculum 3']) %>
   </div>
 
-  <div id="degreeplan-container" class="degreeplan-semesters grid">
-    <% (1..8).each do |i| %>
-      <div class="semester-container">
-        <h3>Semester <%= i %>:</h3>
-        <table>
-          <thead>
+<div id="degreeplan-container" class="degreeplan-semesters grid">
+  <% semesters = [
+      { semester: 1, courses: [
+          { name: 'ENGR', crn: '102', credits: 2 },
+          { name: 'MATH', crn: '151', credits: 4 },
+          { name: 'CHEM', crn: '107/117', credits: 4 },
+          { name: 'ENGL', crn: '104 or 103', credits: 3 },
+          { name: 'UCC Elective', crn: '', credits: 3 }
+        ] },
+      { semester: 2, courses: [
+          { name: 'ENGR', crn: '216', credits: 2 },
+          { name: 'PHYS', crn: '206', credits: 3 },
+          { name: 'MATH', crn: '152', credits: 4 },
+          { name: 'ENGL', crn: '210', credits: 3 },
+          { name: 'UCC Elective', crn: '', credits: 3 }
+        ] },
+      { semester: 3, courses: [
+          { name: 'CSCE', crn: '121', credits: 4 },
+          { name: 'CSCE', crn: '222', credits: 3 },
+          { name: 'CSCE', crn: '181', credits: 1 },
+          { name: 'MATH', crn: '304', credits: 3 },
+          { name: 'Science elective', crn: '', credits: 4 }
+        ] },
+      { semester: 4, courses: [
+          { name: 'CSCE', crn: '221', credits: 4 },
+          { name: 'CSCE', crn: '312', credits: 4 },
+          { name: 'CSCE', crn: '314', credits: 3 },
+          { name: 'Emphasis area elective', crn: '', credits: 3 },
+          { name: 'UCC Elective', crn: '', credits: 3 }
+        ] },
+      { semester: 5, courses: [
+          { name: 'CSCE', crn: '313', credits: 4 },
+          { name: 'CSCE', crn: '411', credits: 3 },
+          { name: 'CSCE', crn: '315', credits: 3 },
+          { name: 'STAT', crn: '211', credits: 3 },
+          { name: 'Emphasis area elective', crn: '', credits: 3 }
+        ] },
+      { semester: 6, courses: [
+          { name: 'CSCE', crn: '399', credits: 0 },
+          { name: 'Computer Science Elective', crn: '', credits: 3 },
+          { name: 'Computer Science Elective', crn: '', credits: 3 },
+          { name: 'General elective', crn: '', credits: 3 },
+          { name: 'General elective', crn: '', credits: 3 }
+        ] },
+      { semester: 7, courses: [
+          { name: 'CSCE', crn: '490', credits: 3 },
+          { name: 'Computer Science Elective', crn: '', credits: 3 },
+          { name: 'General elective', crn: '', credits: 3 },
+          { name: 'General elective', crn: '', credits: 3 },
+          { name: 'General elective', crn: '', credits: 3 }
+        ] },
+      { semester: 8, courses: [
+          { name: 'CSCE', crn: '499', credits: 3 },
+          { name: 'General elective', crn: '', credits: 3 },
+          { name: 'General elective', crn: '', credits: 3 },
+          { name: 'General elective', crn: '', credits: 3 },
+          { name: 'General elective', crn: '', credits: 3 }
+        ] }
+    ] %>
+
+  <% semesters.each do |semester_data| %>
+    <div class="semester-container">
+      <h3>Semester <%= semester_data[:semester] %>:</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>CRN</th>
+            <th>Credit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% semester_data[:courses].each_with_index do |course, index| %>
             <tr>
-              <th>Course Name</th>
-              <th>CRN</th>
-              <th>Credit</th>
-              <th>Delete</th>
+              <td><%= f.text_field "container#{semester_data[:semester]}_course#{index + 1}", value: course[:name], placeholder: 'Course Name' %></td>
+              <td><%= f.text_field "container#{semester_data[:semester]}_crn#{index + 1}", value: course[:crn], placeholder: 'CRN' %></td>
+              <td><%= f.number_field "container#{semester_data[:semester]}_credit#{index + 1}", value: course[:credits], placeholder: 'Credit', min: 0 %></td>
+              <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-#{semester_data[:semester]}-#{index + 1}" } %></td>
             </tr>
-          </thead>
-          <tbody>
-            <% if i == 1 %>
-              <tr>
-                <td><%= f.text_field "container#{i}_course", value: 'ENGR', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn", value: '102', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit", value: 2, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course2", value: 'MATH', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn2", value: '151', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit2", value: 4, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course3", value: 'CHEM', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn3", value: '107/117', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit3", value: 4, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course4", value: 'ENGL', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn4", value: '104 or 103', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit4", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course5", value: 'UCC Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn5", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit5", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-            <% elsif i == 2 %>
-              <tr>
-                <td><%= f.text_field "container#{i}_course", value: 'ENGR', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn", value: '216', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit", value: 2, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course2", value: 'PHYS', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn2", value: '206', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit2", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course3", value: 'MATH', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn3", value: '152', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit3", value: 4, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course4", value: 'ENGL', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn4", value: '210', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit4", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course5", value: 'UCC Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn5", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit5", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-            <% elsif i == 3 %>
-              <tr>
-                <td><%= f.text_field "container#{i}_course", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn", value: '121', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit", value: 4, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course2", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn2", value: '222', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit2", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course3", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn3", value: '181', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit3", value: 1, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course4", value: 'MATH', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn4", value: '304', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit4", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course5", value: 'Science elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn5", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit5", value: 4, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-            <% elsif i == 4 %>
-              <tr>
-                <td><%= f.text_field "container#{i}_course", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn", value: '221', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit", value: 4, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course2", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn2", value: '312', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit2", value: 4, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course3", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn3", value: '314', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit3", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course4", value: 'Emphasis area elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn4", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit4", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course5", value: 'UCC Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn5", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit5", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-            <% elsif i == 5 %>
-              <tr>
-                <td><%= f.text_field "container#{i}_course", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn", value: '313', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit", value: 4, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course2", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn2", value: '411', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit2", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course3", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn3", value: '315', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit3", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course4", value: 'STAT', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn4", value: '211', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit4", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course5", value: 'Emphasis area elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn5", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit5", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-            <% elsif i == 6 %>
-              <tr>
-                <td><%= f.text_field "container#{i}_course", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn", value: '399', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit", value: 0, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course2", value: 'Computer Science Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn2", value: '', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit2", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course3", value: 'Computer Science Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn3", value: '', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit3", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course4", value: 'MATH', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn4", value: '251, 302, or 308', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit4", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course5", value: 'Science Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn5", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit5", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-            <% elsif i == 7 %>
-              <tr>
-                <td><%= f.text_field "container#{i}_course", value: 'Computer Science Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course2", value: 'Computer Science Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn2", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit2", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course3", value: 'Computer Science Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn3", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit3", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course4", value: 'UCC Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn4", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit4", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course5", value: 'Emphasis area elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn5", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit5", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-            <% elsif i == 8 %>
-              <tr>
-                <td><%= f.text_field "container#{i}_course", value: 'CSCE', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn", value: '482', placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course2", value: 'Computer Science Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn2", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit2", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
+          <% end %>
+        </tbody>
+      </table>
+      <button type="button" class="add-course" data-semester="<%= semester_data[:semester] %>">Add Course</button>
+    </div>
+  <% end %>
+</div>
 
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course3", value: 'UCC Elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn3", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit3", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-
-              </tr>
-              <tr>
-                <td><%= f.text_field "container#{i}_course4", value: 'Emphasis area elective', placeholder: 'Course Name' %></td>
-                <td><%= f.text_field "container#{i}_crn4", placeholder: 'CRN' %></td>
-                <td><%= f.number_field "container#{i}_credit4", value: 3, placeholder: 'Credit', min: 0 %></td>
-                <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-1-2" } %></td>
-
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <button type="button" class="add-course" data-semester="<%= i %>">Add Course</button>
-
-
-      </div>
-    <% end %>
-  </div>
 
   <%= f.submit 'Save Degree Plan' %>
+  <%= f.submit 'Download Degree Plan' %>
 <% end %>
 <script>
   document.querySelectorAll('.add-course').forEach(button => {
