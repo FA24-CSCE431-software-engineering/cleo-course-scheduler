@@ -1,32 +1,98 @@
-<h1>Profile</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <%= csrf_meta_tags %>
+</head>
 
-<nav>
-  <ul>
-  <li><%= link_to "Back to Student Dashboard", student_dashboard_path(@student.google_id) %></li> 
-  <li><%= link_to "Sign Out", destroy_student_login_session_path, method: :delete %></li>
-    <li>
-    <% if current_student_login.avatar_url.present? %>
-    <img src="<%= current_student_login.avatar_url %>" alt="User Avatar" style="width: 50px; height: 50px; border-radius: 50%;">
-  <% else %>
-    <img src="default_avatar_url.jpg" alt="Default Avatar" style="width: 50px; height: 50px; border-radius: 50%;">
-  <% end %>
-    </li>
-  </ul>
-</nav>
+<body class="profile-body">
+  <div class="profile-header">
+    <div class="profile-back-to-dashboard">
+      <%= link_to student_dashboard_path(@student.google_id), class: 'profile-back-to-dashboard-link' do %>
+        <span class="profile-back-arrow">&#8592;</span>
+        Home
+      <% end %>
+    </div>
 
-<p><strong>Name:</strong> <%= "#{@student.first_name} #{@student.last_name}" %></p>
-<p><strong>Email:</strong> <%= @student.email %></p>
-<p><strong>UID:</strong> <%= @student.google_id %></p> 
-<p><strong>Enrollment Year:</strong> <%= @student.enrol_year %></p>
-<p><strong>Graduation Year:</strong> <%= @student.grad_year %></p>
-<p><strong>Enrollment Semester:</strong> <%= @student.enrol_semester.humanize %></p>
-<p><strong>Graduation Semester:</strong> <%= @student.grad_semester.humanize %></p>
-<p><strong>Major:</strong> <%= @student.major.id if @student.major %></p>
-<p><strong>Track:</strong> <%= @student.track.name if @student.track %></p>
-<p><strong>Emphasis:</strong> <%= @student.emphases.name if @student.emphases_id %></p>
+    <div class="profile-logo-container">
+      <%= image_tag 'logo1.png', alt: 'Cleo Logo', class: 'profile-logo' %>
+    </div>
 
-<%= link_to 'Edit Profile', edit_student_path(@student.google_id) %>
+    <div class="profile-user-info">
+      <div class="profile-avatar-dropdown">
+        <!-- Avatar Image -->
+        <%= image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'profile-avatar', id: 'avatar') %>
 
-
+        <!-- Dropdown Menu -->
+        <div class="profile-dropdown-menu" id="dropdown-menu">
+          <%= link_to 'Settings', profile_student_path(current_student_login), class: 'profile-dropdown-link' %>
+          <%= link_to 'Sign Out', destroy_student_login_session_path, method: :delete, class: 'profile-dropdown-link' %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+  <!-- Profile Content -->
+  <div class="profile-container">
+    <h1 class="profile-header-text">Student Profile</h1>
+
+    <p class="profile-info"><strong>Name:</strong> <%= "#{@student.first_name} #{@student.last_name}" %></p>
+    <p class="profile-info"><strong>Email:</strong> <%= @student.email %></p>
+    <p class="profile-info"><strong>UID:</strong> <%= @student.google_id %></p> 
+    <p class="profile-info"><strong>Enrollment Year:</strong> <%= @student.enrol_year %></p>
+    <p class="profile-info"><strong>Graduation Year:</strong> <%= @student.grad_year %></p>
+    <p class="profile-info"><strong>Enrollment Semester:</strong> <%= @student.enrol_semester.humanize %></p>
+    <p class="profile-info"><strong>Graduation Semester:</strong> <%= @student.grad_semester.humanize %></p>
+    <p class="profile-info"><strong>Major:</strong> <%= @student.major.mname if @student.major %></p> 
+    <p class="profile-info"><strong>Emphasis:</strong> <%= @student.emphasis&.ename || 'Not specified' %></p> <br>
+
+    
+    
+    <!-- Credits Scale -->
+    <h4> Track Your progress </h4>
+    <div class="credits-scale">
+      <div class="credits-scale-labels">
+        <span>0</span>
+        <span>126</span>
+      </div>
+      <div class="credits-scale-bar">
+        <div class="credits-scale-fill" style="width: <%= 90 %>%"></div>
+        <%#
+        <div class="credits-scale-fill" style="width: <%= (@student.credits_completed || 0) / 126 * 100 %>%"></div>
+      </div>
+      <div class="credits-scale-markers">
+        <span>Yr0</span>
+        <span>Yr1</span>
+        <span>Yr2</span>
+        <span>Yr3</span>
+        <span>Yr4</span>
+      </div>
+
+      <%= link_to 'Edit Profile', edit_student_path(@student.google_id), class: 'profile-edit-link' %> 
+    </div>
+
+    
+
+  </div>
+
+  <!-- JavaScript for toggling dropdown -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const avatar = document.getElementById('avatar');
+      const dropdownMenu = document.getElementById('dropdown-menu');
+
+      // Toggle dropdown visibility
+      avatar.addEventListener('click', function() {
+        dropdownMenu.classList.toggle('profile-show');
+      });
+
+      // Hide dropdown if clicking outside
+      document.addEventListener('click', function(event) {
+        if (!avatar.contains(event.target) && !dropdownMenu.contains(event.target)) {
+          dropdownMenu.classList.remove('profile-show');
+        }
+      });
+    });
+  </script>
+</body>

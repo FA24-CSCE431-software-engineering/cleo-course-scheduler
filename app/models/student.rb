@@ -22,6 +22,7 @@ class Student < ApplicationRecord
 
   belongs_to :track, optional: true
 
-  belongs_to :emphases, optional: true
+  belongs_to :emphasis, foreign_key: :emphases_id, optional: true
+  
 
 end

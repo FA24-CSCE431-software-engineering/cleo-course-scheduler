@@ -26,7 +26,11 @@ class StudentsController < ApplicationController
 
   def update
     if @student.update(student_params)
-      redirect_to students_path, notice: 'Student updated successfully.'
+      if current_student_login.is_admin?
+        redirect_to edit_student_path(@student.google_id), notice: 'Student information updated successfully.'
+      else
+        redirect_to profile_student_path(current_student_login), notice: 'Your information has been updated successfully.'
+      end
     else
       render :edit
     end
@@ -66,6 +70,6 @@ class StudentsController < ApplicationController
 
   def student_params
     params.require(:student).permit(:google_id, :first_name, :last_name, :email, :enrol_year, :grad_year, :enrol_semester,
-                                    :grad_semester, :major_id)
+                                    :grad_semester, :major_id, :emphases_id)
   end
 end
