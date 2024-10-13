@@ -223,4 +223,62 @@ th {
   .delete-course:hover {
     text-decoration: underline;
   }
-  
+
+// CSS for buttons
+.btn-purple {
+  background-color: #6f42c1; /* Primary Purple */
+  color: white;
+  border: none;
+}
+
+.btn-purple:hover {
+  background-color: #5a31a3; /* Darker Purple */
+  color: white;
+}
+
+.btn-purple:focus {
+  box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5); /* Focus shadow */
+}
+
+// Navigation bar css
+.navbar-purple {
+  background-color: #6f42c1;
+  padding: 15px;
+}
+
+.navbar-purple a {
+  color: white;
+  text-decoration: none;
+  margin-right: 15px;
+  font-size: 18px;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.navbar-purple a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  bottom: -5px;
+  left: 0;
+  transition: width 0.3s;
+}
+
+.navbar-purple a:hover {
+  color: #e0e0e0;
+}
+
+.navbar-purple a:hover::after {
+  width: 100%;
+}
+
+.navbar-purple .active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.navbar-purple .sign-out {
+  margin-left: auto;
+}

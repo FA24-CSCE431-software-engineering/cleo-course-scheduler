@@ -1,5 +1,8 @@
-<!-- app/views/majors/index.html.erb -->
+<%= render 'shared/navbar' %>
+
 <h1>Majors</h1>
+
+<%= link_to 'New Major', new_admin_major_path %>
 
 <table>
   <thead>
@@ -21,12 +24,10 @@
         <td><%= major.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= major.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td>
-          <%= link_to 'Edit', edit_major_path(major) %>
-          <%= link_to 'Delete', confirm_destroy_major_path(major), method: :get, data: { confirm: 'Are you sure you want to delete this major?' } %>
+          <%= link_to 'Edit', edit_admin_major_path(major) %>
+          <%= link_to 'Delete', confirm_destroy_admin_major_path(major), method: :get, data: { confirm: 'Are you sure you want to delete this major?' } %>
         </td
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'New Major', new_major_path %>

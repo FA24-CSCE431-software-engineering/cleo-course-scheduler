@@ -1,3 +1,5 @@
+<%= render 'shared/navbar' %>
+
 <h1><%= @course.cname %></h1>
 
 <p><strong>Code:</strong> <%= @course.ccode %></p>
@@ -7,5 +9,5 @@
 <p><strong>Lecture Hours:</strong> <%= @course.lecture_hours %></p>
 <p><strong>Lab Hours:</strong> <%= @course.lab_hours %></p>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back to Courses', courses_path %>
+<%= link_to 'Edit', edit_admin_course_path(@course) %> |
+<%= link_to 'Back to Courses', admin_courses_path %>
