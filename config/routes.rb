@@ -1,11 +1,25 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "support/index"
-  get "support/student"
-  get "support/admin"
-  get "support/deployment"
-  get "support/other"
+
+  resources :courses do
+    member do
+      get :confirm_destroy
+    end
+  end
+
+  resources :majors do
+    member do
+      get :confirm_destroy
+    end
+  end
+  
+  resources :core_categories do
+    member do
+      get :confirm_destroy
+    end
+  end
+
   # root "student_dashboards#show"
   resources :student_dashboards, only: [:show]
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
@@ -15,13 +29,20 @@ Rails.application.routes.draw do
     get 'student_logins/sign_out', to: 'student_logins/sessions#destroy', as: :destroy_student_login_session
   end
 
+  
   # Student dashboard (regular users)
-  resources :student_dashboards, only: [:show], path: 'student_dashboard'
+  resources :student_dashboards, only: [:show], param: :google_id, path: 'student_dashboard'
 
   # Admin dashboard
   namespace :admin do
+    resources :tracks
+    resources :emphases
     get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
+
+  # CRUD routes for track & emphasis
+  resources :tracks
+  resources :emphases
 
   get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'
   post 'save_degree_plan', to: 'def_degree#save', as: 'save_degree_plan'
@@ -36,12 +57,22 @@ Rails.application.routes.draw do
   end
   
 
-  resources :students do
+  resources :students, param: :google_id do
     member do
       get 'profile'
       get 'edit'
       get 'confirm_destroy'
       get 'edit_profile'
+    end
+  end
+
+  # routing to the support pages
+  resources :support do
+    collection do
+      get 'student'
+      get 'admin'
+      get 'deployment'
+      get 'other'
     end
   end
 
@@ -58,6 +89,12 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/*
   get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
   get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
+
+
+  #import and interest form routing
+  # routes.rb
+  get 'import_degree_plan', to: 'def_degree#import', as: 'import_degree_plan'
+  get 'interest_form', to: 'interest_forms#new', as: 'interest_form'
 
   # Defines the root path route ("/")
 end

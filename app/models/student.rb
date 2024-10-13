@@ -26,4 +26,5 @@ class Student < ApplicationRecord
   belongs_to :track, optional: true
 
   belongs_to :emphasis, optional: true
+
 end
