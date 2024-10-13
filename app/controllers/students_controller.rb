@@ -25,7 +25,8 @@ class StudentsController < ApplicationController
   end
 
 
-  def edit; end
+  def edit; 
+  end
 
 
   def update
@@ -59,6 +60,8 @@ class StudentsController < ApplicationController
     end
   end
 
+  
+
 
   private
 
@@ -74,6 +77,8 @@ class StudentsController < ApplicationController
 
   def student_params
     params.require(:student).permit(:google_id, :first_name, :last_name, :email, :enrol_year, :grad_year, :enrol_semester,
-                                    :grad_semester, :major_id, :emphases_id)
+                                    :grad_semester, :major_id, :emphasis_id)
   end
+
+
 end

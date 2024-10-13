@@ -170,4 +170,21 @@
     font-weight: bolder;
   }
   
+  .degreeplan2-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns per row */
+    gap: 20px; /* Increased spacing between containers */
+  }
+  
+  .semester2-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+    width: 100%; /* Set container to take full width within each grid cell */
+    box-sizing: border-box; /* Ensure padding doesn't affect total width */
+    border-radius: 5px; /* Add some rounding to edges */
+    margin-bottom: 20px; /* Space between rows */
+  }
+  
+  
   

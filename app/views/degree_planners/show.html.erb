@@ -1,0 +1,130 @@
+<body class="degreeplan-body">
+  <div class="profile-header">
+    <!-- Navigation and user info -->
+    <div class="profile-back-to-dashboard">
+      <%= link_to student_dashboard_path(@student.google_id), class: 'profile-back-to-dashboard-link' do %>
+        <span class="profile-back-arrow">&#8592;</span>
+        Home
+      <% end %>
+    </div>
+
+    <div class="profile-logo-container">
+      <%= image_tag 'logo1.png', alt: 'Cleo Logo', class: 'profile-logo' %>
+    </div>
+
+    <div class="profile-user-info">
+      <div class="profile-avatar-dropdown">
+        <!-- Avatar Image -->
+        <%= image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'profile-avatar', id: 'avatar') %>
+
+        <!-- Dropdown Menu -->
+        <div class="profile-dropdown-menu" id="dropdown-menu">
+          <%= link_to "Profile", profile_student_path(current_student_login), class: 'profile-dropdown-link'%>
+          <%= link_to 'Settings', profile_student_path(current_student_login), class: 'profile-dropdown-link' %>
+          <%= link_to 'Sign Out', destroy_student_login_session_path, method: :delete, class: 'profile-dropdown-link' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="degreeplan-title">Your Degree Planner</h1>
+
+  <!-- Single form to add course to a specific semester -->
+  <%= form_with url: update_plan_student_degree_planner_path(@student), method: :patch, class: 'add-course-form' do |f| %>
+    <h2>Add a Course</h2>
+    <%= label_tag :add_course, "Course" %>
+    <%= select_tag :add_course, options_from_collection_for_select(Course.all, :id, :cname) %>
+
+    <%= label_tag :sem, "Semester" %>
+    <%= number_field_tag :sem, nil, min: 1, max: 8 %>
+
+    <%= f.submit "Add Course", class: 'add-course-button' %>
+  <% end %>
+  <br>
+
+  <!-- Degree Plan Grid with two containers per row -->
+  <div class="degreeplan2-grid">
+    <% (1..8).each do |sem| %>
+      <div class="semester2-container">
+        <h3>Semester <%= sem %>:</h3>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>Course Name</th>
+              <th>Course CRN</th>
+              <th>Credits</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="semester-<%= sem %>-courses">
+            <!-- Display already assigned courses for this semester -->
+            <% @student.student_courses.where(sem: sem).each do |student_course| %>
+              <tr id="course-<%= student_course.course.id %>-semester-<%= sem %>">
+                <td><%= student_course.course.cname %></td>
+                <td><%= "#{student_course.course.ccode} #{student_course.course.cnumber}" %></td> 
+                <td><%= student_course.course.credit_hours %></td>
+                <td>
+                <%= link_to 'Remove', remove_course_student_degree_planner_path(@student, course_id: student_course.course.id), 
+                              method: :delete, 
+                              data: { confirm: "Are you sure you want to remove this course?" }, 
+                              class: 'remove-course-button' %>
+              </td>
+                            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+
+  <h2>Generate Based on Interests</h2>
+  <%= form_with url: student_degree_planner_path(@student), method: :post do |f| %>
+    <%= label_tag :track_id, "Track" %>
+    <%= select_tag "interests[track_id]", options_from_collection_for_select(Track.all, :id, :tname) %>
+    <%= f.submit "Generate Planner" %>
+  <% end %>
+  
+  <%= form_with url: download_plan_student_degree_planner_path(@student), method: :post do |f| %>
+    <%= f.submit 'Save Degree Plan' %>
+    <%= f.submit 'Download Degree Plan' %>
+  <% end %>
+  
+
+
+<script>
+document.querySelectorAll('.remove-course-button').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent the default anchor click behavior
+
+        const courseId = e.currentTarget.getAttribute('data-course-id'); // Get the course ID
+
+        if (confirm("Are you sure you want to remove this course?")) {
+            // Make the DELETE request using Fetch API
+            fetch(e.currentTarget.href, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+            .then(response => {
+                if (response.redirected) {
+                    // If the response was a redirect, navigate to the new URL
+                    window.location.href = response.url;
+                } else if (response.ok) {
+                    // Handle the response for a successful deletion (if JSON or no content)
+                    alert('Course removed successfully!');
+                    window.location.href = `/students/${<%= @student.id %>}/degree_planner`; // Adjust the path if necessary
+                } else {
+                    // Handle error response if needed
+                    alert('Failed to remove the course.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while removing the course.');
+            });
+        }
+    });
+});
+</script>

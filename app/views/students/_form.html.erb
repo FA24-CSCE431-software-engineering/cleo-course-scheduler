@@ -38,8 +38,8 @@
   </div>
 
   <div class="studentinfo_field">
-    <%= form.label :emphases_id, "Emphasis", class: 'studentinfo_label' %>
-    <%= form.collection_select :emphases_id, Emphasis.all, :id, :ename, { prompt: "Select an Emphasis Area" }, class: 'studentinfo_select' %>
+    <%= form.label :emphasis_id, "Emphasis", class: 'studentinfo_label' %>
+    <%= form.collection_select :emphasis_id, Emphasis.all, :id, :ename, { prompt: "Select an Emphasis Area" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
