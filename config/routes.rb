@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'
   post 'save_degree_plan', to: 'def_degree#save', as: 'save_degree_plan'
   get 'download_degree_plan', to: 'def_degree#download', as: 'download_degree_plan'
+  get 'path_to_savedplanner', to: 'def_degree#savedplanner', as: 'saved_degree_planner'
+
   
   # for student courses
   resources :student_courses, param: :student_id do
@@ -76,7 +78,7 @@ Rails.application.routes.draw do
   end
 
   
-  resources :def_degree, only: [:show]
+  resources :def_degree, only: [:show, :new, :create]
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

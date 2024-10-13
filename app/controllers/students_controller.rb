@@ -5,7 +5,11 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
-  def show; end
+  def show
+    @student = Student.find(params[:id])
+    @tracks = Track.all.pluck(:tname) # Fetch track names
+    @emphases = Emphasis.all.pluck(:ename) # Fetch emphasis names
+  end
 
   def new
     @student = Student.new
