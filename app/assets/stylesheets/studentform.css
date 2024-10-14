@@ -1,3 +1,4 @@
+
 /* General styles */
 body {
     font-family: Arial, sans-serif;
@@ -68,6 +69,89 @@ body {
 
 .studentinfo_submit_button {
     background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.studentinfo_submit_button:hover {
+    background-color: #0056b3;
+}
+=======
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f8;
+    margin: 0;
+    padding: 0;
+}
+
+/* Heading styles */
+.studentinfo_heading {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Form styles */
+.studentinfo_form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Field styles */
+.studentinfo_field {
+    margin-bottom: 15px;
+}
+
+/* Label styles */
+.studentinfo_label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Input and select styles */
+.studentinfo_input,
+.studentinfo_select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.studentinfo_input:focus,
+.studentinfo_select:focus {
+    border-color: #673AB7;
+    outline: none;
+}
+
+/* Error message styles */
+.studentinfo_error_explanation {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+/* Submit button styles */
+.studentinfo_submit {
+    text-align: center;
+}
+
+.studentinfo_submit_button {
+    background-color: #673AB7;
     color: #fff;
     padding: 10px 20px;
     border: none;
