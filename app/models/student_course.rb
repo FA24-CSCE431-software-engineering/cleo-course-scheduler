@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class StudentCourse < ApplicationRecord
-  
-  #this is for update function
-  self.primary_key = [:student_id, :course_id]
+  # this is for update function
+  self.primary_key = %i[student_id course_id]
 
   belongs_to :student
   belongs_to :course

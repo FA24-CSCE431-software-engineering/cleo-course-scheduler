@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   def index
     Rails.application.eager_load! # because rails wont load unless they have been referenced at least once this forces them to be loaded

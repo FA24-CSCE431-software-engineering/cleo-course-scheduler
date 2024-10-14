@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     get 'student_logins/sign_out', to: 'student_logins/sessions#destroy', as: :destroy_student_login_session
   end
 
-  
   # Student dashboard (regular users)
   resources :student_dashboards, only: [:show], param: :google_id, path: 'student_dashboard'
 
@@ -26,13 +25,13 @@ Rails.application.routes.draw do
         get :confirm_destroy
       end
     end
-  
+
     resources :majors do
       member do
         get :confirm_destroy
       end
     end
-    
+
     resources :core_categories do
       member do
         get :confirm_destroy
@@ -45,7 +44,7 @@ Rails.application.routes.draw do
   get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'
   post 'save_degree_plan', to: 'def_degree#save', as: 'save_degree_plan'
   get 'download_degree_plan', to: 'def_degree#download', as: 'download_degree_plan'
-  
+
   # for student courses
   resources :student_courses, param: :student_id do
     get ':course_id', action: :show, on: :member
@@ -53,7 +52,6 @@ Rails.application.routes.draw do
     patch ':course_id', action: :update, on: :member
     delete ':course_id', action: :destroy, on: :member
   end
-  
 
   resources :students, param: :google_id do
     member do
@@ -73,9 +71,7 @@ Rails.application.routes.draw do
     end
   end
 
-  
   resources :def_degree, only: [:show]
-
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'home#index'
@@ -87,8 +83,7 @@ Rails.application.routes.draw do
   get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
   get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
 
-
-  #import and interest form routing
+  # import and interest form routing
   # routes.rb
   get 'import_degree_plan', to: 'def_degree#import', as: 'import_degree_plan'
   get 'interest_form', to: 'interest_forms#new', as: 'interest_form'

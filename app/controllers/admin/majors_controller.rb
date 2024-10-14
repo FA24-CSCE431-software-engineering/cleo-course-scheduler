@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class MajorsController < ApplicationController
     before_action :set_major, only: %i[show edit update destroy confirm_destroy]
@@ -52,7 +54,7 @@ module Admin
     end
 
     def major_params
-      params.require(:major).permit(:mname, :cname)  
+      params.require(:major).permit(:mname, :cname)
     end
   end
 end

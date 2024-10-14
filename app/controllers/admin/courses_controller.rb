@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class CoursesController < ApplicationController
     before_action :set_course, only: %i[edit update destroy confirm_destroy]
@@ -55,7 +57,7 @@ module Admin
     end
 
     def course_params
-      params.require(:course).permit(:cnumber, :cname, :ccode, :description, :credit_hours, :lecture_hours, :lab_hours)  # are these enough?
+      params.require(:course).permit(:cnumber, :cname, :ccode, :description, :credit_hours, :lecture_hours, :lab_hours) # are these enough?
     end
   end
 end
