@@ -1,4 +1,4 @@
-<%= form_with(model: core_category, local: true) do |form| %>
+<%= form_with(model: [:admin, core_category], local: true) do |form| %>
     <% if core_category.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(core_category.errors.count, "error") %> prohibited this core category from being saved:</h2>

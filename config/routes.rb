@@ -1,4 +1,41 @@
 Rails.application.routes.draw do
+  # root "student_dashboards#show"
+  resources :student_dashboards, only: [:show]
+  devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
+
+  devise_scope :student_login do
+    get 'student_logins/sign_in', to: 'student_logins/sessions#new', as: :new_student_login_session
+    get 'student_logins/sign_out', to: 'student_logins/sessions#destroy', as: :destroy_student_login_session
+  end
+
+  
+  # Student dashboard (regular users)
+  resources :student_dashboards, only: [:show], param: :google_id, path: 'student_dashboard'
+
+  # Admin dashboard
+  namespace :admin do
+    # CRUD routes for track & emphasis
+    resources :tracks
+    resources :emphases
+
+    # CRUD routes for courses, majors, & core categories
+    resources :courses do
+      member do
+        get :confirm_destroy
+      end
+    end
+  
+    resources :majors do
+      member do
+        get :confirm_destroy
+      end
+    end
+    
+    resources :core_categories do
+      member do
+        get :confirm_destroy
+      end
+    end
   resources :courses do
     member do
       get :confirm_destroy
@@ -35,10 +72,6 @@ Rails.application.routes.draw do
     resources :emphases
     get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
-
-  # CRUD routes for track & emphasis
-  resources :tracks
-  resources :emphases
 
   get 'degree_plan', to: 'def_degree#show', as: 'degree_plan'
   post 'save_degree_plan', to: 'def_degree#save', as: 'save_degree_plan'
