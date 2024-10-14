@@ -6,7 +6,6 @@ module Admin
     before_action :ensure_admin!
 
     def show
-      # Admin-specific logic goes here
     end
 
     private

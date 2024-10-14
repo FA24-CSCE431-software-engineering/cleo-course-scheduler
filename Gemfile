@@ -82,4 +82,8 @@ gem 'net-protocol'
 gem 'jquery-rails'
 gem 'csv'
 
+
 gem "rails-controller-testing"
+
+gem 'prawn'
+
