@@ -47,7 +47,7 @@ body {
 
 .studentinfo_input:focus,
 .studentinfo_select:focus {
-    border-color: #007bff;
+    border-color: #673AB7;
     outline: none;
 }
 
@@ -67,7 +67,7 @@ body {
 }
 
 .studentinfo_submit_button {
-    background-color: #007bff;
+    background-color: #673AB7;
     color: #fff;
     padding: 10px 20px;
     border: none;

@@ -102,7 +102,7 @@
     display: inline-block;
     margin-top: 20px;
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #673AB7;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -111,7 +111,7 @@
 
 .profile-edit-link:hover {
     color: white;
-    background-color: #2a63a0;
+    background-color: #5b32a1; 
 }
 
 .profile-back-to-dashboard {

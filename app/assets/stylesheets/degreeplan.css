@@ -197,24 +197,24 @@
 }
 
 .action-button, .save-button, .download-button {
-    background-color: #007bff;
+    background-color: #673AB7;
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
     text-decoration: none;
     flex: 1;
     text-align: center;
-    border: #007bff;
+    border: #673AB7;
 }
 
 .add-course-button {
-    background-color: #007bff;
+    background-color: #673AB7;
     color: white;
     padding: 5px 5px;
     border-radius: 5px;
     text-decoration: none;
     text-align: center;
-    border: #007bff;
+    border: #673AB7;
     font-size: 0.9em;
     width: 8%;
 }
@@ -265,7 +265,7 @@
 }
 
 .generate-planner-button {
-    background-color: #007bff;
+    background-color: #673AB7;
     color: white;
     border: none;
     padding: 10px 15px;
