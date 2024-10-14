@@ -3,10 +3,9 @@
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
-  }
-  
-  /* Header Styles */
-  .degreeplan-header {
+}
+
+.degreeplan-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,177 +13,271 @@
     height: 60px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: relative; 
-  }
-  
-  .degreeplan-back-to-dashboard {
+    position: relative;
+}
+
+.degreeplan-back-to-dashboard {
     font-size: 16px;
-  }
-  
-  .degreeplan-back-to-dashboard-link {
+}
+
+.degreeplan-back-to-dashboard-link {
     color: rgb(86, 57, 165);
     text-decoration: none;
-  }
-  
-  .degreeplan-logo-container {
+}
+
+.degreeplan-logo-container {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-  }
-  
-  .degreeplan-logo {
+}
+
+.degreeplan-logo {
     width: 150px;
     margin-right: 0px;
     margin-top: 10px;
     align-items: center;
-  }
-  
-  /* User Info Styles */
-  .degreeplan-user-info {
+}
+
+.degreeplan-user-info {
     display: flex;
     align-items: center;
     position: relative;
-  }
-  
-  .degreeplan-avatar-dropdown {
+}
+
+.degreeplan-avatar-dropdown {
     cursor: pointer;
     position: relative;
-  }
-  
-  .degreeplan-avatar {
+}
+
+.degreeplan-avatar {
     cursor: pointer;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-  }
-  
-  .degreeplan-dropdown-menu {
+}
+
+.degreeplan-dropdown-menu {
     display: none;
     position: absolute;
-    top: 60px; /* Adjust if necessary */
+    top: 60px;
     right: 0;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    min-width: 150px; /* Set a minimum width */
-  }
-  
-  .degreeplan-avatar-dropdown:hover .degreeplan-dropdown-menu {
-    display: block; 
-  }
-  
-  .degreeplan-dropdown-link {
+    min-width: 150px;
+}
+
+.degreeplan-avatar-dropdown:hover .degreeplan-dropdown-menu {
+    display: block;
+}
+
+.degreeplan-dropdown-link {
     display: block;
     padding: 10px;
     color: #333;
     text-decoration: none;
-  }
-  
-  .degreeplan-dropdown-link:hover {
+}
+
+.degreeplan-dropdown-link:hover {
     background-color: #f0f0f0;
-  }
-  
-  /* Degree Planner Styles */
-  .degreeplan-title {
+}
+
+.degreeplan-title {
     font-size: 28px;
     text-align: center;
     margin: 20px 0;
-  }
-  
-  /* Form styling */
-  .degreeplan-form {
+}
+
+.degreeplan-form {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .degreeplan-form label {
+}
+
+.degreeplan-form label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-  }
-  
-  .degreeplan-form select,
-  .degreeplan-form input[type="text"],
-  .degreeplan-form input[type="number"] {
+}
+
+.degreeplan-form select,
+.degreeplan-form input[type="text"],
+.degreeplan-form input[type="number"] {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  /* Table styling for degree planner */
-  .degreeplan-table {
+}
+
+.degreeplan-table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  .degreeplan-table th,
-  .degreeplan-table td {
+}
+
+.degreeplan-table th,
+.degreeplan-table td {
     border: 1px solid #ddd;
     padding: 8px;
-  }
-  
-  .degreeplan-table th {
-    background-color: #4CAF50; /* Main color */
+}
+
+.degreeplan-table th {
+    background-color: #4CAF50;
     color: white;
-  }
-  
-  .degreeplan-table tr:nth-child(even) {
+}
+
+.degreeplan-table tr:nth-child(even) {
     background-color: #f2f2f2;
-  }
-  
-  /* Delete course link styling */
-  .delete-course {
+}
+
+.delete-course {
     color: red;
     text-decoration: none;
-  }
-  
-  .delete-course:hover {
+}
+
+.delete-course:hover {
     text-decoration: underline;
-  }
-  
-  .degreeplan-semester-container {
-    display: flex; /* Use flexbox to align semester containers */
-    flex-wrap: wrap; /* Allow wrapping if the screen is too small */
-    justify-content: space-between; /* Evenly space the containers */
-    width: 100%; /* Full width of the parent */
-  }
-  
-  .semester-container {
-    width: 48%; /* Set each container to roughly half of the parent width */
+}
+
+.degreeplan-semester-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.semester-container {
+    width: 48%;
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 2px;
     background-color: #f9f9f9;
     box-sizing: border-box;
-    margin-bottom: 20px; /* Add space between rows */
-  }
-  
-  .semester-container h3 {
-    margin-bottom: 10px; /* Space below the heading */
+    margin-bottom: 20px;
+}
+
+.semester-container h3 {
+    margin-bottom: 10px;
     font-weight: bolder;
-  }
-  
-  .degreeplan2-grid {
+}
+
+.degreeplan2-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns per row */
-    gap: 20px; /* Increased spacing between containers */
-  }
-  
-  .semester2-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.semester2-container {
     border: 1px solid #ccc;
     padding: 20px;
     background-color: #f9f9f9;
-    width: 100%; /* Set container to take full width within each grid cell */
-    box-sizing: border-box; /* Ensure padding doesn't affect total width */
-    border-radius: 5px; /* Add some rounding to edges */
-    margin-bottom: 20px; /* Space between rows */
-  }
-  
-  
-  
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.degreeplan-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action-button, .save-button, .download-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+    border: #007bff;
+}
+
+.add-course-button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    border: #007bff;
+    font-size: 0.9em;
+    width: 8%;
+}
+
+.generate-form {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.generate-form-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.generate_form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.generate-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.interest-select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+}
+
+.interest-select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.generate-planner-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.generate-planner-button:hover {
+    background-color: #0056b3;
+}

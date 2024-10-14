@@ -28,4 +28,3 @@ class HomeController < ApplicationController
   end
 end
 
-# this fetches the models and will make a list of all the existing tables/entities in our database

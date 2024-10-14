@@ -2,7 +2,6 @@
 
 class StudentCourse < ApplicationRecord
   
-  #this is for update function
   self.primary_key = [:student_id, :course_id]
 
   belongs_to :student

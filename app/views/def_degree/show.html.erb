@@ -26,24 +26,11 @@
     </div>
   </div>
 
-  <h1 class="degreeplan-title">Degree Planner</h1>
+  <h1 class="degreeplan-title">Default Degree Planner</h1>
   
 
   <%= form_with url: save_degree_plan_path, method: :post, local: true, class: 'degreeplan-form' do |f| %>
-  <div>
-    <label for="years">Number of Years:</label>
-    <%= f.select :years, options_for_select((1..4).map { |n| [n, n] }, selected: 4), {}, { id: 'years-select' } %>
-  </div>
-
-  <div>
-    <label for="tracks">Tracks:</label>
-    <%= f.select :tracks, options_for_select(@tracks || [], prompt: "Select a Track") %>
-  </div>
-
-  <div>
-    <label for="emphases">Emphasis Area:</label>
-    <%= f.select :emphases, options_for_select(@emphases || [], prompt: "Select an Emphasis Area") %>
-  </div>
+  
 
 
 <%#
@@ -135,14 +122,17 @@
           <% end %>
         </tbody>
       </table>
-      <button type="button" class="add-course" data-semester="<%= semester_data[:semester] %>">Add Course</button>
     </div>
   <% end %>
 </div>
 
+<div class="action-buttons">
+<%= form_with url: download_plan_student_degree_planner_path(@student), method: :post do |f| %>
+  <%= f.submit 'Save Degree Plan', class: 'action-button save-button' %>
+  <%= f.submit 'Download Degree Plan', class: 'action-button download-button' %>
+<% end %>
+</div>
 
-  <%= f.submit 'Save Degree Plan' %>
-  <%= f.submit 'Download Degree Plan' %>
 <% end %>
 <script>
   document.querySelectorAll('.add-course').forEach(button => {

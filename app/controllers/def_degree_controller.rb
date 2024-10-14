@@ -8,17 +8,15 @@ class DefDegreeController < ApplicationController
 
     def new
       @student = current_student_login
-      @tracks = Track.all # Fetch all tracks from the database
-      @emphasis_areas = Emphasis.all # Fetch all emphasis areas from the database
+      @tracks = Track.all 
+      @emphasis_areas = Emphasis.all 
     end
 
 
     def save
-        # Your logic to save the degree plan
     end
 
     def download
-        # Logic to generate and send the degree plan for download
     end
 
     private
