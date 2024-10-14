@@ -25,6 +25,14 @@ class Student < ApplicationRecord
 
   belongs_to :track, optional: true
 
-  belongs_to :emphasis, optional: true
+
+  belongs_to :emphasis, foreign_key: :emphases_id, optional: true
+
+
+  def total_credits_completed
+    courses.sum(:credit_hours)
+  end
+  
+
 
 end

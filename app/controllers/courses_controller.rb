@@ -37,6 +37,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     render 'admin/courses/show'
+    render json: { ccode: course.ccode, cnumber: course.cnumber, credit_hours: course.credit_hours }
   end
 
   def update
