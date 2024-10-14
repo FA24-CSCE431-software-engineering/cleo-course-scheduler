@@ -74,7 +74,7 @@
 
 .student-dashboard .action-button {
     display: inline-block;
-    background-color: #007bff;
+    background-color: #673AB7;
     color: white;
     padding: 20px 15px;
     margin: 10px;
@@ -84,7 +84,9 @@
 }
 
 .student-dashboard .action-button:hover {
-    background-color: #0056b3;
+    /* background-color: #0056b3; */
+    /* background-color: #6A0DAD;  */
+    background-color: #5b32a1; 
 }
 
 .student-dashboard .links-container {
