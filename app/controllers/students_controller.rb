@@ -47,7 +47,11 @@ class StudentsController < ApplicationController
   end
 
   def confirm_destroy
-    @student = Student.find(params[:id])
+    @student = Student.find_by(google_id: params[:google_id])
+    if @student.nil?
+      flash[:alert] = "Student not found."
+      redirect_to students_path
+    end
   end
 
   def profile
@@ -68,6 +72,7 @@ class StudentsController < ApplicationController
 
   def set_student
     @student = Student.find_by(google_id: params[:google_id])
+    
     if @student.nil?
       raise ActiveRecord::RecordNotFound, "Couldn't find Student with google_id=#{params[:google_id]}."
     end

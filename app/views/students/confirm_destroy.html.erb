@@ -1,9 +1,16 @@
 <h1>Are you sure you want to delete this student?</h1>
 <p>
+<% if @student.present? %>
+<p>
   <strong>First Name:</strong>
   <%= @student.first_name %><br>
   <strong>Last Name:</strong>
   <%= @student.last_name %><br>
+</p>
+<% else %>
+<p>Student not found.</p>
+<% end %>
+
 </p>
 
 <%= form_with(url: student_path(@student), method: :delete) do |form| %>
