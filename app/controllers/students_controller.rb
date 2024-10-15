@@ -64,6 +64,8 @@ class StudentsController < ApplicationController
     if @student.nil?
       redirect_to root_path, alert: "Student not found."
     end
+    # return unless @student.nil?
+    # redirect_to root_path, alert: 'Student not found.'
   end
 
 
