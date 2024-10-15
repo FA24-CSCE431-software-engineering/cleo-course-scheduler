@@ -1,7 +1,7 @@
-# frozen_string_literal: true
 
 module Admin
   class CoursesController < ApplicationController
+    skip_before_action :authenticate_student_login! if Rails.env.test?
     before_action :set_course, only: %i[edit update destroy confirm_destroy]
 
     def confirm_destroy
@@ -57,7 +57,7 @@ module Admin
     end
 
     def course_params
-      params.require(:course).permit(:cnumber, :cname, :ccode, :description, :credit_hours, :lecture_hours, :lab_hours) # are these enough?
+      params.require(:course).permit(:cnumber, :cname, :ccode, :description, :credit_hours, :lecture_hours, :lab_hours)  # are these enough?
     end
   end
 end

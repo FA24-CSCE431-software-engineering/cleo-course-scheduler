@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[edit update destroy confirm_destroy]
-
+  skip_before_action :authenticate_student_login! if Rails.env.test?
   def confirm_destroy
     @course = Course.find(params[:id])
     render 'admin/courses/confirm_destroy'

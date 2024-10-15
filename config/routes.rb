@@ -1,4 +1,3 @@
-
 Rails.application.routes.draw do
   # root "student_dashboards#show"
   
@@ -60,7 +59,6 @@ Rails.application.routes.draw do
       get 'profile'
       get 'edit'
       get 'confirm_destroy'
-      get 'edit_profile'
     end
 
     resource :degree_planner, only: [:show], controller: 'degree_planners' do
@@ -71,6 +69,8 @@ Rails.application.routes.draw do
     end
   end
 
+  #Don't know why the admin dashboard rescources don't work but this does so i'm keeping it
+  
   # Support pages
   resources :support do
     collection do
@@ -95,5 +95,3 @@ Rails.application.routes.draw do
   get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
   get 'manifest' => 'rails/pwa#manifest'
 end
-
-
