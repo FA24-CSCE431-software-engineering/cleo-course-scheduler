@@ -19,5 +19,5 @@
 
 # make sure emphasis is singular, emphases is plural
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.irregular 'emphasis', 'emphases'
-end
+    inflect.irregular 'emphasis', 'emphases'
+  end

@@ -32,4 +32,6 @@ class Course < ApplicationRecord
   # Emphasis association
   has_many :course_emphases
   has_many :emphases, through: :course_emphases
+
+  has_many :degree_requirements
 end

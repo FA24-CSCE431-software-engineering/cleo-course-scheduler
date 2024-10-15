@@ -38,8 +38,8 @@
   </div>
 
   <div class="studentinfo_field">
-    <%= form.label :emphases_id, "Emphasis", class: 'studentinfo_label' %>
-    <%= form.collection_select :emphases_id, Emphasis.all, :id, :ename, { prompt: "Select an Emphasis Area" }, class: 'studentinfo_select' %>
+    <%= form.label :emphasis_id, "Emphasis", class: 'studentinfo_label' %>
+    <%= form.collection_select :emphasis_id, Emphasis.all, :id, :ename, { prompt: "Select an Emphasis Area" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
@@ -47,9 +47,20 @@
     <%= form.number_field :enrol_year, class: 'studentinfo_input' %>
   </div>
 
+  <div>
+    <%= form.label :emphasis_id, "Emphasis" %>
+    <%= form.collection_select :emphasis_id, Emphasis.all, :id, :ename, prompt: "Select a Emphasis" %>
+  </div>
+
+  <div>
+    <%= form.label :track_id, "Track" %>
+    <%= form.collection_select :track_id, Track.all, :id, :tname, prompt: "Select a Track" %>
+  </div>
+
   <div class="studentinfo_field">
     <%= form.label :grad_year, class: 'studentinfo_label' %>
     <%= form.number_field :grad_year, class: 'studentinfo_input' %>
+
   </div>
 
   <div class="studentinfo_field">

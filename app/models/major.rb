@@ -8,4 +8,5 @@ class Major < ApplicationRecord
   # Degree requirement associations
   has_and_belongs_to_many :courses
   has_many :students
+  has_many :degree_requirements
 end

@@ -1,3 +1,4 @@
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,8 +48,8 @@
     <p class="profile-info"><strong>Major:</strong> <%= @student.major.mname if @student.major %></p> 
     <p class="profile-info"><strong>Emphasis:</strong> <%= @student.emphasis&.ename || 'Not specified' %></p> <br>
 
-    
-    
+   
+
     <!-- Credits Scale -->
     <h4> Track Your progress </h4>
     <div class="credits-scale">
@@ -57,9 +58,8 @@
         <span>126</span>
       </div>
       <div class="credits-scale-bar">
-        <div class="credits-scale-fill" style="width: <%= 90 %>%"></div>
-        <%#
-        <div class="credits-scale-fill" style="width: <%= (@student.credits_completed || 0) / 126 * 100 %>%"></div>
+        
+      <div class="credits-scale-fill" style="width: <%= (@student.total_credits_completed || 0) / 126.0 * 100 %>%"></div>
       </div>
       <div class="credits-scale-markers">
         <span>Yr0</span>
@@ -69,9 +69,10 @@
         <span>Yr4</span>
       </div>
 
-      <%= link_to 'Edit Profile', edit_student_path(@student.google_id), class: 'profile-edit-link' %> 
+      
     </div>
 
+    <%= link_to 'Edit Profile', edit_student_path(@student.google_id), class: 'profile-edit-link' %> 
     
 
   </div>
@@ -95,4 +96,6 @@
       });
     });
   </script>
+  
 </body>
+

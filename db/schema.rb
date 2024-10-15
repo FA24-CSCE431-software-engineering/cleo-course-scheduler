@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.2].define(version: 2024_10_11_170730) do
-
+ActiveRecord::Schema[7.2].define(version: 2024_10_14_215737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -121,7 +119,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_11_170730) do
   end
 
   create_table "student_courses", id: false, force: :cascade do |t|
-    t.bigint "student_id", null: false
+    t.string "student_id", null: false
     t.bigint "course_id", null: false
     t.integer "sem", null: false
     t.datetime "created_at", null: false
@@ -170,7 +168,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_11_170730) do
   add_foreign_key "course_core_categories", "core_categories"
   add_foreign_key "course_core_categories", "courses"
   add_foreign_key "course_emphases", "courses"
-  add_foreign_key "course_emphases", "emphases", column: "emphasis_id"
+  add_foreign_key "course_emphases", "emphases"
   add_foreign_key "course_tracks", "courses"
   add_foreign_key "course_tracks", "tracks"
   add_foreign_key "courses_majors", "courses"
@@ -180,8 +178,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_11_170730) do
   add_foreign_key "prerequisites", "courses"
   add_foreign_key "prerequisites", "courses", column: "prereq_id"
   add_foreign_key "student_courses", "courses"
+
   add_foreign_key "student_courses", "students", primary_key: "google_id"
-  add_foreign_key "students", "emphases", column: "emphases_id"
+  add_foreign_key "students", "emphases", column: "emphasis_id"
+
+
   add_foreign_key "students", "majors"
   add_foreign_key "students", "tracks"
 end
