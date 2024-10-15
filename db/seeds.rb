@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 # This file should ensure the existence of records required to run the application in every environment (production,
@@ -161,7 +162,7 @@ CSV.foreach(courses_csv, headers: true) do |row|
 # Seed with emphasis
 CSV.foreach(emphasis_csv, headers: true) do |row|
     Emphasis.find_or_create_by(
-        ename: row['ename']
+        ename: row['emphasis_name']
     )
 end
 
@@ -180,4 +181,5 @@ CSV.foreach(emphasis_courses_csv, headers: true) do |row|
         course: Course.find_by(ccode: row['ccode'], cnumber: row['cnumber']),
         emphasis: Emphasis.find_by(ename: row['ename'])
     )
+
 end

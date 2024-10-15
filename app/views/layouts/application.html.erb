@@ -1,3 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>GoogleOauthDevise</title>
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'student_dashboard', media: 'all', 'data-turbo-track': 'reload' %>
+<%= stylesheet_link_tag 'profile', media: 'all', 'data-turbo-track': 'reload' %>
+<%= stylesheet_link_tag 'login', media: 'all', 'data-turbo-track': 'reload' %>
+<%= stylesheet_link_tag 'studentform', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'degreeplan', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+
+
+
+<%= javascript_include_tag 'application', 'data-turbolinks-track':
+'reload' %>
+<style>
+.flash__alert { color: red; }
+.flash__notice { color: blue; }
+.flash__success { color: green; }
+</style>
+</head>
+<body>
+<% if flash.any? %>
+<% flash.each do |key, value| -%>
+<section class="flash flash__<%= key %>"><%= value.html_safe
+%></section>
+<% end -%>
+<% end %>
+<%= yield %>
+</body>
+=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,4 +70,5 @@
 <% end %>
 <%= yield %>
 </body>
+
 </html>

@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 class Student < ApplicationRecord
@@ -12,19 +13,15 @@ class Student < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :enrol_year, :grad_year, presence: true, numericality: { only_integer: true }
   validates :enrol_semester, :grad_semester, presence: true
-  
 
   # Student courses association
   # has_and_belongs_to_many :courses
   has_many :student_courses, dependent: :destroy
   has_many :courses, through: :student_courses
 
-
-
   belongs_to :major
 
   belongs_to :track, optional: true
-
 
   belongs_to :emphasis, foreign_key: :emphases_id, optional: true
 
@@ -34,5 +31,5 @@ class Student < ApplicationRecord
   end
   
 
-
 end
+
