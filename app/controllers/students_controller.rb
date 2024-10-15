@@ -19,7 +19,11 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
-      redirect_to students_path, notice: 'Student added successfully.'
+      if @student.is_admin?
+        redirect_to students_path, notice: 'Student added successfully.'
+      else
+        redirect_to student_dashboard_path(@student.google_id), notice: 'Student added successfully.'
+      end
     else
       render :new
     end
