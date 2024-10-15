@@ -45,7 +45,7 @@ RSpec.describe StudentCourse, type: :student_courses do
     it 'is valid with unique course_id, student_id' do
       course = Course.create(ccode: 'CSCE', cnumber: 435, cname: 'Parallel Computing', credit_hours: 3)
       StudentCourse.create(student: @default_student, course: @default_course, sem: 1)
-      sc2 = StudentCourse.create(student: @default_student, course: course, sem: 1)
+      sc2 = StudentCourse.create(student: @default_student, course:, sem: 1)
       expect(sc2).to be_valid
     end
   end

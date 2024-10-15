@@ -1,3 +1,4 @@
+
 class DefDegreeController < ApplicationController
   skip_before_action :authenticate_student_login! if Rails.env.test?
     def show

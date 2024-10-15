@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   # root "student_dashboards#show"
   
@@ -89,3 +90,4 @@ Rails.application.routes.draw do
   get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
   get 'manifest' => 'rails/pwa#manifest'
 end
+
