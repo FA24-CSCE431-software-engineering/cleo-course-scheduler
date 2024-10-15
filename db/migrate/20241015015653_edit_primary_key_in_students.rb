@@ -19,10 +19,10 @@ class EditPrimaryKeyInStudents < ActiveRecord::Migration[7.2]
       t.datetime "updated_at", null: false
       t.boolean "is_admin", default: false, null: false
       t.bigint "track_id"
-      t.bigint "emphasis_id"
+      t.bigint "emphases_id"
 
       # Add indexes for performance
-      t.index ["emphasis_id"], name: "index_students_on_emphases_id"
+      t.index ["emphases_id"], name: "index_students_on_emphases_id"
       t.index ["major_id"], name: "index_students_on_major_id"
       t.index ["track_id"], name: "index_students_on_track_id"
     end  # <--- Add this end to close the students table definition

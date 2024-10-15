@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_15_015653) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_15_073032) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -178,7 +178,4 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_15_015653) do
   add_foreign_key "prerequisites", "courses"
   add_foreign_key "prerequisites", "courses", column: "prereq_id"
   add_foreign_key "student_courses", "students", primary_key: "google_id"
-  add_foreign_key "students", "emphases"
-  add_foreign_key "students", "majors"
-  add_foreign_key "students", "tracks"
 end
