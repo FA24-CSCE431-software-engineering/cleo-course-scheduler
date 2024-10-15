@@ -13,7 +13,16 @@ class StudentsController < ApplicationController
   end
 
   def new
-    @student = Student.new
+    @student = Student.new(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      email: params[:email],
+      google_id: params[:google_id],
+      enrol_year: params[:enrol_year] || current_year,  # Set enrol_year or fallback to current year
+      grad_year: params[:grad_year] || current_year + 4,
+      enrol_semester: params[:enrol_semester] || current_semester,
+      grad_semester: params[:grad_semester] || (current_semester == "fall" ? "spring" : "fall")
+    )
   end
 
   def create
