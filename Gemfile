@@ -13,7 +13,6 @@ gem 'rexml'
 gem 'zeitwerk', '< 2.7.0'
 
 # Add net-pop with a specific version
-gem 'net-pop', '~> 0.1.2'
 
 # Other gems...
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -45,6 +44,7 @@ group :test do
   gem 'rails-controller-testing'
 end
 
+gem 'net-protocol'
 gem 'jquery-rails'
 gem 'csv'
 gem 'prawn'
