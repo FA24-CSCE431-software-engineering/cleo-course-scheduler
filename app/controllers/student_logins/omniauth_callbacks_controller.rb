@@ -23,12 +23,10 @@ module StudentLogins
 
     def after_sign_in_path_for(resource_or_scope)
       # stored_location_for(resource_or_scope) || root_path
-      student = resource_or_scope.is_a?(StudentLogin) ? Student.find_by(google_id: resource_or_scope.uid) : resource_or_scope
-
-      if student.is_admin?
+      if resource_or_scope.is_admin?
         admin_dashboard_path # Admin dashboard path
       else
-        student_dashboard_path(student.google_id) # Regular user dashboard path
+        student_dashboard_path(resource_or_scope.id) # Regular user dashboard path
       end
     end
 
