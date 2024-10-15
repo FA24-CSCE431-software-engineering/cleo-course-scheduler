@@ -160,7 +160,7 @@ end
 # Seed with emphasis
 CSV.foreach(emphasis_csv, headers: true) do |row|
   Emphasis.find_or_create_by(
-    ename: row['emphasis_name']
+    ename: row['ename']
   )
 end
 
