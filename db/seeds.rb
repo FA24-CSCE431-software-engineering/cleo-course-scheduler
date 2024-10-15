@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 # This file should ensure the existence of records required to run the application in every environment (production,
@@ -180,4 +181,5 @@ CSV.foreach(emphasis_courses_csv, headers: true) do |row|
         course: Course.find_by(ccode: row['ccode'], cnumber: row['cnumber']),
         emphasis: Emphasis.find_by(ename: row['ename'])
     )
+
 end

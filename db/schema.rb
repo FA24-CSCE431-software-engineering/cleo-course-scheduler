@@ -178,8 +178,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_14_215737) do
   add_foreign_key "prerequisites", "courses"
   add_foreign_key "prerequisites", "courses", column: "prereq_id"
   add_foreign_key "student_courses", "courses"
+
   add_foreign_key "student_courses", "students", primary_key: "google_id"
-  add_foreign_key "students", "emphases", column: "emphases_id"
+  add_foreign_key "students", "emphases", column: "emphasis_id"
+
+
   add_foreign_key "students", "majors"
   add_foreign_key "students", "tracks"
 end

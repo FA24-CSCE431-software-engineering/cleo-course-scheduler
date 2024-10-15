@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   # root "student_dashboards#show"
   
@@ -53,6 +54,7 @@ Rails.application.routes.draw do
       get 'profile'
       get 'edit'
       get 'confirm_destroy'
+      get 'edit_profile'
     end
 
     resource :degree_planner, only: [:show], controller: 'degree_planners' do
@@ -87,3 +89,5 @@ Rails.application.routes.draw do
   get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
   get 'manifest' => 'rails/pwa#manifest'
 end
+
+
