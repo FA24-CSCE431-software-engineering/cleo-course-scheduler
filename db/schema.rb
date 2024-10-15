@@ -177,7 +177,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_15_015653) do
   add_foreign_key "degree_requirements", "majors"
   add_foreign_key "prerequisites", "courses"
   add_foreign_key "prerequisites", "courses", column: "prereq_id"
-  add_foreign_key "student_courses", "courses"
   add_foreign_key "student_courses", "students", primary_key: "google_id"
   add_foreign_key "students", "emphases"
   add_foreign_key "students", "majors"

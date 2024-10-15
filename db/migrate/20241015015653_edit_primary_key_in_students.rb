@@ -3,9 +3,10 @@ class EditPrimaryKeyInStudents < ActiveRecord::Migration[7.2]
     # Drop the student_courses table if it exists
     drop_table :student_courses if table_exists?(:student_courses)
 
-    # Create students table with google_id as a string primary key
-    create_table :students, primary_key: :google_id, force: :cascade do |t|
-      t.string "google_id", null: false  # Set google_id as a string
+    drop_table :students if table_exists?(:students)  # Ensure we drop the existing table if it exists
+
+    create_table :students, id: false, force: :cascade do |t|
+      t.string "google_id", null: false, primary_key: true  # Set google_id as the primary key
       t.string "first_name", limit: 255
       t.string "last_name", limit: 255
       t.string "email", limit: 255
@@ -24,7 +25,6 @@ class EditPrimaryKeyInStudents < ActiveRecord::Migration[7.2]
       t.index ["emphases_id"], name: "index_students_on_emphases_id"
       t.index ["major_id"], name: "index_students_on_major_id"
       t.index ["track_id"], name: "index_students_on_track_id"
-    end
 
     # Create student_courses table
     create_table :student_courses, id: false, force: :cascade do |t|
