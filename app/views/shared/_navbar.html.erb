@@ -1,8 +1,10 @@
 <nav class="navbar-purple d-flex">
   <%= link_to 'Home', admin_dashboard_path %>
   <%= link_to 'Manage Users', students_path %>
-  <%= link_to 'Degree Plan', degree_plan_path %>
-  <%= link_to 'Enrolled Courses', student_courses_path %>
+
+  <%#= link_to 'Degree Plan', degree_plan_path %>
+  <%= link_to 'Enrolled Courses', admin_student_courses_path %>
+
   <%= link_to 'Tracks', admin_tracks_path %>
   <%= link_to 'Emphases', admin_emphases_path %>
   <%= link_to 'Courses', admin_courses_path %>
