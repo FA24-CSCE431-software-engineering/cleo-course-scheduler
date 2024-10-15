@@ -1,0 +1,65 @@
+.login-page body {
+    font-family: Arial, sans-serif;
+}
+
+.login-page .container {
+    width: 100%;
+    max-width: 95%;
+    height: 95vh;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-page .google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    padding: 10px 60px;
+    background-color: #b8b5c1;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 1px solid #ffffff;
+    margin: 0 auto;
+    color: rgb(51, 12, 12);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-page .google-btn:hover {
+    background-color: #825bc5;
+}
+
+.login-page .cleo-logo {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.login-page .flash-notice {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.login-page .logout-message {
+    color: #333;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.login-page .mobile-text {
+    font-size: 1.5em;
+}
+
+.login-page .mobile-font {
+    display: inline-block;
+    font-size: 1em;
+}
