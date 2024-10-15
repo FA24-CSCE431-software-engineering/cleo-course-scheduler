@@ -83,3 +83,4 @@ gem 'jquery-rails'
 gem 'csv'
 
 gem 'prawn'
+gem "rails-controller-testing"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DefDegreeController < ApplicationController
     def show
       @student = Student.find_by(google_id: current_student_login.uid)
