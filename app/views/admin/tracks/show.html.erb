@@ -2,7 +2,8 @@
 
 <p>
   <strong>Track Name:</strong>
-  <%= @track.tname %>
+  <%= @track.tname.present? ? @track.tname : 'N/A' %>
+
 </p>
 
 <%= link_to 'Edit Track', edit_admin_track_path(@track), class: 'btn btn-warning' %>

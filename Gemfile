@@ -1,3 +1,4 @@
+
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -76,6 +77,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "simplecov", :require => false
+  gem 'rails-controller-testing'
 end
 
 gem 'net-protocol'
@@ -83,4 +85,4 @@ gem 'jquery-rails'
 gem 'csv'
 
 gem 'prawn'
-gem "rails-controller-testing"
+\

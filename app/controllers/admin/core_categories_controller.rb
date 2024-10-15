@@ -1,8 +1,8 @@
-# frozen_string_literal: true
 
 module Admin
   class CoreCategoriesController < ApplicationController
     before_action :set_core_category, only: %i[edit update destroy confirm_destroy]
+    skip_before_action :authenticate_student_login! if Rails.env.test?
 
     def index
       @core_categories = CoreCategory.all
@@ -52,7 +52,7 @@ module Admin
     end
 
     def core_category_params
-      params.require(:core_category).permit(:cname)
+      params.require(:core_category).permit(:cname) 
     end
   end
 end

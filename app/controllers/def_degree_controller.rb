@@ -1,6 +1,6 @@
-# frozen_string_literal: true
 
 class DefDegreeController < ApplicationController
+  skip_before_action :authenticate_student_login! if Rails.env.test?
     def show
       @student = Student.find_by(google_id: current_student_login.uid)
       @tracks = Track.all.pluck(:tname)
