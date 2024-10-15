@@ -1,3 +1,4 @@
+
 module Admin
   class MajorsController < ApplicationController
     skip_before_action :authenticate_student_login! if Rails.env.test?

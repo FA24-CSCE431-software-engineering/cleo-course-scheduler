@@ -1,3 +1,4 @@
+
 require 'rails_helper'
 
 RSpec.describe "Admin::Majors", type: :request do
@@ -83,3 +84,4 @@ RSpec.describe "Admin::Majors", type: :request do
     end
   end
 end
+

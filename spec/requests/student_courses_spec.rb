@@ -1,3 +1,4 @@
+
 require 'rails_helper'
 
 RSpec.describe 'StudentCourses', type: :request do
@@ -91,3 +92,4 @@ RSpec.describe 'StudentCourses', type: :request do
     end
   end
 end
+

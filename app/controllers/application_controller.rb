@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
   def current_student
-    current_student_login
+    current_student_login 
   end
 end
