@@ -1,4 +1,3 @@
-
 Rails.application.routes.draw do
   # root "student_dashboards#show"
   
@@ -14,6 +13,12 @@ Rails.application.routes.draw do
 
   # Admin dashboard
   namespace :admin do
+    resources :student_courses, param: :student_id do
+      get ':course_id', action: :show, on: :member
+      get ':course_id/edit', action: :edit, on: :member, as: 'edit'
+      patch ':course_id', action: :update, on: :member
+      delete ':course_id', action: :destroy, on: :member
+    end
     resources :tracks
     resources :emphases
     resources :courses do
@@ -90,4 +95,3 @@ Rails.application.routes.draw do
   get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
   get 'manifest' => 'rails/pwa#manifest'
 end
-

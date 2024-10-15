@@ -36,8 +36,8 @@
         <td><%= student.emphasis.present? ? student.emphasis.ename : 'N/A' %></td> 
         <td><%= student.track.present? ? student.track.tname : 'N/A' %></td> 
         <td>
-          <%= link_to 'Edit', edit_student_path(student) %> 
-          <%= link_to 'Delete', confirm_destroy_student_path(student), method: :get %>
+          <%= link_to 'Edit', edit_student_path(student.google_id) %> 
+          <%= link_to 'Delete', confirm_destroy_student_path(student.google_id), method: :get %>
         </td>
       </tr>
     <% end %>
