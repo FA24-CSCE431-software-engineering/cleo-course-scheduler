@@ -44,7 +44,7 @@ group :test do
   gem 'rails-controller-testing'
 end
 
-gem 'net-protocol'
+gem "net-pop", github: "ruby/net-pop"
 gem 'jquery-rails'
 gem 'csv'
 gem 'prawn'
