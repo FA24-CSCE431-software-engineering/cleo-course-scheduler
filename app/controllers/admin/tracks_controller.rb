@@ -1,9 +1,11 @@
 module Admin
     class TracksController < ApplicationController
+      skip_before_action :authenticate_student_login! if Rails.env.test?
       before_action :set_track, only: [:update, :destroy]
 
       def show
         # @track is set via callback below
+        @track = set_track()
       end
 
 

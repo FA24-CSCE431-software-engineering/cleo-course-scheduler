@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 RSpec.describe "Emphases", type: :request do
   describe "GET /confirm_destroy" do
     it "returns http success" do

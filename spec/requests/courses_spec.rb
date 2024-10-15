@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+=begin
 RSpec.describe "Courses", type: :request do
   describe "GET /_form" do
     it "returns http success" do

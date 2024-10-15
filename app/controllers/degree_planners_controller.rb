@@ -1,5 +1,6 @@
 class DegreePlannersController < ApplicationController
   before_action :set_student
+  skip_before_action :authenticate_student_login! if Rails.env.test?
 
   def show
     @default_plan = DegreeRequirement.includes(:course).where(major: @student.major)

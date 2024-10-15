@@ -69,7 +69,7 @@ RSpec.describe 'StudentCourses', type: :request do
 
   describe 'GET /edit' do
     it 'returns http success' do
-      student_course = StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 0)
+      student_course = StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 3)
       get edit_student_course_path(student_id: student.id, course_id: course.id)
       expect(response).to have_http_status(:success)
     end

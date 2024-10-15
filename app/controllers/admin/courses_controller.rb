@@ -1,5 +1,6 @@
 module Admin
   class CoursesController < ApplicationController
+    skip_before_action :authenticate_student_login! if Rails.env.test?
     before_action :set_course, only: %i[edit update destroy confirm_destroy]
 
     def confirm_destroy

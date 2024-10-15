@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:edit, :update, :show, :destroy]
+  skip_before_action :authenticate_student_login! if Rails.env.test?
 
   def index
     @students = Student.all

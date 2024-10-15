@@ -63,6 +63,8 @@ Rails.application.routes.draw do
     end
   end
 
+  #Don't know why the admin dashboard rescources don't work but this does so i'm keeping it
+  
   # Support pages
   resources :support do
     collection do

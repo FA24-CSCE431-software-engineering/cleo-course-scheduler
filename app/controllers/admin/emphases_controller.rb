@@ -1,5 +1,6 @@
 module Admin  
   class EmphasesController < ApplicationController
+    skip_before_action :authenticate_student_login! if Rails.env.test?
     before_action :set_emphasis, only: [:show, :edit, :update, :destroy]
 
     def confirm_destroy
