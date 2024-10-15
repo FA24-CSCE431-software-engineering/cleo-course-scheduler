@@ -1,6 +1,5 @@
 
 source "https://rubygems.org"
-ruby '3.3.3'
 
 #
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -26,7 +25,7 @@ gem 'rexml'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 # needed for 
-
+gem 'zeitwerk', '< 2.7.0'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -87,4 +86,5 @@ gem 'jquery-rails'
 gem 'csv'
 
 gem 'prawn'
-\
+gem 'net-pop'
+
