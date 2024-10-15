@@ -8,11 +8,14 @@ class StudentDashboardsController < ApplicationController
 
 
   def set_student
-    @student = Student.find(current_student_login.uid)
+    @student = Student.find_by(google_id: current_student_login.uid)
     unless @student
-      redirect_to some_error_path, alert: "Student not found."
+      redirect_to new_student_path, alert: "Student not found."
     end
+
   end
+
+  
 
 
   
