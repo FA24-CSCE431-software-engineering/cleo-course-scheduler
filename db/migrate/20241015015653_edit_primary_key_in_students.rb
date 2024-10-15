@@ -25,6 +25,7 @@ class EditPrimaryKeyInStudents < ActiveRecord::Migration[7.2]
       t.index ["emphases_id"], name: "index_students_on_emphases_id"
       t.index ["major_id"], name: "index_students_on_major_id"
       t.index ["track_id"], name: "index_students_on_track_id"
+    end  # <--- Add this end to close the students table definition
 
     # Create student_courses table
     create_table :student_courses, id: false, force: :cascade do |t|
@@ -36,7 +37,7 @@ class EditPrimaryKeyInStudents < ActiveRecord::Migration[7.2]
 
       # Indexes for efficient querying
       t.index ["course_id"], name: "index_student_courses_on_course_id"
-      t.index ["student_id", "course_id"], name: "index_student_courses_on_sstudent_id_and_course_id", unique: true
+      t.index ["student_id", "course_id"], name: "index_student_courses_on_student_id_and_course_id", unique: true
       t.index ["student_id"], name: "index_student_courses_on_student_id"
     end
 
