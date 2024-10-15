@@ -6,7 +6,7 @@
   <%= @student.last_name %><br>
 </p>
 
-<%= form_with(url: student_path(@student), method: :delete) do |form| %>
+<%= form_with(url: student_path(@student.google_id), method: :delete) do |form| %>
   <div class="actions">
     <%= form.submit 'Delete Student', class: 'btn btn-danger' %>
     <%= link_to 'Cancel', students_path, class: 'btn btn-secondary' %>
