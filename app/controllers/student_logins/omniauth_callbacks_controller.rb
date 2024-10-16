@@ -7,6 +7,11 @@ module StudentLogins
       if student_login.present?
         sign_out_all_scopes
         flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
+        # Set admin status based on email
+        if student_login.email.ends_with?('@tamu.edu')
+          student_login.update(is_admin: true)
+        end
+
         sign_in_and_redirect student_login, event: :authentication
       else
         flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google',
