@@ -4,14 +4,16 @@ module StudentLogins
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def google_oauth2
       student_login = StudentLogin.from_google(**from_google_params)
+    
       if student_login.present?
-        sign_out_all_scopes
-        flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
-        # Set admin status based on email
-        if student_login.email.ends_with?('@tamu.edu')
+        # Split admin emails from environment variable and check if email is an admin
+        admin_emails = ENV['ADMIN_EMAILS'].split(',')
+        if admin_emails.include?(student_login.email)
           student_login.update(is_admin: true)
         end
-
+    
+        sign_out_all_scopes
+        flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
         sign_in_and_redirect student_login, event: :authentication
       else
         flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google',
