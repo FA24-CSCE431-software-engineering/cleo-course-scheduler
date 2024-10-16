@@ -13,13 +13,26 @@ class StudentsController < ApplicationController
   end
 
   def new
-    @student = Student.new
+    @student = Student.new(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      email: params[:email],
+      google_id: params[:google_id],
+      enrol_year: params[:enrol_year] || current_year,  # Set enrol_year or fallback to current year
+      grad_year: params[:grad_year] || current_year + 4,
+      enrol_semester: params[:enrol_semester] || current_semester,
+      grad_semester: params[:grad_semester] || (current_semester == "fall" ? "spring" : "fall")
+    )
   end
 
   def create
     @student = Student.new(student_params)
     if @student.save
-      redirect_to students_path, notice: 'Student added successfully.'
+      if @student.is_admin?
+        redirect_to students_path, notice: 'Student added successfully.'
+      else
+        redirect_to student_dashboard_path(@student.google_id), notice: 'Student added successfully.'
+      end
     else
       render :new
     end

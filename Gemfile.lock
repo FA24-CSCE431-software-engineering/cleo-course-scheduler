@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/ruby/net-pop.git
+  revision: e8d0afe2773b9eb6a23c39e9e437f6fc0fc7c733
+  specs:
+    net-pop (0.1.2)
+      net-protocol
 
 GEM
   remote: https://rubygems.org/
@@ -183,7 +189,6 @@ GEM
     net-imap (0.4.17)
       date
       net-protocol
-    net-pop (0.1.2)
     net-protocol (0.2.2)
       timeout
     net-smtp (0.5.0)
@@ -407,7 +412,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.7.0)
+    zeitwerk (2.6.18)
 
 PLATFORMS
   aarch64-linux
@@ -436,7 +441,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jquery-rails
-  net-protocol
+  net-pop!
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
@@ -458,6 +463,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
+  zeitwerk (< 2.7.0)
 
 BUNDLED WITH
-   2.5.17
+   2.5.11

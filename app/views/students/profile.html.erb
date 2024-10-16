@@ -47,6 +47,7 @@
     <p class="profile-info"><strong>Graduation Semester:</strong> <%= @student.grad_semester.humanize %></p>
     <p class="profile-info"><strong>Major:</strong> <%= @student.major.mname if @student.major %></p> 
     <p class="profile-info"><strong>Emphasis:</strong> <%= @student.emphasis&.ename || 'Not specified' %></p> <br>
+    <p class="profile-info"><strong>Admin:</strong> <%= @student.is_admin %></p> <br>
 
    
 

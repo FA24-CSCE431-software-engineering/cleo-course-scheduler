@@ -28,8 +28,8 @@
   </div>
 
   <div class="studentinfo_field">
-    <%= form.label :google_id, class: 'studentinfo_label' %>
-    <%= form.text_field :google_id, class: 'studentinfo_input' %>
+    <!--<%= form.label :google_id, class: 'studentinfo_label' %>  This is field is hidden-->
+    <%= form.hidden_field :google_id, class: 'studentinfo_input' %>
   </div>
 
   <div class="studentinfo_field">
@@ -45,7 +45,7 @@
   
   <div class="studentinfo_field">
     <%= form.label :track_id, "Track" %>
-    <%= form.collection_select :track_id, Track.all, :id, :tname, prompt: "Select a Track" %>
+    <%= form.collection_select :track_id, Track.all, :id, :tname, {prompt: "Select a Track"}, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
