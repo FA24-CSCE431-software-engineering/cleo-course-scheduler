@@ -48,3 +48,6 @@ gem "net-pop", github: "ruby/net-pop"
 gem 'jquery-rails'
 gem 'csv'
 gem 'prawn'
+
+# For course selection search function
+gem 'select2-rails'

@@ -357,6 +357,7 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.3.1)
+    select2-rails (4.0.13)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -455,6 +456,7 @@ DEPENDENCIES
   rubocop
   rubocop-rails-omakase
   sassc-rails
+  select2-rails
   selenium-webdriver
   simplecov
   sprockets-rails
