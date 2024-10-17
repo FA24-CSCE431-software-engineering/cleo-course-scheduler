@@ -62,12 +62,12 @@
 
   <div class="studentinfo_field">
     <%= form.label :enrol_semester, class: 'studentinfo_label' %>
-    <%= form.select :enrol_semester, Student.enrol_semesters.keys.map { |k| [k.humanize, k] }, class: 'studentinfo_select' %>
+    <%= form.collection_select :enrol_semester, Student.enrol_semesters.keys.map { |k| [k.humanize, k] }, :second, :first, { prompt: "Select Enrol Semester" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
     <%= form.label :grad_semester, class: 'studentinfo_label' %>
-    <%= form.select :grad_semester, Student.grad_semesters.keys.map { |k| [k.humanize, k] }, class: 'studentinfo_select' %>
+    <%= form.collection_select :grad_semester, Student.grad_semesters.keys.map { |k| [k.humanize, k] }, :second, :first, { prompt: "Select Grad Semester" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_submit">
