@@ -50,14 +50,12 @@
 
   <div class="studentinfo_field">
     <%= form.label :enrol_year, class: 'studentinfo_label' %>
-    <%= form.number_field :enrol_year, class: 'studentinfo_input' %>
+    <%= form.select :enrol_year, (Time.current.year - 5..Time.current.year + 5).map { |year| [year, year] }, { prompt: "Select Enrol Year" }, class: 'studentinfo_select' %>
   </div>
-
 
   <div class="studentinfo_field">
     <%= form.label :grad_year, class: 'studentinfo_label' %>
-    <%= form.number_field :grad_year, class: 'studentinfo_input' %>
-
+    <%= form.select :grad_year, (Time.current.year - 5..Time.current.year + 5).map { |year| [year, year] }, { prompt: "Select Grad Year" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
