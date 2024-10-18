@@ -44,27 +44,27 @@
 
   
   <div class="studentinfo_field">
-    <%= form.label :track_id, "Track" %>
+    <%= form.label :track_id, "Track / Specialization" %>
     <%= form.collection_select :track_id, Track.order(:tname), :id, :tname, {prompt: "Select a Track"}, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
-    <%= form.label :enrol_year, class: 'studentinfo_label' %>
+    <%= form.label :enrol_year, 'Enrollment Year', class: 'studentinfo_label' %>
     <%= form.select :enrol_year, (Time.current.year - 5..Time.current.year + 5).map { |year| [year, year] }, { prompt: "Select Enrol Year" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
-    <%= form.label :grad_year, class: 'studentinfo_label' %>
+    <%= form.label :grad_year, 'Graduation Year', class: 'studentinfo_label' %>
     <%= form.select :grad_year, (Time.current.year - 5..Time.current.year + 5).map { |year| [year, year] }, { prompt: "Select Grad Year" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
-    <%= form.label :enrol_semester, class: 'studentinfo_label' %>
+    <%= form.label :enrol_semester, 'Enrollment Semester', class: 'studentinfo_label' %>
     <%= form.collection_select :enrol_semester, Student.enrol_semesters.keys.map { |k| [k.humanize, k] }, :second, :first, { prompt: "Select Enrol Semester" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
-    <%= form.label :grad_semester, class: 'studentinfo_label' %>
+    <%= form.label :grad_semester, 'Graduation Semester', class: 'studentinfo_label' %>
     <%= form.collection_select :grad_semester, Student.grad_semesters.keys.map { |k| [k.humanize, k] }, :second, :first, { prompt: "Select Grad Semester" }, class: 'studentinfo_select' %>
   </div>
 
