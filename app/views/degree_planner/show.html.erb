@@ -40,7 +40,12 @@
   <%= form_with url: update_plan_student_degree_planner_path(@student), method: :patch, class: 'add-course-form' do |f| %>
     <h2>Add a Course</h2>
     <%= label_tag :add_course, "Course" %>
-    <%= select_tag :add_course, options_from_collection_for_select(Course.all, :id, :cname) %>
+    <%= select_tag :add_course, 
+      options_for_select(
+        Course.order(:ccode, :cnumber).map { |course| [ "#{course.ccode} #{course.cnumber} - #{course.cname}", course.id ] }
+      ), 
+      class: "searchable-select" 
+    %>
 
     <%= label_tag :sem, "Semester" %>
     <%= number_field_tag :sem, nil, min: 1, max: 8 %>

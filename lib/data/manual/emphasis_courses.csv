@@ -1,6 +1,6 @@
 ename,ccode,cnumber,cname,credit_hours,prereq_1,prereq_2,prereq_3
 Mathematics,MATH,401,Advanced Engineering Mathematics,3,MATH 308,,
-Mathematics,MATH,407, Complex Variables,3,MATH 221; MATH 251; MATH 253,,
+Mathematics,MATH,407,Complex Variables,3,MATH 221; MATH 251; MATH 253,,
 Mathematics,MATH,409,Analysis on the Real Line,3,MATH 253,,
 Mathematics,MATH,410,Multivariate Real Analysis,3,MATH 304; MATH 323,MATH 409,
 Mathematics,MATH,412,Theory of Partial Differential Equations,3,MATH 308,,

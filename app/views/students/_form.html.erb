@@ -14,16 +14,19 @@
 
   <div class="studentinfo_field">
     <%= form.label :first_name, class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Enter you first name into the field below</span>
     <%= form.text_field :first_name, class: 'studentinfo_input' %>
   </div>
 
   <div class="studentinfo_field">
     <%= form.label :last_name, class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Enter last name into the field below</span>
     <%= form.text_field :last_name, class: 'studentinfo_input' %>
   </div>
 
   <div class="studentinfo_field">
     <%= form.label :email, class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Enter email into the field below</span>
     <%= form.email_field :email, class: 'studentinfo_input' %>
   </div>
 
@@ -34,40 +37,45 @@
 
   <div class="studentinfo_field">
     <%= form.label :major_id, "Major", class: 'studentinfo_label' %>
-    <%= form.collection_select :major_id, Major.all, :id, :mname, { prompt: "Select a Major" }, class: 'studentinfo_select' %>
+    <span class="studentinfo_field_description">Select major from the list below</span>
+    <%= form.collection_select :major_id, Major.order(:mname), :id, :mname, { prompt: "Select a Major" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
     <%= form.label :emphasis_id, "Emphasis", class: 'studentinfo_label' %>
-    <%= form.collection_select :emphasis_id, Emphasis.all, :id, :ename, { prompt: "Select an Emphasis Area" }, class: 'studentinfo_select' %>
+    <span class="studentinfo_field_description">Select emphasis area apart from the major</span>
+    <%= form.collection_select :emphasis_id, Emphasis.order(:ename), :id, :ename, { prompt: "Select an Emphasis Area" }, class: 'studentinfo_select' %>
   </div>
 
   
   <div class="studentinfo_field">
-    <%= form.label :track_id, "Track" %>
-    <%= form.collection_select :track_id, Track.all, :id, :tname, {prompt: "Select a Track"}, class: 'studentinfo_select' %>
+    <%= form.label :track_id, "Track / Specialization" %>
+    <span class="studentinfo_field_description">Select track or specialization of the major</span>
+    <%= form.collection_select :track_id, Track.order(:tname), :id, :tname, {prompt: "Select a Track"}, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
-    <%= form.label :enrol_year, class: 'studentinfo_label' %>
-    <%= form.number_field :enrol_year, class: 'studentinfo_input' %>
-  </div>
-
-
-  <div class="studentinfo_field">
-    <%= form.label :grad_year, class: 'studentinfo_label' %>
-    <%= form.number_field :grad_year, class: 'studentinfo_input' %>
-
+    <%= form.label :enrol_year, 'Enrollment Year', class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Select year of enrollment</span>
+    <%= form.select :enrol_year, (Time.current.year - 5..Time.current.year + 5).map { |year| [year, year] }, { prompt: "Select Enrol Year" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
-    <%= form.label :enrol_semester, class: 'studentinfo_label' %>
-    <%= form.select :enrol_semester, Student.enrol_semesters.keys.map { |k| [k.humanize, k] }, class: 'studentinfo_select' %>
+    <%= form.label :grad_year, 'Graduation Year', class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Select expected year of graduation</span>
+    <%= form.select :grad_year, (Time.current.year - 5..Time.current.year + 5).map { |year| [year, year] }, { prompt: "Select Grad Year" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_field">
-    <%= form.label :grad_semester, class: 'studentinfo_label' %>
-    <%= form.select :grad_semester, Student.grad_semesters.keys.map { |k| [k.humanize, k] }, class: 'studentinfo_select' %>
+    <%= form.label :enrol_semester, 'Enrollment Semester', class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Select semester of enrollment</span>
+    <%= form.collection_select :enrol_semester, Student.enrol_semesters.keys.map { |k| [k.humanize, k] }, :second, :first, { prompt: "Select Enrol Semester" }, class: 'studentinfo_select' %>
+  </div>
+
+  <div class="studentinfo_field">
+    <%= form.label :grad_semester, 'Graduation Semester', class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Select expected semester of graduation</span>
+    <%= form.collection_select :grad_semester, Student.grad_semesters.keys.map { |k| [k.humanize, k] }, :second, :first, { prompt: "Select Grad Semester" }, class: 'studentinfo_select' %>
   </div>
 
   <div class="studentinfo_submit">
