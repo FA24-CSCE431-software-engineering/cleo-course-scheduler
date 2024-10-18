@@ -40,17 +40,13 @@
 
     <p class="profile-info"><strong>Name:</strong> <%= "#{@student.first_name} #{@student.last_name}" %></p>
     <p class="profile-info"><strong>Email:</strong> <%= @student.email %></p>
-    <p class="profile-info"><strong>UID:</strong> <%= @student.google_id %></p> 
     <p class="profile-info"><strong>Enrollment Year:</strong> <%= @student.enrol_year %></p>
     <p class="profile-info"><strong>Graduation Year:</strong> <%= @student.grad_year %></p>
     <p class="profile-info"><strong>Enrollment Semester:</strong> <%= @student.enrol_semester.humanize %></p>
     <p class="profile-info"><strong>Graduation Semester:</strong> <%= @student.grad_semester.humanize %></p>
     <p class="profile-info"><strong>Major:</strong> <%= @student.major.mname if @student.major %></p> 
     <p class="profile-info"><strong>Emphasis:</strong> <%= @student.emphasis&.ename || 'Not specified' %></p> <br>
-    <p class="profile-info"><strong>Admin:</strong> <%= @student.is_admin %></p> <br>
-
    
-
     <!-- Credits Scale -->
     <h4> Track Your progress </h4>
     <div class="credits-scale">
@@ -63,11 +59,11 @@
       <div class="credits-scale-fill" style="width: <%= (@student.total_credits_completed || 0) / 126.0 * 100 %>%"></div>
       </div>
       <div class="credits-scale-markers">
-        <span>Yr0</span>
-        <span>Yr1</span>
-        <span>Yr2</span>
-        <span>Yr3</span>
-        <span>Yr4</span>
+        <span>Year 0</span>
+        <span>Year 1</span>
+        <span>Year 2</span>
+        <span>Year 3</span>
+        <span>Year 4</span>
       </div>
 
       
