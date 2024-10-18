@@ -4,6 +4,8 @@ class DegreePlannersController < ApplicationController
   before_action :set_student
   skip_before_action :authenticate_student_login! if Rails.env.test?
 
+  EXPECTED_HEADERS = ['Course ID', 'Course Code', 'Course Number', 'Course Name', 'Credits', 'Semester'].freeze
+
   def show
     @default_plan = DegreeRequirement.includes(:course).where(major: @student.major)
     @student_courses = StudentCourse.includes(:course).where(student: @student).order(:sem)
@@ -23,27 +25,19 @@ class DegreePlannersController < ApplicationController
   end
 
   def clear_courses
-    @student_courses = StudentCourse.where(student: @student)
-    @student_courses.destroy_all
+    destroy_student_courses
 
     flash[:success] = 'All courses have been removed successfully!'
-
     redirect_to student_degree_planner_path(@student)
   end
 
   def set_default
-    @student_courses = StudentCourse.where(student: @student)
-    @student_courses.destroy_all
+    destroy_student_courses
 
     degree_requirements = DegreeRequirement.where(major_id: @student.major_id)
-
-    # Map the degree requirements to StudentCourse records
-    degree_requirements.map do |requirement|
-      StudentCourse.create(student: @student, course_id: requirement.course_id, sem: requirement.sem)
-    end
+    add_student_course_records(degree_requirements)
 
     flash[:success] = 'Degree planner has been filled with courses from your major!'
-
     redirect_to student_degree_planner_path(@student)
   end
 
@@ -85,11 +79,9 @@ class DegreePlannersController < ApplicationController
 
     # Generate the CSV data
     csv_data = CSV.generate(headers: true) do |csv|
-      # Define CSV headers
-      csv << ['Course ID', 'Course Code', 'Course Number', 'Course Name', 'Credits', 'Semester']
+      csv << EXPECTED_HEADERS
 
-      # Add each record as a row in the CSV
-      # More data than required for uploading is downloaded for user's view
+      # Add each record as a row in the CSV, not all are necessary for uploading
       @student_courses.each do |student_course|
         csv << [
           student_course.course.id,
@@ -107,42 +99,8 @@ class DegreePlannersController < ApplicationController
   end
 
   def upload_plan
-    @student_courses = StudentCourse.where(student: @student)
-    @student_courses.destroy_all
-
     if params[:file].present?
-      begin
-        csv_file = CSV.read(params[:file].path, headers: true)
-        expected_headers = ['Course ID', 'Course Code', 'Course Number', 'Course Name', 'Credits', 'Semester']
-
-        # Checks if the headers are in the correct format
-        if (csv_file.headers & expected_headers).size != expected_headers.size
-          flash[:error] = "CSV format is incorrect. Please ensure the file has headers: #{expected_headers.join(', ')}."
-          redirect_to student_degree_planner_path(@student) and return
-        end
-
-        # Read the uploaded CSV file
-        CSV.foreach(params[:file].path, headers: true) do |row|
-          course_data = {
-            course_id: row['Course ID'],
-            sem: row['Semester']
-          }
-
-          # Populates the student course table with uploaded courses
-          StudentCourse.create(
-            student: @student,
-            course_id: course_data[:course_id],
-            sem: course_data[:sem]
-          )
-        end
-        flash[:success] = 'Degree plan uploaded successfully'
-        redirect_to student_degree_planner_path(@student)
-
-      # Catches exceptions when the file uploaded is not a csv
-      rescue StandardError
-        flash[:error] = 'The CSV file is malformed or unreadable. Please upload a valid CSV file.'
-        redirect_to student_degree_planner_path(@student)
-      end
+      process_csv(params[:file])
     else
       flash[:error] = 'Please upload a CSV file.'
       redirect_to student_degree_planner_path(@student)
@@ -159,4 +117,52 @@ class DegreePlannersController < ApplicationController
   end
 
   def generate_plan_based_on_interests(interests); end
+
+  # Takes records and iteratively adds to student courses
+  def add_student_course_records(records)
+    records.map do |record|
+      StudentCourse.create(student: @student, course_id: record.course_id, sem: record.sem)
+    end
+  end
+
+  def destroy_student_courses
+    @student.student_courses.destroy_all
+  end
+
+  # ======== Helper functions for uploading / downloading csv files ========
+  def process_csv(file)
+    csv_file = read_csv(file)
+
+    if valid_csv?(csv_file)
+      destroy_student_courses
+      import_courses_from_csv(file)
+      flash[:success] = 'Degree plan uploaded successfully'
+    else
+      flash[:error] = "CSV format is incorrect. Please ensure the file has headers: #{EXPECTED_HEADERS.join(', ')}."
+    end
+
+    redirect_to student_degree_planner_path(@student)
+  rescue StandardError
+    flash[:error] = 'The CSV file is malformed or unreadable. Please upload a valid CSV file.'
+    redirect_to student_degree_planner_path(@student)
+  end
+
+  def read_csv(file)
+    CSV.read(file.path, headers: true)
+  end
+
+  def valid_csv?(csv_file)
+    (csv_file.headers & EXPECTED_HEADERS).size == EXPECTED_HEADERS.size
+  end
+
+  def import_courses_from_csv(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      StudentCourse.create(
+        student: @student,
+        course_id: row['Course ID'],
+        sem: row['Semester']
+      )
+    end
+  end
+  # ========================================================================
 end
