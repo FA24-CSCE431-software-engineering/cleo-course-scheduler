@@ -68,6 +68,7 @@ Rails.application.routes.draw do
       get :download_plan, on: :member
       delete :clear_courses, on: :member
       post :set_default, on: :member
+      post :upload_plan, on: :member
     end
   end
 
