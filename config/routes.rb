@@ -65,7 +65,7 @@ Rails.application.routes.draw do
       patch :update_plan, on: :member
       post :generate_custom_plan, on: :member
       delete 'remove_course', on: :member
-      post 'download_plan', on: :member, to: 'degree_planners#download_plan'
+      get :download_plan, on: :member
       delete :clear_courses, on: :member
       post :set_default, on: :member
     end

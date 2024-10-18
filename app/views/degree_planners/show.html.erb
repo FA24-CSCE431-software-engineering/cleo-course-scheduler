@@ -132,8 +132,8 @@
       <%= f.submit 'Clear All Courses', class: 'action-button clear-button', data: { confirm: 'Are you sure you want to clear all courses?' } %>
     <% end %>
 
-    <%= form_with url: download_plan_student_degree_planner_path(@student), method: :post do |f| %>
-      <%= f.submit 'Save Degree Plan', class: 'action-button save-button' %>
+    <%= form_with url: download_plan_student_degree_planner_path(@student, format: :csv), method: :get do |f| %>
+      <%#= f.submit 'Save Degree Plan', class: 'action-button save-button' %>
       <%= f.submit 'Download Degree Plan', class: 'action-button download-button' %>
     <% end %>
   </div>

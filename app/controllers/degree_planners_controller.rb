@@ -79,9 +79,30 @@ class DegreePlannersController < ApplicationController
   def generate_custom_plan
     
   end
-
+  
+  
   def download_plan
-    
+    @student_courses = StudentCourse.where(student_id: @student.id).order(:sem)
+
+    # Generate the CSV data
+    csv_data = CSV.generate(headers: true) do |csv|
+      # Define CSV headers
+      csv << ["Course Code", "Course Number", "Course Name", "Credits", "Semester"]
+
+      # Add each record as a row in the CSV
+      @student_courses.each do |student_course|
+        csv << [
+          student_course.course.ccode,
+          student_course.course.cnumber,
+          student_course.course.cname,
+          student_course.course.credit_hours,
+          student_course.sem
+        ]
+      end
+    end
+
+    # Send the CSV file to the browser
+    send_data csv_data, filename: "degree_plan_#{@student.id}.csv"
   end
   
 
