@@ -6,7 +6,16 @@ class DegreePlannersController < ApplicationController
     @default_plan = DegreeRequirement.includes(:course).where(major: @student.major)
 
     @student_courses = StudentCourse.includes(:course).where(student: @student).order(:sem)
+    if @student_courses.empty?
+      # Query the DegreeRequirements table based on the student's major_id
+      degree_requirements = DegreeRequirement.where(major_id: @student.major_id)
 
+      # Map the degree requirements to StudentCourse records
+      @student_courses = degree_requirements.map do |requirement|
+        StudentCourse.create(student: @student, course_id: requirement.course_id, sem: requirement.sem)
+      end
+    end
+    
     @plan_to_display = @student_courses.present? ? @student_courses : @default_plan
   end
 
