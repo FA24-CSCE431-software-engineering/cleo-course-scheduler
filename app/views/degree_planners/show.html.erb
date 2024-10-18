@@ -124,6 +124,10 @@
     These forms allow the user to either save or download the current plan.
   %>
   <div class="action-buttons">
+    <%= form_with url: clear_courses_student_degree_planner_path(@student), method: :delete do |f| %>
+      <%= f.submit 'Clear All Courses', class: 'action-button clear-button', data: { confirm: 'Are you sure you want to clear all courses?' } %>
+    <% end %>
+
     <%= form_with url: download_plan_student_degree_planner_path(@student), method: :post do |f| %>
       <%= f.submit 'Save Degree Plan', class: 'action-button save-button' %>
       <%= f.submit 'Download Degree Plan', class: 'action-button download-button' %>
@@ -186,6 +190,21 @@
     document.addEventListener('click', function(event) {
       if (!avatar.contains(event.target) && !dropdownMenu.contains(event.target)) {
         dropdownMenu.classList.remove('profile-show');
+      }
+    });
+  });
+</script>
+
+<script>
+  <%# 
+    JavaScript to reprompt the user when clearing courses.
+  %>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Adding confirmation for the clear button
+    document.querySelector('.clear-button').addEventListener('click', function(event) {
+      const confirmed = confirm('Are you sure you want to clear all courses?');
+      if (!confirmed) {
+        event.preventDefault(); // Prevent form submission if not confirmed
       }
     });
   });

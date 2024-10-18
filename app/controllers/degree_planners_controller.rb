@@ -4,19 +4,7 @@ class DegreePlannersController < ApplicationController
 
   def show
     @default_plan = DegreeRequirement.includes(:course).where(major: @student.major)
-
     @student_courses = StudentCourse.includes(:course).where(student: @student).order(:sem)
-    if @student_courses.empty?
-      # Query the DegreeRequirements table based on the student's major_id
-      degree_requirements = DegreeRequirement.where(major_id: @student.major_id)
-
-      # Map the degree requirements to StudentCourse records
-      @student_courses = degree_requirements.map do |requirement|
-        StudentCourse.create(student: @student, course_id: requirement.course_id, sem: requirement.sem)
-      end
-    end
-    
-    @plan_to_display = @student_courses.present? ? @student_courses : @default_plan
   end
 
   def add_course
@@ -29,6 +17,15 @@ class DegreePlannersController < ApplicationController
       flash[:error] = "Error adding course."
       render :show
     end
+  end
+
+  def clear_courses
+    @student_courses = StudentCourse.where(student: @student)
+    @student_courses.destroy_all
+
+    flash[:success] = "All courses have been removed successfully!"
+
+    redirect_to student_degree_planner_path(@student)
   end
 
   def update_plan
