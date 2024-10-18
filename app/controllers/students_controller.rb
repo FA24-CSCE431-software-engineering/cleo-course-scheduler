@@ -28,6 +28,14 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
+      # Query the DegreeRequirements table based on the student's major_id
+      degree_requirements = DegreeRequirement.where(major_id: @student.major_id)
+
+      # Map the degree requirements to StudentCourse records
+      degree_requirements.map do |requirement|
+        StudentCourse.create(student: @student, course_id: requirement.course_id, sem: requirement.sem)
+      end
+
       if @student.is_admin?
         redirect_to students_path, notice: 'Student added successfully.'
       else
