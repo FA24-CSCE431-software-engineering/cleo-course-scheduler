@@ -67,6 +67,7 @@ Rails.application.routes.draw do
       delete 'remove_course', on: :member
       post 'download_plan', on: :member, to: 'degree_planners#download_plan'
       delete :clear_courses, on: :member
+      post :set_default, on: :member
     end
   end
 

@@ -124,6 +124,10 @@
     These forms allow the user to either save or download the current plan.
   %>
   <div class="action-buttons">
+    <%= form_with url: set_default_student_degree_planner_path(@student), method: :post do |f| %>
+      <%= f.submit 'Set Default Degree Plan', class: 'action-button default-degree-button', data: { confirm: 'This will replace all currently added courses. Are you sure you want to clear all courses?' } %>
+    <% end %>
+
     <%= form_with url: clear_courses_student_degree_planner_path(@student), method: :delete do |f| %>
       <%= f.submit 'Clear All Courses', class: 'action-button clear-button', data: { confirm: 'Are you sure you want to clear all courses?' } %>
     <% end %>
@@ -203,6 +207,16 @@
     // Adding confirmation for the clear button
     document.querySelector('.clear-button').addEventListener('click', function(event) {
       const confirmed = confirm('Are you sure you want to clear all courses?');
+      if (!confirmed) {
+        event.preventDefault(); // Prevent form submission if not confirmed
+      }
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Adding confirmation for the clear button
+    document.querySelector('.default-degree-button').addEventListener('click', function(event) {
+      const confirmed = confirm('This will replace all currently added courses. Are you sure you want to clear all courses?');
       if (!confirmed) {
         event.preventDefault(); // Prevent form submission if not confirmed
       }

@@ -28,6 +28,22 @@ class DegreePlannersController < ApplicationController
     redirect_to student_degree_planner_path(@student)
   end
 
+  def set_default
+    @student_courses = StudentCourse.where(student: @student)
+    @student_courses.destroy_all
+
+    degree_requirements = DegreeRequirement.where(major_id: @student.major_id)
+
+    # Map the degree requirements to StudentCourse records
+    degree_requirements.map do |requirement|
+      StudentCourse.create(student: @student, course_id: requirement.course_id, sem: requirement.sem)
+    end
+
+    flash[:success] = "Degree planner has been filled with courses from your major!"
+
+    redirect_to student_degree_planner_path(@student)
+  end
+
   def update_plan
     selected_course_id = params[:add_course].to_i
     semester = params[:sem].to_i
