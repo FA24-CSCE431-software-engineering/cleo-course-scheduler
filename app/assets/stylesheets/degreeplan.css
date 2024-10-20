@@ -17,7 +17,7 @@
     position: relative;
 }
 
-.degreeplan-back-to-dashboard {
+/* .degreeplan-back-to-dashboard {
     font-size: 16px;
 }
 
@@ -83,7 +83,7 @@
 
 .degreeplan-dropdown-link:hover {
     background-color: #f0f0f0;
-}
+} */
 
 .degreeplan-title {
     font-size: 28px;
@@ -285,9 +285,9 @@
 
 .degreeplan-body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
+    /* background-color: #f4f4f4; */
+    /* margin: 0; */
+    /* padding: 20px; */
 }
 
 .degreeplan-header {
