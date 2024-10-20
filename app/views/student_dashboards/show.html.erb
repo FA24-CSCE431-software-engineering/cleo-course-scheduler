@@ -25,7 +25,7 @@
 
     <div class="user-info">
       <%# Display the student's avatar. If no avatar is available, a default image is used. %>
-      <%= link_to image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'avatar'), profile_student_path(current_student_login) %>
+      <%= link_to image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'profile-avatar'), profile_student_path(current_student_login) %>
     </div>
   </div>
 
