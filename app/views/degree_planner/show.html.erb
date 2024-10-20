@@ -38,7 +38,7 @@
     The form allows the user to select a course and specify which semester it should be added to.
   %>
   <%= form_with url: update_plan_student_degree_planner_path(@student), method: :patch, class: 'add-course-form' do |f| %>
-    <h2>Add a Course</h2>
+    <h4>Add a Course</h4>
     <%= label_tag :add_course, "Course" %>
     <%= select_tag :add_course, 
       options_for_select(
@@ -67,17 +67,17 @@
         <table>
           <thead>
             <tr>
+              <th>Course Code</th>
               <th>Course Name</th>
-              <th>Course CRN</th>
               <th>Credits</th>
-              <th>Actions</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody id="semester-<%= sem %>-courses">
             <% @student.student_courses.where(sem: sem).each do |student_course| %>
               <tr id="course-<%= student_course.course.id %>-semester-<%= sem %>">
-                <td><%= student_course.course.cname %></td>
                 <td><%= "#{student_course.course.ccode} #{student_course.course.cnumber}" %></td> 
+                <td><%= student_course.course.cname %></td>
                 <td><%= student_course.course.credit_hours %></td>
                 <td>
                   <%# Link to remove the course from the semester %>
@@ -124,8 +124,23 @@
     These forms allow the user to either save or download the current plan.
   %>
   <div class="action-buttons">
-    <%= form_with url: download_plan_student_degree_planner_path(@student), method: :post do |f| %>
-      <%= f.submit 'Save Degree Plan', class: 'action-button save-button' %>
+    <%= form_with url: set_default_student_degree_planner_path(@student), method: :post do |f| %>
+      <%= f.submit 'Set Default Degree Plan', class: 'action-button default-degree-button', data: { confirm: 'This will replace all currently added courses. Are you sure you want to clear all courses?' } %>
+    <% end %>
+
+    <%= form_with url: clear_courses_student_degree_planner_path(@student), method: :delete do |f| %>
+      <%= f.submit 'Clear All Courses', class: 'action-button clear-button', data: { confirm: 'Are you sure you want to clear all courses?' } %>
+    <% end %>
+
+    <%= form_with url: upload_plan_student_degree_planner_path(@student), method: :post, html: { multipart: true } do |f| %>
+      <div class="form-group">
+        <%= label_tag :file, "Upload CSV File" %>
+        <%= file_field_tag :file, class: 'form-control' %>
+      </div>
+      <%= f.submit "Upload Degree Plan", class: "action-button upload-button", data: { confirm: 'This will replace all currently added courses. Are you sure?' } %>
+    <% end %>
+    
+    <%= form_with url: download_plan_student_degree_planner_path(@student, format: :csv), method: :get do |f| %>
       <%= f.submit 'Download Degree Plan', class: 'action-button download-button' %>
     <% end %>
   </div>
@@ -186,6 +201,41 @@
     document.addEventListener('click', function(event) {
       if (!avatar.contains(event.target) && !dropdownMenu.contains(event.target)) {
         dropdownMenu.classList.remove('profile-show');
+      }
+    });
+  });
+</script>
+
+<script>
+  <%# 
+    JavaScript to reprompt the user when clearing courses.
+  %>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Adding confirmation for the clear button
+    document.querySelector('.clear-button').addEventListener('click', function(event) {
+      const confirmed = confirm('Are you sure you want to clear all courses?');
+      if (!confirmed) {
+        event.preventDefault(); // Prevent form submission if not confirmed
+      }
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Adding confirmation for the clear button
+    document.querySelector('.default-degree-button').addEventListener('click', function(event) {
+      const confirmed = confirm('This will replace all currently added courses. Are you sure you want to clear all courses?');
+      if (!confirmed) {
+        event.preventDefault(); // Prevent form submission if not confirmed
+      }
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Adding confirmation for the clear button
+    document.querySelector('.upload-button').addEventListener('click', function(event) {
+      const confirmed = confirm('This will replace all currently added courses. Are you sure?');
+      if (!confirmed) {
+        event.preventDefault(); // Prevent form submission if not confirmed
       }
     });
   });

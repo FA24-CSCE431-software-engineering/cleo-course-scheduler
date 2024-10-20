@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DegreePlannersController < ApplicationController
+class DegreePlannerController < ApplicationController
   before_action :set_student
   skip_before_action :authenticate_student_login! if Rails.env.test?
 
@@ -17,7 +17,7 @@ class DegreePlannersController < ApplicationController
 
     if @student_course.save
       flash[:success] = 'Course added successfully!'
-      redirect_to degree_planners_path
+      redirect_to degree_planner_path
     else
       flash[:error] = 'Error adding course.'
       render :show
