@@ -65,11 +65,9 @@
   %>
   <div class="student-actions">
     <ul class="actions-list">
-      <li><%= link_to 'Edit Profile', edit_student_path(current_student_login.uid), class: 'action-button' %></li>
+      <li><%= link_to 'Profile', profile_student_path(current_student_login), class: 'action-button' %></li>
       <li><%= link_to 'View Default Degree Plan', degree_plan_path, class: 'action-button' %></li>
       <li><%= link_to 'Build Your Degree Planner', student_degree_planner_path(@student&.google_id), class: 'action-button' %></li>
-      <li><%= link_to 'Download Degree Plan', '#', class: 'action-button' %></li>
-      <li><%= link_to 'Import Existing Degree Planner', '#', class: 'action-button' %></li>
       <li><%= link_to 'Interest Form', '#', class: 'action-button' %></li>
     </ul>
   </div>
