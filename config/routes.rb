@@ -36,6 +36,14 @@ Rails.application.routes.draw do
         get :confirm_destroy
       end
     end
+    resources :support do
+      collection do
+        get 'index'
+        get 'deployment'
+        get 'other'
+      end
+    end
+        
     get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
 
@@ -78,10 +86,6 @@ Rails.application.routes.draw do
   resources :support do
     collection do
       get 'index'
-      get 'student'
-      get 'admin'
-      get 'deployment'
-      get 'other'
     end
   end
 

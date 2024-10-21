@@ -1,0 +1,16 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Support Page</title>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <%= render 'shared/navbar' %>
+  <h1>Support</h1>
+  <h2>Available Support Pages</h2>
+  <ul>
+    <li><%= link_to 'Deployment Support', deployment_admin_support_index_path %></li>
+    <li><%= link_to 'Other Support', other_admin_support_index_path %></li>
+  </ul>
+</body>
