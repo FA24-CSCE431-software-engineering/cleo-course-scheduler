@@ -36,6 +36,14 @@ Rails.application.routes.draw do
         get :confirm_destroy
       end
     end
+    resources :support do
+      collection do
+        get 'index'
+        get 'deployment'
+        get 'other'
+      end
+    end
+        
     get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
 
@@ -61,11 +69,14 @@ Rails.application.routes.draw do
       get 'confirm_destroy'
     end
 
-    resource :degree_planner, only: [:show], controller: 'degree_planners' do
+    resource :degree_planner, only: [:show], controller: 'degree_planner' do
       patch :update_plan, on: :member
       post :generate_custom_plan, on: :member
       delete 'remove_course', on: :member
-      post 'download_plan', on: :member, to: 'degree_planners#download_plan'
+      get :download_plan, on: :member
+      delete :clear_courses, on: :member
+      post :set_default, on: :member
+      post :upload_plan, on: :member
     end
   end
 
@@ -74,10 +85,7 @@ Rails.application.routes.draw do
   # Support pages
   resources :support do
     collection do
-      get 'student'
-      get 'admin'
-      get 'deployment'
-      get 'other'
+      get 'index'
     end
   end
 

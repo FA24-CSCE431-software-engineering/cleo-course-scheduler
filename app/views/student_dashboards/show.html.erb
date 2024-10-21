@@ -25,7 +25,7 @@
 
     <div class="user-info">
       <%# Display the student's avatar. If no avatar is available, a default image is used. %>
-      <%= link_to image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'avatar'), profile_student_path(current_student_login) %>
+      <%= link_to image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'profile-avatar'), profile_student_path(current_student_login) %>
     </div>
   </div>
 
@@ -38,7 +38,8 @@
     <span class="close-button" id="close-button">&times;</span>
     <%= link_to 'Home', student_dashboard_path, class: 'sidebar-link' %> <br>
     <%= link_to 'Profile', profile_student_path(current_student_login), class: 'sidebar-link' %> <br>
-    <%= link_to 'Degree Planner', degree_plan_path, class: 'sidebar-link' %> <br>
+    <%= link_to 'Degree Planner', student_degree_planner_path(@student&.google_id), class: 'sidebar-link' %> <br>
+    <%= link_to 'Support', support_index_path, class: 'sidebar-link' %> <br>
     <%= link_to 'Sign Out', destroy_student_login_session_path, class: 'sidebar-link logout-button' %>
   </div>
 
@@ -65,11 +66,9 @@
   %>
   <div class="student-actions">
     <ul class="actions-list">
-      <li><%= link_to 'Edit Profile', edit_student_path(current_student_login.uid), class: 'action-button' %></li>
+      <li><%= link_to 'Profile', profile_student_path(current_student_login), class: 'action-button' %></li>
       <li><%= link_to 'View Default Degree Plan', degree_plan_path, class: 'action-button' %></li>
       <li><%= link_to 'Build Your Degree Planner', student_degree_planner_path(@student&.google_id), class: 'action-button' %></li>
-      <li><%= link_to 'Download Degree Plan', '#', class: 'action-button' %></li>
-      <li><%= link_to 'Import Existing Degree Planner', '#', class: 'action-button' %></li>
       <li><%= link_to 'Interest Form', '#', class: 'action-button' %></li>
     </ul>
   </div>
