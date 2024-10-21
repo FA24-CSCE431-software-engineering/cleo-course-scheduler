@@ -77,6 +77,7 @@ Rails.application.routes.draw do
   # Support pages
   resources :support do
     collection do
+      get 'index'
       get 'student'
       get 'admin'
       get 'deployment'
