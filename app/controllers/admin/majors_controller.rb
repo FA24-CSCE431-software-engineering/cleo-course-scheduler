@@ -1,6 +1,8 @@
 
 module Admin
   class MajorsController < ApplicationController
+    include AdminAuthentication
+    
     skip_before_action :authenticate_student_login! if Rails.env.test?
     before_action :set_major, only: %i[show edit update destroy confirm_destroy]
 
