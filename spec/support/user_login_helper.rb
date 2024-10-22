@@ -6,11 +6,12 @@ module UserLoginHelper
         email: 'JohnDoe@gmail.com',
         full_name: 'John Doe',
         uid: '12345',
-        avatar_url: nil
+        avatar_url: nil,
+        is_admin?: false
       )
       allow_any_instance_of(ApplicationController).to receive(:current_student_login).and_return(student_login)
   
-      student = instance_double(Student, google_id: '12345')
+      student = instance_double(Student, google_id: '12345', is_admin: false)
       allow(Student).to receive(:find).and_return(student)
     end
 
@@ -20,7 +21,8 @@ module UserLoginHelper
         email: 'JohnDoe@gmail.com',
         full_name: 'John Doe',
         uid: '12345',
-        avatar_url: nil
+        avatar_url: nil,
+        is_admin?: true
       )
       allow_any_instance_of(ApplicationController).to receive(:current_student_login).and_return(student_login)
 
