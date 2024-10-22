@@ -4,13 +4,6 @@ require 'rails_helper'
 RSpec.describe "Courses", type: :request do
   let!(:course) { Course.create(cnumber: 431, cname: "Software Engineering", ccode: "CSCE", credit_hours: 3) }
 
-  # describe "GET /confirm_destroy" do
-  #   it "returns http success" do
-  #     get "/courses/confirm_destroy"
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
-
   # Students should not be able to view courses
   describe "GET admin/courses/index" do
     include_context "logged in student"
