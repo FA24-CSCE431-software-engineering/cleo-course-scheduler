@@ -52,34 +52,33 @@ RSpec.describe "Emphases", type: :request do
   end
 
   # Admins should be able to update a emphases
-  # describe "PATCH /admin/emphases/:id" do
-  #   include_context "logged in admin"
-  #   context "with valid parameters" do
-  #     it "updates the emphasis and redirects" do
-  #       patch admin_emphases_path(emphasis), params: { emphasis: { ename: "Updated Emphasis" } }
+  describe "PATCH /admin/emphases/:id" do
+    include_context "logged in admin"
+    context "with valid parameters" do
+      it "updates the emphasis and redirects" do
+        patch admin_emphasis_path(emphasis), params: { emphasis: { ename: "Updated Emphasis" } }
         
-  #       emphasis.reload
-  #       expect(emphasis.ename).to eq("Updated Emphasis")
-  #       expect(response).to redirect_to(admin_emphases_path)
-  #     end
-  #   end
-  # end
+        emphasis.reload
+        expect(emphasis.ename).to eq("Updated Emphasis")
+        expect(response).to redirect_to(admin_emphases_path)
+      end
+    end
 
-  #   context "with invalid parameters" do
-  #     it "re-renders the edit template" do
-  #       patch admin_major_path(major), params: { major: { cname: "", mname: "" } }
-  #       expect(response).to render_template(:edit)
-  #     end
-  #   end
-  # end
+    context "with invalid parameters" do
+      it "re-renders the index template" do
+        patch admin_emphasis_path(emphasis), params: { emphasis: { ename: "" } }
+        expect(response).to render_template(:index)
+      end
+    end
+  end
 
   # Admins should be able to delete a emphases
-  # describe "DELETE /admin/emphases/:id" do
-  #   include_context "logged in admin"
-  #   it "deletes the emphasis and redirects" do
-  #     delete admin_emphases_path(emphasis)
-  #     expect(response).to redirect_to(admin_emphases_path)
-  #     expect(Emphasis.exists?(emphasis.id)).to be_falsey
-  #   end
-  # end
+  describe "DELETE /admin/emphases/:id" do
+    include_context "logged in admin"
+    it "deletes the emphasis and redirects" do
+      delete admin_emphasis_path(emphasis)
+      expect(response).to redirect_to(admin_emphases_path)
+      expect(Emphasis.exists?(emphasis.id)).to be_falsey
+    end
+  end
 end
