@@ -1,6 +1,8 @@
 
 module Admin
   class CoreCategoriesController < ApplicationController
+    include AdminAuthentication
+    
     before_action :set_core_category, only: %i[edit update destroy confirm_destroy]
     skip_before_action :authenticate_student_login! if Rails.env.test?
 

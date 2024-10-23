@@ -1,64 +1,84 @@
-
-=begin
 require 'rails_helper'
 
 RSpec.describe "Emphases", type: :request do
-  describe "GET /confirm_destroy" do
+  let!(:emphasis) { Emphasis.create(ename: "Emphasis") } # Create a emphasis for testing
+
+  # Students should not be able to view emphases
+  describe "GET admin/emphases/index" do
+    include_context "logged in student"
+    it "returns http redirect" do
+      get admin_emphases_path
+      expect(response).to have_http_status(:redirect)
+    end
+  end
+
+  # Admins should be able to view emphases
+  describe "GET admin/emphases/index" do
+    include_context 'logged in admin'
     it "returns http success" do
-      get "/emphases/confirm_destroy"
+      get admin_emphases_path
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /destroy" do
+  # Admins should be able to update a emphases
+  describe "GET /admin/emphases/:id" do
+    include_context "logged in admin"
     it "returns http success" do
-      get "/emphases/destroy"
+      get admin_emphasis_path(emphasis)
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /edit" do
-    it "returns http success" do
-      get "/emphases/edit"
-      expect(response).to have_http_status(:success)
+  # Admins should be able to create a emphases
+  describe "POST /admin/emphases" do
+    include_context "logged in admin"
+    context "with valid parameters" do
+      it "creates a new emphasis and redirects" do
+        expect {
+          post admin_emphases_path, params: { emphasis: { ename: "Mathematics" } }
+        }.to change(Emphasis, :count).by(1)
+
+        expect(response).to redirect_to(admin_emphases_path)
+      end
+    end
+
+    context "with invalid parameters" do
+      it "re-renders the new template" do
+        post admin_emphases_path, params: { emphasis: { ename: "" } }
+        expect(response).to render_template(:index)
+      end
     end
   end
 
-  describe "GET /index" do
-    it "returns http success" do
-      get "/emphases/index"
-      expect(response).to have_http_status(:success)
+  # Admins should be able to update a emphases
+  describe "PATCH /admin/emphases/:id" do
+    include_context "logged in admin"
+    context "with valid parameters" do
+      it "updates the emphasis and redirects" do
+        patch admin_emphasis_path(emphasis), params: { emphasis: { ename: "Updated Emphasis" } }
+        
+        emphasis.reload
+        expect(emphasis.ename).to eq("Updated Emphasis")
+        expect(response).to redirect_to(admin_emphases_path)
+      end
+    end
+
+    context "with invalid parameters" do
+      it "re-renders the index template" do
+        patch admin_emphasis_path(emphasis), params: { emphasis: { ename: "" } }
+        expect(response).to render_template(:index)
+      end
     end
   end
 
-  describe "GET /new" do
-    it "returns http success" do
-      get "/emphases/new"
-      expect(response).to have_http_status(:success)
+  # Admins should be able to delete a emphases
+  describe "DELETE /admin/emphases/:id" do
+    include_context "logged in admin"
+    it "deletes the emphasis and redirects" do
+      delete admin_emphasis_path(emphasis)
+      expect(response).to redirect_to(admin_emphases_path)
+      expect(Emphasis.exists?(emphasis.id)).to be_falsey
     end
   end
-
-  describe "GET /show" do
-    it "returns http success" do
-      get "/emphases/show"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /update" do
-    it "returns http success" do
-      get "/emphases/update"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /create" do
-    it "returns http success" do
-      get "/emphases/create"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
 end
-=end
-

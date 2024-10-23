@@ -1,5 +1,7 @@
 module Admin
     class StudentCoursesController < ApplicationController
+        include AdminAuthentication
+        
         before_action :set_student_course, only: %i[edit update destroy confirm_destroy]
     
         # This bypass the authentication for testing purposes
