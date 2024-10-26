@@ -18,6 +18,13 @@ RSpec.describe CoreCategory, type: :core_categories do
     end
   end
 
+  context 'When creating an invalid category' do
+    it 'is invalid with non alphanumeric cname' do
+      invalid_core_category = CoreCategory.create(cname: '!!')
+      expect(invalid_core_category).to be_invalid
+    end
+  end
+
   context 'When creating a duplicate category' do
     it 'is invalid with duplicate cname' do
       dup_core_category = CoreCategory.new(cname: core_category.cname)
