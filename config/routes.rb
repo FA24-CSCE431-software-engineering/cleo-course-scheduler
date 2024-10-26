@@ -67,6 +67,8 @@ Rails.application.routes.draw do
       get 'profile'
       get 'edit'
       get 'confirm_destroy'
+      get 'degree_planner', to: 'degree_planner#show'
+    post 'degree_planner', to: 'degree_planner#generate_custom_plan'
     end
 
     resource :degree_planner, only: [:show], controller: 'degree_planner' do
