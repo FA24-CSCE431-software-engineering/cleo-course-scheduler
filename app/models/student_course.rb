@@ -13,4 +13,5 @@ class StudentCourse < ApplicationRecord
   validates :sem, numericality: { only_integer: true, greater_than: 0 }
 
   validates :course_id, uniqueness: { scope: :student_id, message: 'has already been added for this student.' }
+  
 end

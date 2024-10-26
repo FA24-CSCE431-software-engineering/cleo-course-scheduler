@@ -31,7 +31,6 @@
 
         <!-- Dropdown Menu -->
         <div class="profile-dropdown-menu" id="dropdown-menu">
-          <%= link_to 'Settings', '#', class: 'profile-dropdown-link' %>
           <%= link_to 'Sign Out', destroy_student_login_session_path, method: :delete, class: 'profile-dropdown-link' %>
         </div>
       </div>
@@ -46,8 +45,6 @@
     <%# Close button to hide the sidebar when clicked %>
     <span class="close-button" id="close-button">&times;</span>
     <%= link_to 'Home', admin_dashboard_path, class: 'sidebar-link' %> <br>
-    <%= link_to 'Profile', profile_student_path(current_student_login), class: 'sidebar-link' %> <br>
-    <%= link_to 'Degree Planner', degree_plan_path, class: 'sidebar-link' %> <br>
     <%= link_to 'Sign Out', destroy_student_login_session_path, class: 'sidebar-link logout-button' %>
   </div>
 
