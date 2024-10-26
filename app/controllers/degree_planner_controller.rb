@@ -44,18 +44,22 @@ class DegreePlannerController < ApplicationController
   def update_plan
     selected_course_id = params[:add_course].to_i
     semester = params[:sem].to_i
-
-    if selected_course_id.positive? && semester.between?(1, 10)
-      StudentCourse.find_or_create_by(student_id: @student.id, course_id: selected_course_id) do |sc|
-        sc.sem = semester
+  
+    if selected_course_id.positive? && semester.between?(1, 8)
+      student_course = StudentCourse.new(student_id: @student.id, course_id: selected_course_id, sem: semester)
+  
+      if student_course.save
+        flash[:success] = 'Course added successfully!'
+      else
+        flash[:error] = student_course.errors.full_messages.to_sentence
       end
     else
-      puts "Invalid course ID or semester value: Course ID - #{selected_course_id}, Semester - #{semester}"
+      flash[:error] = "Invalid course ID or semester value: Course ID - #{selected_course_id}, Semester - #{semester}"
     end
-
+  
     redirect_to student_degree_planner_path(@student)
   end
-
+  
   def remove_course
     student_course = StudentCourse.find_by(student_id: @student.id, course_id: params[:course_id])
 

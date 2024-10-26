@@ -6,11 +6,17 @@
 </head>
 
 <body>
+
   <%= render 'shared/navbar_student' %>
 
   <%# Main heading for the degree planner page %>
   <div class="degreeplan-body">
     <h1 class="degreeplan-title">Your Degree Planner</h1>
+      <% if flash[:success] %>
+        <div class="alert alert-success"><%= flash[:success] %></div>
+      <% elsif flash[:error] %>
+        <div class="alert alert-danger"><%= flash[:error] %></div>
+      <% end %>
 
     <%# 
       Form to add a new course to a specific semester.
@@ -27,9 +33,10 @@
       %>
 
       <%= label_tag :sem, "Semester" %>
-      <%= number_field_tag :sem, nil, min: 1, max: 8 %>
+      <%= number_field_tag :sem, nil, min: 1, max: 20, id: 'semester-input' %> <!-- Add an ID here -->
 
       <%= f.submit "Add Course", class: 'add-course-button' %>
+
     <% end %>
 
     <div class="setting-buttons">
@@ -84,15 +91,42 @@
     </div>
 
     <%# 
+      Action buttons for saving and downloading the degree plan.
+      These forms allow the user to either save or download the current plan.
+    %>
+    <div class="action-buttons">
+      <%= form_with url: upload_plan_student_degree_planner_path(@student), method: :post, html: { multipart: true } do |f| %>
+          <div class="form-group">
+              <%= label_tag :file, "Upload CSV" %>
+              <%= file_field_tag :file, class: 'form-control' %>
+          </div>
+          <div class="button-group">
+              <%= f.submit "Upload Degree Plan", class: "action-button upload-button", data: { confirm: 'This will replace all currently added courses. Are you sure?' } %>
+          </div>
+      <% end %>
+      
+      <%= form_with url: download_plan_student_degree_planner_path(@student, format: :csv), method: :get do |f| %>
+          <div class="button-group">
+              <%= f.submit 'Download Degree Plan', class: 'action-button download-button' %>
+          </div>
+      <% end %>
+    </div>
+
+
+    <%# 
       Form to generate a degree planner based on the student's selected interests.
       Includes fields for track, emphasis area, and targeted graduation year.
     %>
     <h2 class="generate-form-title">Generate Based on Interests</h2>
     <%= form_with url: student_degree_planner_path(@student), method: :post, class: "generate-form" do |f| %>
+      
+      <!--
       <div class="generate_form-group">
         <%= label_tag :track_id, "Track", class: "generate-label" %>
         <%= select_tag "interests[track_id]", options_from_collection_for_select(Track.all, :id, :tname), class: 'interest-select' %>
       </div>
+      -->
+
 
       <div class="generate_form-group">
         <%= label_tag :emphasis_area, "Emphasis Area", class: "generate-label" %>
@@ -108,23 +142,7 @@
     <% end %>
     <br>
 
-    <%# 
-      Action buttons for saving and downloading the degree plan.
-      These forms allow the user to either save or download the current plan.
-    %>
-    <div class="action-buttons">
-      <%= form_with url: upload_plan_student_degree_planner_path(@student), method: :post, html: { multipart: true } do |f| %>
-        <div class="form-group">
-          <%= label_tag :file, "Upload CSV File" %>
-          <%= file_field_tag :file, class: 'form-control' %>
-        </div>
-        <%= f.submit "Upload Degree Plan", class: "action-button upload-button", data: { confirm: 'This will replace all currently added courses. Are you sure?' } %>
-      <% end %>
-      
-      <%= form_with url: download_plan_student_degree_planner_path(@student, format: :csv), method: :get do |f| %>
-        <%= f.submit 'Download Degree Plan', class: 'action-button download-button' %>
-      <% end %>
-    </div>
+    
 
   <script>
     <%# 
@@ -220,6 +238,27 @@
         }
       });
     });
+    //show a red box for semester if the semester number is not selected 
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Existing code...
+
+      document.querySelector('.add-course-button').addEventListener('click', function(event) {
+        const semesterInput = document.getElementById('semester-input');
+        const semesterValue = semesterInput.value;
+
+        // Reset the border style
+        semesterInput.style.border = '';
+
+        if (!semesterValue || semesterValue < 1 || semesterValue > 20) {
+          // If the semester input is empty or not within the allowed range
+          semesterInput.style.border = '2px solid red'; // Add red border
+          event.preventDefault(); // Prevent form submission
+        }
+      });
+    });
+
+
   </script>
   </div>
 </body>

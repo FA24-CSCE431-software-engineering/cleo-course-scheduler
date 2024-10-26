@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:edit, :update, :show, :destroy]
+  before_action :authenticate_admin!, only: [:index] # Ensure only admin can access index
   skip_before_action :authenticate_student_login! if Rails.env.test?
 
   def index
@@ -97,6 +98,12 @@ class StudentsController < ApplicationController
     @student = Student.find_by(google_id: params[:google_id])
     if @student.nil?
       raise ActiveRecord::RecordNotFound, "Couldn't find Student with google_id=#{params[:google_id]}."
+    end
+  end
+
+  def authenticate_admin!
+    unless current_student_login.is_admin?
+      redirect_to student_dashboard_path(current_student_login.google_id), alert: "You are not authorized to access this page."
     end
   end
 
