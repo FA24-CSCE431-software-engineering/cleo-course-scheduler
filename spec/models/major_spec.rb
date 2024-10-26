@@ -18,6 +18,13 @@ RSpec.describe Major, type: :model do
     end
   end
 
+  context 'When creating an invalid major' do
+    it 'is invalid with non alphanumeric name' do
+      invalid_major = Major.create(mname: '!!', cname: major.cname)
+      expect(invalid_major).to be_invalid
+    end
+  end
+
   context 'When creating a duplicate major' do
     it 'is invalid with duplicate mname, cname' do
       dup_major = Major.new(mname: major.mname, cname: major.cname)
