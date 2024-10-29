@@ -64,7 +64,7 @@ RSpec.describe 'StudentCourses', type: :request do
   describe 'POST /create' do
     it 'creates a new StudentCourse and returns a redirect' do
       post student_courses_path, params: { student_course: valid_attributes }
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:redirect)
     end
   end
 
