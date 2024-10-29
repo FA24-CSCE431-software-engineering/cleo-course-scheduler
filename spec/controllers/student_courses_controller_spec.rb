@@ -14,12 +14,12 @@ RSpec.describe StudentCoursesController, type: :controller do
 
   describe 'POST #create' do
     let(:major) { Major.create!(mname: 'Test Major1', cname: 'Test Major Full Name1') }
-    let(:student) { Student.create!(first_name: 'Test1', last_name: 'Student1', email: 'test1@student.com', google_id: '123457', enrol_year: 2023, grad_year: 2025, enrol_semester: 'spring', grad_semester: 'spring', major: major) }
+    let(:student) { Student.create!(first_name: 'Test', last_name: 'Student', email: 'test1@student.com', google_id: '123457', enrol_year: 2023, grad_year: 2025, enrol_semester: 'spring', grad_semester: 'spring', major: major) }
     let(:course) { Course.create!(cname: 'Test Course1', ccode: 'TESS', cnumber: 102) }
 
     it 'creates a new StudentCourse and redirects with a success notice' do
         expect {
-            post :create, params: { student_course: { student_id: student.id, course_id: course.id, sem: 'fall' } }
+            post :create, params: { student_course: { student_id: student.id, course_id: course.id, sem: '1' } }
           }.to change(StudentCourse, :count).by(1)
       
         expect(response).to redirect_to(student_courses_path(student_id: student.id))
@@ -28,7 +28,7 @@ RSpec.describe StudentCoursesController, type: :controller do
 
     it 'renders :new with an alert when the StudentCourse is invalid' do
         expect {
-          post :create, params: { student_course: { student_id: student.id, course_id: nil, sem: 'fall' } }
+          post :create, params: { student_course: { student_id: student.id, course_id: nil, sem: '1' } }
         }.to change(StudentCourse, :count).by(0)  
   
         expect(response).to render_template(:new) 
@@ -41,7 +41,7 @@ RSpec.describe StudentCoursesController, type: :controller do
     let(:major) { Major.create!(mname: 'Test Major', cname: 'Test Major Full Name') } 
     let(:student) { Student.create!(first_name: 'Test', last_name: 'Student', email: 'test@student.com', google_id: '123456', enrol_year: 2023, grad_year: 2025, enrol_semester: 'spring', grad_semester: 'spring', major: major) }
     let(:course) { Course.create!(cname: 'Test Course', ccode: 'TEST', cnumber: 101) }
-    let!(:student_course) { StudentCourse.create!(student: student, course: course, sem: 'fall') }
+    let!(:student_course) { StudentCourse.create!(student: student, course: course, sem: '1') }
 
     it 'redirects to student_courses_path with a success notice' do
       patch :update, params: { student_id: student.id, course_id: course.id, student_course: { course_id: course.id } }
