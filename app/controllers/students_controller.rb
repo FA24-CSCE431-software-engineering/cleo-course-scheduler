@@ -88,6 +88,10 @@ class StudentsController < ApplicationController
     end
   end
 
+  def degree_planner
+    redirect_to student_degree_planner_path(current_student_login.uid)
+  end
+
   
 
 

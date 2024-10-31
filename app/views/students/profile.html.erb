@@ -31,7 +31,8 @@
       </div>
       <div class="credits-scale-bar">
         
-      <div class="credits-scale-fill" style="width: <%= (@student.total_credits_completed || 0) / 126.0 * 100 %>%"></div>
+      <div class="credits-scale-fill" style="width: <%= ((@student.total_credits_completed || 0) / 126.0 * 100).round(2) %>%"></div>
+
       </div>
       <div class="credits-scale-markers">
         <span>Year 0</span>
@@ -45,8 +46,6 @@
     </div>
 
     <%= link_to 'Edit Profile', edit_student_path(@student.google_id), class: 'profile-edit-link' %> 
-    
-
   </div>
 
   <!-- JavaScript for toggling dropdown -->

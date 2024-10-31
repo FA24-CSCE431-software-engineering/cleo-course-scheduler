@@ -76,7 +76,26 @@ class DegreePlannerController < ApplicationController
     end
   end
 
-  def generate_custom_plan; end
+  # In DegreePlannerController
+  def generate_custom_plan
+    planner_service = DegreePlannerService.new(@student, params[:interests][:emphasis_area])
+    planned_courses = planner_service.generate_plan
+    
+    # Clear existing courses
+    destroy_student_courses
+    
+    # Create new student course records
+    planned_courses.each do |course_info|
+      StudentCourse.create!(
+        student: @student,
+        course: course_info[:course],
+        sem: course_info[:semester]
+      )
+    end
+    
+    flash[:success] = 'Degree plan generated successfully!'
+    redirect_to student_degree_planner_path(@student)
+  end
 
   def download_plan
     @student_courses = StudentCourse.where(student_id: @student.id).order(:sem)

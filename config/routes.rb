@@ -67,6 +67,8 @@ Rails.application.routes.draw do
       get 'profile'
       get 'edit'
       get 'confirm_destroy'
+      get 'degree_planner', to: 'degree_planner#show'
+    post 'degree_planner', to: 'degree_planner#generate_custom_plan'
     end
 
     resource :degree_planner, only: [:show], controller: 'degree_planner' do
@@ -95,6 +97,7 @@ Rails.application.routes.draw do
   # Root route
   root 'home#index'
   get 'courses/:id', to: 'courses#show'
+
 
   # Health check
   get 'up' => 'rails/health#show', as: :rails_health_check
