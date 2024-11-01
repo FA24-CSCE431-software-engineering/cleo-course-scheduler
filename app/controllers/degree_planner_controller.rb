@@ -9,6 +9,7 @@ class DegreePlannerController < ApplicationController
   def show
     @default_plan = DegreeRequirement.includes(:course).where(major: @student.major)
     @student_courses = StudentCourse.includes(:course).where(student: @student).order(:sem)
+    @course_prerequisite_status = check_prerequisites(@student, @student_courses)
   end
 
   def add_course
@@ -131,6 +132,46 @@ class DegreePlannerController < ApplicationController
 
   def destroy_student_courses
     @student.student_courses.destroy_all
+  end
+
+  def check_prerequisites(student, courses)
+    courses_added = student.student_courses.includes(:course)
+    courses_by_semester = courses_added.group_by(&:sem)
+    
+    # Check prerequisites for each course
+    courses.map do |student_course|
+      course = student_course.course
+      current_semester = student_course.sem
+      
+      # Get all courses planned in previous semesters
+      previous_courses = courses_by_semester
+        .select { |sem, _| sem <= current_semester }
+        .values
+        .flatten
+        .map(&:course)
+      
+      # Get prerequisite groups for the current course
+      prereq_groups = course.prerequisite_groups
+      
+      # Check if each prerequisite group is satisfied
+      missing_prereqs = []
+      
+      prereq_groups.each do |equi_id, prereq_courses|
+        # Check if any course from this equivalent group is taken
+        unless prereq_courses.any? { |prereq| previous_courses.include?(prereq) }
+          missing_prereqs << {
+            equi_id: equi_id,
+            courses: prereq_courses
+          }
+        end
+      end
+
+      {
+        student_course: student_course,
+        prerequisites_met: missing_prereqs.empty?,
+        missing_prerequisites: missing_prereqs
+      }
+    end
   end
 
   # ======== Helper functions for uploading / downloading csv files ========
