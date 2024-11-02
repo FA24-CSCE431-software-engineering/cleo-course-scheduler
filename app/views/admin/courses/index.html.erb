@@ -6,6 +6,14 @@
 
 <%= link_to 'New Course', new_admin_course_path, class: 'btn btn-primary' %>
 
+<div class="mt-4">
+  <h2>Import Courses via CSV</h2>
+  <%= form_with url: import_admin_courses_path, local: true, multipart: true, class: 'form-inline' do |form| %>
+    <%= form.file_field :file, accept: '.csv', class: 'form-control' %>
+    <%= form.submit 'Import CSV', class: 'btn btn-secondary ml-2' %>
+  <% end %>
+</div>
+
 <table>
   <thead>
     <tr>
