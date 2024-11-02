@@ -1,0 +1,9 @@
+Course Code,Course Number,Course Name,Credit Hours,Lecture Hours,Lab Hours,Description,Prereq 1,Prereq 2,Prereq 3
+CSCE,110,Programming I,4,3,2,"Introductory programming course.",,,
+CSCE,111,Introduction to Computer Science,4,3,2,"Fundamentals of computer science.",CSCE 110,,
+CSCE,120,Program Design and Concepts,3,3,1,"Advanced programming concepts using C++.",CSCE 110,CSCE 111,
+CSCE,221,Data Structures,4,3,2,"Study of data structures including stacks, queues, and trees.",CSCE 120,CSCE 206,CSCE 121
+MATH,101,Calculus I,4,3,1,"Introductory calculus for science and engineering.",,,
+MATH,102,Calculus II,4,3,1,"Continuation of Calculus I.",MATH 101,,
+PHYS,201,Physics I,4,3,1,"Fundamentals of classical mechanics.",,,
+PHYS,202,Physics II,4,3,1,"Continuation of Physics I with electricity and magnetism.",PHYS 201,,
