@@ -70,17 +70,32 @@
               </tr>
             </thead>
             <tbody id="semester-<%= sem %>-courses">
-              <% @student.student_courses.where(sem: sem).each do |student_course| %>
-                <tr id="course-<%= student_course.course.id %>-semester-<%= sem %>">
-                  <td><%= "#{student_course.course.ccode} #{student_course.course.cnumber}" %></td> 
+              <% @course_prerequisite_status.select { |status| status[:student_course].sem == sem }.each do |course_status| %>
+                <% student_course = course_status[:student_course] %>
+                <tr 
+                  id="course-<%= student_course.course.id %>-semester-<%= sem %>"
+                  class="<%= course_status[:prerequisites_met] ? '' : 'prerequisite-warning' %>"
+                >
+                  <td>
+                    <%= "#{student_course.course.ccode} #{student_course.course.cnumber}" %>
+                    <% unless course_status[:prerequisites_met] %>
+                      <span 
+                        class="prerequisite-warning-icon" 
+                        data-course-id="<%= student_course.course.id %>"
+                        title="Missing Prerequisites"
+                      >
+                        ⚠️
+                      </span>
+                    <% end %>
+                  </td>
                   <td><%= student_course.course.cname %></td>
                   <td><%= student_course.course.credit_hours %></td>
                   <td>
-                    <%# Link to remove the course from the semester %>
                     <%= link_to 'Remove', remove_course_student_degree_planner_path(@student, course_id: student_course.course.id), 
-                                  method: :delete, 
-                                  data: { confirm: "Are you sure you want to remove this course?" }, 
-                                  class: 'remove-course-button' %>
+                      method: :delete, 
+                      data: { confirm: "Are you sure you want to remove this course?" }, 
+                      class: 'remove-course-button' 
+                    %>
                   </td>
                 </tr>
               <% end %>
@@ -257,8 +272,63 @@
         }
       });
     });
-
+    
 
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const warningIcons = document.querySelectorAll('.prerequisite-warning-icon');
+      let activeTooltip = null;
+
+      warningIcons.forEach(icon => {
+        const courseStatus = <%= raw @course_prerequisite_status.to_json %>;
+        const courseId = icon.getAttribute('data-course-id');
+        const status = courseStatus.find(s => s.student_course.course_id.toString() === courseId);
+
+        icon.addEventListener('mouseover', function(e) {
+          const tooltip = document.createElement('div');
+          tooltip.className = 'prerequisite-tooltip';
+          
+          // Create tooltip content
+          let content = '<strong>Missing Prerequisites:</strong><br>';
+          status.missing_prerequisites.forEach(group => {
+            content += '<div class="prerequisite-group">';
+            content += 'Need one of:<br>';
+            group.courses.forEach(course => {
+              if (course.cname) {
+                content += `- ${course.ccode} ${course.cnumber}: ${course.cname}<br>`;
+              } else {
+                content += `- ${course.ccode} ${course.cnumber}<br>`;
+              }
+            });
+            content += '</div>';
+          });
+          
+          tooltip.innerHTML = content;
+          
+          // Position tooltip
+          tooltip.style.left = `${e.pageX + 10}px`;
+          tooltip.style.top = `${e.pageY + 10}px`;
+          
+          // Remove any existing tooltip
+          if (activeTooltip) {
+            activeTooltip.remove();
+          }
+          
+          // Add new tooltip
+          document.body.appendChild(tooltip);
+          activeTooltip = tooltip;
+        });
+
+        icon.addEventListener('mouseout', function() {
+          if (activeTooltip) {
+            activeTooltip.remove();
+            activeTooltip = null;
+          }
+        });
+      });
+    });
+    </script>
   </div>
 </body>
