@@ -563,4 +563,34 @@
 }
 
 
+.prerequisite-warning {
+    background-color: #ffebee;
+}
 
+.prerequisite-warning-icon {
+    margin-left: 5px;
+    cursor: help;
+}
+
+.prerequisite-tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.prerequisite-group {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.prerequisite-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
