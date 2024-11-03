@@ -1,0 +1,5 @@
+<h1>Confirm Delete Prerequisite</h1>
+<p>Are you sure you want to delete this prerequisite?</p>
+
+<%= link_to 'Yes, delete', prerequisite_path(@prerequisite), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'No, go back', prerequisites_path %>
