@@ -1,0 +1,22 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% content_for :title, "Admin Help - Emphases Page" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <%= render 'shared/navbar_student' %>
+  <%= render 'shared/navbar' %>
+
+  <h1>Manage Emphases</h1>
+
+  <p>This page allows you to manage emphases available within degree programs. Each emphasis entry displays a <strong>Name</strong> and offers two actions: Edit and Delete.</p>
+
+  <h2>Existing Emphases</h2>
+  <p>The <strong>Existing Emphases</strong> table lists all current emphases. Use the Edit action to modify the name of an emphasis, and the Delete action to permanently remove an entry. 
+     <strong>Note:</strong> Once an emphasis is deleted, it cannot be recovered.</p>
+
+  <h2>Create New Emphasis</h2>
+  <p>To add a new emphasis, enter the name in the <strong>Emphasis Name</strong> field under <strong>Create New Emphasis</strong>. When ready, click <strong>Create Emphasis</strong>, and the new emphasis will appear in the <strong>Existing Emphases</strong> table.</p>
+</body>

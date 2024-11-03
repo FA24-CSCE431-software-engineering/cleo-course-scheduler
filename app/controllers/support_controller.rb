@@ -7,6 +7,12 @@ class SupportController < ApplicationController
 
   def index; end
   
+  def profile; end
+
+  def viewDefaultPlan; end
+
+  def buildPlan; end
+  
   private
 
   def set_student

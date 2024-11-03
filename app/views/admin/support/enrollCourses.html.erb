@@ -1,13 +1,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Other Support Page</title>
+  <% content_for :title, "Admin Help - Student Courses Page" %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-<%= render 'shared/navbar_student' %>
-
+  <%= render 'shared/navbar_student' %>
   <%= render 'shared/navbar' %>
-  <h1>Admin Other Support</h1>
 </body>

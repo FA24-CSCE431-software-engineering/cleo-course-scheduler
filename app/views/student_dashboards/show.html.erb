@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Dashboard</title>
+  <% content_for :title, "Student Dashboard" %>
   <%= stylesheet_link_tag 'student_dashboard', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
@@ -39,7 +39,7 @@
     <%= link_to 'Home', student_dashboard_path, class: 'sidebar-link' %> <br>
     <%= link_to 'Profile', profile_student_path(current_student_login), class: 'sidebar-link' %> <br>
     <%= link_to 'Degree Planner', student_degree_planner_path(@student&.google_id), class: 'sidebar-link' %> <br>
-    <%= link_to 'Support', support_index_path, class: 'sidebar-link' %> <br>
+    <%= link_to 'Support/Help', support_index_path, class: 'sidebar-link' %> <br>
     <%= link_to 'Sign Out', destroy_student_login_session_path, class: 'sidebar-link logout-button' %>
   </div>
 

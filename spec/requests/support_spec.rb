@@ -22,14 +22,7 @@ RSpec.describe 'Supports', type: :request do
         end
     end
 
-    # Students should not be able to access the admin other support page
-    describe 'GET /admin/support/other' do
-        include_context 'logged in student'
-        it 'returns http failure' do
-            get other_admin_support_index_path
-            expect(response).to have_http_status(:redirect)
-        end
-    end
+    
 
     # Admins should be able to access the admin support page
     describe 'GET /admin/support/index' do
@@ -49,13 +42,6 @@ RSpec.describe 'Supports', type: :request do
         end
     end
 
-    # Admins should be able to access the admin other support page
-    describe 'GET /admin/support/other' do
-        include_context 'logged in admin'
-        it 'returns http success' do
-            get other_admin_support_index_path
-            expect(response).to have_http_status(:success)
-        end
-    end
+    
   end
   

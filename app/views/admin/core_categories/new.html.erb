@@ -1,6 +1,8 @@
 
 <%= render 'shared/navbar' %>
 
+<% content_for :title, "New Core Category" %>
+
 <h1>New Core Category</h1>
 
 <%= render 'admin/core_categories/form', core_category: @core_category %>
