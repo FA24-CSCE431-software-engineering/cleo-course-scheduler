@@ -30,6 +30,9 @@ Rails.application.routes.draw do
       member do
         get :confirm_destroy
       end
+      collection do
+        post :import
+      end
     end
     resources :majors do
       member do
