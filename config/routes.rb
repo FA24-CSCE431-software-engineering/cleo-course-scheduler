@@ -43,7 +43,12 @@ Rails.application.routes.draw do
       collection do
         get 'index'
         get 'deployment'
-        get 'other'
+        get 'coreCategories'
+        get 'courses'
+        get 'emphases'
+        get 'enrollCourses'
+        get 'tracks'
+        get 'users'
       end
     end
         
@@ -84,13 +89,14 @@ Rails.application.routes.draw do
       post :upload_plan, on: :member
     end
   end
-
-  #Don't know why the admin dashboard rescources don't work but this does so i'm keeping it
   
   # Support pages
   resources :support do
     collection do
       get 'index'
+      get 'buildPlan'
+      get 'profile'
+      get 'viewDefaultPlan'
     end
   end
 

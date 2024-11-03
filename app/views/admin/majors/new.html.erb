@@ -2,6 +2,8 @@
 
 <%= render 'shared/navbar' %>
 
+<% content_for :title, "New Major" %>
+
 <h1>New Major</h1>
 
 <%= render 'admin/majors/form', major: @major %>

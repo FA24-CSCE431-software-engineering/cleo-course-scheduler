@@ -4,7 +4,9 @@
 
 <h1>Majors</h1>
 
-<%= link_to 'New Major', new_admin_major_path %>
+<% content_for :title, "Manage Major" %>
+
+<%= link_to 'New Major', new_admin_major_path, class: 'btn btn-primary' %>
 
 <table>
   <thead>

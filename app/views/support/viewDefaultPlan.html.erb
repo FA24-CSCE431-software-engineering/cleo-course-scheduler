@@ -1,0 +1,24 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% content_for :title, "Help - Default Plan" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+    <%= render 'shared/navbar_student' %>
+
+    <h1>Default Plan Page</h1>
+
+    <p>This page provides the default planner for the CSCE program. Each semester contains the following fields:</p>
+
+    <ul> 
+        <li><strong>Course Code:</strong> The major to which the course belongs.</li>
+
+        <li><strong>Course Number:</strong> The unique identification number associated with the course, related to the <strong>Course Code</strong>.</li>
+
+        <li><strong>Credits:</strong> The total number of credit hours the course offers.</li>
+    </ul>
+
+    <p><em>Note: This is a read-only page, meaning you cannot make any edits.</em></p>
+</body>
