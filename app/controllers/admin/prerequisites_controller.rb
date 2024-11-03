@@ -3,7 +3,7 @@ module Admin
     before_action :set_prerequisite, only: [:show, :edit, :update, :destroy, :confirm_destroy]
 
     def index
-      @prerequisites = Prerequisite.all
+      @course_pairs = Prerequisite.map_course_pairs
     end
 
     def show

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # Admin dashboard
   namespace :admin do
-    resources :prerequisites do
+    resources :prerequisites do 
       member do
         get :confirm_destroy
       end

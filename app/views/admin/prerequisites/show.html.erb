@@ -1,17 +1,32 @@
+<%= render 'shared/navbar_student' %>
+
 <h1>Prerequisite Details</h1>
 
-<p>
-  <strong>Course ID:</strong>
-  <%= @prerequisite.course_id %>
-</p>
-<p>
-  <strong>Prerequisite ID:</strong>
-  <%= @prerequisite.prereq_id %>
-</p>
-<p>
-  <strong>Equivalent ID:</strong>
-  <%= @prerequisite.equi_id %>
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>Course Identifier</th>
+      <th>Course Name</th>
+      <th>Prerequisites</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= "#{@prerequisite.course.ccode} #{@prerequisite.course.cnumber}" %></td>
+      <td><%= @prerequisite.course.cname %></td>
+      <td>
+        <% prerequisites = Prerequisite.where(course_id: @prerequisite.course_id).pluck(:prereq_id) %>
+        <% prerequisites.each do |prereq_id| %>
+          <% prereq_course = Course.find(prereq_id) %>
+          <p><%= "#{prereq_course.ccode} #{prereq_course.cnumber} - #{prereq_course.cname}" %></p>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to 'Edit', edit_admin_prerequisite_path(@prerequisite.course_id) %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-<%= link_to 'Edit', edit_admin_prerequisite_path(@prerequisite) %> |
 <%= link_to 'Back', admin_prerequisites_path %>
