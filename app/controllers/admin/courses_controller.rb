@@ -1,6 +1,7 @@
 
 module Admin
   class CoursesController < ApplicationController
+    include CoursesHelper
     include AdminAuthentication
     
     skip_before_action :authenticate_student_login! if Rails.env.test?
@@ -43,8 +44,10 @@ module Admin
 
     def show
       @course = Course.find(params[:id])
+      @prerequisites = Prerequisite.where(course_id: @course.id).includes(:prereq)
       render 'admin/courses/show'
     end
+    
 
     def update
       if @course.update(course_params)
@@ -70,8 +73,9 @@ module Admin
     end
 
     def course_params
-      params.require(:course).permit(:cnumber, :cname, :ccode, :description, :credit_hours, :lecture_hours, :lab_hours)  # are these enough?
+      params.require(:course).permit(:ccode, :cnumber, :cname, :description, :credit_hours, :lecture_hours, :lab_hours, prerequisite_ids: [])
     end
+
 
     def process_course_csv(file)
       csv_file = CSV.read(file.path, headers: true)
