@@ -1,0 +1,29 @@
+<%= render 'shared/navbar_student' %>
+
+<%# render 'shared/navbar' %> 
+<h1>Prerequisites Management</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Course Identifier</th> <!-- Updated header -->
+      <th>Prerequisites</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @course_pairs.each do |course_identifier, prereqs| %> <!-- Change course_id to course_identifier -->
+      <tr>
+        <td><%= course_identifier %></td> <!-- Display course identifier -->
+        <td>
+          <%= prereqs.join(' and ') %>  <!-- Join prerequisites into a string -->
+        </td>
+        <td>
+          <%= link_to 'Show', admin_prerequisite_path(course_identifier) %>
+          <%= link_to 'Edit', edit_admin_prerequisite_path(course_identifier) %>
+          <%= link_to 'Delete', confirm_destroy_admin_prerequisite_path(course_identifier), method: :get %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
