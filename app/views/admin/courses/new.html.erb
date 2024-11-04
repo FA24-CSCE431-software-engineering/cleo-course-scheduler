@@ -1,7 +1,7 @@
 <%= render 'shared/navbar_student' %>
 
 <%= render 'shared/navbar' %>
-
+<% content_for :title, "New Course" %>
 <h1>New Courses</h1>
 
 <%= render 'admin/courses/form', course: @course %>

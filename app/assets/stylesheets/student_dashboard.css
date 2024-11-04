@@ -121,6 +121,7 @@
     transition: left 0.3s ease;
     z-index: 1000;
     padding-top: 60px;
+    padding-bottom: 60x;
 }
 
 .student-dashboard .sidebar.active {
@@ -200,8 +201,10 @@
 
 .student-dashboard .logo {
     width: 150px;
+    margin-left: 20px;
     margin-right: 0px;
     margin-top: 10px;
+    align-items: center;
 }
 
 .student-dashboard .user-info {
