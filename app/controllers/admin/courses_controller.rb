@@ -93,12 +93,22 @@ module Admin
     def parse_prerequisites(prerequisites_string)
       return [] if prerequisites_string.blank?  # Return an empty array if the input is blank
     
-      # Split the string into groups based on 'or'
-      prerequisite_groups = prerequisites_string.split(/\s+or\s+/).map(&:strip)
+      # Split the string into groups based on 'and'
+      prerequisite_groups = prerequisites_string.split(/\s+and\s+/).map(&:strip)
     
-      # Split by 'and' and flatten the array
-      prerequisite_groups.flat_map { |group| group.split(/\s+and\s+/).map(&:strip) }
+      # Create an array to hold the parsed prerequisites with their respective equi_ids
+      parsed_prerequisites = []
+    
+      prerequisite_groups.each_with_index do |group, index|
+        # Split by 'or' and assign a unique equi_id for each course in the group
+        group.split(/\s+or\s+/).each do |course|
+          parsed_prerequisites << { course: course.strip, equi_id: index + 1 }
+        end
+      end
+    
+      parsed_prerequisites
     end
+    
 
 
     def set_course

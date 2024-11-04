@@ -17,9 +17,9 @@ class PrerequisiteUpdater
         current_prerequisites = @course.prerequisites
       
         # Map new prerequisites to their components
-        new_prerequisite_entries = new_prerequisites.map do |code|
-          course_id = find_course_id(code)
-          { course_id: @course.id, prereq_id: course_id, equi_id: 1 } if course_id
+        new_prerequisite_entries = new_prerequisites.map do |prereq|
+          course_id = find_course_id(prereq[:course])
+          { course_id: @course.id, prereq_id: course_id, equi_id: prereq[:equi_id] } if course_id
         end.compact
       
         Rails.logger.debug("New prerequisites entries: #{new_prerequisite_entries.inspect}")
@@ -55,6 +55,7 @@ class PrerequisiteUpdater
           Rails.logger.debug("Added new prerequisite with ID: #{new_prereq[:prereq_id]}")
         end
       end
+      
       
       
   
