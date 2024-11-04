@@ -13,7 +13,7 @@ RSpec.describe StudentCourse, type: :student_courses do
 
   context 'When creating an invalid student course' do
     it 'is invalid with missing attributes' do
-      invalid_student_course = StudentCourse.create(student: student)
+      invalid_student_course = StudentCourse.create(student:)
       expect(invalid_student_course).to be_invalid
     end
   end

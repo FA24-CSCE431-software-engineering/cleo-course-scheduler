@@ -1,12 +1,14 @@
+# frozen_string_literal: true
 
 module Admin
   class CoursesController < ApplicationController
     include AdminAuthentication
-    
+
     skip_before_action :authenticate_student_login! if Rails.env.test?
     before_action :set_course, only: %i[edit update destroy confirm_destroy]
 
-    EXPECTED_COURSE_HEADERS = ['Course Code', 'Course Number', 'Course Name', 'Credit Hours', 'Lecture Hours', 'Lab Hours', 'Description', 'Prereq 1', 'Prereq 2', 'Prereq 3'].freeze
+    EXPECTED_COURSE_HEADERS = ['Course Code', 'Course Number', 'Course Name', 'Credit Hours', 'Lecture Hours',
+                               'Lab Hours', 'Description', 'Prereq 1', 'Prereq 2', 'Prereq 3'].freeze
 
     def confirm_destroy
       @course = Course.find(params[:id])
@@ -70,7 +72,7 @@ module Admin
     end
 
     def course_params
-      params.require(:course).permit(:cnumber, :cname, :ccode, :description, :credit_hours, :lecture_hours, :lab_hours)  # are these enough?
+      params.require(:course).permit(:cnumber, :cname, :ccode, :description, :credit_hours, :lecture_hours, :lab_hours) # are these enough?
     end
 
     def process_course_csv(file)
@@ -80,7 +82,8 @@ module Admin
         import_courses_from_csv(file)
         flash[:success] = 'Course catalog uploaded successfully.'
       else
-        flash[:error] = "CSV format is incorrect. Please ensure the file has headers: #{EXPECTED_COURSE_HEADERS.join(', ')}."
+        flash[:error] =
+          "CSV format is incorrect. Please ensure the file has headers: #{EXPECTED_COURSE_HEADERS.join(', ')}."
       end
 
       redirect_to admin_courses_path
@@ -104,7 +107,7 @@ module Admin
           lecture_hours: row['Lecture Hours'],
           lab_hours: row['Lab Hours']
         )
-      
+
         ['Prereq 1', 'Prereq 2', 'Prereq 3'].each do |prereq_column|
           prereq_code = row[prereq_column]
           next if prereq_code.blank?

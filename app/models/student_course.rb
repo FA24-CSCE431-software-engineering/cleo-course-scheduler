@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class StudentCourse < ApplicationRecord
-  
-  self.primary_key = [:student_id, :course_id]
+  self.primary_key = %i[student_id course_id]
 
   belongs_to :student
   belongs_to :course
@@ -13,5 +12,4 @@ class StudentCourse < ApplicationRecord
   validates :sem, numericality: { only_integer: true, greater_than: 0 }
 
   validates :course_id, uniqueness: { scope: :student_id, message: 'has already been added for this student.' }
-  
 end

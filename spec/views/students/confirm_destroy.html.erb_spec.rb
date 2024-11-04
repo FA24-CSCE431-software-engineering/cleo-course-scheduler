@@ -23,7 +23,7 @@ RSpec.describe 'students/confirm_destroy.html.erb', type: :view do
 
   it 'renders a form to delete the student' do
     expect(rendered).to have_selector("form[action='#{student_path(student.google_id)}'][method='post']")
-    expect(rendered).to have_selector("input[name='_method'][value='delete']", visible: false) 
+    expect(rendered).to have_selector("input[name='_method'][value='delete']", visible: false)
   end
 
   it 'has a delete button with appropriate styling' do

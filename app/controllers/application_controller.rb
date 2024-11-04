@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :authenticate_student_login!
 
@@ -6,6 +8,6 @@ class ApplicationController < ActionController::Base
   private
 
   def current_student
-    current_student_login 
+    current_student_login
   end
 end
