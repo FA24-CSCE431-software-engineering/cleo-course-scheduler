@@ -21,6 +21,7 @@ module Admin
         render :new
       end
     end
+    
 
     def edit
     end
@@ -30,11 +31,14 @@ module Admin
     end
 
     def confirm_destroy
+      @prerequisite = Prerequisite.find(params[:id])
     end
+    
 
     def destroy
 
     end
+    
 
 
   
