@@ -2,6 +2,7 @@
 
 module Admin
   class CoursesController < ApplicationController
+    include CoursesHelper
     include AdminAuthentication
 
     skip_before_action :authenticate_student_login! if Rails.env.test?
@@ -45,16 +46,32 @@ module Admin
 
     def show
       @course = Course.find(params[:id])
+      @prerequisites = Prerequisite.where(course_id: @course.id).includes(:prereq)
       render 'admin/courses/show'
     end
-
+    
     def update
-      if @course.update(course_params)
-        redirect_to admin_courses_path, notice: 'Course updated successfully.'
-      else
+      # get prerequisites string
+      prerequisites_string = params[:course][:prerequisites]
+    
+      # make into array
+      new_prerequisites = parse_prerequisites(prerequisites_string)
+
+      course_updated = @course.update(course_params.except(:prerequisites)) 
+        
+      # pass course and the new prerequisites array to the updater
+      updater = PrerequisiteUpdater.new(@course, new_prerequisites)
+      updater.call
+    
+      # error checking
+      if !course_updated || @course.errors.any?
+        # group errors
         render :edit
+      else
+        redirect_to admin_course_path(@course), notice: 'Course updated successfully.'
       end
     end
+      
 
     def import
       if params[:file].present?
@@ -67,13 +84,35 @@ module Admin
 
     private
 
+    def parse_prerequisites(prerequisites_string)
+      return [] if prerequisites_string.blank?  # Return an empty array if the input is blank
+    
+      # Split the string into groups based on 'and'
+      prerequisite_groups = prerequisites_string.split(/\s+and\s+/).map(&:strip)
+    
+      # Create an array to hold the parsed prerequisites with their respective equi_ids
+      parsed_prerequisites = []
+    
+      prerequisite_groups.each_with_index do |group, index|
+        # Split by 'or' and assign a unique equi_id for each course in the group
+        group.split(/\s+or\s+/).each do |course|
+          parsed_prerequisites << { course: course.strip, equi_id: index + 1 }
+        end
+      end
+    
+      parsed_prerequisites
+    end
+    
+
+
     def set_course
       @course = Course.find(params[:id])
     end
 
     def course_params
-      params.require(:course).permit(:cnumber, :cname, :ccode, :description, :credit_hours, :lecture_hours, :lab_hours) # are these enough?
+      params.require(:course).permit(:ccode, :cnumber, :cname, :description, :credit_hours, :lecture_hours, :lab_hours, :prerequisites)
     end
+
 
     def process_course_csv(file)
       csv_file = CSV.read(file.path, headers: true)
