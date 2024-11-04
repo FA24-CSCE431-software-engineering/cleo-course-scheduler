@@ -67,17 +67,9 @@ CSV.foreach(major_courses_csv, headers: true) do |row|
   major = Major.find_by(mname: 'Computer Science')
 
   course_code = row['course_code']
-
-  if row['course_number'].blank?
-    last_dummy = Course.where(ccode: course_code).order(cnumber: :desc).first
-    next_cnumber = last_dummy ? last_dummy.cnumber.to_i + 1 : 1
-  else
-    next_cnumber = 0o00
-  end
-
   requirement = Course.find_or_create_by(
     ccode: course_code,
-    cnumber: row['course_number'] || next_cnumber
+    cnumber: row['course_number']
   )
   DegreeRequirement.find_or_create_by(
     course: requirement,

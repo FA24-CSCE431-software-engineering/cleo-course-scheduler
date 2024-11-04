@@ -16,12 +16,19 @@ class PrerequisiteUpdater
 
 
     def validate_prerequisites
-        @new_prerequisites.each do |prereq|
-          unless find_course_id(prereq[:course])
-            @course.errors.add(:prerequisites, "Course not found for code: #{prereq[:course]}")
-          end
+      @new_prerequisites.each do |prereq|
+        unless find_course_id(prereq[:course])
+          @course.errors.add(:prerequisites, "Course not found for code: #{prereq[:course]}")
         end
+    
+        # check that it is not a prereq of itself
+        prereq_id = find_course_id(prereq[:course])
+        if prereq_id && prereq_id == @course.id
+          @course.errors.add(:prerequisites, "A course cannot be a prerequisite of itself: #{prereq[:course]}")
+        end
+      end
     end
+    
   
 
     private
