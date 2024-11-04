@@ -7,7 +7,6 @@ module Admin
     end
 
     def show
-      # This action will render the show view for a single prerequisite
     end
 
     def new
@@ -27,22 +26,19 @@ module Admin
     end
 
     def update
-      if @prerequisite.update(prerequisite_params)
-        redirect_to admin_prerequisites_path, notice: 'Prerequisite was successfully updated.'
-      else
-        render :edit
-      end
+
     end
 
     def confirm_destroy
     end
 
     def destroy
-      @prerequisite.destroy
-      redirect_to admin_prerequisites_path, notice: 'Prerequisite was successfully deleted.'
+
     end
 
-    private
+
+  
+
 
     def set_prerequisite
       @prerequisite = Prerequisite.find(params[:id])

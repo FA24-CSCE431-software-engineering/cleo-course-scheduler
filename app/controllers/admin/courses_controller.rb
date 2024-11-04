@@ -50,12 +50,34 @@ module Admin
     
 
     def update
-      if @course.update(course_params)
+      # First, extract the prerequisites string
+      prerequisites_string = params[:course][:prerequisites]
+      Rails.logger.debug("Prerequisites string: #{prerequisites_string}")
+    
+      # Parse prerequisites into an array
+      new_prerequisites = parse_prerequisites(prerequisites_string)
+      Rails.logger.debug("Parsed prerequisites: #{new_prerequisites.inspect}")
+    
+      # Update the course with the params
+      if @course.update(course_params.except(:prerequisites))  # Exclude prerequisites from course_params
+        Rails.logger.debug("Course updated successfully: #{@course.inspect}")
+    
+
+        # Log what is being passed to the PrerequisiteUpdater
+        Rails.logger.debug("Passing to PrerequisiteUpdater - Course: #{@course.inspect}, New Prerequisites: #{new_prerequisites.inspect}")
+
+        # Pass the course and the new prerequisites array to the updater
+        PrerequisiteUpdater.new(@course, new_prerequisites).call
+    
         redirect_to admin_courses_path, notice: 'Course updated successfully.'
       else
+        Rails.logger.debug("Failed to update course: #{@course.errors.full_messages}")
         render :edit
       end
     end
+    
+    
+    
 
     def import
       if params[:file].present?
@@ -68,12 +90,23 @@ module Admin
 
     private
 
+    def parse_prerequisites(prerequisites_string)
+      return [] if prerequisites_string.blank?  # Return an empty array if the input is blank
+    
+      # Split the string into groups based on 'or'
+      prerequisite_groups = prerequisites_string.split(/\s+or\s+/).map(&:strip)
+    
+      # Split by 'and' and flatten the array
+      prerequisite_groups.flat_map { |group| group.split(/\s+and\s+/).map(&:strip) }
+    end
+
+
     def set_course
       @course = Course.find(params[:id])
     end
 
     def course_params
-      params.require(:course).permit(:ccode, :cnumber, :cname, :description, :credit_hours, :lecture_hours, :lab_hours, prerequisite_ids: [])
+      params.require(:course).permit(:ccode, :cnumber, :cname, :description, :credit_hours, :lecture_hours, :lab_hours, :prerequisites)
     end
 
 
