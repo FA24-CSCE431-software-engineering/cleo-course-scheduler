@@ -20,7 +20,8 @@ RSpec.describe Course, type: :model do
 
   context 'When creating a duplicate course' do
     it 'is invalid with duplicate ccode, cnumber' do
-      dup_course = Course.new(ccode: course.ccode, cnumber: course.cnumber, cname: 'Computer Organisation', credit_hours: 3)
+      dup_course = Course.new(ccode: course.ccode, cnumber: course.cnumber, cname: 'Computer Organisation',
+                              credit_hours: 3)
       expect(dup_course).to be_invalid
     end
   end

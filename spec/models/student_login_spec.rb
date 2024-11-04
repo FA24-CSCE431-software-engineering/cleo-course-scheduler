@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/models/student_login_spec.rb
 
 require 'rails_helper'
@@ -24,9 +26,9 @@ RSpec.describe StudentLogin, type: :model do
 
     context 'when creating a new StudentLogin' do
       it 'creates a new StudentLogin when it does not exist' do
-        expect {
-          StudentLogin.from_google(email: email, full_name: full_name, uid: uid, avatar_url: avatar_url)
-        }.to change(StudentLogin, :count).by(1)
+        expect do
+          StudentLogin.from_google(email:, full_name:, uid:, avatar_url:)
+        end.to change(StudentLogin, :count).by(1)
 
         student_login = StudentLogin.last
         expect(student_login.email).to eq(email)
@@ -38,13 +40,13 @@ RSpec.describe StudentLogin, type: :model do
 
     context 'when finding an existing StudentLogin' do
       before do
-        StudentLogin.create!(email: email, full_name: full_name, uid: uid, avatar_url: avatar_url)
+        StudentLogin.create!(email:, full_name:, uid:, avatar_url:)
       end
 
       it 'does not create a new record' do
-        expect {
-          StudentLogin.from_google(email: email, full_name: full_name, uid: uid, avatar_url: avatar_url)
-        }.not_to change(StudentLogin, :count)
+        expect do
+          StudentLogin.from_google(email:, full_name:, uid:, avatar_url:)
+        end.not_to change(StudentLogin, :count)
       end
     end
   end

@@ -13,14 +13,14 @@ RSpec.describe Emphasis, type: :emphases do
 
   context 'When creating an invalid emphasis' do
     it 'is invalid with missing ename' do
-    invalid_emphasis = Emphasis.create(ename: '')
+      invalid_emphasis = Emphasis.create(ename: '')
       expect(invalid_emphasis).to be_invalid
     end
   end
 
   context 'When creating an invalid emphasis' do
     it 'is invalid with non alphanumeric name' do
-    invalid_emphasis = Emphasis.create(ename: '!!')
+      invalid_emphasis = Emphasis.create(ename: '!!')
       expect(invalid_emphasis).to be_invalid
     end
   end

@@ -3,7 +3,7 @@ Inspecting 210 files
 
 Offenses:
 
-app/controllers/admin/core_categories_controller.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
+app/controllers/admin/core_categories_controller.rb:1:1: C: Layout/EndOfLine: Carriage return character detected. 
 app/controllers/admin/core_categories_controller.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
 app/controllers/admin/core_categories_controller.rb:2:1: C: [Correctable] Layout/LeadingEmptyLines: Unnecessary blank line at the beginning of the source.
 module Admin

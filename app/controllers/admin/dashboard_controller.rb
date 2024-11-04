@@ -6,8 +6,6 @@ module Admin
 
     before_action :authenticate_student_login!
 
-    def show
-    end
-
+    def show; end
   end
 end

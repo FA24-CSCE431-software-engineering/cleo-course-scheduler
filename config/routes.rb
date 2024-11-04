@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # root "student_dashboards#show"
-  
+
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
 
   devise_scope :student_login do
@@ -51,7 +53,7 @@ Rails.application.routes.draw do
         get 'users'
       end
     end
-        
+
     get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
 
@@ -76,7 +78,7 @@ Rails.application.routes.draw do
       get 'edit'
       get 'confirm_destroy'
       get 'degree_planner', to: 'degree_planner#show'
-    post 'degree_planner', to: 'degree_planner#generate_custom_plan'
+      post 'degree_planner', to: 'degree_planner#generate_custom_plan'
     end
 
     resource :degree_planner, only: [:show], controller: 'degree_planner' do
@@ -89,7 +91,7 @@ Rails.application.routes.draw do
       post :upload_plan, on: :member
     end
   end
-  
+
   # Support pages
   resources :support do
     collection do
@@ -101,12 +103,11 @@ Rails.application.routes.draw do
   end
 
   # Default degree routes
-  resources :def_degree, only: [:show, :new, :create]
+  resources :def_degree, only: %i[show new create]
 
   # Root route
   root 'home#index'
   get 'courses/:id', to: 'courses#show'
-
 
   # Health check
   get 'up' => 'rails/health#show', as: :rails_health_check

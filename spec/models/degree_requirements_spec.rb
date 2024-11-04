@@ -27,7 +27,8 @@ RSpec.describe DegreeRequirement, type: :degree_requirements do
 
   context 'When creating a duplicate degree requirement' do
     it 'is invalid with duplicate course, major' do
-      dup_degree_req = DegreeRequirement.new(course: degree_requirement.course, major: degree_requirement.major, sem: degree_requirement.sem)
+      dup_degree_req = DegreeRequirement.new(course: degree_requirement.course, major: degree_requirement.major,
+                                             sem: degree_requirement.sem)
       expect(dup_degree_req).to be_invalid
     end
   end
