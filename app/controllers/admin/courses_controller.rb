@@ -66,7 +66,7 @@ module Admin
         # group errors
         render :edit
       else
-        redirect_to admin_courses_path, notice: 'Course updated successfully.'
+        redirect_to admin_course_path(@course), notice: 'Course updated successfully.'
       end
     end
       
