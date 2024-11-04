@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # root "student_dashboards#show"
-  
+
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
 
   devise_scope :student_login do
@@ -25,6 +27,9 @@ Rails.application.routes.draw do
       member do
         get :confirm_destroy
       end
+      collection do
+        post :import
+      end
     end
     resources :majors do
       member do
@@ -36,6 +41,19 @@ Rails.application.routes.draw do
         get :confirm_destroy
       end
     end
+    resources :support do
+      collection do
+        get 'index'
+        get 'deployment'
+        get 'coreCategories'
+        get 'courses'
+        get 'emphases'
+        get 'enrollCourses'
+        get 'tracks'
+        get 'users'
+      end
+    end
+
     get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
 
@@ -59,30 +77,33 @@ Rails.application.routes.draw do
       get 'profile'
       get 'edit'
       get 'confirm_destroy'
+      get 'degree_planner', to: 'degree_planner#show'
+      post 'degree_planner', to: 'degree_planner#generate_custom_plan'
     end
 
-    resource :degree_planner, only: [:show], controller: 'degree_planners' do
+    resource :degree_planner, only: [:show], controller: 'degree_planner' do
       patch :update_plan, on: :member
       post :generate_custom_plan, on: :member
       delete 'remove_course', on: :member
-      post 'download_plan', on: :member, to: 'degree_planners#download_plan'
+      get :download_plan, on: :member
+      delete :clear_courses, on: :member
+      post :set_default, on: :member
+      post :upload_plan, on: :member
     end
   end
 
-  #Don't know why the admin dashboard rescources don't work but this does so i'm keeping it
-  
   # Support pages
   resources :support do
     collection do
-      get 'student'
-      get 'admin'
-      get 'deployment'
-      get 'other'
+      get 'index'
+      get 'buildPlan'
+      get 'profile'
+      get 'viewDefaultPlan'
     end
   end
 
   # Default degree routes
-  resources :def_degree, only: [:show, :new, :create]
+  resources :def_degree, only: %i[show new create]
 
   # Root route
   root 'home#index'

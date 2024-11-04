@@ -1,30 +1,14 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% content_for :title, "Default Degree Planner" %>
+  <%= csrf_meta_tags %>
+</head>
+
+
 <body class="profile-body">
-  <div class="profile-header">
-    <div class="profile-back-to-dashboard">
-      <%= link_to student_dashboard_path(@student.google_id), class: 'profile-back-to-dashboard-link' do %>
-        <span class="profile-back-arrow">&#8592;</span>
-        Home
-      <% end %>
-    </div>
+  <%= render 'shared/navbar_student' %>
 
-    <div class="profile-logo-container">
-      <%= image_tag 'logo1.png', alt: 'Cleo Logo', class: 'profile-logo' %>
-    </div>
-
-    <div class="profile-user-info">
-      <div class="profile-avatar-dropdown">
-        <!-- Avatar Image -->
-        <%= image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'profile-avatar', id: 'avatar') %>
-
-        <!-- Dropdown Menu -->
-        <div class="profile-dropdown-menu" id="dropdown-menu">
-          <%= link_to "Profile", profile_student_path(current_student_login), class: 'profile-dropdown-link'%>
-          <%= link_to 'Settings', profile_student_path(current_student_login), class: 'profile-dropdown-link' %>
-          <%= link_to 'Sign Out', destroy_student_login_session_path, method: :delete, class: 'profile-dropdown-link' %>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <h1 class="degreeplan-title">Default Degree Planner</h1>
   
@@ -105,19 +89,17 @@
       <table>
         <thead>
           <tr>
-            <th>Course Name</th>
-            <th>CRN</th>
+            <th>Course Code</th>
+            <th>Cource Number</th>
             <th>Credit</th>
-            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
           <% semester_data[:courses].each_with_index do |course, index| %>
             <tr>
-              <td><%= f.text_field "container#{semester_data[:semester]}_course#{index + 1}", value: course[:name], placeholder: 'Course Name' %></td>
-              <td><%= f.text_field "container#{semester_data[:semester]}_crn#{index + 1}", value: course[:crn], placeholder: 'CRN' %></td>
-              <td><%= f.number_field "container#{semester_data[:semester]}_credit#{index + 1}", value: course[:credits], placeholder: 'Credit', min: 0 %></td>
-              <td><%= link_to 'x', '#', class: 'delete-course', data: { target: "course-row-#{semester_data[:semester]}-#{index + 1}" } %></td>
+              <td><span><%= course[:name] %></span></td>
+              <td><span><%= course[:crn] %></span></td>
+              <td><span><%= course[:credits] %></span></td>
             </tr>
           <% end %>
         </tbody>
@@ -126,32 +108,10 @@
   <% end %>
 </div>
 
-<div class="action-buttons">
-<%= form_with url: download_plan_student_degree_planner_path(@student), method: :post do |f| %>
-  <%= f.submit 'Save Degree Plan', class: 'action-button save-button' %>
-  <%= f.submit 'Download Degree Plan', class: 'action-button download-button' %>
-<% end %>
-</div>
+
 
 <% end %>
-<script>
-  document.querySelectorAll('.add-course').forEach(button => {
-    button.addEventListener('click', function() {
-      const semester = this.getAttribute('data-semester');
-      const tbody = this.previousElementSibling.querySelector('tbody');
-      const rowCount = tbody.rows.length + 1; // Count existing rows
 
-      const newRow = `<tr>
-                        <td><input type="text" name="container${semester}_course${rowCount}" placeholder="Course Name"></td>
-                        <td><input type="text" name="container${semester}_crn${rowCount}" placeholder="CRN"></td>
-                        <td><input type="number" name="container${semester}_credit${rowCount}" placeholder="Credit" min="0"></td>
-                        <td><a href="#" class="delete-course" data-index="${semester}_${rowCount}">x</a></td>
-                      </tr>`;
-
-      tbody.insertAdjacentHTML('beforeend', newRow);
-    });
-  });
-</script>
 <!-- JavaScript for toggling dropdown -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -172,18 +132,3 @@
     });
 
   </script>
-<script>
-  document.addEventListener('turbolinks:load', function() {
-    document.querySelectorAll('.delete-course').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = e.currentTarget.getAttribute('data-target');
-        const row = document.getElementById(target);
-        if (row) {
-          row.remove();
-        }
-      });
-    });
-  });
-
-</script>

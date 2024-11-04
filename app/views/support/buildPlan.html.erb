@@ -1,0 +1,36 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% content_for :title, "Help - Build Degree Plan" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+    <%= render 'shared/navbar_student' %>
+
+    <h1>Build Degree Plan Page</h1>
+
+    <p>This page allows you to build your customized degree plan.</p>
+
+    <h2>Adding a Course</h2>
+    <p>Below the <strong>Add a Course</strong> section, you will see two fields: <strong>Course</strong> and <strong>Semester</strong>. 
+       The Course field lets you select a course either by searching manually or using a dropdown menu. The Semester field determines where 
+       the selected course is placed. You will also find two buttons: <strong>Reset Degree Plan</strong> and <strong>Clear Degree Plan</strong>.</p>
+
+    <h2>Notice - Missing Prerequisite</h2>
+    <p>If you receive a notice or warning upon adding a course, it indicates that a prerequisite course is required. 
+       To resolve this, add the prerequisite course in a prior or the same semester.</p>
+
+    <h2>Viewing the Degree Plan</h2>
+    <p>Similar to the <strong>Default Degree Plan</strong> page, each semester displays the following information:</p>
+
+    <ul> 
+        <li><strong>Course Code:</strong> The major to which the course belongs.</li>
+
+        <li><strong>Course Number:</strong> The unique identification number associated with the course, related to the <strong>Course Code</strong>.</li>
+
+        <li><strong>Credits:</strong> The total number of credit hours the course offers.</li>
+
+        <li><strong>Action:</strong> This option allows you to remove a course entry from a semester.</li>
+    </ul>
+</body>

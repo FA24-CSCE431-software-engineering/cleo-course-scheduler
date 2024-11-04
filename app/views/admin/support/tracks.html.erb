@@ -1,0 +1,21 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% content_for :title, "Admin Help - Tracks Page" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <%= render 'shared/navbar_student' %>
+  <%= render 'shared/navbar' %>
+
+  <h1>Manage Track</h1>
+
+  <p>This page allows you to manage tracks. Each entry has a <strong>Name</strong> and two actions: Edit and Delete.
+     The Edit action lets you change the name of an entry, while the Delete action allows you to remove an entry. 
+     <strong>Note:</strong> Once you delete an entry, it will be permanently removed.</p>
+
+  <h2>Create Track</h2>
+  <p>To create a new track, enter the name in the <strong>Track Name</strong> field. Once you’re satisfied, click 
+     <strong>Create Track</strong>, and your new entry will appear in the <strong>Existing Tracks</strong> table.</p>
+</body>

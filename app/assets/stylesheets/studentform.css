@@ -115,9 +115,17 @@ body {
 /* Label styles */
 .studentinfo_label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     color: #555;
 }
+
+.studentinfo_field_description {
+    display: block;  /* Ensures the description appears on its own line */
+    font-size: 0.875em;  /* Slightly smaller font */
+    color: #6c757d;  /* Bootstrap gray color or any other shade you prefer */
+    margin-top: 1px;
+    margin-bottom: 8px;
+  }
 
 /* Input and select styles */
 .studentinfo_input,

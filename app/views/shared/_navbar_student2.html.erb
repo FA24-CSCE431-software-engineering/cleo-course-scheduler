@@ -1,0 +1,46 @@
+<div class="profile-header">
+  <div class="profile-back-to-dashboard">
+    <% if current_student_login.is_admin? %>
+      <% if current_page?(edit_student_path(@student)) %>
+        <%= link_to students_path, class: 'profile-back-to-dashboard-link' do %>
+          <span class="profile-back-arrow">&#8592;</span>
+          Back to Students
+        <% end %>
+      <% else %>
+        <%= link_to admin_dashboard_path, class: 'profile-back-to-dashboard-link' do %>
+          <span class="profile-back-arrow">&#8592;</span>
+          Home
+        <% end %>
+      <% end %>
+    <% else %>
+      <% if current_page?(edit_student_path(@student)) %>
+        <%= link_to profile_student_path(current_student_login), class: 'profile-back-to-dashboard-link' do %>
+          <span class="profile-back-arrow">&#8592;</span>
+          Back to Profile
+        <% end %>
+      <% else %>
+        <%= link_to student_dashboard_path(current_student_login), class: 'profile-back-to-dashboard-link' do %>
+          <span class="profile-back-arrow">&#8592;</span>
+          Home
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="profile-logo-container">
+    <%= image_tag 'logo1.png', alt: 'Cleo Logo', class: 'profile-logo' %>
+  </div>
+
+  <div class="profile-user-info">
+    <div class="profile-avatar-dropdown">
+      <!-- Avatar Image -->
+      <%= image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'profile-avatar', id: 'avatar') %>
+
+      <!-- Dropdown Menu -->
+      <div class="profile-dropdown-menu" id="dropdown-menu">
+        <%= link_to "Profile", profile_student_path(current_student_login), class: 'profile-dropdown-link' %>
+        <%= link_to 'Sign Out', destroy_student_login_session_path, method: :delete, class: 'profile-dropdown-link' %>
+      </div>
+    </div>
+  </div>
+</div>

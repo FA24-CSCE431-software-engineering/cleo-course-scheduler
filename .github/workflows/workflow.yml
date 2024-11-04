@@ -34,8 +34,6 @@ jobs:
           ruby-version: ${{ env.RUBY_VERSION }}
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
-      - name: Clear Bundler cache
-        run: bundle clean --force
       - name: Install dependencies 
         run: |
           gem install bundler
