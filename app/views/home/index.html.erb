@@ -4,12 +4,13 @@
     <img src="<%= asset_path('logo1.png') %>" alt="Cleo Logo" class="cleo-logo" />
 
     <!-- Flash Notice -->
+    
     <% if flash[:notice] %>
       <div class="alert alert-success flash-notice">
         <%= flash[:notice] %>
       </div>
     <% end %>
-
+    
     <h2 class="logout-message">You're Logged out! Log in to the Dashboard!</h2>
     <h3 >Get Started with your Degree Planner</h3>
 

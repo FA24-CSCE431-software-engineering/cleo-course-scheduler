@@ -9,6 +9,7 @@ class DegreePlannerController < ApplicationController
   def show
     @default_plan = DegreeRequirement.includes(:course).where(major: @student.major)
     @student_courses = StudentCourse.includes(:course).where(student: @student).order(:sem)
+    @course_prerequisite_status = check_prerequisites(@student, @student_courses)
   end
 
   def add_course
@@ -44,10 +45,10 @@ class DegreePlannerController < ApplicationController
   def update_plan
     selected_course_id = params[:add_course].to_i
     semester = params[:sem].to_i
-  
+
     if selected_course_id.positive? && semester.between?(1, 8)
       student_course = StudentCourse.new(student_id: @student.id, course_id: selected_course_id, sem: semester)
-  
+
       if student_course.save
         flash[:success] = 'Course added successfully!'
       else
@@ -56,10 +57,10 @@ class DegreePlannerController < ApplicationController
     else
       flash[:error] = "Invalid course ID or semester value: Course ID - #{selected_course_id}, Semester - #{semester}"
     end
-  
+
     redirect_to student_degree_planner_path(@student)
   end
-  
+
   def remove_course
     student_course = StudentCourse.find_by(student_id: @student.id, course_id: params[:course_id])
 
@@ -76,7 +77,26 @@ class DegreePlannerController < ApplicationController
     end
   end
 
-  def generate_custom_plan; end
+  # In DegreePlannerController
+  def generate_custom_plan
+    planner_service = DegreePlannerService.new(@student, params[:interests][:emphasis_area])
+    planned_courses = planner_service.generate_plan
+
+    # Clear existing courses
+    destroy_student_courses
+
+    # Create new student course records
+    planned_courses.each do |course_info|
+      StudentCourse.create!(
+        student: @student,
+        course: course_info[:course],
+        sem: course_info[:semester]
+      )
+    end
+
+    flash[:success] = 'Degree plan generated successfully!'
+    redirect_to student_degree_planner_path(@student)
+  end
 
   def download_plan
     @student_courses = StudentCourse.where(student_id: @student.id).order(:sem)
@@ -131,6 +151,46 @@ class DegreePlannerController < ApplicationController
 
   def destroy_student_courses
     @student.student_courses.destroy_all
+  end
+
+  def check_prerequisites(student, courses)
+    courses_added = student.student_courses.includes(:course)
+    courses_by_semester = courses_added.group_by(&:sem)
+
+    # Check prerequisites for each course
+    courses.map do |student_course|
+      course = student_course.course
+      current_semester = student_course.sem
+
+      # Get all courses planned in previous semesters
+      previous_courses = courses_by_semester
+                         .select { |sem, _| sem <= current_semester }
+                         .values
+                         .flatten
+                         .map(&:course)
+
+      # Get prerequisite groups for the current course
+      prereq_groups = course.prerequisite_groups
+
+      # Check if each prerequisite group is satisfied
+      missing_prereqs = []
+
+      prereq_groups.each do |equi_id, prereq_courses|
+        # Check if any course from this equivalent group is taken
+        next if prereq_courses.any? { |prereq| previous_courses.include?(prereq) }
+
+        missing_prereqs << {
+          equi_id:,
+          courses: prereq_courses
+        }
+      end
+
+      {
+        student_course:,
+        prerequisites_met: missing_prereqs.empty?,
+        missing_prerequisites: missing_prereqs
+      }
+    end
   end
 
   # ======== Helper functions for uploading / downloading csv files ========

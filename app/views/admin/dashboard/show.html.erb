@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Dashboard</title>
+  <% content_for :title, "Admin Dashboard" %>
   <%= stylesheet_link_tag 'student_dashboard', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
@@ -45,6 +45,7 @@
     <%# Close button to hide the sidebar when clicked %>
     <span class="close-button" id="close-button">&times;</span>
     <%= link_to 'Home', admin_dashboard_path, class: 'sidebar-link' %> <br>
+    <%= link_to 'Help', admin_support_index_path, class: 'sidebar-link' %>
     <%= link_to 'Sign Out', destroy_student_login_session_path, class: 'sidebar-link logout-button' %>
   </div>
 
@@ -77,7 +78,7 @@
         <%= link_to 'Course Management', admin_courses_path, class: 'btn btn-purple btn-lg btn-wide' %>
         <%= link_to 'Core Categories Management', admin_core_categories_path, class: 'btn btn-purple btn-lg btn-wide' %>
         <%= link_to 'Major Management', admin_majors_path, class: 'btn btn-purple btn-lg btn-wide' %>
-        <%= link_to 'Support', admin_support_index_path, class: 'btn btn-purple btn-lg btn-wide' %>
+        
       </div>
     </div>
   </div>

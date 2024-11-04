@@ -34,4 +34,13 @@ class Course < ApplicationRecord
   has_many :emphases, through: :course_emphases
 
   has_many :degree_requirements
+
+  def prerequisite_groups
+    prerequisites.includes(:prereq).group_by(&:equi_id).transform_values { |prereqs| prereqs.map(&:prereq) }
+  end
+
+  def full_title
+    "#{ccode} #{cnumber}"
+  end
+
 end

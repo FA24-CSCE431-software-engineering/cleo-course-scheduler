@@ -1,36 +1,33 @@
+# frozen_string_literal: true
 
-module Admin  
+module Admin
   class EmphasesController < ApplicationController
     include AdminAuthentication
-    
-    skip_before_action :authenticate_student_login! if Rails.env.test?
-    before_action :set_emphasis, only: [:show, :edit, :update, :destroy]
 
-    def confirm_destroy
-    end
+    skip_before_action :authenticate_student_login! if Rails.env.test?
+    before_action :set_emphasis, only: %i[show edit update destroy]
+
+    def confirm_destroy; end
 
     def destroy
       @emphasis.destroy
-      redirect_to admin_emphases_path, notice: "Emphasis successfully deleted."
+      redirect_to admin_emphases_path, notice: 'Emphasis successfully deleted.'
     end
 
-    def edit
-    end
+    def edit; end
 
     def index
       @emphases = Emphasis.all
       @emphasis = params[:id] ? Emphasis.find(params[:id]) : Emphasis.new
     end
 
-    def new
-    end
+    def new; end
 
-    def show
-    end
+    def show; end
 
     def update
       if @emphasis.update(emphasis_params)
-        redirect_to admin_emphases_path, notice: "Emphasis successfully updated."
+        redirect_to admin_emphases_path, notice: 'Emphasis successfully updated.'
       else
         @emphases = Emphasis.all
         render :index
@@ -40,7 +37,7 @@ module Admin
     def create
       @emphasis = Emphasis.new(emphasis_params)
       if @emphasis.save
-        redirect_to admin_emphases_path, notice: "Emphasis successfully created."
+        redirect_to admin_emphases_path, notice: 'Emphasis successfully created.'
       else
         @emphases = Emphasis.all
         render :index

@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Support Page</title>
+  <% content_for :title, "Help" %>
   <%= csrf_meta_tags %>
 </head>
 
@@ -9,9 +9,19 @@
   <%= render 'shared/navbar_student' %>
   
   <h1>Student Resources </h1>
+  <h2>Page Help </h2>
+  <ul>
+    <li> <%= link_to 'Profile Page', profile_support_index_path%> </li>
+    <li> <%= link_to 'Default Planner Page', viewDefaultPlan_support_index_path%> </li>
+    <li> <%= link_to 'Build Your Degree Planner Page', buildPlan_support_index_path %> </li>
+  </ul>
   <h2>Useful Links</h2>
   <ul>
-    <li>...</li>
-    <li>...</li>
+    <li><a href= https://howdy.tamu.edu/uPortal/normal/render.uP> Howdy Login </a> </li>
+    <li><a href= https://catalog.tamu.edu/undergraduate/ > Course Catalog </a > </li>
+    <li><a href= https://studentsuccess.tamu.edu/ > Student Success Center </a > </li>
   </ul>
+
+  <h2> Contact Information </h2>
+  <!-- TODO figure out what to put in here -->
 </body>

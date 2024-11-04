@@ -3,7 +3,9 @@
 class Emphasis < ApplicationRecord
   # Validations
   validates :ename, presence: true, uniqueness: true
-  validates :ename, format: { with: /\A[\w\s,\/]+\z/, message: 'only alphanumeric characters, spaces, commas, and slashes are allowed' }
+  validates :ename,
+            format: { with: %r{\A[\w\s,/]+\z},
+                      message: 'only alphanumeric characters, spaces, commas, and slashes are allowed' }
 
   # Course association
   has_many :course_emphases

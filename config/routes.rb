@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # root "student_dashboards#show"
-  
+
   devise_for :student_logins, controllers: { omniauth_callbacks: 'student_logins/omniauth_callbacks' }
 
   devise_scope :student_login do
@@ -13,6 +15,11 @@ Rails.application.routes.draw do
 
   # Admin dashboard
   namespace :admin do
+    resources :prerequisites do 
+      member do
+        get :confirm_destroy
+      end
+    end    
     resources :student_courses, param: :student_id do
       get ':course_id', action: :show, on: :member
       get ':course_id/edit', action: :edit, on: :member, as: 'edit'
@@ -24,6 +31,9 @@ Rails.application.routes.draw do
     resources :courses do
       member do
         get :confirm_destroy
+      end
+      collection do
+        post :import
       end
     end
     resources :majors do
@@ -40,10 +50,15 @@ Rails.application.routes.draw do
       collection do
         get 'index'
         get 'deployment'
-        get 'other'
+        get 'coreCategories'
+        get 'courses'
+        get 'emphases'
+        get 'enrollCourses'
+        get 'tracks'
+        get 'users'
       end
     end
-        
+
     get 'dashboard', to: 'dashboard#show', as: :dashboard
   end
 
@@ -67,6 +82,8 @@ Rails.application.routes.draw do
       get 'profile'
       get 'edit'
       get 'confirm_destroy'
+      get 'degree_planner', to: 'degree_planner#show'
+      post 'degree_planner', to: 'degree_planner#generate_custom_plan'
     end
 
     resource :degree_planner, only: [:show], controller: 'degree_planner' do
@@ -80,17 +97,18 @@ Rails.application.routes.draw do
     end
   end
 
-  #Don't know why the admin dashboard rescources don't work but this does so i'm keeping it
-  
   # Support pages
   resources :support do
     collection do
       get 'index'
+      get 'buildPlan'
+      get 'profile'
+      get 'viewDefaultPlan'
     end
   end
 
   # Default degree routes
-  resources :def_degree, only: [:show, :new, :create]
+  resources :def_degree, only: %i[show new create]
 
   # Root route
   root 'home#index'

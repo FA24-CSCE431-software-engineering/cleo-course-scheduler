@@ -1,0 +1,32 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% content_for :title, "Admin Help - Courses Page" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <%= render 'shared/navbar_student' %>
+  <%= render 'shared/navbar' %>
+
+  <h1>Manage Courses</h1>
+
+  <p>This page allows you to view, edit, and manage the list of courses available in the system. Each course entry includes the following details:</p>
+
+  <ul>
+    <li><strong>Course Code:</strong> The department or area to which the course belongs (e.g., CSCE for Computer Science).</li>
+    <li><strong>Course Number:</strong> A unique number assigned to the course within its area.</li>
+    <li><strong>Course Name:</strong> The full title of the course.</li>
+    <li><strong>Created At:</strong> The date and time when the course was initially added.</li>
+    <li><strong>Updated At:</strong> The date and time of the last update to the course details.</li>
+  </ul>
+
+  <h2>Actions</h2>
+  <p>Each course has the following actions available:</p>
+
+  <ul>
+    <li><strong>Show:</strong> View the full details of the course.</li>
+    <li><strong>Edit:</strong> Modify the course information, including its name, code, or number.</li>
+    <li><strong>Delete:</strong> Permanently remove the course from the system. <strong>Note:</strong> This action cannot be undone.</li>
+  </ul>
+</body>

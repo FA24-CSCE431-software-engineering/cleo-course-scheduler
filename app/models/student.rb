@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 class Student < ApplicationRecord
@@ -12,7 +11,8 @@ class Student < ApplicationRecord
 
   # Validations for name
   validates :first_name, :last_name, presence: true, length: { maximum: 255 }
-  validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/, message: "only characters are allowed. No whitespaces or punctuations." }
+  validates :first_name, :last_name,
+            format: { with: /\A[a-zA-Z]+\z/, message: 'only characters are allowed. No whitespaces or punctuations.' }
 
   # Validations for email
   validates :email, presence: true, length: { maximum: 255 }
@@ -33,13 +33,9 @@ class Student < ApplicationRecord
   belongs_to :track, optional: true
 
   belongs_to :emphasis, optional: true
-  #belongs_to :emphasis, foreign_key: :emphases_id, optional: true
-
+  # belongs_to :emphasis, foreign_key: :emphases_id, optional: true
 
   def total_credits_completed
     courses.sum(:credit_hours)
   end
-  
-
 end
-
