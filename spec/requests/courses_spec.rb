@@ -67,14 +67,16 @@ RSpec.describe 'Courses', type: :request do
   # Admins should be able to update a course
   describe 'PATCH /admin/courses#update' do
     include_context 'logged in admin'
-    it 'updates and redirects' do
+    it 'updates and redirects to the course show page' do
       patch admin_course_path(course),
             params: { course: { cnumber: 400, cname: 'Updated Course Name', ccode: 'CSCE', credit_hours: 3, description: 'a',
                                 lab_hours: 0, lecture_hours: 0 } }
-
+  
       course.reload
       expect(course.cname).to eq('Updated Course Name')
-      expect(response).to redirect_to(admin_courses_path)
+      
+      # Update the expectation to reflect the redirect to the show page
+      expect(response).to redirect_to(admin_course_path(course)) # Redirects to the show page
     end
 
     # it "rerenders edit template" do
