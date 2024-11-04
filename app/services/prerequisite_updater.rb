@@ -13,45 +13,49 @@ class PrerequisiteUpdater
   
     def update_prerequisites(new_prerequisites)
         Rails.logger.debug("Current prerequisites: #{@course.prerequisites.inspect}")
-    
+      
         current_prerequisites = @course.prerequisites
-    
+      
         # Map new prerequisites to their components
         new_prerequisite_entries = new_prerequisites.map do |code|
           course_id = find_course_id(code)
           { course_id: @course.id, prereq_id: course_id, equi_id: 1 } if course_id
         end.compact
-    
+      
         Rails.logger.debug("New prerequisites entries: #{new_prerequisite_entries.inspect}")
-    
+      
         # Determine which prerequisites to remove
         prerequisites_to_remove = current_prerequisites.reject do |prereq|
           new_prerequisite_entries.any? do |new_prereq|
             new_prereq[:prereq_id] == prereq.prereq_id && new_prereq[:equi_id] == prereq.equi_id
           end
         end
-    
+      
         Rails.logger.debug("Prerequisites to remove: #{prerequisites_to_remove.inspect}")
-    
-        # Remove old prerequisites
-        prerequisites_to_remove.each do |prereq|
+      
+        # Remove old prerequisites using delete_all based on the unique combination of attributes
+        if prerequisites_to_remove.any?
+          prereq_ids = prerequisites_to_remove.map(&:prereq_id)
+          equi_ids = prerequisites_to_remove.map(&:equi_id)
+      
           begin
-            Rails.logger.debug("!!!!!!!About to destroy: #{prereq.inspect}")
-            prereq.destroy
-            Rails.logger.debug("Successfully removed prerequisite with ID: #{prereq.prereq_id}")
+            Rails.logger.debug("!!!!!!!About to delete prerequisites with IDs: #{prereq_ids.inspect} and equi_ids: #{equi_ids.inspect}")
+            @course.prerequisites.where(prereq_id: prereq_ids, equi_id: equi_ids).delete_all
+            Rails.logger.debug("Successfully removed prerequisites with IDs: #{prereq_ids.inspect}")
           rescue => e
-            Rails.logger.error("Error during destruction of prerequisite ID: #{prereq.prereq_id}, Error: #{e.message}")
+            Rails.logger.error("Error during deletion of prerequisites, Error: #{e.message}")
           end
         end
-    
+      
         # Add new prerequisites
         new_prerequisite_entries.each do |new_prereq|
           next if current_prerequisites.exists?(prereq_id: new_prereq[:prereq_id], equi_id: new_prereq[:equi_id])
-    
+      
           @course.prerequisites.create(new_prereq)
           Rails.logger.debug("Added new prerequisite with ID: #{new_prereq[:prereq_id]}")
         end
       end
+      
       
   
   
