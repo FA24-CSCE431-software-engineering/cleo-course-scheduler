@@ -48,36 +48,28 @@ module Admin
       render 'admin/courses/show'
     end
     
-
     def update
-      # First, extract the prerequisites string
+      # get prerequisites string
       prerequisites_string = params[:course][:prerequisites]
-      Rails.logger.debug("Prerequisites string: #{prerequisites_string}")
     
-      # Parse prerequisites into an array
+      # make into array
       new_prerequisites = parse_prerequisites(prerequisites_string)
-      Rails.logger.debug("Parsed prerequisites: #{new_prerequisites.inspect}")
-    
-      # Update the course with the params
-      if @course.update(course_params.except(:prerequisites))  # Exclude prerequisites from course_params
-        Rails.logger.debug("Course updated successfully: #{@course.inspect}")
-    
 
-        # Log what is being passed to the PrerequisiteUpdater
-        Rails.logger.debug("Passing to PrerequisiteUpdater - Course: #{@course.inspect}, New Prerequisites: #{new_prerequisites.inspect}")
-
-        # Pass the course and the new prerequisites array to the updater
-        PrerequisiteUpdater.new(@course, new_prerequisites).call
+      course_updated = @course.update(course_params.except(:prerequisites)) 
+        
+      # pass course and the new prerequisites array to the updater
+      updater = PrerequisiteUpdater.new(@course, new_prerequisites)
+      updater.call
     
-        redirect_to admin_courses_path, notice: 'Course updated successfully.'
-      else
-        Rails.logger.debug("Failed to update course: #{@course.errors.full_messages}")
+      # error checking
+      if !course_updated || @course.errors.any?
+        # group errors
         render :edit
+      else
+        redirect_to admin_courses_path, notice: 'Course updated successfully.'
       end
     end
-    
-    
-    
+      
 
     def import
       if params[:file].present?
