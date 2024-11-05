@@ -22,7 +22,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'dotenv-rails', groups: [:development, :test]
-gem 'bootstrap', '~> 5.0.0'
+gem 'bootstrap', '~> 5.3.3'
 gem 'sassc-rails'
 
 group :development, :test do
