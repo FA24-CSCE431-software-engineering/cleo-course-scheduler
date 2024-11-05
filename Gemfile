@@ -10,7 +10,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem 'rubocop', require: false
 gem 'rexml'
-gem 'zeitwerk', '< 2.7.0'
+gem 'zeitwerk', '< 2.8.0'
 
 # Add net-pop with a specific version
 
