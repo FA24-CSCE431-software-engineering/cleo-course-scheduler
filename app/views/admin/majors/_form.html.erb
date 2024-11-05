@@ -1,0 +1,27 @@
+<!-- FORM PARTIAL -->
+<%= form_with(model: [:admin, major], local: true) do |form| %>
+  <% if major.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(major.errors.count, "error") %> prohibited this major from being saved:</h2>
+      <ul>
+        <% major.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :mname, "Major Name" %>
+    <%= form.text_field :mname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cname, "College Name" %>
+    <%= form.text_field :cname %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

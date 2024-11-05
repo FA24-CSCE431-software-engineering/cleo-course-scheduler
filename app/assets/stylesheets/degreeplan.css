@@ -1,0 +1,596 @@
+
+.degreeplan-body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.degreeplan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 70px;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+
+
+.degreeplan-title {
+    font-size: 28px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.degreeplan-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.degreeplan-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.degreeplan-form select,
+.degreeplan-form input[type="text"],
+.degreeplan-form input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.degreeplan-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.degreeplan-table th,
+.degreeplan-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.degreeplan-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.degreeplan-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.delete-course {
+    color: red;
+    text-decoration: none;
+}
+
+.delete-course:hover {
+    text-decoration: underline;
+}
+
+.degreeplan-semester-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.semester-container {
+    width: 48%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 2px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.semester-container h3 {
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+
+.degreeplan2-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.semester2-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.degreeplan-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action-button, .save-button, .download-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+    border: #007bff;
+}
+
+.add-course-button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    border: #007bff;
+    font-size: 0.9em;
+    width: 8%;
+}
+
+.generate-form {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.generate-form-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.generate_form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.generate-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.interest-select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+}
+
+.interest-select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.generate-planner-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.generate-planner-button:hover {
+    background-color: #0056b3;
+}
+
+.degreeplan-body {
+    font-family: Arial, sans-serif;
+    /* background-color: #f4f4f4; */
+    /* margin: 0; */
+    /* padding: 20px; */
+}
+
+.degreeplan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 70px;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.degreeplan-back-to-dashboard {
+    font-size: 16px;
+}
+
+.degreeplan-back-to-dashboard-link {
+    color: rgb(86, 57, 165);
+    text-decoration: none;
+}
+
+.degreeplan-logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.degreeplan-logo {
+    width: 150px;
+    margin-right: 0px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.degreeplan-user-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.degreeplan-avatar-dropdown {
+    cursor: pointer;
+    position: relative;
+}
+
+.degreeplan-avatar {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.degreeplan-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    min-width: 150px;
+}
+
+.degreeplan-avatar-dropdown:hover .degreeplan-dropdown-menu {
+    display: block;
+}
+
+.degreeplan-dropdown-link {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.degreeplan-dropdown-link:hover {
+    background-color: #f0f0f0;
+}
+
+.degreeplan-title {
+    font-size: 28px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.degreeplan-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.degreeplan-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.degreeplan-form select,
+.degreeplan-form input[type="text"],
+.degreeplan-form input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.degreeplan-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.degreeplan-table th,
+.degreeplan-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.degreeplan-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.degreeplan-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.delete-course {
+    color: red;
+    text-decoration: none;
+}
+
+.delete-course:hover {
+    text-decoration: underline;
+}
+
+.degreeplan-semester-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.semester-container {
+    width: 48%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 2px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.semester-container h3 {
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+
+.degreeplan2-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.semester2-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.degreeplan-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.setting-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+.action-button, .upload-button, .download-button {
+    background-color: #673AB7;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+    border: #673AB7;
+}
+
+.default-degree-button, .clear-button {
+    background-color: #673AB7;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    border: #673AB7;
+    font-size: 0.9em;
+}
+
+.add-course-button {
+    background-color: #673AB7;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    border: #673AB7;
+    font-size: 0.9em;
+    width: 8%;
+}
+
+.generate-form {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.generate-form-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.generate_form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.generate-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.interest-select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+}
+
+.interest-select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.generate-planner-button {
+    background-color: #673AB7;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.generate-planner-button:hover {
+    background-color: #0056b3;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: flex-end; /* Aligns items at the bottom */
+    gap: 20px; /* Space between the forms */
+    margin: 20px 0;
+}
+
+.action-buttons form {
+    flex: 1; /* Makes both forms take equal space */
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.button-group {
+    display: flex;
+    width: 100%;
+}
+
+.action-button {
+    width: 100%;
+    background-color: #673AB7;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.action-button:hover {
+    background-color: #5c2a92;
+}
+
+/* Ensure file input doesn't break the layout */
+.form-control {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+
+.prerequisite-warning {
+    background-color: #ffebee;
+}
+
+.prerequisite-warning-icon {
+    margin-left: 5px;
+    cursor: help;
+}
+
+.prerequisite-tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.prerequisite-group {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.prerequisite-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}

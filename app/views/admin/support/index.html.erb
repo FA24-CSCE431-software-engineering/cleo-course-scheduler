@@ -1,0 +1,24 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% content_for :title, "Admin Help Page" %>
+
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<%= render 'shared/navbar_student' %>
+
+  <%#= render 'shared/navbar' %>
+  <h1>Support</h1>
+  <h2>Available Support Pages</h2>
+  <ul>
+    <li><%= link_to 'Deployment Page', deployment_admin_support_index_path %></li>
+    <li><%= link_to 'Core Categories Page', coreCategories_admin_support_index_path %></li>
+    <li><%= link_to 'Courses Page', courses_admin_support_index_path %></li>
+    <li><%= link_to 'Emphases Page', emphases_admin_support_index_path %></li>
+    <li><%= link_to 'Enroll Courses Page', enrollCourses_admin_support_index_path %></li>
+    <li><%= link_to 'Track Page', tracks_admin_support_index_path %></li>
+    <li><%= link_to 'Users Page', users_admin_support_index_path %></li>
+  </ul>
+</body>

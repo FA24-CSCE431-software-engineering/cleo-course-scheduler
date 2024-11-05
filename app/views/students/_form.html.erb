@@ -1,8 +1,8 @@
-<h1><%= @student.new_record? ? 'New Student' : 'Edit Student' %></h1>
+<h1 class="studentinfo_heading"><%= @student.new_record? ? 'New Student' : 'Edit Student' %></h1>
 
-<%= form_with(model: @student, local: true) do |form| %>
+<%= form_with(model: @student, local: true, html: { class: 'studentinfo_form' }) do |form| %>
   <% if @student.errors.any? %>
-    <div id="error_explanation">
+    <div class="studentinfo_error_explanation">
       <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
       <ul>
         <% @student.errors.full_messages.each do |message| %>
@@ -12,52 +12,73 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+  <div class="studentinfo_field">
+    <%= form.label :first_name, class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Enter you first name into the field below</span>
+    <%= form.text_field :first_name, class: 'studentinfo_input' %>
   </div>
 
-  <div>
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+  <div class="studentinfo_field">
+    <%= form.label :last_name, class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Enter last name into the field below</span>
+    <%= form.text_field :last_name, class: 'studentinfo_input' %>
   </div>
 
-  <div>
-    <%= form.label :email %>
-    <%= form.email_field :email %>
+  <div class="studentinfo_field">
+    <%= form.label :email, class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Enter email into the field below</span>
+    <%= form.email_field :email, class: 'studentinfo_input' %>
   </div>
 
-  <div>
-    <%= form.label :google_id %>
-    <%= form.text_field :google_id %>
+  <div class="studentinfo_field">
+    <!--<%= form.label :google_id, class: 'studentinfo_label' %>  This is field is hidden-->
+    <%= form.hidden_field :google_id, class: 'studentinfo_input' %>
   </div>
 
-  <div>
-    <%= form.label :major_id, "Major" %>
-    <%= form.collection_select :major_id, Major.all, :id, :mname, prompt: "Select a Major" %>
+  <div class="studentinfo_field">
+    <%= form.label :major_id, "Major", class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Select major from the list below</span>
+    <%= form.collection_select :major_id, Major.order(:mname), :id, :mname, { prompt: "Select a Major" }, class: 'studentinfo_select' %>
   </div>
 
-  <div>
-    <%= form.label :enrol_year %>
-    <%= form.number_field :enrol_year %>
+  <div class="studentinfo_field">
+    <%= form.label :emphasis_id, "Emphasis", class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Select emphasis area apart from the major</span>
+    <%= form.collection_select :emphasis_id, Emphasis.order(:ename), :id, :ename, { prompt: "Select an Emphasis Area" }, class: 'studentinfo_select' %>
   </div>
 
-  <div>
-    <%= form.label :grad_year %>
-    <%= form.number_field :grad_year %>
+  
+  <div class="studentinfo_field">
+    <%= form.label :track_id, "Track / Specialization" %>
+    <span class="studentinfo_field_description">Select track or specialization of the major</span>
+    <%= form.collection_select :track_id, Track.order(:tname), :id, :tname, {prompt: "Select a Track"}, class: 'studentinfo_select' %>
   </div>
 
-  <div>
-    <%= form.label :enrol_semester %>
-    <%= form.select :enrol_semester, Student.enrol_semesters.keys.map { |k| [k.humanize, k] } %>
+  <div class="studentinfo_field">
+    <%= form.label :enrol_year, 'Enrollment Year', class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Select year of enrollment</span>
+    <%= form.select :enrol_year, (Time.current.year - 5..Time.current.year + 5).map { |year| [year, year] }, { prompt: "Select Enrol Year" }, class: 'studentinfo_select' %>
   </div>
 
-  <div>
-    <%= form.label :grad_semester %>
-    <%= form.select :grad_semester, Student.grad_semesters.keys.map { |k| [k.humanize, k] } %>
+  <div class="studentinfo_field">
+    <%= form.label :grad_year, 'Graduation Year', class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Select expected year of graduation</span>
+    <%= form.select :grad_year, (Time.current.year - 5..Time.current.year + 5).map { |year| [year, year] }, { prompt: "Select Grad Year" }, class: 'studentinfo_select' %>
   </div>
 
-  <div>
-    <%= form.submit @student.new_record? ? 'Create Student' : 'Update Student' %>
+  <div class="studentinfo_field">
+    <%= form.label :enrol_semester, 'Enrollment Semester', class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Select semester of enrollment</span>
+    <%= form.collection_select :enrol_semester, Student.enrol_semesters.keys.map { |k| [k.humanize, k] }, :second, :first, { prompt: "Select Enrol Semester" }, class: 'studentinfo_select' %>
+  </div>
+
+  <div class="studentinfo_field">
+    <%= form.label :grad_semester, 'Graduation Semester', class: 'studentinfo_label' %>
+    <span class="studentinfo_field_description">Select expected semester of graduation</span>
+    <%= form.collection_select :grad_semester, Student.grad_semesters.keys.map { |k| [k.humanize, k] }, :second, :first, { prompt: "Select Grad Semester" }, class: 'studentinfo_select' %>
+  </div>
+
+  <div class="studentinfo_submit">
+    <%= form.submit @student.new_record? ? 'Create Student' : 'Update Student Information', class: 'studentinfo_submit_button' %>
   </div>
 <% end %>

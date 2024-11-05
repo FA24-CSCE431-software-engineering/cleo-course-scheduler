@@ -1,0 +1,354 @@
+
+.profile-body {
+    font-family: Arial, sans-serif;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 70px;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative; 
+}
+
+.profile-logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.profile-logo {
+    width: 150px;
+    margin-right: 0px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+/* Avatar */
+.profile-avatar {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Dropdown Menu */
+.profile-avatar-dropdown {
+    position: relative;
+}
+
+.profile-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 300%;
+}
+
+.profile-dropdown-link {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.profile-dropdown-link:hover {
+    background-color: #f0f0f0;
+}
+
+
+.profile-show {
+    display: block;
+}
+
+
+
+.profile-container {
+    height: 100vh; 
+    width: 100vw;  
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-sizing: border-box; 
+    display: flex;
+    flex-direction: column;
+    justify-content: left; 
+    align-items: left;     
+}
+
+.profile-header-text {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.profile-info strong {
+    font-weight: bold;
+}
+
+.profile-edit-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    max-width: 200px;
+}
+
+.profile-edit-link:hover {
+    color: white;
+    background-color: #2a63a0;
+}
+
+.profile-back-to-dashboard {
+    margin-right: auto;
+}
+
+.profile-back-to-dashboard-link {
+    color: rgb(95, 55, 189);
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-back-arrow {
+    margin-right: 6px;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.profile-back-to-dashboard-link:hover {
+    color: #0056b3;
+}
+
+/* Credits Scale Styles */
+.credits-scale {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.credits-scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.credits-scale-bar {
+    position: relative;
+    height: 12px;
+    background-color: #e0e0e0; 
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 20px;
+}
+
+.credits-scale-fill {
+    height: 100%;
+    background-color: #343a40; 
+    border-radius: 10px 0 0 10px; 
+    transition: width 0.5s ease-in-out; 
+}
+
+.credits-scale-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 14px; 
+    margin-left: 20px; 
+    margin-right: 20px; 
+}
+
+.profile-body {
+    font-family: Arial, sans-serif;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 70px;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative; 
+}
+
+.profile-logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.profile-logo {
+    width: 150px;
+    margin-right: 0px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+/* Avatar */
+.profile-avatar {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Dropdown Menu */
+.profile-avatar-dropdown {
+    position: relative;
+}
+
+.profile-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 300%;
+}
+
+.profile-dropdown-link {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.profile-dropdown-link:hover {
+    background-color: #f0f0f0;
+}
+
+
+.profile-show {
+    display: block;
+}
+
+
+
+.profile-container {
+    height: 100vh; 
+    width: 100vw;  
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-sizing: border-box; 
+    display: flex;
+    flex-direction: column;
+    justify-content: left; 
+    align-items: left;     
+}
+
+.profile-header-text {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.profile-info strong {
+    font-weight: bold;
+}
+
+.profile-edit-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #673AB7;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    max-width: 200px;
+}
+
+.profile-edit-link:hover {
+    color: white;
+    background-color: #5b32a1; 
+}
+
+.profile-back-to-dashboard {
+    margin-right: auto;
+}
+
+.profile-back-to-dashboard-link {
+    color: rgb(95, 55, 189);
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-back-arrow {
+    margin-right: 6px;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.profile-back-to-dashboard-link:hover {
+    color: #0056b3;
+}
+
+/* Credits Scale Styles */
+.credits-scale {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.credits-scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.credits-scale-bar {
+    position: relative;
+    height: 12px;
+    background-color: #e0e0e0; 
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 20px;
+}
+
+.credits-scale-fill {
+    height: 100%;
+    background-color: #343a40; 
+    border-radius: 10px 0 0 10px; 
+    transition: width 0.5s ease-in-out; 
+}
+
+.credits-scale-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 14px; 
+    margin-left: 20px; 
+    margin-right: 20px; 
+}

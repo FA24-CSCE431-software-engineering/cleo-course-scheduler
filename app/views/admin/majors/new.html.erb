@@ -1,0 +1,11 @@
+<%= render 'shared/navbar_student' %>
+
+<%= render 'shared/navbar' %>
+
+<% content_for :title, "New Major" %>
+
+<h1>New Major</h1>
+
+<%= render 'admin/majors/form', major: @major %>
+
+<%= link_to 'Back', admin_majors_path %>

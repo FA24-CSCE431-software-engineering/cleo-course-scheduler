@@ -1,0 +1,26 @@
+<% content_for :title, "New Student Course" %>
+
+<h1>Add a New Course to Degree Plan</h1>
+
+<%= form_with model: @student_course, url: admin_student_courses_path, local: true do |form| %>
+  <div>
+    <%= form.label :student_id, "Student" %>
+    <%= form.collection_select :student_id, Student.all, :id, :first_name, prompt: "Select Student" %>
+  </div>
+
+  <div>
+    <%= form.label :course_id, "Select Course" %>
+    <%= form.collection_select :course_id, Course.all, :id, :cname, prompt: "Select Course" %>
+  </div>
+
+  <div>
+    <%= form.label :sem, "Semester" %>
+    <%= form.number_field :sem, min: 1, step: 1 %>
+  </div>
+
+  <div>
+    <%= form.submit "Add Course" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Degree Plan', admin_student_courses_path %>

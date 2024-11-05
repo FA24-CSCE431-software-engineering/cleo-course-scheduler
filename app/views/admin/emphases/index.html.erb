@@ -1,0 +1,60 @@
+<%= render 'shared/navbar_student' %>
+
+<%#= render 'shared/navbar' %>
+
+<% content_for :title, "Manage Emphases" %>
+
+<h1>Manage Emphases</h1>
+
+<h2>Existing Emphases</h2>
+<% if @emphases.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @emphases.each do |emphasis| %>
+        <% if @emphasis && @emphasis.id == emphasis.id %> <!-- Inline Edit Mode -->
+          <tr>
+            <td colspan="3">
+              <%= form_with(model: @emphasis, url: admin_emphasis_path(@emphasis), method: :patch, local: true) do |form| %>
+                <div class="form-group">
+                  <%= form.label :ename, "Emphasis Name" %>
+                  <%= form.text_field :ename, class: 'form-control' %>
+                </div>
+                <%= form.submit 'Update Emphasis', class: 'btn btn-primary' %>
+                <%= link_to 'Cancel', admin_emphases_path, class: 'btn btn-secondary' %>
+              <% end %>
+            </td>
+          </tr>
+        <% else %> <!-- Regular Display Mode -->
+          <tr>
+            <td><%= emphasis.ename %></td>
+            <td>
+              <%= link_to 'Edit', admin_emphases_path(id: emphasis.id), class: 'btn btn-warning' %> <!-- Redirect to index with this emphasis in edit mode -->
+            </td>
+            <td>
+              <%= button_to 'Delete', admin_emphasis_path(emphasis), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', turbo: false %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No emphases found.</p>
+<% end %>
+
+<% unless @emphasis.persisted? %>
+  <h2>Create New Emphasis</h2>
+  <%= form_with(model: @emphasis, url: admin_emphases_path, method: :post, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :ename, "Emphasis Name" %>
+      <%= form.text_field :ename, class: 'form-control' %>
+    </div>
+    <%= form.submit 'Create Emphasis', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

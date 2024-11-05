@@ -1,5 +1,4 @@
 <%= render 'form', student: @student %>
 
-<div>
-  <%= link_to 'Back to Students', students_path %>
-</div>
+<% content_for :title, "New Student" %>
+

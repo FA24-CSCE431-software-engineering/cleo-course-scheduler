@@ -1,0 +1,33 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% content_for :title, "Admin Help - Users Page" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <%= render 'shared/navbar_student' %>
+  <%= render 'shared/navbar' %>
+
+  <h1>User Management Page</h1>
+  <p>This page allows you to manage student information, displaying the following fields:</p>
+
+  <ul>
+    <li><strong>UIN:</strong> A unique ID that identifies each student.</li>
+    <li><strong>First Name:</strong> The student's first name.</li>
+    <li><strong>Last Name:</strong> The student's last name.</li>
+    <li><strong>Email:</strong> The email address the student used to create an account in the app.</li>
+    <li><strong>Enrollment Year:</strong> The year the student started classes.</li>
+    <li><strong>Graduation Year:</strong> The year the student plans to graduate.</li>
+    <li><strong>Major:</strong> The major selected by the student.</li>
+    <li><strong>Actions:</strong> The available actions that the admin can perform on a student, explained below.</li>
+  </ul>
+
+  <h2>Edit Action</h2>
+  <p>Clicking on the Edit action redirects you to a page similar to creating a new student, with most fields pre-filled. 
+  This page allows you to edit student information. Once your changes are complete, click on <strong>Update Student Information</strong>.</p>
+
+  <h2>Delete Action</h2>
+  <p>This action allows you to delete a student. You will be taken to a confirmation page to ensure that you want to proceed with deletion. 
+  <strong>Note: Once you delete an entry, it will be permanently removed.</strong></p>
+</body>

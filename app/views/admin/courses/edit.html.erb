@@ -1,0 +1,11 @@
+<%= render 'shared/navbar_student' %>
+
+<%= render 'shared/navbar' %>
+
+<% content_for :title, "Edit Course - #{ @course.cname }" %>
+
+<h1>Edit Course</h1>
+
+<%= render 'admin/courses/form', course: @course %>
+
+<%= link_to 'Back', admin_courses_path, class: 'btn btn-secondary' %>

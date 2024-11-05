@@ -1,9 +1,22 @@
-<h2>You're Logged out! Log in to the Dashboard!!</h2>
+<div class="login-page">
+  <div class="container text-center">
+    <!-- Cleo Logo -->
+    <img src="<%= asset_path('logo1.png') %>" alt="Cleo Logo" class="cleo-logo" />
 
-<%= button_to student_login_google_oauth2_omniauth_authorize_path, class: "btn btn-
-danger", method: :post, data: {turbo: "false"} do %>
+    <!-- Flash Notice -->
+    <% if flash[:notice] %>
+      <div class="alert alert-success flash-notice">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
-<i class="fab fa-google mobile-text"></i><span class = "mobile-
-font">&nbsp;Google</span>
+    <h2 class="logout-message">You're Logged out! Log in to the Dashboard!</h2>
+    <h3 >Get Started with your Degree Planner</h3>
 
-<% end %>
+
+    <!-- Google Login Button -->
+    <%= button_to student_login_google_oauth2_omniauth_authorize_path, class: "btn btn-danger google-btn", method: :post, data: { turbo: "false" } do %>
+      <i class="fab fa-google mobile-text"></i><span class="mobile-font">&nbsp; Login with Google</span>
+    <% end %>
+  </div>
+</div>

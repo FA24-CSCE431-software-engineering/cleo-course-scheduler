@@ -1,0 +1,7 @@
+<% content_for :title, "Delete Student Course#{ @student_course.course.cname }" %>
+
+<h1>Confirm Delete</h1>
+<p>Are you sure you want to remove <%= @student_course.course.cname %> from the degree plan?</p>
+
+<%= link_to 'Yes, Remove', admin_student_course_path(@student_course), method: :delete, data: { turbo: false } %>
+<%= link_to 'No, Go Back', admin_student_courses_path %>

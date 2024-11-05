@@ -3,7 +3,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_student_login!
 
-  # Make Devise helper methods available in views
   helper_method :current_student
 
   private

@@ -1,0 +1,47 @@
+<% content_for :title, "Manage Student Course" %>
+
+<%= render 'shared/navbar_student' %>
+
+<%#= render 'shared/navbar' %>
+
+<h1>Degree Plan</h1>
+
+<%= form_with url: admin_student_courses_path, method: :get, local: true do %>
+  <label for="student_id">Select a Student:</label>
+  <%= select_tag :student_id, options_for_select(@students.map { |student| [ "#{student.first_name} #{student.last_name}", student.id ] }, params[:student_id]), include_blank: 'Select a student' %>
+  <%= submit_tag 'Show Courses' %>
+<% end %>
+
+<% if @student %>
+  <h2>Courses for <%= @student.first_name %> <%= @student.last_name %>:</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Course Name</th>
+        <th>Course Code</th>
+        <th>Credit Hours</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @student_courses.each do |student_course| %>
+        <tr>
+          <td><%= "#{student_course.student.first_name} #{student_course.student.last_name}" %></td>
+          <td><%= student_course.course.cname %></td>
+          <td><%= student_course.course.ccode %></td>
+          <td><%= student_course.course.credit_hours %></td>
+          <td>
+            <%#= button_to 'Edit', edit_admin_student_course_path(student_id: student_course.student_id.to_s, course_id: student_course.course_id, sem: student_course.sem), method: :get %>
+            <%= button_to 'Remove', admin_student_course_path(student_id: student_course.student_id.to_s, course_id: student_course.course_id, sem: student_course.sem), method: :delete, data: { confirm: 'Are you sure?', turbo: false } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Please select a student to view their courses.</p>
+<% end %>
+
+<%= button_to 'Add New Course', new_admin_student_course_path, method: :get %>

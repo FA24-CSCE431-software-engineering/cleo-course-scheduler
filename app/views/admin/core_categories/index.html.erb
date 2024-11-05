@@ -1,0 +1,30 @@
+<%= render 'shared/navbar_student' %>
+<%#= render 'shared/navbar' %>
+
+<h1>Core Categories</h1>
+
+<%= link_to 'New Core Category', new_admin_core_category_path, class: 'btn btn-primary' %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category Name</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @core_categories.each do |core_category| %>
+      <tr>
+        <td><%= core_category.cname %></td>
+        <td><%= core_category.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= core_category.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_core_category_path(core_category) %>
+          <%= link_to 'Delete', confirm_destroy_admin_core_category_path(core_category), method: :get, data: { confirm: 'Are you sure you want to delete this core category?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

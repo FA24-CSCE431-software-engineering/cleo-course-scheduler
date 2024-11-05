@@ -1,0 +1,367 @@
+
+.student-dashboard body {
+    font-family: Arial, sans-serif;
+    background-color: #f6f5fa;
+    color: #333;
+    text-align: center;
+    margin: 0;
+}
+
+.student-dashboard .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 70px;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.student-dashboard .logo {
+    width: 150px;
+    margin-right: 0px;
+    margin-top: 10px;
+}
+
+.student-dashboard .user-info {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.student-dashboard .avatar {
+    width: 40px;
+    margin-left: 10px;
+}
+
+.student-dashboard .image-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.student-dashboard .dashboard-image {
+    max-width: 10%;
+    height: auto;
+}
+
+.student-dashboard .welcome {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1em;
+}
+
+.student-dashboard .planning-title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2em;
+}
+
+.student-dashboard .student-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.student-dashboard .student-actions h2 {
+    
+    font-size: 1.5em;
+    color: #333;
+}
+
+.student-dashboard .actions-list {
+    list-style: none;
+    padding: 0;
+}
+
+.student-dashboard .action-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 20px 15px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    width: 50%;
+}
+
+.student-dashboard .action-button:hover {
+    background-color: #0056b3;
+}
+
+.student-dashboard .links-container {
+    margin: 10px 0;
+}
+
+.student-dashboard .logout-button {
+    color: #dc3545;
+    text-decoration: none;
+}
+
+.student-dashboard .logout-button:hover {
+    text-decoration: underline;
+}
+
+.student-dashboard .profile-button {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.student-dashboard .profile-button:hover {
+    text-decoration: underline;
+}
+
+.student-dashboard .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #f6f5fa;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    padding-top: 60px;
+    padding-bottom: 60x;
+}
+
+.student-dashboard .sidebar.active {
+    left: 0;
+}
+
+.student-dashboard .sidebar-link {
+    display: block;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.student-dashboard .sidebar-link:first-child {
+    margin-top: 20px;
+}
+
+.student-dashboard .sidebar-link:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.student-dashboard .logout-button {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.student-dashboard .hamburger-icon {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    text-decoration: none;
+}
+
+.student-dashboard .line {
+    background-color: #333;
+    height: 3px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.student-dashboard .close-button {
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+}
+
+.student-dashboard .close-button:hover {
+    color: #dc3545;
+}
+
+
+.student-dashboard body {
+    font-family: Arial, sans-serif;
+    background-color: #f6f5fa;
+    color: #333;
+    text-align: center;
+    margin: 0;
+}
+
+.student-dashboard .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 70px;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.student-dashboard .logo {
+    width: 150px;
+    margin-left: 20px;
+    margin-right: 0px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.student-dashboard .user-info {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.student-dashboard .avatar {
+    width: 40px;
+    margin-left: 10px;
+}
+
+.student-dashboard .image-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.student-dashboard .dashboard-image {
+    max-width: 20%;
+    height: auto;
+}
+
+.student-dashboard .welcome {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1em;
+}
+
+.student-dashboard .planning-title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2em;
+}
+
+.student-dashboard .student-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.student-dashboard .student-actions h2 {
+    
+    font-size: 1.5em;
+    color: #333;
+}
+
+.student-dashboard .actions-list {
+    list-style: none;
+    padding: 0;
+}
+
+.student-dashboard .action-button {
+    display: inline-block;
+    background-color: #673AB7;
+    color: white;
+    padding: 20px 15px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    width: 50%;
+}
+
+.student-dashboard .action-button:hover {
+    /* background-color: #0056b3; */
+    /* background-color: #6A0DAD;  */
+    background-color: #5b32a1; 
+}
+
+.student-dashboard .links-container {
+    margin: 10px 0;
+}
+
+.student-dashboard .logout-button {
+    color: #dc3545;
+    text-decoration: none;
+}
+
+.student-dashboard .logout-button:hover {
+    text-decoration: underline;
+}
+
+.student-dashboard .profile-button {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.student-dashboard .profile-button:hover {
+    text-decoration: underline;
+}
+
+.student-dashboard .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #f6f5fa;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    padding-top: 60px;
+}
+
+.student-dashboard .sidebar.active {
+    left: 0;
+}
+
+.student-dashboard .sidebar-link {
+    display: block;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.student-dashboard .sidebar-link:first-child {
+    margin-top: 20px;
+}
+
+.student-dashboard .sidebar-link:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.student-dashboard .logout-button {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.student-dashboard .hamburger-icon {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    text-decoration: none;
+}
+
+.student-dashboard .line {
+    background-color: #333;
+    height: 3px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.student-dashboard .close-button {
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+}
+
+.student-dashboard .close-button:hover {
+    color: #dc3545;
+}
+

@@ -1,16 +1,11 @@
+# frozen_string_literal: true
+
 module Admin
   class DashboardController < ApplicationController
+    include AdminAuthentication
+
     before_action :authenticate_student_login!
-    before_action :ensure_admin!
 
-    def show
-      # Admin-specific logic goes here
-    end
-
-    private
-
-    def ensure_admin!
-      redirect_to root_path, alert: 'You are not authorized to view this page.' unless current_student_login.is_admin?
-    end
+    def show; end
   end
 end

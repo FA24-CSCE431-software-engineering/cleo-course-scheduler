@@ -1,12 +1,20 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>GoogleOauthDevise</title>
+<title><%= content_for?(:title) ? yield(:title) : "Default Title" %></title>
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 
-<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-
-track': 'reload' %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'student_dashboard', media: 'all', 'data-turbo-track': 'reload' %>
+<%= stylesheet_link_tag 'profile', media: 'all', 'data-turbo-track': 'reload' %>
+<%= stylesheet_link_tag 'login', media: 'all', 'data-turbo-track': 'reload' %>
+<%= stylesheet_link_tag 'studentform', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'degreeplan', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+
+
 
 <%= javascript_include_tag 'application', 'data-turbolinks-track':
 'reload' %>
@@ -25,4 +33,3 @@ track': 'reload' %>
 <% end %>
 <%= yield %>
 </body>
-</html>

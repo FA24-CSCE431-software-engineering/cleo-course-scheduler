@@ -1,0 +1,8 @@
+<%= render 'shared/navbar' %>
+<% content_for :title, "Edit Core Category - #{ @core_category.cname }" %>
+
+<h1>Edit Core Category</h1>
+
+<%= render 'admin/core_categories/form', core_category: @core_category %>
+
+<%= link_to 'Back', admin_core_categories_path, class: 'btn btn-secondary' %>

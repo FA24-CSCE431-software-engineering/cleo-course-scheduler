@@ -1,26 +1,93 @@
-<h1>You're logged in! Welcome to the Dashboard!</h1>
-<%= link_to "Sign Out", destroy_student_login_session_path %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% content_for :title, "Student Dashboard" %>
+  <%= stylesheet_link_tag 'student_dashboard', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="student-dashboard">
+  <%# 
+    Header section containing the hamburger menu, logo, and user avatar.
+    The hamburger icon toggles the sidebar, and the avatar links to the student's profile page.
+  %>
+  <div class="header">
+    <div class="hamburger-icon" id="hamburger-icon">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
 
-<h1>Student Dashboard</h1>
+    <div class="logo-container">
+      <%= image_tag 'logo1.png', alt: 'Cleo Logo', class: 'logo' %>
+    </div>
 
-<p>Welcome, <%= current_student_login.full_name %>!</p>
+    <div class="user-info">
+      <%# Display the student's avatar. If no avatar is available, a default image is used. %>
+      <%= link_to image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'profile-avatar'), profile_student_path(current_student_login) %>
+    </div>
+  </div>
 
-<div class="student-actions">
-  <h2>Your Profile</h2>
-  <ul>
-    <li><%= link_to 'View Profile', profile_student_path(current_student_login) %></li>
-    <li><%= link_to 'Edit Profile', edit_student_path(current_student_login) %></li>
-  </ul>
+  <%# 
+    Sidebar section for navigation links.
+    Includes links to home, profile, degree planner, and sign-out functionality.
+  %>
+  <div class="sidebar" id="sidebar">
+    <%# Close button to hide the sidebar when clicked %>
+    <span class="close-button" id="close-button">&times;</span>
+    <%= link_to 'Home', student_dashboard_path, class: 'sidebar-link' %> <br>
+    <%= link_to 'Profile', profile_student_path(current_student_login), class: 'sidebar-link' %> <br>
+    <%= link_to 'Degree Planner', student_degree_planner_path(@student&.google_id), class: 'sidebar-link' %> <br>
+    <%= link_to 'Support/Help', support_index_path, class: 'sidebar-link' %> <br>
+    <%= link_to 'Sign Out', destroy_student_login_session_path, class: 'sidebar-link logout-button' %>
+  </div>
 
-  <h2>Your Courses</h2>
-  <ul>
-    <li><%= link_to 'View Enrolled Courses', student_courses_path %></li>
-    <li><%= link_to 'Enroll in New Course', new_student_course_path %></li>
-  </ul>
+  <%# 
+    Welcome message displayed with the student's full name.
+    The student's name is retrieved from the current_student_login object.
+  %>
+  <p class="welcome">Welcome, <%= current_student_login.full_name %>!</p>
 
-  <h2>Degree Plan</h2>
-  <ul>
-    <li><%= link_to 'View Degree Plan', degree_plan_path %></li>
-    <li><%= link_to 'Download Degree Plan', download_degree_plan_path %></li>
-  </ul>
-</div>
+  <%# Main dashboard image shown below the welcome message %>
+  <div class="image-container">
+    <%= image_tag 'dashboard.png', alt: 'Dashboard', class: 'dashboard-image' %>
+  </div>
+
+  <%# 
+    Heading to introduce the degree planning section of the dashboard.
+    Prompts the student to start planning their degree.
+  %>
+  <h1 class="planning-title">Start Planning Your Degree</h1>
+
+  <%# 
+    Action buttons for student-related tasks.
+    Buttons include links for editing profile, viewing the default degree plan, building a custom planner, and more.
+  %>
+  <div class="student-actions">
+    <ul class="actions-list">
+      <li><%= link_to 'Profile', profile_student_path(current_student_login), class: 'action-button' %></li>
+      <li><%= link_to 'View Default Degree Plan', degree_plan_path, class: 'action-button' %></li>
+      <li><%= link_to 'Build Your Degree Planner', student_degree_planner_path(@student&.google_id), class: 'action-button' %></li>
+    </ul>
+  </div>
+
+  <%# 
+    JavaScript functionality to toggle the sidebar when the hamburger icon is clicked.
+    Also includes logic to close the sidebar when the close button is clicked.
+  %>
+  <script>
+    // Toggle the sidebar when the hamburger icon is clicked
+    document.getElementById('hamburger-icon').addEventListener('click', function() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active'); // Toggle the active class
+    });
+
+    // Close the sidebar when the close button is clicked
+    document.getElementById('close-button').addEventListener('click', function() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.remove('active'); // Remove the active class
+    });
+  </script>
+</body>
+</html>

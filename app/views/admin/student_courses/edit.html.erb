@@ -1,0 +1,22 @@
+<% content_for :title, "Edit Student Course#{ @student_course.course.cname }" %>
+
+<h1>Edit Courses in Degree Plan</h1>
+
+<%= form_with model: @student_course, url: admin_student_course_path(student_id: @student_course.student_id.to_s, course_id: @student_course.course_id, sem: @student_course.sem), local: true do |form| %>
+  <div>
+    <%= form.label :course_id, "Change Course" %>
+    <%= form.collection_select :course_id, Course.all, :id, :cname, prompt: "Select a New Course" %>
+  </div>
+
+  <div>
+    <%= form.label :sem, "Semester" %>
+    <%= form.number_field :sem, value: @student_course.sem %>
+  </div>
+
+  <div>
+    <%= form.submit "Update Course" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Degree Plan', admin_student_courses_path %>
+

@@ -1,20 +1,128 @@
-<h1>Admin Dashboard</h1>
 
-<p>Welcome, <%= current_student_login.full_name %>!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% content_for :title, "Admin Dashboard" %>
+  <%= stylesheet_link_tag 'student_dashboard', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="student-dashboard">
+  <%# 
+    Header section containing the hamburger menu, logo, and user avatar.
+    The hamburger icon toggles the sidebar, and the avatar links to the student's profile page.
+  %>
+  <div class="header">
+    <div class="hamburger-icon" id="hamburger-icon">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
 
-<div class="admin-actions">
-  <h2>Manage Users</h2>
-  <ul>
-    <li><%= link_to 'View All Users', students_path %></li>
-    <li><%= link_to 'Add New User', new_student_path %></li>
-  </ul>
+    <div class="logo-container">
+      <%= image_tag 'logo1.png', alt: 'Cleo Logo', class: 'logo' %>
+    </div>
 
-  <h2>Degree Plans</h2>
-  <ul>
-    <li><%= link_to 'View All Degree Plans', degree_plan_path %></li>
-  </ul>
+    <div class="profile-user-info">
+      <div class="profile-avatar-dropdown">
+        <!-- Avatar Image -->
+        <%= image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'profile-avatar', id: 'avatar') %>
 
+        <!-- Dropdown Menu -->
+        <div class="profile-dropdown-menu" id="dropdown-menu">
+          <%= link_to 'Sign Out', destroy_student_login_session_path, method: :delete, class: 'profile-dropdown-link' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# 
+    Sidebar section for navigation links.
+    Includes links to home, profile, degree planner, and sign-out functionality.
+  %>
+  <div class="sidebar" id="sidebar">
+    <%# Close button to hide the sidebar when clicked %>
+    <span class="close-button" id="close-button">&times;</span>
+    <%= link_to 'Home', admin_dashboard_path, class: 'sidebar-link' %> <br>
+    <%= link_to 'Help', admin_support_index_path, class: 'sidebar-link' %>
+    <%= link_to 'Sign Out', destroy_student_login_session_path, class: 'sidebar-link logout-button' %>
+  </div>
+
+  <div class="profile-dropdown-menu" id="dropdown-menu">
+          <%= link_to 'Settings', profile_student_path(current_student_login), class: 'profile-dropdown-link' %>
+          <%= link_to 'Sign Out', destroy_student_login_session_path, method: :delete, class: 'profile-dropdown-link' %>
+        </div>
+
+  <div class="mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Greeting in the top left -->
+      <%#<h3 class="float-start">Hey, <%= current_student_login.full_name %></h3>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+      <h1>Admin Dashboard</h1>
+      <p>Welcome, <%= current_student_login.full_name %>! What would you like to do?</p>
+
+      <div class="d-grid gap-3">
+        <%= link_to 'Manage Users', students_path, class: 'btn btn-purple btn-lg btn-wide' %>
+
+        <%#= link_to 'View Default Degree Plan', degree_plan_path, class: 'btn btn-purple btn-lg btn-wide' %>
+
+        <%= link_to 'View Enrolled Courses', admin_student_courses_path, class: 'btn btn-purple btn-lg btn-wide' %>
+        <%= link_to 'Track Management', admin_tracks_path, class: 'btn btn-purple btn-lg btn-wide' %>
+        <%= link_to 'Emphasis Management', admin_emphases_path, class: 'btn btn-purple btn-lg btn-wide' %>
+        <%= link_to 'Course Management', admin_courses_path, class: 'btn btn-purple btn-lg btn-wide' %>
+        <%= link_to 'Core Categories Management', admin_core_categories_path, class: 'btn btn-purple btn-lg btn-wide' %>
+        <%= link_to 'Major Management', admin_majors_path, class: 'btn btn-purple btn-lg btn-wide' %>
+        
+      </div>
+    </div>
+  </div>
   
+
 </div>
+
+
+  <%# 
+    JavaScript functionality to toggle the sidebar when the hamburger icon is clicked.
+    Also includes logic to close the sidebar when the close button is clicked.
+  %>
+  <script>
+    // Toggle the sidebar when the hamburger icon is clicked
+    document.getElementById('hamburger-icon').addEventListener('click', function() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active'); // Toggle the active class
+    });
+
+    // Close the sidebar when the close button is clicked
+    document.getElementById('close-button').addEventListener('click', function() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.remove('active'); // Remove the active class
+    });
+  </script>
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const avatar = document.getElementById('avatar');
+      const dropdownMenu = document.getElementById('dropdown-menu');
+
+      // Toggle dropdown visibility
+      avatar.addEventListener('click', function() {
+        dropdownMenu.classList.toggle('profile-show');
+      });
+
+      // Hide dropdown if clicking outside
+      document.addEventListener('click', function(event) {
+        if (!avatar.contains(event.target) && !dropdownMenu.contains(event.target)) {
+          dropdownMenu.classList.remove('profile-show');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
 
 

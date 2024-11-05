@@ -1,53 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cleo Course Scheduler</title>
-</head>
-<body>
+<div class="login-page">
+  <div class="container text-center">
+    <!-- Cleo Logo -->
+    <img src="<%= asset_path('logo1.png') %>" alt="Cleo Logo" class="cleo-logo" />
 
-<h1>You're logged in!</h1>
-
-<nav>
-  <ul>
-    <li><%= link_to "Home", root_path %></li>
-    <% if current_student %> 
-      <li><%= link_to "Profile", profile_student_path(current_student_login) %></li>
-      <li><%= link_to "Sign Out", destroy_student_login_session_path, method: :delete %></li>
-    <% else %>
-      <li><%= link_to "Sign In", new_student_login_session_path %></li>
+    <!-- Flash Notice -->
+    
+    <% if flash[:notice] %>
+      <div class="alert alert-success flash-notice">
+        <%= flash[:notice] %>
+      </div>
     <% end %>
-  </ul>
-</nav>
+    
+    <h2 class="logout-message">You're Logged out! Log in to the Dashboard!</h2>
+    <h3 >Get Started with your Degree Planner</h3>
 
-
-<h1> Dashboard </h1>
-<h2><%= link_to "Degree Plan", degree_plan_path %></h2>
-<table>
-  <thead>
-    <tr>
-      <th>Table</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @models.each do |model| %>
-      <tr>
-        <td><%= model %></td>
-        <td>
-          <% # Check if the path helper exists; if not, default to root_path %>
-          <% path_method = "#{model.to_s.underscore}s_path" %>
-          <% if Rails.application.routes.url_helpers.respond_to?(path_method) %>
-            <a href="<%= send(path_method) %>">View Table</a>
-          <% else %>
-            <a href="<%= root_path %>">View Table</a> <!-- Default to home#index -->
-          <% end %>
-        </td>
-      </tr>
+    <!-- Google Login Button -->
+    <%= button_to student_login_google_oauth2_omniauth_authorize_path, class: "btn btn-danger google-btn", method: :post, data: { turbo: "false" } do %>
+      <i class="fab fa-google mobile-text"></i><span class="mobile-font">&nbsp;Login with Google</span>
     <% end %>
-  </tbody>
-</table>
-
-</body>
-</html>
+  </div>
+</div>

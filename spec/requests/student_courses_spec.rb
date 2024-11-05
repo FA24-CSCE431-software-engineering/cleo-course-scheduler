@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'StudentCourses', type: :request do
   let(:major) { Major.find_or_create_by(mname: 'Computer Science', cname: 'College of Engineering') }
-  
+
   let(:student) do
     Student.create!(
       first_name: 'John',
@@ -13,10 +15,10 @@ RSpec.describe 'StudentCourses', type: :request do
       grad_year: 2024,
       enrol_semester: 1,
       grad_semester: 1,
-      major: major
+      major:
     )
   end
-  
+
   let(:course) do
     Course.create!(
       ccode: 'CSCE',
@@ -63,13 +65,13 @@ RSpec.describe 'StudentCourses', type: :request do
   describe 'POST /create' do
     it 'creates a new StudentCourse and returns a redirect' do
       post student_courses_path, params: { student_course: valid_attributes }
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:redirect)
     end
   end
 
   describe 'GET /edit' do
     it 'returns http success' do
-      student_course = StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 0)
+      StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 3)
       get edit_student_course_path(student_id: student.id, course_id: course.id)
       expect(response).to have_http_status(:success)
     end
@@ -77,15 +79,16 @@ RSpec.describe 'StudentCourses', type: :request do
 
   describe 'PATCH /update' do
     it 'updates the StudentCourse and redirects' do
-      student_course = StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 1)
-      patch student_course_path(student_id: student.id, course_id: course.id), params: { student_course: { course_id: course.id + 1 } }
+      StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 1)
+      patch student_course_path(student_id: student.id, course_id: course.id),
+            params: { student_course: { course_id: course.id + 1 } }
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'DELETE /destroy' do
     it 'deletes the StudentCourse and redirects' do
-      student_course = StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 1)
+      StudentCourse.create!(student_id: student.id, course_id: course.id, sem: 1)
       delete student_course_path(student_id: student.id, course_id: course.id)
       expect(response).to have_http_status(:redirect)
     end

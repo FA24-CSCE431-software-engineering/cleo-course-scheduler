@@ -1,0 +1,11 @@
+<h1>Track Details</h1>
+
+<p>
+  <strong>Track Name:</strong>
+  <%= @track.tname.present? ? @track.tname : 'N/A' %>
+
+</p>
+
+<%= link_to 'Edit Track', edit_admin_track_path(@track), class: 'btn btn-warning' %>
+<%= link_to 'Back to Track List', admin_tracks_path, class: 'btn btn-secondary' %>
+<%= link_to 'Delete Track', admin_track_path(@track), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>

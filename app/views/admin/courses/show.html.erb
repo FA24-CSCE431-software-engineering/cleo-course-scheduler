@@ -1,0 +1,41 @@
+<%= render 'shared/navbar_student' %>
+
+<%= render 'shared/navbar' %>
+<% content_for :title, "Course Information - #{ @course.cname }" %>
+<h1><%= @course.cname %></h1>
+
+<p><strong>Code:</strong> <%= @course.ccode %></p>
+<p><strong>Course Number:</strong> <%= @course.cnumber %></p>
+<p><strong>Description:</strong> <%= @course.description %></p>
+<p><strong>Credit Hours:</strong> <%= @course.credit_hours %></p>
+<p><strong>Lecture Hours:</strong> <%= @course.lecture_hours %></p>
+<p><strong>Lab Hours:</strong> <%= @course.lab_hours %></p>
+
+<p><strong>Prerequisites:</strong></p>
+<% if @prerequisites.any? %>
+<%# initalize equivelancies hash %>
+  <% equivalencies = Hash.new { |hash, key| hash[key] = [] } %>
+
+  <%# gather course identifiers %>
+  <% @prerequisites.each do |prerequisite| %>
+    <% equi_id = prerequisite.equi_id %>
+    <% course = prerequisite.prereq %>
+    <% equivalencies[equi_id] << "#{course.ccode} #{course.cnumber}" %>
+  <% end %>
+
+  <%# output the list %>
+  <ul>
+    <% equivalencies.each do |equi_id, course_identifiers| %>
+      <li>
+        <%= course_identifiers.uniq.join(' or ') %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No prerequisites required for this course.</p>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_admin_course_path(@course) %> |
+<%= link_to 'Back to Courses', admin_courses_path %>

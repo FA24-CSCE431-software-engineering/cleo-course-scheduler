@@ -1,5 +1,13 @@
+
+<%= render 'shared/navbar_student2' %>
 <%= render 'form', student: @student %>
 
+<% content_for :title, "Edit Student - #{ @student.first_name } #{ @student.last_name }" %>
+
+
+<%# 
 <div>
-  <%= link_to 'Back to Students', students_path %>
+  <%= link_to 'Edit', edit_student_path(@student.google_id) %>
 </div>
+
+

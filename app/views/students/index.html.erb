@@ -1,5 +1,12 @@
+<% content_for :title, "Admin - Student Table" %>
+
+<%= render 'shared/navbar_student' %>
+
+<%= render 'shared/navbar' %>
+
+<%#
 <div>
-  <%= link_to 'Back to Home', root_path %>
+  <%= link_to 'Back to Home', admin_dashboard_path %>
 </div>
 <h1>Students</h1>
 
@@ -39,6 +46,7 @@
   </tbody>
 </table>
 
+<%#
 <div>
   <%= link_to 'Add student', new_student_path %>
 </div>

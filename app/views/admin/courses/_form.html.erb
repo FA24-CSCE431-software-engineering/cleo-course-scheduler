@@ -1,0 +1,57 @@
+<%= form_with(model: [:admin, course], local: true) do |form| %>
+  <% if course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+      <ul>
+        <% course.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ccode, "Course Code" %>
+    <%= form.text_field :ccode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cnumber, "Course Number" %>
+    <%= form.text_field :cnumber %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cname, "Course Name" %>
+    <%= form.text_field :cname, style: "width: 100%; max-width: 600px;" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Course Description" %>
+    <%= form.text_field :description, style: "width: 100%; max-width: 600px;" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :credit_hours, "Course Credit Hours" %>
+    <%= form.text_field :credit_hours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lecture_hours, "Course Lecture Hours" %>
+    <%= form.text_field :lecture_hours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lab_hours, "Course Lab Hours" %>
+    <%= form.text_field :lab_hours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prerequisites, "Prerequisites" %>
+    <%= form.text_field :prerequisites, value: format_prerequisites(course), style: "width: 100%; max-width: 600px;" %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

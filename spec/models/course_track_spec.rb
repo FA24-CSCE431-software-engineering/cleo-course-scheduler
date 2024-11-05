@@ -3,30 +3,25 @@
 require 'rails_helper'
 
 RSpec.describe CourseTrack, type: :model do
-  before(:each) do
-    @default_course = Course.create(ccode: 'CSCE', cnumber: 411, cname: 'Software Engineering', credit_hours: 3)
-    @default_track = Track.create(tname: 'Software')
-  end
+  include_context 'models setup'
 
   context 'When creating a valid course track' do
     it 'is valid with valid attributes' do
-      ct = CourseTrack.create(course: @default_course, track: @default_track)
-      expect(ct).to be_valid
+      expect(course_track).to be_valid
     end
   end
 
   context 'When creating an invalid course track' do
     it 'is invalid with missing course_id' do
-      ct = CourseTrack.create(track: @default_track)
-      expect(ct).to be_invalid
+      invalid_course_track = CourseTrack.create(track: course_track.track)
+      expect(invalid_course_track).to be_invalid
     end
   end
 
   context 'When creating a duplicate course track' do
     it 'is invalid with duplicate course_id, track_id' do
-      CourseTrack.create!(course: @default_course, track: @default_track)
-      ct = CourseTrack.new(course: @default_course, track: @default_track)
-      expect(ct).to be_invalid
+      dup_course_track = CourseTrack.new(course: course_track.course, track: course_track.track)
+      expect(dup_course_track).to be_invalid
     end
   end
 end

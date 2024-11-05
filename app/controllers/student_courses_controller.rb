@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StudentCoursesController < ApplicationController
   before_action :set_student_course, only: %i[edit update destroy confirm_destroy]
 
@@ -35,12 +37,12 @@ class StudentCoursesController < ApplicationController
 
   def edit
     # @student_course = StudentCourse.find(params[:id])
-    @student_course = set_student_course()
+    @student_course = set_student_course
   end
 
   def update
     # @student_course = StudentCourse.find(params[:id])
-    @student_course = set_student_course()
+    @student_course = set_student_course
     if @student_course.update(student_course_params)
       redirect_to student_courses_path(student_id: @student_course.student_id), notice: 'Course updated successfully.'
     else
@@ -50,8 +52,9 @@ class StudentCoursesController < ApplicationController
 
   def destroy
     # @student_course = StudentCourse.find(params[:id])
-    @student_course = set_student_course()
-    redirect_to student_courses_path(student_id: params[:student_id]), status: :see_other, notice: 'Course removed successfully.'
+    @student_course = set_student_course
+    redirect_to student_courses_path(student_id: params[:student_id]), status: :see_other,
+                                                                       notice: 'Course removed successfully.'
   end
 
   def confirm_destroy
@@ -61,10 +64,10 @@ class StudentCoursesController < ApplicationController
   private
 
   def set_student_course
-   @student_course = StudentCourse.find_by!(student_id: params[:student_id], course_id: params[:course_id])
+    @student_course = StudentCourse.find_by!(student_id: params[:student_id], course_id: params[:course_id])
   end
 
   def student_course_params
-    params.require(:student_course).permit(:student_id, :course_id)
+    params.require(:student_course).permit(:student_id, :course_id, :sem)
   end
 end
