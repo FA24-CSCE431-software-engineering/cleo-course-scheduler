@@ -58,6 +58,8 @@ class DegreePlannerService
     add_ucc_courses(grouped_requirements[:ucc_elective])
     add_emphasis_courses(grouped_requirements[:emphasis_elective])
     add_track_courses(grouped_requirements[:cs_elective])
+    add_general_courses(grouped_requirements[:general_elective])
+    add_science_courses(grouped_requirements[:science_elective])
   end
 
   def add_ucc_courses(ucc_elective)
@@ -144,6 +146,18 @@ class DegreePlannerService
       cs_elective.each do |elective|
         @courses << { course_id: elective.course_id, sem: elective.sem }
       end
+    end
+  end
+
+  def add_general_courses(general_elective)
+    general_elective.each do |elective|
+      @courses << { course_id: elective.course_id, sem: elective.sem }
+    end
+  end
+
+  def add_science_courses(science_elective)
+    science_elective.each do |elective|
+      @courses << { course_id: elective.course_id, sem: elective.sem }
     end
   end
 
