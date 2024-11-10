@@ -24,7 +24,9 @@ class StudentsController < ApplicationController
       enrol_year: params[:enrol_year] || current_year, # Set enrol_year or fallback to current year
       grad_year: params[:grad_year] || (current_year + 4),
       enrol_semester: params[:enrol_semester] || current_semester,
-      grad_semester: params[:grad_semester] || (current_semester == 'fall' ? 'spring' : 'fall')
+      grad_semester: params[:grad_semester] || (current_semester == 'fall' ? 'spring' : 'fall'),
+      track_id: params[:track_id],
+      emphasis_id: params[:emphasis_id]
     )
   end
 
@@ -109,6 +111,6 @@ class StudentsController < ApplicationController
 
   def student_params
     params.require(:student).permit(:google_id, :first_name, :last_name, :email, :enrol_year, :grad_year, :enrol_semester,
-                                    :grad_semester, :major_id, :emphasis_id)
+                                    :grad_semester, :major_id, :emphasis_id, :track_id)
   end
 end
