@@ -11,6 +11,7 @@ class DegreePlannerController < ApplicationController
     @student_courses = StudentCourse.includes(:course).where(student: @student).order(:sem)
     @course_prerequisite_status = check_prerequisites(@student, @student_courses)
     @emphasis_options = Emphasis.all.pluck(:ename)
+    @track_options = Track.all.pluck(:tname)
   end
 
   def add_course
@@ -80,7 +81,7 @@ class DegreePlannerController < ApplicationController
 
   # In DegreePlannerController
   def generate_custom_plan
-    planner_service = DegreePlannerService.new(@student, params[:interests][:emphasis_area])
+    planner_service = DegreePlannerService.new(@student, params[:interests][:emphasis_area], params[:interests][:track_area])
     planned_courses = planner_service.generate_plan
 
     # Clear existing courses

@@ -4,9 +4,9 @@
 # naive approach
 
 class DegreePlannerService
-  def initialize(student, emphasis_area)
+  def initialize(student, emphasis_area, track_area)
     @student = student
-    @major = student.major
+    @track_area = track_area
     @emphasis_area = emphasis_area
     @courses = []
     @semester_credits = Hash.new(0)
@@ -57,7 +57,7 @@ class DegreePlannerService
 
     add_ucc_courses(grouped_requirements[:ucc_elective])
     add_emphasis_courses(grouped_requirements[:emphasis_elective])
-    # add_track_courses(grouped_requirements[:cs_elective])
+    add_track_courses(grouped_requirements[:cs_elective])
   end
 
   def add_ucc_courses(ucc_elective)
@@ -109,8 +109,12 @@ class DegreePlannerService
       emphasis_elective.each_with_index do |elective, index|
         course = ordered_eligible_courses[index]
         break unless course
-
-        @courses << { course_id: course.course_id, sem: elective.sem }
+        
+        if @courses.none? { |c| c[:course_id] == course.course_id }
+          @courses << { course_id: course.course_id, sem: elective.sem }
+        else
+          next
+        end
       end
     else # If there is no emphasis area, we insert back the placeholder modules
       emphasis_elective.each do |elective|
@@ -119,10 +123,28 @@ class DegreePlannerService
     end
   end
 
-  def add_track_courses(_cs_elective)
-    return unless @student.track
+  def add_track_courses(cs_elective)
+    if @track_area
+      track_id = Track.where(tname: @track_area)
+      eligible_courses = CourseTrack.where(track_id:)
+      ordered_eligible_courses = order_min_prereqs('course_tracks', 'track_id', eligible_courses)
 
-    @courses.concat(track_courses.where(track: @student.track))
+      cs_elective.each_with_index do |elective, index|
+        puts ordered_eligible_courses[index].inspect
+        course = ordered_eligible_courses[index]
+        break unless course
+        
+        if @courses.none? { |c| c[:course_id] == course.course_id }
+          @courses << { course_id: course.course_id, sem: elective.sem }
+        else
+          next
+        end
+      end
+    else # If there is no track area, we insert back the placeholder modules
+      cs_elective.each do |elective|
+        @courses << { course_id: elective.course_id, sem: elective.sem }
+      end
+    end
   end
 
   def order_min_prereqs(table_name, id_name, courses)
