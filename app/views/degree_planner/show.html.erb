@@ -149,6 +149,11 @@
       </div>
 
       <div class="generate_form-group">
+        <%= label_tag :track_area, "Track", class: "generate-label" %>
+        <%= select_tag "interests[track_area]", options_for_select(@track_options), class: 'interest-select' %>
+      </div>
+
+      <div class="generate_form-group">
         <%= label_tag :target_graduation, "Targeted Graduation Year", class: "generate-label" %>
         <%= select_tag "interests[target_graduation]", options_for_select((2025..2035).to_a), class: 'interest-select' %>
       </div>
