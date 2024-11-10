@@ -145,7 +145,7 @@
 
       <div class="generate_form-group">
         <%= label_tag :emphasis_area, "Emphasis Area", class: "generate-label" %>
-        <%= select_tag "interests[emphasis_area]", options_for_select([['Data Science', 'data_science'], ['Software Engineering', 'software_engineering'], ['Cybersecurity', 'cybersecurity']]), class: 'interest-select' %>
+        <%= select_tag "interests[emphasis_area]", options_for_select(@emphasis_options), class: 'interest-select' %>
       </div>
 
       <div class="generate_form-group">

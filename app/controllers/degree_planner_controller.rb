@@ -10,6 +10,7 @@ class DegreePlannerController < ApplicationController
     @default_plan = DegreeRequirement.includes(:course).where(major: @student.major)
     @student_courses = StudentCourse.includes(:course).where(student: @student).order(:sem)
     @course_prerequisite_status = check_prerequisites(@student, @student_courses)
+    @emphasis_options = Emphasis.all.pluck(:ename)
   end
 
   def add_course
