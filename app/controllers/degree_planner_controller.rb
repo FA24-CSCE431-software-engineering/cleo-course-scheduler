@@ -89,8 +89,8 @@ class DegreePlannerController < ApplicationController
     planned_courses.each do |course_info|
       StudentCourse.create!(
         student: @student,
-        course: course_info[:course],
-        sem: course_info[:semester]
+        course_id: course_info[:course_id],
+        sem: course_info[:sem]
       )
     end
 
