@@ -8,6 +8,7 @@ class DegreePlannerService
     @student = student
     @major = student.major
     @emphasis_area = emphasis_area
+    puts emphasis_area
     @courses = []
     @semester_credits = Hash.new(0)
 
@@ -62,7 +63,7 @@ class DegreePlannerService
     end
 
     add_ucc_courses(grouped_requirements[:ucc_elective])
-    # add_emphasis_courses(grouped_requirements[:emphasis_elective])
+    add_emphasis_courses(grouped_requirements[:emphasis_elective])
     # add_track_courses(grouped_requirements[:cs_elective])
   end
 
@@ -73,7 +74,7 @@ class DegreePlannerService
     @category_min.each do |category, min_courses|
       core_category = CoreCategory.find_by(cname: category)
       courses_core_category = CourseCoreCategory.where(core_category_id: core_category.id)
-      ordered_eligible_courses = order_min_prereqs(courses_core_category)
+      ordered_eligible_courses = order_min_prereqs("course_core_categories", "core_category_id", courses_core_category)
       
       ordered_eligible_courses.each do |course_core_category|
         break if category_count[category] >= min_courses
@@ -90,7 +91,7 @@ class DegreePlannerService
 
     # Select courses outside of the minimum requirements i.e. leftover slots
     num_courses_left = ucc_elective.size - 6
-    all_courses = order_min_prereqs(CourseCoreCategory.all)
+    all_courses = order_min_prereqs("course_core_categories", "core_category_id", CourseCoreCategory.all)
 
     all_courses.each do |course_core_category|
       break if num_courses_left <= 0
@@ -107,8 +108,21 @@ class DegreePlannerService
   end
 
   def add_emphasis_courses(emphasis_elective)
-    if @student.emphasis
-      @courses.concat(emphasis_courses.where(emphasis: @student.emphasis))
+    if @emphasis_area
+      emphasis_id = Emphasis.where(ename: @emphasis_area)
+      eligible_courses = CourseEmphasis.where(emphasis_id: emphasis_id)
+      ordered_eligible_courses = order_min_prereqs("course_emphases", "emphasis_id", eligible_courses)
+
+      emphasis_elective.each_with_index do |elective, index|
+        course = ordered_eligible_courses[index]
+        break unless course
+        
+        @courses << { course_id: course.course_id, sem: elective.sem }
+      end
+    else # If there is no emphasis area, we insert back the placeholder modules
+      emphasis_elective.each do |elective|
+        @courses << { course_id: elective.course_id, sem: elective.sem }
+      end
     end
   end
 
@@ -118,13 +132,12 @@ class DegreePlannerService
     end
   end
 
-  def order_min_prereqs(courses)
+  def order_min_prereqs(table_name, id_name, courses)
     courses_with_min_prereqs = courses
-    .joins("LEFT JOIN prerequisites ON course_core_categories.course_id = prerequisites.course_id")
-    .select("course_core_categories.course_id, course_core_categories.core_category_id, COUNT(prerequisites.prereq_id) AS prereq_count")
-    .group("course_core_categories.course_id, course_core_categories.core_category_id")
+    .joins("LEFT JOIN prerequisites ON #{table_name}.course_id = prerequisites.course_id")
+    .select("#{table_name}.course_id, #{table_name}.#{id_name}, COUNT(prerequisites.prereq_id) AS prereq_count")
+    .group("#{table_name}.course_id, #{table_name}.#{id_name}")
     .order("prereq_count ASC")
   end
 
-  def
 end
