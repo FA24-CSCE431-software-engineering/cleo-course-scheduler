@@ -133,6 +133,12 @@ class DegreePlannerController < ApplicationController
     end
   end
 
+  def view_template
+    file_path = Rails.root.join('public', 'templates', 'upload_plan_template.csv')
+    csv_content = File.read(file_path)
+    render plain: csv_content, content_type: 'text/plain'
+  end
+
   private
 
   def set_student

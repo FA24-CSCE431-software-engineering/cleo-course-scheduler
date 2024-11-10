@@ -113,6 +113,7 @@
       <%= form_with url: upload_plan_student_degree_planner_path(@student), method: :post, html: { multipart: true } do |f| %>
           <div class="form-group">
               <%= label_tag :file, "Upload CSV" %>
+              <%= link_to 'CSV Template', view_template_student_degree_planner_path(@student), target: '_blank' %>
               <%= file_field_tag :file, class: 'form-control' %>
           </div>
           <div class="button-group">
