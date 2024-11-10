@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       end
       collection do
         post :import
+        get :view_template
       end
     end
     resources :majors do

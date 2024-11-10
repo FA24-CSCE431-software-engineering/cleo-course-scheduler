@@ -29,4 +29,9 @@
     <li><strong>Edit:</strong> Modify the course information, including its name, code, or number.</li>
     <li><strong>Delete:</strong> Permanently remove the course from the system. <strong>Note:</strong> This action cannot be undone.</li>
   </ul>
+
+  <h2>Uploading your Degree Plan</h2>
+  <p>Refer to the template <%= link_to 'here', view_template_admin_courses_path(@student), target: '_blank' %> for the format of uploading your degree plan. The headers should be as is.</p>
+  <p>For prerequisites, courses that fulfill the same prerequisite should be in the same column, separated by a semicolon i.e. STAT 211; ECEN 303
+  <p>Courses that fulfill different prerequisite for the same course should be in different columns i.e. STAT 211,ECEN 303
 </body>
