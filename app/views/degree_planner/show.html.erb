@@ -113,6 +113,7 @@
       <%= form_with url: upload_plan_student_degree_planner_path(@student), method: :post, html: { multipart: true } do |f| %>
           <div class="form-group">
               <%= label_tag :file, "Upload CSV" %>
+              <%= link_to 'CSV Template', view_template_student_degree_planner_path(@student), target: '_blank' %>
               <%= file_field_tag :file, class: 'form-control' %>
           </div>
           <div class="button-group">
@@ -145,7 +146,12 @@
 
       <div class="generate_form-group">
         <%= label_tag :emphasis_area, "Emphasis Area", class: "generate-label" %>
-        <%= select_tag "interests[emphasis_area]", options_for_select([['Data Science', 'data_science'], ['Software Engineering', 'software_engineering'], ['Cybersecurity', 'cybersecurity']]), class: 'interest-select' %>
+        <%= select_tag "interests[emphasis_area]", options_for_select(@emphasis_options), class: 'interest-select' %>
+      </div>
+
+      <div class="generate_form-group">
+        <%= label_tag :track_area, "Track", class: "generate-label" %>
+        <%= select_tag "interests[track_area]", options_for_select(@track_options), class: 'interest-select' %>
       </div>
 
       <div class="generate_form-group">

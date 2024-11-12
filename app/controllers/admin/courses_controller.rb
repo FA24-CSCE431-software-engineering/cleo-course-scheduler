@@ -16,6 +16,12 @@ module Admin
       render 'admin/courses/confirm_destroy'
     end
 
+    def view_template
+      file_path = Rails.root.join('public', 'templates', 'upload_course_template.csv')
+      csv_content = File.read(file_path)
+      render plain: csv_content, content_type: 'text/plain'
+    end
+
     def edit
       render 'admin/courses/edit'
     end

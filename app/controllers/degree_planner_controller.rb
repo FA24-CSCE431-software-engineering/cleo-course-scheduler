@@ -10,6 +10,8 @@ class DegreePlannerController < ApplicationController
     @default_plan = DegreeRequirement.includes(:course).where(major: @student.major)
     @student_courses = StudentCourse.includes(:course).where(student: @student).order(:sem)
     @course_prerequisite_status = check_prerequisites(@student, @student_courses)
+    @emphasis_options = Emphasis.all.pluck(:ename)
+    @track_options = Track.all.pluck(:tname)
   end
 
   def add_course
@@ -79,7 +81,7 @@ class DegreePlannerController < ApplicationController
 
   # In DegreePlannerController
   def generate_custom_plan
-    planner_service = DegreePlannerService.new(@student, params[:interests][:emphasis_area])
+    planner_service = DegreePlannerService.new(@student, params[:interests][:emphasis_area], params[:interests][:track_area])
     planned_courses = planner_service.generate_plan
 
     # Clear existing courses
@@ -89,8 +91,8 @@ class DegreePlannerController < ApplicationController
     planned_courses.each do |course_info|
       StudentCourse.create!(
         student: @student,
-        course: course_info[:course],
-        sem: course_info[:semester]
+        course_id: course_info[:course_id],
+        sem: course_info[:sem]
       )
     end
 
@@ -129,6 +131,12 @@ class DegreePlannerController < ApplicationController
       flash[:error] = 'Please upload a CSV file.'
       redirect_to student_degree_planner_path(@student)
     end
+  end
+
+  def view_template
+    file_path = Rails.root.join('public', 'templates', 'upload_plan_template.csv')
+    csv_content = File.read(file_path)
+    render plain: csv_content, content_type: 'text/plain'
   end
 
   private
