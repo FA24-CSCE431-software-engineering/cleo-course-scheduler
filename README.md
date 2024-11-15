@@ -155,7 +155,7 @@ Continuous Development was setup through Heroku which has been linked to our Git
 The support of the application will (hopefull) close on 25 November 2024. 
 
 ## Future Development
-To all developers looking to build upon this project, here a several features that could be extended for greater usability:
+To all developers looking to build upon this project, here are several features that could be extended for greater usability:
 - Inclusion of ```Science Elective```, ```General Elective``` in the data design
 - Extension of scope to include students from other faculties, departments and colleges
 - Ability for users to express their interests more (outside of ```tracks``` and ```emphasis```) allowing for a more involved reccomendation algorithm
