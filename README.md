@@ -8,7 +8,7 @@ Our team is creating a degree planner application for Texas A&M University stude
 
 What is needed to run and code our test:
 
-- Ruby ~ 3.3.3
+- Ruby ~ 3.3.4
 - Rails ~ 7.2.1
 - PostgreSQL ~ 14.13
 - Ruby Gems ~ Listed in ‘Gemfile’

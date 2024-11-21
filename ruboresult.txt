@@ -1,0 +1,363 @@
+Inspecting 191 files
+....C...C.....C.C..CC.CCC..W..............C......W..C.CW.C......C....C............................C.....C..........................C.C...C......CCCCC..............C.............C.............
+
+Offenses:
+
+app/controllers/admin/courses_controller.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
+# frozen_string_literal: true ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admin/courses_controller.rb:4:3: C: Metrics/ClassLength: Class has too many lines. [119/100]
+  class CoursesController < ApplicationController ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admin/courses_controller.rb:52:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/courses_controller.rb:56:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/courses_controller.rb:60:76: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+      course_updated = @course.update(course_params.except(:prerequisites)) 
+                                                                           ^
+app/controllers/admin/courses_controller.rb:61:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/courses_controller.rb:65:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/courses_controller.rb:74:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/courses_controller.rb:76:5: C: [Correctable] Layout/EmptyLineBetweenDefs: Expected 1 empty line between method definitions; found 2.
+    def import
+    ^^^^^^^^^^
+app/controllers/admin/courses_controller.rb:88:47: C: [Correctable] Layout/ExtraSpacing: Unnecessary spacing detected.
+      return [] if prerequisites_string.blank?  # Return an empty array if the input is blank
+                                              ^
+app/controllers/admin/courses_controller.rb:89:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/courses_controller.rb:92:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/courses_controller.rb:95:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/courses_controller.rb:102:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/courses_controller.rb:105:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/courses_controller.rb:108:5: C: [Correctable] Layout/EmptyLineBetweenDefs: Expected 1 empty line between method definitions; found 3.
+    def set_course
+    ^^^^^^^^^^^^^^
+app/controllers/admin/courses_controller.rb:113:121: C: [Correctable] Layout/LineLength: Line is too long. [135/120]
+      params.require(:course).permit(:ccode, :cnumber, :cname, :description, :credit_hours, :lecture_hours, :lab_hours, :prerequisites)
+                                                                                                                        ^^^^^^^^^^^^^^^
+app/controllers/admin/courses_controller.rb:117:5: C: [Correctable] Layout/EmptyLineBetweenDefs: Expected 1 empty line between method definitions; found 2.
+    def process_course_csv(file)
+    ^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admin/courses_controller.rb:138:5: C: Metrics/AbcSize: Assignment Branch Condition size for import_courses_from_csv is too high. [<5, 20, 4> 21/17]
+    def import_courses_from_csv(file) ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admin/courses_controller.rb:138:5: C: Metrics/MethodLength: Method has too many lines. [24/20]
+    def import_courses_from_csv(file) ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admin/prerequisites_controller.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module Admin
+^
+app/controllers/admin/prerequisites_controller.rb:3:44: C: [Correctable] Style/SymbolArray: Use %i or %I for an array of symbols.
+    before_action :set_prerequisite, only: [:show, :edit, :update, :destroy, :confirm_destroy]
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admin/prerequisites_controller.rb:9:5: C: [Correctable] Style/EmptyMethod: Put empty method definitions on a single line.
+    def show ...
+    ^^^^^^^^
+app/controllers/admin/prerequisites_controller.rb:24:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/prerequisites_controller.rb:26:5: C: [Correctable] Layout/EmptyLineBetweenDefs: Expected 1 empty line between method definitions; found 2.
+    def edit
+    ^^^^^^^^
+app/controllers/admin/prerequisites_controller.rb:26:5: C: [Correctable] Style/EmptyMethod: Put empty method definitions on a single line.
+    def edit ...
+    ^^^^^^^^
+app/controllers/admin/prerequisites_controller.rb:29:5: C: [Correctable] Style/EmptyMethod: Put empty method definitions on a single line.
+    def update ...
+    ^^^^^^^^^^
+app/controllers/admin/prerequisites_controller.rb:30:1: C: [Correctable] Layout/EmptyLinesAroundMethodBody: Extra empty line detected at method body beginning.
+app/controllers/admin/prerequisites_controller.rb:36:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/prerequisites_controller.rb:38:5: C: [Correctable] Layout/EmptyLineBetweenDefs: Expected 1 empty line between method definitions; found 2.
+    def destroy
+    ^^^^^^^^^^^
+app/controllers/admin/prerequisites_controller.rb:38:5: C: [Correctable] Style/EmptyMethod: Put empty method definitions on a single line.
+    def destroy ...
+    ^^^^^^^^^^^
+app/controllers/admin/prerequisites_controller.rb:39:1: C: [Correctable] Layout/EmptyLinesAroundMethodBody: Extra empty line detected at method body beginning.
+app/controllers/admin/prerequisites_controller.rb:41:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/prerequisites_controller.rb:43:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+app/controllers/admin/prerequisites_controller.rb:44:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/controllers/admin/prerequisites_controller.rb:46:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+app/controllers/admin/prerequisites_controller.rb:47:5: C: [Correctable] Layout/EmptyLineBetweenDefs: Expected 1 empty line between method definitions; found 6.
+    def set_prerequisite
+    ^^^^^^^^^^^^^^^^^^^^
+app/controllers/courses_controller.rb:60:121: C: Layout/LineLength: Line is too long. [137/120]
+    params.require(:course).permit(:cnumber, :cname, :ccode, :description, :credit_hours, :lecture_hours, :lab_hours) # are these enough?
+                                                                                                                        ^^^^^^^^^^^^^^^^^
+app/controllers/degree_planner_controller.rb:3:1: C: Metrics/ClassLength: Class has too many lines. [169/100]
+class DegreePlannerController < ApplicationController ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/degree_planner_controller.rb:45:3: C: Metrics/AbcSize: Assignment Branch Condition size for update_plan is too high. [<6, 22, 5> 23.35/17]
+  def update_plan ...
+  ^^^^^^^^^^^^^^^
+app/controllers/degree_planner_controller.rb:101:3: C: Metrics/AbcSize: Assignment Branch Condition size for download_plan is too high. [<4, 20, 1> 20.42/17]
+  def download_plan ...
+  ^^^^^^^^^^^^^^^^^
+app/controllers/degree_planner_controller.rb:156:3: C: Metrics/AbcSize: Assignment Branch Condition size for check_prerequisites is too high. [<12, 16, 8> 21.54/17]
+  def check_prerequisites(student, courses) ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/degree_planner_controller.rb:156:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for check_prerequisites is too high. [8/7]
+  def check_prerequisites(student, courses) ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/degree_planner_controller.rb:156:3: C: Metrics/MethodLength: Method has too many lines. [25/20]
+  def check_prerequisites(student, courses) ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/student_dashboards_controller.rb:22:3: C: Metrics/AbcSize: Assignment Branch Condition size for set_student is too high. [<1, 22, 4> 22.38/17]
+  def set_student ...
+  ^^^^^^^^^^^^^^^
+app/controllers/student_logins/omniauth_callbacks_controller.rb:5:5: C: Metrics/AbcSize: Assignment Branch Condition size for google_oauth2 is too high. [<4, 21, 3> 21.59/17]
+    def google_oauth2 ...
+    ^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:18:3: C: Metrics/AbcSize: Assignment Branch Condition size for new is too high. [<1, 22, 6> 22.83/17]
+  def new ...
+  ^^^^^^^
+app/controllers/students_controller.rb:31:3: C: Metrics/AbcSize: Assignment Branch Condition size for create is too high. [<3, 16, 5> 17.03/17]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:111:121: C: Layout/LineLength: Line is too long. [122/120]
+    params.require(:student).permit(:google_id, :first_name, :last_name, :email, :enrol_year, :grad_year, :enrol_semester,
+                                                                                                                        ^^
+app/controllers/support_controller.rb:12:7: C: Naming/MethodName: Use snake_case for method names.
+  def viewDefaultPlan; end
+      ^^^^^^^^^^^^^^^
+app/controllers/support_controller.rb:14:7: C: Naming/MethodName: Use snake_case for method names.
+  def buildPlan; end
+      ^^^^^^^^^
+app/helpers/admin/prerequisites_helper.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module Admin::PrerequisitesHelper
+^
+app/helpers/admin/prerequisites_helper.rb:1:8: C: [Correctable] Style/ClassAndModuleChildren: Use nested module/class definitions instead of compact style.
+module Admin::PrerequisitesHelper
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/courses_helper.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module CoursesHelper
+^
+app/helpers/courses_helper.rb:2:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    def format_prerequisites(course)
+^^^^
+app/helpers/courses_helper.rb:4:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/helpers/courses_helper.rb:5:37: W: [Correctable] Lint/UnusedBlockArgument: Unused block argument - equi_id. If it's necessary, use _ or _equi_id as an argument name to indicate that it won't be used.
+      grouped_prerequisites.map do |equi_id, prereqs|
+                                    ^^^^^^^
+app/helpers/courses_helper.rb:10:3: W: [Correctable] Layout/EndAlignment: end at 10, 2 is not aligned with module at 1, 0.
+  end
+  ^^^
+app/helpers/courses_helper.rb:11:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/course.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
+# frozen_string_literal: true ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/course.rb:45:1: C: [Correctable] Layout/EmptyLinesAroundClassBody: Extra empty line detected at class body end.
+app/models/prerequisite.rb:14:3: C: Metrics/AbcSize: Assignment Branch Condition size for map_course_pairs is too high. [<19, 26, 9> 33.44/17]
+  def self.map_course_pairs ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/prerequisite.rb:14:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for map_course_pairs is too high. [9/7]
+  def self.map_course_pairs ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/prerequisite.rb:14:3: C: Metrics/MethodLength: Method has too many lines. [24/20]
+  def self.map_course_pairs ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/prerequisite.rb:14:3: C: Metrics/PerceivedComplexity: Perceived complexity for map_course_pairs is too high. [9/8]
+  def self.map_course_pairs ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/prerequisite.rb:16:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/prerequisite.rb:19:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/prerequisite.rb:22:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/prerequisite.rb:27:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/prerequisite.rb:30:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/prerequisite.rb:35:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/prerequisite.rb:39:51: W: [Correctable] Lint/UnusedBlockArgument: Unused block argument - equi_id. If it's necessary, use _ or _equi_id as an argument name to indicate that it won't be used.
+      formatted_prereqs = grouped_prereqs.map do |equi_id, ids|
+                                                  ^^^^^^^
+app/models/prerequisite.rb:45:41: C: [Correctable] Style/RedundantInterpolation: Prefer to_s over string interpolation.
+        course_identifiers.length > 1 ? "#{course_identifiers.join(' or ')}" : course_identifiers.first
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/prerequisite.rb:47:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/prerequisite.rb:52:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/prerequisite.rb:55:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/prerequisite.rb:56:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/models/student_login.rb:13:7: C: Naming/PredicateName: Rename is_admin? to admin?.
+  def is_admin?
+      ^^^^^^^^^
+app/services/degree_planner_service.rb:6:1: C: Metrics/ClassLength: Class has too many lines. [126/100]
+class DegreePlannerService ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/services/degree_planner_service.rb:95:3: C: Metrics/AbcSize: Assignment Branch Condition size for assign_initial_semesters is too high. [<14, 19, 8> 24.92/17]
+  def assign_initial_semesters ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/services/degree_planner_service.rb:123:7: C: Naming/PredicateName: Rename has_no_prerequisites? to no_prerequisites?.
+  def has_no_prerequisites?(course)
+      ^^^^^^^^^^^^^^^^^^^^^
+app/services/degree_planner_service.rb:140:3: C: Metrics/AbcSize: Assignment Branch Condition size for balance_semesters is too high. [<12, 17, 10> 23.09/17]
+  def balance_semesters ...
+  ^^^^^^^^^^^^^^^^^^^^^
+app/services/degree_planner_service.rb:140:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for balance_semesters is too high. [8/7]
+  def balance_semesters ...
+  ^^^^^^^^^^^^^^^^^^^^^
+app/services/prerequisite_updater.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# app/services/prerequisite_updater.rb
+^
+app/services/prerequisite_updater.rb:3:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    attr_reader :error_message
+^^^^
+app/services/prerequisite_updater.rb:4:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:5:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    def initialize(course, new_prerequisites)
+^^^^
+app/services/prerequisite_updater.rb:11:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    def call
+^^^^
+app/services/prerequisite_updater.rb:12:5: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+        validate_prerequisites
+    ^^^^
+app/services/prerequisite_updater.rb:13:9: C: [Correctable] Layout/EmptyLineAfterGuardClause: Add empty line after guard clause.
+        return if @course.errors.any? 
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/services/prerequisite_updater.rb:13:38: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+        return if @course.errors.any? 
+                                     ^
+app/services/prerequisite_updater.rb:17:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
+app/services/prerequisite_updater.rb:18:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    def validate_prerequisites
+^^^^
+app/services/prerequisite_updater.rb:18:5: C: [Correctable] Layout/EmptyLineBetweenDefs: Expected 1 empty line between method definitions; found 2.
+    def validate_prerequisites
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/services/prerequisite_updater.rb:19:5: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+        @new_prerequisites.each do |prereq|
+    ^^^^
+app/services/prerequisite_updater.rb:25:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:28:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:29:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    def update_prerequisites(new_prerequisites)
+^^^^
+app/services/prerequisite_updater.rb:29:5: C: Metrics/AbcSize: Assignment Branch Condition size for update_prerequisites is too high. [<11, 34, 13> 38.03/17]
+    def update_prerequisites(new_prerequisites) ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/services/prerequisite_updater.rb:29:5: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for update_prerequisites is too high. [12/7]
+    def update_prerequisites(new_prerequisites) ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/services/prerequisite_updater.rb:29:5: C: Metrics/MethodLength: Method has too many lines. [25/20]
+    def update_prerequisites(new_prerequisites) ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/services/prerequisite_updater.rb:29:5: C: Metrics/PerceivedComplexity: Perceived complexity for update_prerequisites is too high. [12/8]
+    def update_prerequisites(new_prerequisites) ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/services/prerequisite_updater.rb:30:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:32:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:33:30: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+      # map new prerequisites 
+                             ^
+app/services/prerequisite_updater.rb:38:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:39:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:46:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:47:31: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+      # remove based on unique 
+                              ^
+app/services/prerequisite_updater.rb:51:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:55:9: C: [Correctable] Style/RescueStandardError: Avoid rescuing without specifying an error class.
+        rescue => e
+        ^^^^^^
+app/services/prerequisite_updater.rb:59:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:63:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:68:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:69:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+    def find_course_id(full_course_code)
+^^^^
+app/services/prerequisite_updater.rb:71:37: C: [Correctable] Style/RedundantArgument: Argument " " is redundant because it is implied by default.
+      parts = full_course_code.split(" ")
+                                    ^^^^^
+app/services/prerequisite_updater.rb:71:38: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      parts = full_course_code.split(" ")
+                                     ^^^
+app/services/prerequisite_updater.rb:72:23: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+      ccode = parts[0] 
+                      ^
+app/services/prerequisite_updater.rb:74:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:75:38: C: [Correctable] Style/HashSyntax: Omit the hash value.
+      course = Course.find_by(ccode: ccode, cnumber: cnumber)
+                                     ^^^^^
+app/services/prerequisite_updater.rb:75:54: C: [Correctable] Style/HashSyntax: Omit the hash value.
+      course = Course.find_by(ccode: ccode, cnumber: cnumber)
+                                                     ^^^^^^^
+app/services/prerequisite_updater.rb:76:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:85:3: W: [Correctable] Layout/EndAlignment: end at 85, 2 is not aligned with class at 2, 0.
+  end
+  ^^^
+app/services/prerequisite_updater.rb:86:1: C: [Correctable] Layout/TrailingEmptyLines: 2 trailing blank lines detected.
+app/services/prerequisite_updater.rb:86:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:87:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+app/services/prerequisite_updater.rb:88:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+config/application.rb:2:1: C: [Correctable] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# Add this line at the top of the file
+^
+config/initializers/devise.rb:17:121: C: Layout/LineLength: Line is too long. [154/120]
+  # config.secret_key = 'ba24cfff59dba3d21188c9440b24f99c5d7ba2f84384b88ebb1e1d0ac44a5f1c9173f5ac7b33046424958d0acd3eabd2e6969a1649b5e20bb40f37d9455360c9'
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/initializers/devise.rb:129:121: C: Layout/LineLength: Line is too long. [150/120]
+  # config.pepper = '279fd14c84c4def425046548932f6ea2ceaedb15d378888d07e304802f869106e5a079572be5dc0ae2669f619a0e3e5fd77f1bfc1000cccbb99af096620e4e13'
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/routes.rb:18:32: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+    resources :prerequisites do 
+                               ^
+config/routes.rb:22:8: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+    end    
+       ^^^^
+db/migrate/20241015015653_edit_primary_key_in_students.rb:4:3: C: Metrics/AbcSize: Assignment Branch Condition size for up is too high. [<2, 32, 2> 32.12/17]
+  def up ...
+  ^^^^^^
+db/migrate/20241015015653_edit_primary_key_in_students.rb:4:3: C: Metrics/MethodLength: Method has too many lines. [32/20]
+  def up ...
+  ^^^^^^
+spec/helpers/admin/prerequisites_helper_spec.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'rails_helper'
+^
+spec/requests/admin/prerequisites_spec.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'rails_helper'
+^
+spec/requests/admin/prerequisites_spec.rb:3:16: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+RSpec.describe "Admin::Prerequisites", type: :request do
+               ^^^^^^^^^^^^^^^^^^^^^^
+spec/requests/admin/prerequisites_spec.rb:38:1: C: [Correctable] Layout/EmptyLinesAroundBlockBody: Extra empty line detected at block body end.
+spec/requests/courses_spec.rb:72:121: C: Layout/LineLength: Line is too long. [125/120]
+            params: { course: { cnumber: 400, cname: 'Updated Course Name', ccode: 'CSCE', credit_hours: 3, description: 'a',
+                                                                                                                        ^^^^^
+spec/requests/courses_spec.rb:74:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+spec/requests/courses_spec.rb:77:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
+spec/requests/student_courses_spec.rb:27:121: C: Layout/LineLength: Line is too long. [324/120]
+      description: 'Application of engineering approach to computer software design and development; life cycle models, software requirements and specification; conceptual model design; detailed design; validation and verification; design quality assurance; software design/development environments and project management.',
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/admin/prerequisites/_form.html.erb_spec.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'rails_helper'
+^
+spec/views/admin/prerequisites/_form.html.erb_spec.rb:3:16: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+RSpec.describe "prerequisites/_form.html.erb", type: :view do
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/admin/prerequisites/confirm_destroy.html.erb_spec.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'rails_helper'
+^
+spec/views/admin/prerequisites/confirm_destroy.html.erb_spec.rb:3:16: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+RSpec.describe "prerequisites/confirm_destroy.html.erb", type: :view do
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/admin/prerequisites/edit.html.erb_spec.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'rails_helper'
+^
+spec/views/admin/prerequisites/edit.html.erb_spec.rb:3:16: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+RSpec.describe "prerequisites/edit.html.erb", type: :view do
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/admin/prerequisites/index.html.erb_spec.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'rails_helper'
+^
+spec/views/admin/prerequisites/index.html.erb_spec.rb:3:16: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+RSpec.describe "prerequisites/index.html.erb", type: :view do
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/admin/prerequisites/new.html.erb_spec.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'rails_helper'
+^
+spec/views/admin/prerequisites/new.html.erb_spec.rb:3:16: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+RSpec.describe "prerequisites/new.html.erb", type: :view do
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/views/home/index.html.erb_spec.rb:44:121: C: Layout/LineLength: Line is too long. [128/120]
+    expect(rendered).to have_selector("form[action='#{student_login_google_oauth2_omniauth_authorize_path}'][method='post']") do
+                                                                                                                        ^^^^^^^^
+spec/views/student_dashboards/show.html.erb_spec.rb:13:121: C: Layout/LineLength: Line is too long. [139/120]
+    allow(view).to receive(:student_degree_planner_path).with(student.google_id).and_return("/student/degree_planner/#{student.google_id}")
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^
+
+191 files inspected, 154 offenses detected, 113 offenses autocorrectable
