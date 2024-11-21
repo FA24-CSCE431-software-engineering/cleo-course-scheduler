@@ -3,32 +3,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% content_for :title, "Admin Help - Deployment Page" %>
   <%= csrf_meta_tags %>
+  <!-- Add Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+    }
+    .admin-page-content {
+      max-width: 900px;
+      background-color: #f7f7f7;
+      padding: 30px;
+      border: none;
+      box-shadow: none;
+      margin: 50px auto;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-align: left;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 30px;
+      font-weight: 600;
+      text-align: left;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+      text-align: left;
+    }
+    ol {
+      padding-left: 20px;
+      list-style-type: decimal;
+      margin-left: 20px;
+    }
+    ol li {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    code {
+      background-color: #f0f0f0;
+      padding: 5px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background-color: #f0f0f0;
+      padding: 10px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
   <%= render 'shared/navbar_student' %>
   <%= render 'shared/navbar' %>
-  
-  <h1>Deployment Page</h1>
 
-  <p>
-    This app officially runs on Heroku; therefore, these deployment steps reflect that. If you haven't already, make sure you have a Heroku account and the Heroku CLI before proceeding.
-  </p>
+  <div class="admin-page-content">
+    <h1>Deployment Page</h1>
 
-  <h2>Setting Up the App in Heroku</h2>
-  <p>Once on the Heroku dashboard, follow these steps:</p>
-  <ol>
+    <p>
+      This app officially runs on Heroku; therefore, these deployment steps reflect that. If you haven't already, make sure you have a Heroku account and the Heroku CLI before proceeding.
+    </p>
+
+    <h2>Setting Up the App in Heroku</h2>
+    <p>Once on the Heroku dashboard, follow these steps:</p>
+    <ol>
       <li>Click on <strong>New</strong> then <strong>Create new app</strong>.</li>
       <li>After filling out the App name, App owner, and region, click on <strong>Create app</strong>.</li>
       <li>On the app dashboard, go to the <strong>Resources</strong> tab to implement addons.</li>
       <li>Search for the Heroku Postgres and PaperTrail addons. Heroku Postgres will allow the app to function properly, while PaperTrail will help with data logging.</li>
-  </ol>
-  
-  <p>This completes most of the setup on the Heroku website. Now we need to set up Google Authentication.</p>
+    </ol>
+    
+    <p>This completes most of the setup on the Heroku website. Now we need to set up Google Authentication.</p>
 
-  <h2>Setting up Google Authentication</h2>
-  <ol>
-      <li>Go to <a href="https://cloud.google.com/">Google Cloud</a> and log in or sign up.</li>
+    <h2>Setting up Google Authentication</h2>
+    <ol>
+      <li>Go to <a href="https://cloud.google.com/" target="_blank">Google Cloud</a> and log in or sign up.</li>
       <li>On the Google Cloud welcome page, click on the dropdown box with the three dots and select <strong>NEW PROJECT</strong>.</li>
       <li>After filling out the project information, go to the <strong>Dashboard</strong>, then in the sidebar, find <strong>APIs & Services</strong> &rarr; <strong>Credentials</strong> &rarr; <strong>Configure Consent Screen</strong>.</li>
       <li>Set the User Type to External, then enter the <strong>Application Name, User Support email, and Developer contact information</strong>. Save and continue.</li>
@@ -36,16 +100,22 @@
       <li>Select <strong>Web Application</strong>, enter a <strong>Name</strong>, and under <strong>Authorized redirect URIs</strong>, enter: <br>
         <code>https://&lt;herokuAppName&gt;.herokuapp.com/student_logins/auth/google_oauth2/callback</code>.<br> Click on <strong>Create</strong>.</li>
       <li>You will now see the Client ID and Secret. If not, click on the app name in Credentials to retrieve them again. These will link Google Authentication to the Heroku app.</li>
-  </ol>
+    </ol>
 
-  <h2>Linking Google Authentication to the Heroku App</h2>
-  <ol>
+    <h2>Linking Google Authentication to the Heroku App</h2>
+    <ol>
       <li>In your terminal, where you downloaded the Heroku CLI, type <code>heroku login</code>. Follow the prompt to log in.</li>
       <li>Then, set up the Google Client ID and Secret by running the following commands:
-          <pre>
-                heroku config:set GOOGLE_CLIENT_ID=&lt;your-client-id&gt;
-                heroku config:set GOOGLE_CLIENT_SECRET=&lt;your-client-secret&gt;
-          </pre>
+        <pre>
+              heroku config:set GOOGLE_CLIENT_ID=&lt;your-client-id&gt;
+              heroku config:set GOOGLE_CLIENT_SECRET=&lt;your-client-secret&gt;
+        </pre>
       </li>
-  </ol>
+    </ol>
+  </div>
+
+  <!-- Add Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

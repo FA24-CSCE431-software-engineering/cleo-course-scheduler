@@ -1,24 +1,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <% content_for :title, "Help - Default Plan" %>
+  <title>Help - Default Plan</title>
   <%= csrf_meta_tags %>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+    }
+    .default-plan-content {
+      max-width: 800px;
+      background-color: #f7f7f7;
+      padding: 30px;
+      border: none;
+      box-shadow: none;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    ul {
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    ul li {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    ul li strong {
+      color: #333;
+    }
+    em {
+      font-style: italic;
+      color: #777;
+    }
+  </style>
 </head>
 
 <body>
     <%= render 'shared/navbar_student' %>
 
-    <h1>Default Plan Page</h1>
+    <div class="default-plan-content text-left">
+        <h1>Default Plan Page</h1>
+        <p>This page provides the default planner for the CSCE program. Each semester contains the following fields:</p>
 
-    <p>This page provides the default planner for the CSCE program. Each semester contains the following fields:</p>
+        <ul>
+            <li><strong>Course Code:</strong> The major to which the course belongs.</li>
+            <li><strong>Course Number:</strong> The unique identification number associated with the course, related to the <strong>Course Code</strong>.</li>
+            <li><strong>Credits:</strong> The total number of credit hours the course offers.</li>
+        </ul>
 
-    <ul> 
-        <li><strong>Course Code:</strong> The major to which the course belongs.</li>
+        <p><em>Note: This is a read-only page, meaning you cannot make any edits.</em></p>
+    </div>
 
-        <li><strong>Course Number:</strong> The unique identification number associated with the course, related to the <strong>Course Code</strong>.</li>
-
-        <li><strong>Credits:</strong> The total number of credit hours the course offers.</li>
-    </ul>
-
-    <p><em>Note: This is a read-only page, meaning you cannot make any edits.</em></p>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

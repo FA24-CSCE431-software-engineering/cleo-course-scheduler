@@ -3,27 +3,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% content_for :title, "Admin Help - Core Categories Page" %>
   <%= csrf_meta_tags %>
+  <!-- Add Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      align-items: left;
+    }
+    .admin-page-content {
+      max-width: 900px;
+      background-color: #f7f7f7;
+      padding: 30px;
+      border: none;
+      box-shadow: none;
+      margin: 50px auto;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 30px;
+      font-weight: 600;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    ul {
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    ul li {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    ul li strong {
+      color: #333;
+    }
+    .btn-custom {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    .btn-custom:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 
 <body>
   <%= render 'shared/navbar_student' %>
   <%= render 'shared/navbar' %>
 
-  <h1>Manage Core Categories</h1>
+  <div class="admin-page-content">
+    <h1>Manage Core Categories</h1>
 
-  <p>This page allows you to view and manage core categories, which represent the foundational areas of study. Each category entry includes:</p>
+    <p>This page allows you to view and manage core categories, which represent the foundational areas of study. Each category entry includes:</p>
 
-  <ul>
-    <li><strong>Category Name:</strong> The name of the core category, representing a primary area of academic focus (e.g., Communication, Mathematics).</li>
-    <li><strong>Created At:</strong> The date and time the category was initially added to the system.</li>
-    <li><strong>Updated At:</strong> The date and time of the last update made to the category information.</li>
-  </ul>
+    <ul>
+      <li><strong>Category Name:</strong> The name of the core category, representing a primary area of academic focus (e.g., Communication, Mathematics).</li>
+      <li><strong>Created At:</strong> The date and time the category was initially added to the system.</li>
+      <li><strong>Updated At:</strong> The date and time of the last update made to the category information.</li>
+    </ul>
 
-  <h2>Actions</h2>
-  <p>Each category entry has the following actions available:</p>
+    <h2>Actions</h2>
+    <p>Each category entry has the following actions available:</p>
 
-  <ul>
-    <li><strong>Edit:</strong> Modify the name of the category.</li>
-    <li><strong>Delete:</strong> Permanently remove the category from the system. <strong>Note:</strong> This action cannot be undone.</li>
-  </ul>
+    <ul>
+      <li><strong>Edit:</strong> Modify the name of the category.</li>
+      <li><strong>Delete:</strong> Permanently remove the category from the system. <strong>Note:</strong> This action cannot be undone.</li>
+    </ul>
+  </div>
+
+  <!-- Add Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

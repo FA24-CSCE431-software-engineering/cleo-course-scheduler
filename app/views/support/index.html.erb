@@ -3,25 +3,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% content_for :title, "Help" %>
   <%= csrf_meta_tags %>
+  <!-- Add Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif; 
+    }
+    h1, h2 {
+      color: black; 
+      font-weight: 600;
+    }
+    h1.text-left {
+      text-align: left !important;
+    }
+    .content {
+      max-width: 900px; 
+      margin-top: 50px;
+      background-color: #f7f7f7;
+      border: none;
+      box-shadow: none;
+      padding: 20px;
+    }
+    .list-group-item {
+      background-color: #f7f7f7;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease; 
+    }
+    .list-group-item:hover {
+      background-color: #e9ecef; 
+    }
+    .list-group {
+      margin-top: 20px;
+    }
+    .link-text {
+      color: #007bff; 
+      text-decoration: none;
+    }
+    .link-text:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
   <%= render 'shared/navbar_student' %>
-  
-  <h1>Student Resources </h1>
-  <h2>Page Help </h2>
-  <ul>
-    <li> <%= link_to 'Profile Page', profile_support_index_path%> </li>
-    <li> <%= link_to 'Default Planner Page', viewDefaultPlan_support_index_path%> </li>
-    <li> <%= link_to 'Build Your Degree Planner Page', buildPlan_support_index_path %> </li>
-  </ul>
-  <h2>Useful Links</h2>
-  <ul>
-    <li><a href= https://howdy.tamu.edu/uPortal/normal/render.uP> Howdy Login </a> </li>
-    <li><a href= https://catalog.tamu.edu/undergraduate/ > Course Catalog </a > </li>
-    <li><a href= https://studentsuccess.tamu.edu/ > Student Success Center </a > </li>
-  </ul>
 
-  <h2> Contact Information </h2>
-  <!-- TODO figure out what to put in here -->
+  <div class="content">
+    <h1 class="text-left">Student Resources</h1>
+    <h2 class="mt-4 text-left">Page Help</h2>
+    
+    <ul class="list-group">
+      <li class="list-group-item">
+        <%= link_to 'Profile Page', profile_support_index_path, class: 'link-text' %>
+      </li>
+      <li class="list-group-item">
+        <%= link_to 'Default Planner Page', viewDefaultPlan_support_index_path, class: 'link-text' %>
+      </li>
+      <li class="list-group-item">
+        <%= link_to 'Build Your Degree Planner Page', buildPlan_support_index_path, class: 'link-text' %>
+      </li>
+    </ul>
+
+    <h2 class="mt-4 text-left">Useful Links</h2>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a href="https://howdy.tamu.edu/uPortal/normal/render.uP" target="_blank" class="link-text">Howdy Login</a>
+      </li>
+      <li class="list-group-item">
+        <a href="https://catalog.tamu.edu/undergraduate/" target="_blank" class="link-text">Course Catalog</a>
+      </li>
+      <li class="list-group-item">
+        <a href="https://studentsuccess.tamu.edu/" target="_blank" class="link-text">Student Success Center</a>
+      </li>
+    </ul>
+
+    <h2 class="mt-4 text-left">Contact Information</h2>
+    <ul>
+      <strong>TeamUp - Cleo</strong> <br>
+      <a href="mailto:cleo@teamup.org"><u>cleo@teamup.org</u></a><br>
+      <strong>123-456-7890</strong>
+    </ul>
+  </div>
+
+  <!-- Add Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
