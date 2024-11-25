@@ -12,6 +12,8 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe HomeHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+#RSpec.describe HomeHelper, type: :helper do
+#  pending "add some examples to (or delete) #{__FILE__}"
+#end
+
+#Empty no need to test.

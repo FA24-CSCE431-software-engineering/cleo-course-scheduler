@@ -12,6 +12,8 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe MajorsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+#RSpec.describe MajorsHelper, type: :helper do
+#  pending "add some examples to (or delete) #{__FILE__}"
+#end
+
+#empty no need to test.
