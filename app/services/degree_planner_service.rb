@@ -161,7 +161,16 @@ class DegreePlannerService
     end
   end
 
+  # def order_min_prereqs(table_name, id_name, courses)
+  #   courses
+  #     .joins("LEFT JOIN prerequisites ON #{table_name}.course_id = prerequisites.course_id")
+  #     .select("#{table_name}.course_id, #{table_name}.#{id_name}, COUNT(prerequisites.prereq_id) AS prereq_count")
+  #     .group("#{table_name}.course_id, #{table_name}.#{id_name}")
+  #     .order('prereq_count ASC')
+  # end
   def order_min_prereqs(table_name, id_name, courses)
+    raise ArgumentError, "Invalid table name" unless %w[course_core_categories course_emphases course_tracks].include?(table_name)
+  
     courses
       .joins("LEFT JOIN prerequisites ON #{table_name}.course_id = prerequisites.course_id")
       .select("#{table_name}.course_id, #{table_name}.#{id_name}, COUNT(prerequisites.prereq_id) AS prereq_count")
