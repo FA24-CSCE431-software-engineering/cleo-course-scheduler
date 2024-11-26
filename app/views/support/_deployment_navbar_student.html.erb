@@ -1,0 +1,24 @@
+<div class="profile-header">
+    <div class="profile-back-to-dashboard">
+      <%= link_to support_index_path, class: 'profile-back-to-dashboard-link' do %>
+        <span class="profile-back-arrow">&#8592;</span>
+        Back
+      <% end %>
+    </div>
+  
+    <div class="profile-logo-container">
+      <%= image_tag 'logo1.png', alt: 'Cleo Logo', class: 'profile-logo' %>
+    </div>
+  
+    <div class="profile-user-info">
+      <div class="profile-avatar-dropdown">
+        <%= image_tag(current_student_login.avatar_url.present? ? current_student_login.avatar_url : 'default_avatar_url.jpg', alt: 'User Avatar', class: 'profile-avatar', id: 'avatar') %>
+
+        <div class="profile-dropdown-menu" id="dropdown-menu">
+          <%= link_to "Profile", profile_student_path(current_student_login), class: 'profile-dropdown-link' %>
+          <%= link_to 'Sign Out', destroy_student_login_session_path, method: :delete, class: 'profile-dropdown-link' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  

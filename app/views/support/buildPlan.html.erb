@@ -58,37 +58,55 @@
 </head>
 
 <body>
-    <%= render 'shared/navbar_student' %>
+  <%= render 'deployment_navbar_student' %>
 
-    <div class="content text-left">
-        <h1>Build Degree Plan Page</h1>
-        <p>This page allows you to build your customized degree plan.</p>
+   <div class="container-fluid">
+       <div class="row">
+           <div class="col-md-9">
+               <div class="row align-items-center">
+                   <div class="col-md-8">
+                       <div class="content text-left">
+                           <h1>Build Degree Plan Page</h1>
+                           <p>This page allows you to build your customized degree plan.</p>
 
-        <h2>Adding a Course</h2>
-        <p>Below the <strong>Add a Course</strong> section, you will see two fields: <strong>Course</strong> and <strong>Semester</strong>. 
-           The Course field lets you select a course either by searching manually or using a dropdown menu. The Semester field determines where 
-           the selected course is placed. You will also find two buttons: <strong>Reset Degree Plan</strong> and <strong>Clear Degree Plan</strong>.</p>
+                           <h2>Adding a Course</h2>
+                           <p>Below the <strong>Add a Course</strong> section, you will see two fields: <strong>Course</strong> and <strong>Semester</strong>. 
+                              The Course field lets you select a course either by searching manually or using a dropdown menu. The Semester field determines where 
+                              the selected course is placed. You will also find two buttons: <strong>Reset Degree Plan</strong> and <strong>Clear Degree Plan</strong>.</p>
 
-        <h2>Notice - Missing Prerequisite</h2>
-        <p>If you receive a notice or warning upon adding a course, it indicates that a prerequisite course is required. 
-           To resolve this, add the prerequisite course in a prior or the same semester.</p>
+                           <h2>Notice - Missing Prerequisite</h2>
+                           <p>If you receive a notice or warning upon adding a course, it indicates that a prerequisite course is required. 
+                              To resolve this, add the prerequisite course in a prior or the same semester.</p>
 
-        <h2>Viewing the Degree Plan</h2>
-        <p>Similar to the <strong>Default Degree Plan</strong> page, each semester displays the following information:</p>
+                           <h2>Viewing the Degree Plan</h2>
+                           <p>Similar to the <strong>Default Degree Plan</strong> page, each semester displays the following information:</p>
 
-        <ul>
-            <li><strong>Course Code:</strong> The major to which the course belongs.</li>
-            <li><strong>Course Number:</strong> The unique identification number associated with the course, related to the <strong>Course Code</strong>.</li>
-            <li><strong>Credits:</strong> The total number of credit hours the course offers.</li>
-            <li><strong>Action:</strong> This option allows you to remove a course entry from a semester.</li>
-        </ul>
+                           <ul>
+                               <li><strong>Course Code:</strong> The major to which the course belongs.</li>
+                               <li><strong>Course Number:</strong> The unique identification number associated with the course, related to the <strong>Course Code</strong>.</li>
+                               <li><strong>Credits:</strong> The total number of credit hours the course offers.</li>
+                               <li><strong>Action:</strong> This option allows you to remove a course entry from a semester.</li>
+                           </ul>
 
-        <h2>Uploading your Degree Plan</h2>
-        <p>Refer to the template <%= link_to 'here', view_template_student_degree_planner_path(@student), target: '_blank' %> for the format of uploading your degree plan. The headers should be as is (i.e. capitalized)</p>
-    </div>
+                           <h2>Uploading your Degree Plan</h2>
+                           <p>Refer to the template <%= link_to 'here', view_template_student_degree_planner_path(@student), target: '_blank' %> for the format of uploading your degree plan. The headers should be as is (i.e. capitalized)</p>
+                       </div>
+                   </div>
+                   <div class="col-md-4 pl-0">
+                       <div class="video-container" style="width: 200%; max-width: 800px;">
+                           <video class="img-fluid" style="width: 100%; height: auto;" controls>
+                               <source src="<%= asset_path('buildD.mp4') %>" type="video/mp4">
+                               Your browser does not support the video tag.
+                           </video>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <!-- Bootstrap JS and dependencies -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
