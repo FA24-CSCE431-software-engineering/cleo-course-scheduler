@@ -21,7 +21,6 @@
       <th>Course Code</th>
       <th>Course Number</th>
       <th>Course Name</th>
-      <th>Created At</th>
       <th>Updated At</th>
       <th>Actions</th>
     </tr>
@@ -32,7 +31,6 @@
         <td><%= course.ccode %></td>
         <td><%= course.cnumber %></td>
         <td><%= course.cname %></td>
-        <td><%= course.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= course.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td>
           <%= link_to 'Show', admin_course_path(course) %>

@@ -12,6 +12,7 @@ class DegreePlannerController < ApplicationController
     @course_prerequisite_status = check_prerequisites(@student, @student_courses)
     @emphasis_options = Emphasis.all.pluck(:ename)
     @track_options = Track.all.pluck(:tname)
+    
   end
 
   def add_course
@@ -59,6 +60,8 @@ class DegreePlannerController < ApplicationController
     else
       flash[:error] = "Invalid course ID or semester value: Course ID - #{selected_course_id}, Semester - #{semester}"
     end
+
+    
 
     redirect_to student_degree_planner_path(@student)
   end

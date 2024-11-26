@@ -3,35 +3,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% content_for :title, "Admin Help - Courses Page" %>
   <%= csrf_meta_tags %>
+  <!-- Add Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+    }
+    .admin-page-content {
+      max-width: 900px;
+      background-color: #f7f7f7;
+      padding: 30px;
+      border: none;
+      box-shadow: none;
+      margin: 50px auto;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-align: left;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 30px;
+      font-weight: 600;
+      text-align: left;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+      text-align: left;
+    }
+    ul {
+      padding-left: 20px;
+      list-style-type: none;
+      text-align: left;
+    }
+    ul li {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    ul li strong {
+      color: #333;
+    }
+    .link-text {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .link-text:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
   <%= render 'shared/navbar_student' %>
   <%= render 'shared/navbar' %>
 
-  <h1>Manage Courses</h1>
+  <div class="admin-page-content">
+    <h1>Manage Courses</h1>
 
-  <p>This page allows you to view, edit, and manage the list of courses available in the system. Each course entry includes the following details:</p>
+    <p>This page allows you to view, edit, and manage the list of courses available in the system. Each course entry includes the following details:</p>
 
-  <ul>
-    <li><strong>Course Code:</strong> The department or area to which the course belongs (e.g., CSCE for Computer Science).</li>
-    <li><strong>Course Number:</strong> A unique number assigned to the course within its area.</li>
-    <li><strong>Course Name:</strong> The full title of the course.</li>
-    <li><strong>Created At:</strong> The date and time when the course was initially added.</li>
-    <li><strong>Updated At:</strong> The date and time of the last update to the course details.</li>
-  </ul>
+    <ul>
+      <li><strong>Course Code:</strong> The department or area to which the course belongs (e.g., CSCE for Computer Science).</li>
+      <li><strong>Course Number:</strong> A unique number assigned to the course within its area.</li>
+      <li><strong>Course Name:</strong> The full title of the course.</li>
+      <li><strong>Created At:</strong> The date and time when the course was initially added.</li>
+      <li><strong>Updated At:</strong> The date and time of the last update to the course details.</li>
+    </ul>
 
-  <h2>Actions</h2>
-  <p>Each course has the following actions available:</p>
+    <h2>Actions</h2>
+    <p>Each course has the following actions available:</p>
 
-  <ul>
-    <li><strong>Show:</strong> View the full details of the course.</li>
-    <li><strong>Edit:</strong> Modify the course information, including its name, code, or number.</li>
-    <li><strong>Delete:</strong> Permanently remove the course from the system. <strong>Note:</strong> This action cannot be undone.</li>
-  </ul>
+    <ul>
+      <li><strong>Show:</strong> View the full details of the course.</li>
+      <li><strong>Edit:</strong> Modify the course information, including its name, code, or number.</li>
+      <li><strong>Delete:</strong> Permanently remove the course from the system. <strong>Note:</strong> This action cannot be undone.</li>
+    </ul>
 
-  <h2>Uploading your Degree Plan</h2>
-  <p>Refer to the template <%= link_to 'here', view_template_admin_courses_path(@student), target: '_blank' %> for the format of uploading your degree plan. The headers should be as is.</p>
-  <p>For prerequisites, courses that fulfill the same prerequisite should be in the same column, separated by a semicolon i.e. STAT 211; ECEN 303
-  <p>Courses that fulfill different prerequisite for the same course should be in different columns i.e. STAT 211,ECEN 303
+    <h2>Uploading your Degree Plan</h2>
+    <p>Refer to the template <%= link_to 'here', view_template_admin_courses_path(@student), target: '_blank' %> for the format of uploading your degree plan. The headers should be as is.</p>
+    <p>For prerequisites, courses that fulfill the same prerequisite should be in the same column, separated by a semicolon i.e. STAT 211; ECEN 303.</p>
+    <p>Courses that fulfill different prerequisites for the same course should be in different columns i.e. STAT 211, ECEN 303.</p>
+  </div>
+
+  <!-- Add Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

@@ -161,11 +161,22 @@ class DegreePlannerService
     end
   end
 
+  # def order_min_prereqs(table_name, id_name, courses)
+  #   courses
+  #     .joins("LEFT JOIN prerequisites ON #{table_name}.course_id = prerequisites.course_id")
+  #     .select("#{table_name}.course_id, #{table_name}.#{id_name}, COUNT(prerequisites.prereq_id) AS prereq_count")
+  #     .group("#{table_name}.course_id, #{table_name}.#{id_name}")
+  #     .order('prereq_count ASC')
+  # end
   def order_min_prereqs(table_name, id_name, courses)
+    safe_table_name = ActiveRecord::Base.connection.quote_table_name(table_name)
+    safe_id_name = ActiveRecord::Base.connection.quote_column_name(id_name)
+  
     courses
-      .joins("LEFT JOIN prerequisites ON #{table_name}.course_id = prerequisites.course_id")
-      .select("#{table_name}.course_id, #{table_name}.#{id_name}, COUNT(prerequisites.prereq_id) AS prereq_count")
-      .group("#{table_name}.course_id, #{table_name}.#{id_name}")
+      .joins("LEFT JOIN prerequisites ON #{safe_table_name}.course_id = prerequisites.course_id")
+      .select("#{safe_table_name}.course_id", "#{safe_table_name}.#{safe_id_name}", 'COUNT(prerequisites.prereq_id) AS prereq_count')
+      .group("#{safe_table_name}.course_id", "#{safe_table_name}.#{safe_id_name}")
       .order('prereq_count ASC')
   end
+  
 end

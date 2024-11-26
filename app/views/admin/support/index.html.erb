@@ -4,21 +4,72 @@
   <% content_for :title, "Admin Help Page" %>
 
   <%= csrf_meta_tags %>
+  <!-- Add Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+    }
+    .admin-page-content {
+      max-width: 900px;
+      background-color: #f7f7f7;
+      padding: 30px;
+      border: none;
+      box-shadow: none;
+      margin: 50px auto;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-align: left;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 30px;
+      font-weight: 600;
+      text-align: left;
+    }
+    ul {
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    ul li {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    ul li a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    ul li a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
-<%= render 'shared/navbar_student' %>
+  <%= render 'shared/navbar_student' %>
 
-  <%#= render 'shared/navbar' %>
-  <h1>Support</h1>
-  <h2>Available Support Pages</h2>
-  <ul>
-    <li><%= link_to 'Deployment Page', deployment_admin_support_index_path %></li>
-    <li><%= link_to 'Core Categories Page', coreCategories_admin_support_index_path %></li>
-    <li><%= link_to 'Courses Page', courses_admin_support_index_path %></li>
-    <li><%= link_to 'Emphases Page', emphases_admin_support_index_path %></li>
-    <li><%= link_to 'Enroll Courses Page', enrollCourses_admin_support_index_path %></li>
-    <li><%= link_to 'Track Page', tracks_admin_support_index_path %></li>
-    <li><%= link_to 'Users Page', users_admin_support_index_path %></li>
-  </ul>
+  <div class="admin-page-content">
+    <h1>Support</h1>
+
+    <h2>Available Support Pages</h2>
+    <ul>
+      <li><%= link_to 'Deployment Page', deployment_admin_support_index_path %></li>
+      <li><%= link_to 'Core Categories Page', coreCategories_admin_support_index_path %></li>
+      <li><%= link_to 'Courses Page', courses_admin_support_index_path %></li>
+      <li><%= link_to 'Emphases Page', emphases_admin_support_index_path %></li>
+      <li><%= link_to 'Enroll Courses Page', enrollCourses_admin_support_index_path %></li>
+      <li><%= link_to 'Track Page', tracks_admin_support_index_path %></li>
+      <li><%= link_to 'Users Page', users_admin_support_index_path %></li>
+    </ul>
+  </div>
+
+  <!-- Add Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
