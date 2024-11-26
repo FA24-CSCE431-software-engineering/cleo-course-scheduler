@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       end
       collection do
         post :import
+        get :view_template
       end
     end
     resources :majors do
@@ -94,6 +95,7 @@ Rails.application.routes.draw do
       delete :clear_courses, on: :member
       post :set_default, on: :member
       post :upload_plan, on: :member
+      get :view_template, on: :member
     end
   end
 

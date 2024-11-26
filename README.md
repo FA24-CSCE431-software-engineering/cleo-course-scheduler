@@ -8,7 +8,7 @@ Our team is creating a degree planner application for Texas A&M University stude
 
 What is needed to run and code our test:
 
-- Ruby ~ 3.3.3
+- Ruby ~ 3.3.4
 - Rails ~ 7.2.1
 - PostgreSQL ~ 14.13
 - Ruby Gems ~ Listed in ‘Gemfile’
@@ -21,6 +21,10 @@ What is needed to run and code our test:
 
 ## Documentation
 Our [product and sprint backlog](https://asp500.atlassian.net/jira/software/projects/A5/boards/2) can be found in Jira, with project name asp-500
+
+Document
+- [asp-500_Sprint3DataDesignv1](https://tamucs.sharepoint.com/:b:/r/teams/Team-Fall24-CSCE431SoftwareEngineering-asp-500-Course/Shared%20Documents/asp-500-Course/Sprint%203/Documents/asp-500_Sprint3DataDesignv1.pdf?csf=1&web=1&e=ebxSOO)
+- [asp-500_Sprint3Scope](https://tamucs.sharepoint.com/:b:/r/teams/Team-Fall24-CSCE431SoftwareEngineering-asp-500-Course/Shared%20Documents/asp-500-Course/Sprint%203/Documents/asp-500_Sprint3Scope.pdf?csf=1&web=1&e=fOKWUr)
 
 ## Installation
 
@@ -146,6 +150,25 @@ Continuous integration was employed through the use of Github actions. Our workf
 Continuous Development was setup through Heroku which has been linked to our Github repositories. The pipeline includes:
 - Review application through ```test``` branch
 - Production application through ```main``` branch
+
+## Support
+The support of the application will (hopefull) close on 25 November 2024. 
+
+## Future Development
+To all developers looking to build upon this project, here are several features that could be extended for greater usability:
+- Inclusion of ```Science Elective```, ```General Elective``` in the data design
+- Extension of scope to include students from other faculties, departments and colleges
+- Ability for users to express their interests more (outside of ```tracks``` and ```emphasis```) allowing for a more involved reccomendation algorithm
+
+## Acknowledgement
+We would like to thank Professor Wade, Pratik and Sundhanva for their continued support in this project. We would also like to thank our customer Dr. Kebo for his insights, feedback and creation of a positive environment for learning.
+
+Below lists the members who contributed to this project:
+- Maria Viteri
+- Uzma Hamid
+- Vincent Tran
+- Tatiana Fern
+- Neale Tham
 
 ## References
 - [Stack Overflow](https://stackoverflow.com)

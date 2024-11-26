@@ -80,16 +80,9 @@ end
 
 # Seed with track fulfilling courses
 CSV.foreach(track_courses_csv, headers: true) do |row|
-  track = Track.find_by(
-    tname: row['track_name']
-  )
-  course = Course.find_by(
-    ccode: row['course_code'],
-    cnumber: row['course_number']
-  )
   CourseTrack.find_or_create_by(
-    track:,
-    course:
+    course: Course.find_or_create_by(ccode: row['course_code'], cnumber: row['course_number']),
+    track: Track.find_or_create_by(tname: row['track_name'])
   )
 end
 

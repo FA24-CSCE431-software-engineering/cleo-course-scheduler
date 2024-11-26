@@ -3,20 +3,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% content_for :title, "Admin Help - Emphases Page" %>
   <%= csrf_meta_tags %>
+  <!-- Add Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+    }
+    .admin-page-content {
+      max-width: 900px;
+      background-color: #f7f7f7;
+      padding: 30px;
+      border: none;
+      box-shadow: none;
+      margin: 50px auto;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-align: left;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 30px;
+      font-weight: 600;
+      text-align: left;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+      text-align: left;
+    }
+    strong {
+      font-weight: 600;
+    }
+  </style>
 </head>
 
 <body>
   <%= render 'shared/navbar_student' %>
   <%= render 'shared/navbar' %>
 
-  <h1>Manage Emphases</h1>
+  <div class="admin-page-content">
+    <h1>Manage Emphases</h1>
 
-  <p>This page allows you to manage emphases available within degree programs. Each emphasis entry displays a <strong>Name</strong> and offers two actions: Edit and Delete.</p>
+    <p>This page allows you to manage emphases available within degree programs. Each emphasis entry displays a <strong>Name</strong> and offers two actions: Edit and Delete.</p>
 
-  <h2>Existing Emphases</h2>
-  <p>The <strong>Existing Emphases</strong> table lists all current emphases. Use the Edit action to modify the name of an emphasis, and the Delete action to permanently remove an entry. 
-     <strong>Note:</strong> Once an emphasis is deleted, it cannot be recovered.</p>
+    <h2>Existing Emphases</h2>
+    <p>The <strong>Existing Emphases</strong> table lists all current emphases. Use the Edit action to modify the name of an emphasis, and the Delete action to permanently remove an entry. 
+      <strong>Note:</strong> Once an emphasis is deleted, it cannot be recovered.</p>
 
-  <h2>Create New Emphasis</h2>
-  <p>To add a new emphasis, enter the name in the <strong>Emphasis Name</strong> field under <strong>Create New Emphasis</strong>. When ready, click <strong>Create Emphasis</strong>, and the new emphasis will appear in the <strong>Existing Emphases</strong> table.</p>
+    <h2>Create New Emphasis</h2>
+    <p>To add a new emphasis, enter the name in the <strong>Emphasis Name</strong> field under <strong>Create New Emphasis</strong>. When ready, click <strong>Create Emphasis</strong>, and the new emphasis will appear in the <strong>Existing Emphases</strong> table.</p>
+  </div>
+
+  <!-- Add Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

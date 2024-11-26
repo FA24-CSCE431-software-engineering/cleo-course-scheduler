@@ -1,34 +1,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <% content_for :title, "Help - Profile" %>
+  <title>Help - Profile</title>
   <%= csrf_meta_tags %>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+    }
+    .profile-content {
+      max-width: 800px;
+      background-color: #f7f7f7;
+      padding: 30px;
+      border: none;
+      box-shadow: none;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    ul {
+      padding-left: 20px;
+      list-style-type: none;
+    }
+    ul li {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    ul li strong {
+      color: #333;
+    }
+    .btn-custom {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    .btn-custom:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 
 <body>
     <%= render 'shared/navbar_student' %>
 
-    <h1>Profile Page</h1>
+    <div class="profile-content text-left">
+      <h1>Profile Page</h1>
+      <p>On this page, you can view your personal information relevant to degree planning and graduation.</p>
 
-    <p>On this page, you can view your personal information relevant to degree planning and graduation.</p>
+      <ul>
+          <li><strong>Name:</strong> Your full name.</li>
+          <li><strong>Email:</strong> The email address associated with your account.</li>
+          <li><strong>Enrollment Year:</strong> The year you started classes.</li>
+          <li><strong>Graduation Year:</strong> The year you plan to graduate with your intended degree.</li>
+          <li><strong>Enrollment Semester:</strong> The semester you began classes.</li>
+          <li><strong>Graduation Semester:</strong> The semester in which you plan to graduate.</li>
+          <li><strong>Major:</strong> The degree you are pursuing. This guides how the app builds your degree plan.</li>
+          <li><strong>Emphasis:</strong> If your degree has a specific emphasis area, it will be shown here.</li>
+      </ul>
 
-    <ul>
-        <li><strong>Name:</strong> Your full name.</li>
+      <p>You can edit these details using the <strong>Edit Profile</strong> button below. Above that, you’ll find the <strong>Track Your Progress</strong> bar, which keeps track of the courses in your plan. The bar will fill up as you add more courses to your <strong>Build Your Degree Planner</strong> page.</p>
+  </div>
 
-        <li><strong>Email:</strong> The email address associated with your account.</li>
-
-        <li><strong>Enrollment Year:</strong> The year you started classes.</li>
-
-        <li><strong>Graduation Year:</strong> The year you plan to graduate with your intended degree.</li>
-
-        <li><strong>Enrollment Semester:</strong> The semester you began classes.</li>
-
-        <li><strong>Graduation Semester:</strong> The semester in which you plan to graduate.</li>
-
-        <li><strong>Major:</strong> The degree you are pursuing. This guides how the app builds your degree plan.</li>
-
-        <li><strong>Emphasis:</strong> If your degree has a specific emphasis area, it will be shown here.</li>
-    </ul>
-
-    <p>You can edit these details using the <strong>Edit Profile</strong> button below. Above that, you’ll find the <strong>Track Your Progress</strong> bar, which keeps track of the courses in your plan. The bar will fill up as you add more courses to your <strong>Build Your Degree Planner</strong> page.</p>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
