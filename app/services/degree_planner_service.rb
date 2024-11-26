@@ -3,6 +3,7 @@
 # app/services/degree_planner_service.rb
 # naive approach
 
+#TODO: This only works for CSCE majors any other majors break the Degree Planner Generator.
 class DegreePlannerService
   def initialize(student, emphasis_area, track_area)
     @student = student
