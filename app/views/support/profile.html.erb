@@ -55,26 +55,44 @@
 <body>
   <%= render 'deployment_navbar_student' %>
 
-    <div class="profile-content text-left">
-      <h1>Profile Page</h1>
-      <p>On this page, you can view your personal information relevant to degree planning and graduation.</p>
+   <div class="container-fluid">
+       <div class="row">
+           <div class="col-md-9">
+               <div class="row align-items-center">
+                   <div class="col-md-8">
+                       <div class="profile-content text-left">
+                           <h1>Profile Page</h1>
+                           <p>On this page, you can view your personal information relevant to degree planning and graduation.</p>
 
-      <ul>
-          <li><strong>Name:</strong> Your full name.</li>
-          <li><strong>Email:</strong> The email address associated with your account.</li>
-          <li><strong>Enrollment Year:</strong> The year you started classes.</li>
-          <li><strong>Graduation Year:</strong> The year you plan to graduate with your intended degree.</li>
-          <li><strong>Enrollment Semester:</strong> The semester you began classes.</li>
-          <li><strong>Graduation Semester:</strong> The semester in which you plan to graduate.</li>
-          <li><strong>Major:</strong> The degree you are pursuing. This guides how the app builds your degree plan.</li>
-          <li><strong>Emphasis:</strong> If your degree has a specific emphasis area, it will be shown here.</li>
-      </ul>
+                           <ul>
+                               <li><strong>Name:</strong> Your full name.</li>
+                               <li><strong>Email:</strong> The email address associated with your account.</li>
+                               <li><strong>Enrollment Year:</strong> The year you started classes.</li>
+                               <li><strong>Graduation Year:</strong> The year you plan to graduate with your intended degree.</li>
+                               <li><strong>Enrollment Semester:</strong> The semester you began classes.</li>
+                               <li><strong>Graduation Semester:</strong> The semester in which you plan to graduate.</li>
+                               <li><strong>Major:</strong> The degree you are pursuing. This guides how the app builds your degree plan.</li>
+                               <li><strong>Emphasis:</strong> If your degree has a specific emphasis area, it will be shown here.</li>
+                           </ul>
 
-      <p>You can edit these details using the <strong>Edit Profile</strong> button below. Above that, you’ll find the <strong>Track Your Progress</strong> bar, which keeps track of the courses in your plan. The bar will fill up as you add more courses to your <strong>Build Your Degree Planner</strong> page.</p>
-  </div>
+                           <p>You can edit these details using the <strong>Edit Profile</strong> button below. Above that, you'll find the <strong>Track Your Progress</strong> bar, which keeps track of the courses in your plan. The bar will fill up as you add more courses to your <strong>Build Your Degree Planner</strong> page.</p>
+                       </div>
+                   </div>
+                   <div class="col-md-4 pl-0">
+                       <div class="video-container" style="width: 200%; max-width: 800px;">
+                           <video class="img-fluid" style="width: 100%; height: auto;" controls>
+                               <source src="<%= asset_path('buildD.mp4') %>" type="video/mp4">
+                               Your browser does not support the video tag.
+                           </video>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <!-- Bootstrap JS and dependencies -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

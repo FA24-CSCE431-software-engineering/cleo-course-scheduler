@@ -48,21 +48,39 @@
 <body>
   <%= render 'deployment_navbar_student' %>
 
-    <div class="default-plan-content text-left">
-        <h1>Default Plan Page</h1>
-        <p>This page provides the default planner for the CSCE program. Each semester contains the following fields:</p>
+   <div class="container-fluid">
+       <div class="row">
+           <div class="col-md-9">
+               <div class="row align-items-center">
+                   <div class="col-md-8">
+                       <div class="default-plan-content text-left">
+                           <h1>Default Plan Page</h1>
+                           <p>This page provides the default planner for the CSCE program. Each semester contains the following fields:</p>
 
-        <ul>
-            <li><strong>Course Code:</strong> The major to which the course belongs.</li>
-            <li><strong>Course Number:</strong> The unique identification number associated with the course, related to the <strong>Course Code</strong>.</li>
-            <li><strong>Credits:</strong> The total number of credit hours the course offers.</li>
-        </ul>
+                           <ul>
+                               <li><strong>Course Code:</strong> The major to which the course belongs.</li>
+                               <li><strong>Course Number:</strong> The unique identification number associated with the course, related to the <strong>Course Code</strong>.</li>
+                               <li><strong>Credits:</strong> The total number of credit hours the course offers.</li>
+                           </ul>
 
-        <p><em>Note: This is a read-only page, meaning you cannot make any edits.</em></p>
-    </div>
+                           <p><em>Note: This is a read-only page, meaning you cannot make any edits.</em></p>
+                       </div>
+                   </div>
+                   <div class="col-md-4 mt-4 pl-0">
+                        <div class="video-container" style="width: 200%; max-width: 700px;">
+                            <video class="img-fluid" style="width: 100%; height: auto;" controls>
+                                <source src="<%= asset_path('default.mp4') %>" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+               </div>
+           </div>
+       </div>
+   </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <!-- Bootstrap JS and dependencies -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
